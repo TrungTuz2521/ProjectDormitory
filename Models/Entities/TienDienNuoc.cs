@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace KTX.Entities;
+
+public partial class TienDienNuoc
+{
+    public int MaHddn { get; set; }
+
+    public int MaP { get; set; }
+
+    public int? SoDien { get; set; }
+
+    public int? SoNuoc { get; set; }
+
+    public int? GiaDien { get; set; }
+
+    public int? GiaNuoc { get; set; }
+
+    public decimal? TienDien { get; set; }
+
+    public decimal? TienNuoc { get; set; }
+
+    public decimal? TongTienDn { get; set; }
+
+    public int? DotTtdn { get; set; }
+
+    public DateOnly? HanTtp { get; set; }
+
+    public string? TrangThaiTtp { get; set; }
+
+    public virtual Phong MaPNavigation { get; set; } = null!;
+}
