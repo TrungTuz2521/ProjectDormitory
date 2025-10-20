@@ -1,0 +1,53 @@
+﻿@model KtxManagement.Models.ViewModels.ThongTinCaNhanViewModel
+
+@{
+    string avatarInitial = Model.HoTen?.Split(' ').LastOrDefault()?.Substring(0, 1).ToUpper() ?? "U";
+}
+
+<div class="card shadow-sm border-0 mb-4">
+    <div class="card-body text-center p-4">
+        <p class="text-start text-muted mb-3 fw-bold small"></p>
+
+        @if (!string.IsNullOrEmpty(Model.AvatarUrl))
+        {
+            <img src="~/images/@Model.AvatarUrl" alt="Avatar" class="rounded-circle mx-auto mb-3" style="width: 120px; height: 120px; object-fit: cover;">
+        }
+        else
+        {
+            <div class="avatar-circle mx-auto mb-3">@avatarInitial</div>
+        }
+
+        <h5 class="card-title mb-1 fw-bold">@Model.HoTen</h5>
+        <p class="card-text text-muted small">Mã Sinh Viên : @Model.MaSinhVien</p>
+
+        <span class="badge rounded-pill bg-success-subtle text-success mt-1 px-3 py-2 fw-semibold">
+            Active Student
+        </span>
+
+        <div class="d-grid gap-2 mt-4">
+            <a asp-action="Edit" class="btn btn-primary fw-semibold">
+                <i class="bi bi-pencil-fill me-2"></i>
+                Edit Profile
+            </a>
+            <button class="btn btn-outline-secondary fw-semibold">
+                <i class="bi bi-camera-fill me-2"></i>
+                Change Photo
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .avatar-circle {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 48px;
+        font-weight: bold;
+    }
+</style>

@@ -11,7 +11,7 @@ public partial class SinhVien
 
     public string GioiTinh { get; set; } = null!;
 
-    public DateOnly NgaySinh { get; set; }
+    public DateTime NgaySinh { get; set; }
 
     public string Sdt { get; set; } = null!;
 

@@ -1,0 +1,100 @@
+﻿@model KtxManagement.Models.ViewModels.ThongTinCaNhanViewModel
+
+<div class="card shadow-sm border-0">
+    <div class="card-body p-4">
+        <h6 class="mb-3 text-primary fw-bold">
+            <i class="bi bi-person-badge-fill me-2"></i>
+            Chi tiết thông tin cá nhân
+        </h6>
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="info-item">
+                    <small class="text-muted d-block mb-1">
+                        <p class="card-text text-muted small">Mã Sinh Viên</p>
+                    </small>
+                    <p class="fw-bold mb-0">@Model.MaSinhVien</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="info-item">
+                    <small class="text-muted d-block mb-1">
+                        <i class="bi bi-person-fill me-1"></i>
+                        Họ Tên
+                    </small>
+                    <p class="fw-bold mb-0">@Model.HoTen</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="info-item">
+                    <small class="text-muted d-block mb-1">
+                        <i class="bi bi-gender-ambiguous me-1"></i>
+                        Giới tính
+                    </small>
+                    <p class="fw-bold mb-0">@Model.GioiTinh</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="info-item">
+                    <small class="text-muted d-block mb-1">
+                        <i class="bi bi-calendar-fill me-1"></i>
+                        Ngày sinh
+                    </small>
+                    <p class="fw-bold mb-0">@Model.NgaySinh.ToString("dd/MM/yyyy")</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="info-item">
+                    <small class="text-muted d-block mb-1">
+                        <i class="bi bi-telephone-fill me-1"></i>
+                        SĐT
+                    </small>
+                    <p class="fw-bold mb-0">@Model.DienThoai</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="info-item">
+                    <small class="text-muted d-block mb-1">
+                        <i class="bi bi-envelope-fill me-1"></i>
+                        Email
+                    </small>
+                    <p class="fw-bold mb-0">@Model.Email</p>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="info-item">
+                    <small class="text-muted d-block mb-1">
+                        <i class="bi bi-building me-1"></i>
+                        Khoa
+                    </small>
+                    <p class="fw-bold mb-0">@Model.Khoa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .info-item {
+        padding: 12px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        transition: all 0.3s;
+    }
+
+        .info-item:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+</style>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}

@@ -1,0 +1,61 @@
+﻿@model KtxManagement.Models.ViewModels.ThongTinCaNhanViewModel
+
+@{
+    ViewData["Title"] = "Thông tin cá nhân";
+}
+
+<div class="page-header mb-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <h1 class="page-title mb-1">
+                <i class="bi bi-person-circle text-primary me-2"></i>
+                Thông tin cá nhân
+            </h1>
+            <p class="text-muted mb-0">Xem và quản lý thông tin sinh viên của bạn</p>
+        </div>
+        <div>
+            <a asp-action="Edit" class="btn btn-primary">
+                <i class="bi bi-pencil-fill me-2"></i>
+                Chỉnh sửa
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Cột trái: Thông tin sinh viên -->
+    <div class="col-lg-4">
+        <!-- Partial: Avatar & Profile Card -->
+        <partial name="_Partials/_ThongTinSinhVien" model="Model" />
+
+        <!-- Partial: Chi tiết thông tin cá nhân -->
+        <partial name="_Partials/_ThongTinChiTiet" model="Model" />
+    </div>
+
+    <!-- Cột phải: Thông tin phòng & hợp đồng -->
+    <div class="col-lg-8">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <!-- Partial: Room Summary -->
+                <partial name="_Partials/_ThongTinPhong" model="Model" />
+
+                <hr class="my-4">
+
+                <!-- Partial: Roommates List -->
+                <partial name="_Partials/_DanhSachRoommate" model="Model" />
+
+                <hr class="my-4">
+
+                <!-- Partial: Contract Information -->
+                <partial name="_Partials/_ThongTinHopDong" model="Model" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add any interactive JavaScript here
+        console.log('Thông tin cá nhân loaded');
+    </script>
+}

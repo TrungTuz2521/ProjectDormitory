@@ -1,0 +1,64 @@
+﻿@model KtxManagement.Models.ViewModels.ThongTinCaNhanViewModel
+
+<div class="mb-4">
+    <h6 class="mb-3 fw-bold">
+        <i class="bi bi-people-fill text-secondary me-2"></i>
+        Roommates
+        @if (Model.BanCungPhong != null && Model.BanCungPhong.Any())
+        {
+            <span class="badge bg-secondary ms-2">@Model.BanCungPhong.Count()</span>
+        }
+    </h6>
+
+    @if (Model.BanCungPhong != null && Model.BanCungPhong.Any())
+    {
+        <div class="list-group list-group-flush">
+            @foreach (var roommate in Model.BanCungPhong)
+            {
+                <div class="list-group-item d-flex align-items-center py-3 px-0 border-0 border-bottom">
+                    <div class="avatar-circle-sm me-3">
+                        @roommate.Initial
+                    </div>
+                    <div class="flex-grow-1">
+                        <strong class="d-block">@roommate.HoTen</strong>
+                        <small class="text-muted">
+                            <p class="card-text text-muted small">Mã Sinh Viên : @Model.MaSinhVien</p>
+                        </small>
+                    </div>
+                    <div>
+                        <button class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-chat-dots-fill"></i>
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info mb-0">
+            <i class="bi bi-info-circle me-2"></i>
+            Bạn đang ở phòng một mình hoặc chưa có thông tin bạn cùng phòng.
+        </div>
+    }
+</div>
+
+<style>
+    .avatar-circle-sm {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        flex-shrink: 0;
+    }
+
+    .list-group-item:hover {
+        background-color: #f8f9fa;
+    }
+</style>

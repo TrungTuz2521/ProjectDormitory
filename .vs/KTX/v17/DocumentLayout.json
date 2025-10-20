@@ -3,44 +3,88 @@
   "WorkspaceRootPath": "D:\\Web\\KTX\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\thongtin\\_partials\\_thongtinchitiet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\_partials\\_thongtinchitiet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\thongtin\\_partials\\_thongtinsinhvien.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\_partials\\_thongtinsinhvien.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\thongtin\\_partials\\_danhsachroommate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\_partials\\_danhsachroommate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\thongtin\\_partials\\_thongtinphong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\_partials\\_thongtinphong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\controllers\\thongtincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\thongtincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\thongtin\\thongtincanhan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\thongtincanhan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\models\\viewmodels\\thongtincanhanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\viewmodels\\thongtincanhanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\models\\entities\\hopdongphong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\entities\\hopdongphong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\models\\entities\\sinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\entities\\sinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\thongtin\\_partials\\_thongtinhopdong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\_partials\\_thongtinhopdong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\shared\\_roomdetailitem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\_roomdetailitem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\models\\entities\\phong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\entities\\phong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\models\\viewmodels\\roommateinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\viewmodels\\roommateinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\wwwroot\\css\\layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:wwwroot\\css\\layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\shared\\_leftsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\_leftsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\shared\\mylayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\mylayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\wwwroot\\js\\layout.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:wwwroot\\js\\layout.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\shared\\_topnav.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\_topnav.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\shared\\_leftsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\_leftsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\wwwroot\\js\\layout.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:wwwroot\\js\\layout.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,65 +94,197 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "_TopNav.cshtml",
-              "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\_TopNav.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_TopNav.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\Shared\\_TopNav.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_TopNav.cshtml",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAACEAAAAmAAAAAAAAAA==",
+              "Title": "_ThongTinHopDong.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_ThongTinHopDong.cshtml",
+              "RelativeDocumentMoniker": "Views\\ThongTin\\_Partials\\_ThongTinHopDong.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_ThongTinHopDong.cshtml",
+              "RelativeToolTip": "Views\\ThongTin\\_Partials\\_ThongTinHopDong.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGsAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-20T03:18:33.14Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Layout.css",
-              "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\css\\Layout.css",
-              "RelativeDocumentMoniker": "wwwroot\\css\\Layout.css",
-              "ToolTip": "D:\\Web\\KTX\\wwwroot\\css\\Layout.css",
-              "RelativeToolTip": "wwwroot\\css\\Layout.css",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAAAFEAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-10-20T03:15:36.987Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T07:09:13.895Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Web\\KTX\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\Web\\KTX\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-20T04:17:22.614Z",
+              "Title": "_DanhSachRoommate.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_DanhSachRoommate.cshtml",
+              "RelativeDocumentMoniker": "Views\\ThongTin\\_Partials\\_DanhSachRoommate.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_DanhSachRoommate.cshtml",
+              "RelativeToolTip": "Views\\ThongTin\\_Partials\\_DanhSachRoommate.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABgAAABmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-20T07:08:41.14Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAwwEUAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "_ThongTinPhong.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_ThongTinPhong.cshtml",
+              "RelativeDocumentMoniker": "Views\\ThongTin\\_Partials\\_ThongTinPhong.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_ThongTinPhong.cshtml",
+              "RelativeToolTip": "Views\\ThongTin\\_Partials\\_ThongTinPhong.cshtml",
+              "ViewState": "AgIAABoAAAAAAAAAAAAYwDIAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-20T04:12:13.997Z",
+              "WhenOpened": "2025-10-20T07:07:39.819Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_ThongTinChiTiet.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_ThongTinChiTiet.cshtml",
+              "RelativeDocumentMoniker": "Views\\ThongTin\\_Partials\\_ThongTinChiTiet.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_ThongTinChiTiet.cshtml",
+              "RelativeToolTip": "Views\\ThongTin\\_Partials\\_ThongTinChiTiet.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-20T07:06:57.497Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_ThongTinSinhVien.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_ThongTinSinhVien.cshtml",
+              "RelativeDocumentMoniker": "Views\\ThongTin\\_Partials\\_ThongTinSinhVien.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_ThongTinSinhVien.cshtml",
+              "RelativeToolTip": "Views\\ThongTin\\_Partials\\_ThongTinSinhVien.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-20T07:06:06.66Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "ThongTinCaNhan.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\ThongTin\\ThongTinCaNhan.cshtml",
+              "RelativeDocumentMoniker": "Views\\ThongTin\\ThongTinCaNhan.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\ThongTin\\ThongTinCaNhan.cshtml",
+              "RelativeToolTip": "Views\\ThongTin\\ThongTinCaNhan.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAADwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-20T07:05:18.735Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Phong.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Models\\Entities\\Phong.cs",
+              "RelativeDocumentMoniker": "Models\\Entities\\Phong.cs",
+              "ToolTip": "D:\\Web\\KTX\\Models\\Entities\\Phong.cs",
+              "RelativeToolTip": "Models\\Entities\\Phong.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T06:55:18.653Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "HopDongPhong.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Models\\Entities\\HopDongPhong.cs",
+              "RelativeDocumentMoniker": "Models\\Entities\\HopDongPhong.cs",
+              "ToolTip": "D:\\Web\\KTX\\Models\\Entities\\HopDongPhong.cs",
+              "RelativeToolTip": "Models\\Entities\\HopDongPhong.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAA9wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T06:54:27.543Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SinhVien.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Models\\Entities\\SinhVien.cs",
+              "RelativeDocumentMoniker": "Models\\Entities\\SinhVien.cs",
+              "ToolTip": "D:\\Web\\KTX\\Models\\Entities\\SinhVien.cs",
+              "RelativeToolTip": "Models\\Entities\\SinhVien.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwA0AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T06:54:23.006Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "site.css",
+              "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
+              "ToolTip": "D:\\Web\\KTX\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "wwwroot\\css\\site.css",
+              "ViewState": "AgIAACsAAAAAAAAAAAAowBYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-10-20T06:49:14.431Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "_RoomDetailItem.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\_RoomDetailItem.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_RoomDetailItem.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\Shared\\_RoomDetailItem.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_RoomDetailItem.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-20T06:48:17.398Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ThongTinController.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\ThongTinController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ThongTinController.cs",
+              "ToolTip": "D:\\Web\\KTX\\Controllers\\ThongTinController.cs",
+              "RelativeToolTip": "Controllers\\ThongTinController.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAwwC4AAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T06:41:00.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "RoommateInfo.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Models\\ViewModels\\RoommateInfo.cs",
+              "RelativeDocumentMoniker": "Models\\ViewModels\\RoommateInfo.cs",
+              "ToolTip": "D:\\Web\\KTX\\Models\\ViewModels\\RoommateInfo.cs",
+              "RelativeToolTip": "Models\\ViewModels\\RoommateInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T06:33:36.798Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ThongTinCaNhanViewModel.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Models\\ViewModels\\ThongTinCaNhanViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\ViewModels\\ThongTinCaNhanViewModel.cs",
+              "ToolTip": "D:\\Web\\KTX\\Models\\ViewModels\\ThongTinCaNhanViewModel.cs",
+              "RelativeToolTip": "Models\\ViewModels\\ThongTinCaNhanViewModel.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAuwBEAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T06:25:31.985Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Web\\KTX\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAwwCYAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T04:17:22.614Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
               "Title": "_LeftSideBar.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\_LeftSideBar.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_LeftSideBar.cshtml",
@@ -116,25 +292,23 @@
               "RelativeToolTip": "Views\\Shared\\_LeftSideBar.cshtml",
               "ViewState": "AgIAADsAAAAAAAAAAAAswE4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-20T04:11:51.631Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T04:11:51.631Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 13,
               "Title": "AccountController.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
               "ToolTip": "D:\\Web\\KTX\\Controllers\\AccountController.cs",
               "RelativeToolTip": "Controllers\\AccountController.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAUwEQAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAuwDwAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-20T03:55:50.125Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T03:55:50.125Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 18,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
@@ -142,12 +316,11 @@
               "RelativeToolTip": "Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-20T03:23:15.326Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T03:23:15.326Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 20,
               "Title": "Layout.js",
               "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\js\\Layout.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\Layout.js",
@@ -155,12 +328,11 @@
               "RelativeToolTip": "wwwroot\\js\\Layout.js",
               "ViewState": "AgIAABAAAAAAAAAAAAAmwCcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-10-20T03:21:52.406Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T03:21:52.406Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 15,
               "Title": "MyLayout.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\MyLayout.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\MyLayout.cshtml",
@@ -168,12 +340,11 @@
               "RelativeToolTip": "Views\\Shared\\MyLayout.cshtml",
               "ViewState": "AgIAABEAAAAAAAAAAAAiwBwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-19T13:05:15.448Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-19T13:05:15.448Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 17,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
@@ -181,8 +352,7 @@
               "RelativeToolTip": "Controllers\\HomeController.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAcAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-19T12:57:16.501Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-19T12:57:16.501Z"
             }
           ]
         }

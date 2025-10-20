@@ -59,14 +59,15 @@ namespace KTX.Controllers
                     var authProperties = new AuthenticationProperties
                     {
                         IsPersistent = model.RememberMe,
-                        ExpiresUtc = DateTimeOffset.UtcNow.AddHours(48)
+                        ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(15)
                     };
 
                     // Đăng nhập
                     await HttpContext.SignInAsync(
                         CookieAuthenticationDefaults.AuthenticationScheme,
                         new ClaimsPrincipal(claimsIdentity),
-                        authProperties);
+                        authProperties
+                        );
 
                     // Lưu session
                     HttpContext.Session.SetInt32("UserMSV", user.Msv);

@@ -1,0 +1,9 @@
+﻿@{
+    string label = ViewData["Label"]?.ToString() ?? "Label";
+    string value = ViewData["Value"]?.ToString() ?? "N/A";
+}
+
+<div class="col-md-6">
+    <label class="form-label text-muted small mb-1">@label</label>
+    <div class="detail-value-box"><strong>@value</strong></div>
+</div>
