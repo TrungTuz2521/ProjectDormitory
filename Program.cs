@@ -24,7 +24,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.LoginPath = "/Account/Login";           // Trang đăng nhập
         options.LogoutPath = "/Account/Logout";         // Trang đăng xuất
         options.AccessDeniedPath = "/Account/AccessDenied"; // Khi bị chặn quyền
-        options.ExpireTimeSpan = TimeSpan.FromHours(48);
+        options.ExpireTimeSpan = TimeSpan.FromHours(1);
+        options.SlidingExpiration = true; // ✅ tự động gia hạn nếu user vẫn hoạt động
     });
 
 var app = builder.Build();

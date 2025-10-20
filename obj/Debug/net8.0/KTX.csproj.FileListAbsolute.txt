@@ -283,3 +283,4 @@ D:\Web\KTX\obj\Debug\net8.0\refint\KTX.dll
 D:\Web\KTX\obj\Debug\net8.0\KTX.pdb
 D:\Web\KTX\obj\Debug\net8.0\KTX.genruntimeconfig.cache
 D:\Web\KTX\obj\Debug\net8.0\ref\KTX.dll
+D:\Web\KTX\obj\Debug\net8.0\KTX.sourcelink.json

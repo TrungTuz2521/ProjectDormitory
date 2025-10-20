@@ -1,0 +1,79 @@
+﻿<aside class="left-sidebar" id="leftSidebar">
+    <nav class="sidebar-nav">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Home" asp-action="Index">
+                    <span class="nav-icon">
+                        <i class="bi bi-house-fill"></i>
+                    </span>
+                    <span>Trang chủ</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="ThongTin" asp-action="Index">
+                    <span class="nav-icon">
+                        <i class="bi bi-person-fill"></i>
+                    </span>
+                    <span>Thông tin cá nhân</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="QuanLyPhong" asp-action="Index">
+                    <span class="nav-icon">
+                        <i class="bi bi-door-closed-fill"></i>
+                    </span>
+                    <span>Quản lý phòng</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="ThanhToan" asp-action="Index">
+                    <span class="nav-icon">
+                        <i class="bi bi-credit-card-fill"></i>
+                    </span>
+                    <span>Thanh toán</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="PhanAnh" asp-action="Index">
+                    <span class="nav-icon">
+                        <i class="bi bi-chat-dots-fill"></i>
+                    </span>
+                    <span>Phản ánh và hỗ trợ</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="NoiQuy" asp-action="Index">
+                    <span class="nav-icon">
+                        <i class="bi bi-megaphone-fill"></i>
+                    </span>
+                    <span>Nội quy và thông báo</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="CongDong" asp-action="Index">
+                    <span class="nav-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </span>
+                    <span>Cộng đồng</span>
+                </a>
+            </li>
+
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <li class="nav-item">
+                    <hr class="text-white opacity-25 my-3 mx-3">
+                </li>
+                <li class="nav-item">
+                    <form method="post" asp-controller="Account" asp-action="Logout" class="m-0">
+                        <button type="submit" class="nav-link w-100 text-start border-0 bg-transparent">
+                            <span class="nav-icon">
+                                <i class="bi bi-box-arrow-right"></i>
+                            </span>
+                            <span>Đăng xuất</span>
+                        </button>
+                    </form>
+                </li>
+            }
+        </ul>
+    </nav>
+</aside>

@@ -1,0 +1,65 @@
+﻿<nav class="top-nav">
+    <div class="container-fluid h-100">
+        <div class="row h-100 align-items-center">
+
+            <!-- Nút mở sidebar khi ở mobile -->
+            <div class="col-auto d-lg-none">
+                <button class="btn btn-link text-white" id="sidebarToggle">
+                    <i class="bi bi-list fs-3"></i>
+                </button>
+            </div>
+
+            <!-- Logo + tiêu đề -->
+            <div class="col">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="logo-box">
+                        <img src="~/images/LogoTittle.png" alt="LogoKTX" />
+                    </div>
+                    <div class="site-title text-white">
+                        <h1 class="mb-0">Ký túc xá sinh viên</h1>
+                        <p class="mb-0">Trường Đại học Giao Thông Vận Tải</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thông tin người dùng -->
+            <div class="col-auto">
+                <div class="d-flex align-items-center gap-3 text-white">
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        var fullName = User.Claims.FirstOrDefault(c => c.Type == "FullName")?.Value
+                        ?? User.Claims.FirstOrDefault(c => c.Type == "HoTen")?.Value;
+
+                        <div class="user-info text-end d-none d-sm-block">
+                            <p class="user-name mb-0 fw-semibold">@fullName</p>
+                            <p class="user-role mb-0 text-white-50">Sinh viên</p>
+                        </div>
+
+                        <div class="dropdown">
+                            <button class="btn p-0 border-0 user-avatar dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-fill"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                                <li><a class="dropdown-item" href="#">Hồ sơ cá nhân</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                    <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                        <button type="submit" class="dropdown-item text-danger">Đăng xuất</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+                        <span class="text-white">Khách</span>
+                        <div class="user-avatar">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</nav>

@@ -6,14 +6,7 @@
     height: 100vh;
 }
 
-.top-banner {
-    background-color: #0b1e58;
-    padding: 15px;
-    /* Dùng Flexbox để căn giữa nội dung bên trong banner nếu cần */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Căn giữa theo chiều ngang */
-}
+
 
 /* Tối ưu logo và tiêu đề */
 .header-logo {
@@ -22,7 +15,7 @@
 }
 
     .header-logo img {
-        height: 100px;
+        height: 50px;
     }
 
 .header-title {
@@ -40,7 +33,7 @@
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 20px;
     padding: 40px 30px;
-    max-width: 450px; /* Giảm bớt cho phù hợp với form login */
+    max-width: 600px; /* Giảm bớt cho phù hợp với form login */
     margin: 50px auto;
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
@@ -48,9 +41,10 @@
 .login-title {
     text-align: center;
     font-weight: 800;
-    font-size: x-large;
+    font-size: xx-large;
     color: #0b1e58;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    
 }
 
 /* Nút đăng nhập: Thay đổi độ rộng của nút */
@@ -59,8 +53,9 @@
     color: #fff;
     border-radius: 10px;
     font-weight: bold;
-    padding: 10px 40px; /* Tăng padding để nút có kích thước vừa phải */
-    margin-top: 20px;
+    padding: 15px 50px; /* Tăng padding để nút có kích thước vừa phải */
+    margin-top: 30px;
+    padding:20px;
     transition: all 0.3s ease;
     /* BỎ width: 100% để nút được căn giữa bởi form flexbox cha */
 }
@@ -70,6 +65,7 @@
         transform: scale(1.03);
     }
 .title-logo{
+    margin-top:70px;
      text-align:center;
 }
     .title-logo img {

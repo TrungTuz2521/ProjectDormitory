@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KTX.Controllers
 {
-    [Authorize] // Yêu c?u ðãng nh?p
+    [Authorize] 
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

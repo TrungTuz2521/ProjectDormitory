@@ -66,3 +66,5 @@ wwwroot\images\logo.jfif
 wwwroot\images\Backgroud.jpg
 wwwroot\images\LogoUTC.png
 wwwroot\images\LogoTittle.png
+wwwroot\css\Layout.css
+wwwroot\js\Layout.js
