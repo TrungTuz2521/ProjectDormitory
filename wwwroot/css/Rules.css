@@ -1,0 +1,233 @@
+﻿body {
+    background-color: #eef1f6; /* Nền sáng, hiện đại */
+    font-family: 'Inter', "Segoe UI", Roboto, sans-serif; /* Ưu tiên font hiện đại */
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+/* Container chính */
+.page-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: #ffffff;
+    border-radius: 18px; /* Bo góc mềm mại */
+    padding: 32px 40px;
+    /* Box shadow có chiều sâu */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Header */
+.page-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+    .page-header h2 {
+        font-weight: 700;
+        font-size: 2rem;
+        color: #111827;
+        margin-bottom: 0.25rem;
+    }
+
+    .page-header p {
+        color: #6b7280;
+        font-size: 1.1rem;
+    }
+
+/* --- Tabs --- */
+.nav-pills {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+    .nav-pills .nav-link {
+        border-radius: 10px;
+        color: #4b5563;
+        font-weight: 600;
+        padding: 8px 18px;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+        .nav-pills .nav-link:hover:not(.active) {
+            color: #1e40af;
+            background-color: #eff6ff;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: #1e40af; /* Màu xanh nổi bật */
+            color: white !important;
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+            transform: translateY(-1px); /* Hiệu ứng nhấc lên nhẹ */
+        }
+
+/* --- Card Nội dung --- */
+.tab-content {
+    padding-top: 15px;
+}
+
+.rules-card {
+    margin-top: 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.section-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #111827;
+    border-bottom: 2px solid #f3f4f6;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.section-subtitle {
+    color: #6b7280;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+/* --- File box (Tài liệu) --- */
+.file-box {
+    background: #eef2ff; /* Nền xanh nhạt nổi bật */
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #d1d5db;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+    .file-box:hover {
+        box-shadow: 0 4px 15px rgba(30, 64, 175, 0.1);
+        transform: translateY(-2px);
+    }
+
+.file-info strong {
+    font-weight: 600;
+    color: #1e40af;
+    font-size: 1rem;
+}
+
+.file-info span {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-top: 4px;
+}
+
+.btn-download {
+    background-color: #1e40af;
+    color: white;
+    border-radius: 8px;
+    padding: 8px 20px;
+    border: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.2s ease;
+}
+
+    .btn-download:hover {
+        background-color: #1c3d9a;
+    }
+
+/* --- Rule items (Các quy tắc chi tiết) --- */
+.rule-item {
+    display: flex;
+    align-items: flex-start;
+    background-color: #f7f9fb;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    gap: 15px;
+    /* Thanh màu bên trái để nhấn mạnh và phân loại */
+    border-left: 5px solid #d1d5db;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+    .rule-item:hover {
+        background-color: #f0f3f6;
+    }
+
+    /* Đổi màu thanh bên trái theo ý nghĩa (Tăng cường visual) */
+    .rule-item:nth-child(1) {
+        border-left-color: #ef4444;
+    }
+    /* Quiet Hours (Danger) */
+    .rule-item:nth-child(2) {
+        border-left-color: #f59e0b;
+    }
+    /* Guest Policy (Warning) */
+    .rule-item:nth-child(3) {
+        border-left-color: #f59e0b;
+    }
+    /* Smoking (Warning) */
+    .rule-item:nth-child(4) {
+        border-left-color: #3b82f6;
+    }
+    /* Maintenance (Info) */
+    .rule-item:nth-child(5) {
+        border-left-color: #10b981;
+    }
+/* Common Areas (Success) */
+
+.rule-icon {
+    font-size: 1.5rem;
+    padding-top: 2px;
+    flex-shrink: 0;
+}
+
+.rule-content {
+    flex-grow: 1;
+    font-size: 0.95rem;
+}
+
+    .rule-content strong {
+        font-weight: 700;
+        color: #1f2937;
+        display: block;
+        margin-bottom: 3px;
+        font-size: 1.05rem;
+    }
+
+/* --- Media Queries (Responsive) --- */
+@media (max-width: 768px) {
+    .page-container {
+        margin: 20px;
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .page-header h2 {
+        font-size: 1.5rem;
+    }
+
+    /* Đảm bảo tab cuộn ngang trên màn hình nhỏ */
+    .nav-pills {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+
+        .nav-pills .nav-link {
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
+
+    .file-box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .btn-download {
+        width: 100%;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,127 @@
+﻿@model KTX.Models.ViewModels.ThongTinCaNhanViewModel
+
+@{
+    ViewData["Title"] = "Chỉnh Sửa Thông Tin Cá Nhân";
+    // Thiết lập Layout nếu cần, ví dụ:
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
+
+            <h2 class="mb-3 fw-bold text-primary">
+                <i class="bi bi-pencil-square me-2"></i> Chỉnh Sửa Hồ Sơ
+            </h2>
+            <p class="text-muted mb-4">Cập nhật thông tin liên hệ của bạn tại đây.</p>
+
+            @* Hiển thị thông báo (Success/Error) từ TempData *@
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["Success"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["Error"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4 p-md-5">
+
+                    <form asp-action="Edit" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        @* Ẩn các trường không cần chỉnh sửa nhưng cần gửi lên POST *@
+                        <input type="hidden" asp-for="MaSinhVien" />
+                        <input type="hidden" asp-for="HoTen" />
+                        <input type="hidden" asp-for="NgaySinh"
+                               value="@Model.NgaySinh.ToString("yyyy-MM-dd")" />
+                        <input type="hidden" asp-for="GioiTinh" />
+                        <input type="hidden" asp-for="Khoa" />
+
+                        <h5 class="fw-bold mb-3 text-secondary">Thông tin cơ bản (Chỉ đọc)</h5>
+                        <div class="row g-3 mb-4">
+
+                            @* Trường MSV - Chỉ đọc *@
+                            <div class="col-md-6">
+                                <label asp-for="MaSinhVien" class="form-label small text-muted">Mã Sinh Viên</label>
+                                <input asp-for="MaSinhVien" class="form-control" readonly />
+                            </div>
+
+                            @* Trường Họ Tên - Chỉ đọc *@
+                            <div class="col-md-6">
+                                <label asp-for="HoTen" class="form-label small text-muted">Họ Tên</label>
+                                <input asp-for="HoTen" class="form-control" readonly />
+                            </div>
+
+                            @* Trường Ngày Sinh - Chỉ đọc *@
+                            <div class="col-md-6">
+                                <label asp-for="NgaySinh" class="form-label small text-muted">Ngày Sinh</label>
+                                @* Định dạng DateOnly thành string YYYY-MM-DD để hiển thị tốt trong input type text *@
+                                <input value="@Model.NgaySinh.ToString("yyyy-MM-dd")" class="form-control" readonly />
+                            </div>
+
+                            @* Trường Giới Tính - Chỉ đọc *@
+                            <div class="col-md-6">
+                                <label asp-for="GioiTinh" class="form-label small text-muted">Giới Tính</label>
+                                <input asp-for="GioiTinh" class="form-control" readonly />
+                            </div>
+
+                            @* Trường Khoa - Chỉ đọc *@
+                            <div class="col-12">
+                                <label asp-for="Khoa" class="form-label small text-muted">Khoa</label>
+                                <input asp-for="Khoa" class="form-control" readonly />
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <h5 class="fw-bold mb-3 text-secondary">Thông tin Liên hệ (Chỉnh sửa)</h5>
+                        <div class="row g-3 mb-4">
+
+                            @* Trường Điện thoại - Có thể chỉnh sửa *@
+                            <div class="col-md-6">
+                                <label asp-for="DienThoai" class="form-label fw-bold">
+                                    <i class="bi bi-phone me-1"></i> Số Điện Thoại
+                                </label>
+                                <input asp-for="DienThoai" class="form-control" />
+                                <span asp-validation-for="DienThoai" class="text-danger small"></span>
+                            </div>
+
+                            @* Trường Email - Có thể chỉnh sửa *@
+                            <div class="col-md-6">
+                                <label asp-for="Email" class="form-label fw-bold">
+                                    <i class="bi bi-envelope me-1"></i> Email
+                                </label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2 mt-4">
+                            <a asp-action="ThongTinCaNhan" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left me-1"></i> Quay lại
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save me-1"></i> Lưu Thay Đổi
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

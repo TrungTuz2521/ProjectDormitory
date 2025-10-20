@@ -1,0 +1,143 @@
+﻿@using KTX.Models.ViewModels
+@model RulesAnnouncementsViewModel
+
+@{
+    ViewBag.Title = "Nội quy & Thông báo";
+
+    // Đảm bảo Controller đã truyền data vào Model thành công
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title</title>
+
+    
+    <link href="~/css/Rules.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="page-container">
+        <div class="page-header">
+            <h2>Nội quy & Thông báo</h2>
+            <p>Quy định ký túc xá và các cập nhật quan trọng</p>
+        </div>
+
+        <ul class="nav nav-pills mb-3 justify-content-center" id="rulesTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="rules-tab" data-bs-toggle="pill" data-bs-target="#rules" type="button" role="tab" aria-selected="true">Nội quy Ký túc xá</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="notifications-tab" data-bs-toggle="pill" data-bs-target="#notifications" type="button" role="tab" aria-selected="false">Thông báo của tôi</button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="rulesTabContent">
+
+            <div class="tab-pane fade show active" id="rules" role="tabpanel">
+                <div class="rules-card">
+                    <div class="mb-3">
+                        <div class="section-title">Nội quy & Quy định Chính thức của Ký túc xá</div>
+                        <div class="section-subtitle">Vui lòng đọc và tuân thủ tất cả hướng dẫn của KTX</div>
+                    </div>
+                    <div class="file-box mb-4">
+                        <div class="file-info">
+                            <strong>Sổ tay Sinh viên Ký túc xá 2024–2025</strong>
+                            <span>Tài liệu PDF · 2.4 MB · Cập nhật lần cuối: @DateTime.Parse("2025-10-01").ToShortDateString()</span>
+                        </div>
+                        <button class="btn-download">
+                            <i class="bi bi-download"></i> Tải xuống
+                        </button>
+                    </div>
+
+                    <div class="section-title mb-3">Tóm tắt Quy tắc Chính</div>
+
+                    <div class="rule-item">
+                        <div class="rule-icon text-danger">❗</div>
+                        <div class="rule-content">
+                            <strong>Giờ Giới nghiêm</strong><br>
+                            12:00 PM – 6:00 AM vào các ngày trong tuần. Vui lòng tôn trọng hàng xóm của bạn.
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-icon text-warning">⚠️</div>
+                        <div class="rule-content">
+                            <strong>Chính sách Khách</strong><br>
+                            Khách phải được đăng ký tại quầy lễ tân. Khách qua đêm cần có sự chấp thuận trước.
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-icon text-info">🧹</div>
+                        <div class="rule-content">
+                            <strong>Bảo trì Phòng</strong><br>
+                            Giữ phòng sạch sẽ và báo cáo hư hỏng trong vòng 24 giờ. Phòng kiểm tra hàng tháng.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="tab-pane fade" id="announcements" role="tabpanel">
+                <div class="rules-card">
+                    @if (Model.GeneralAnnouncements != null && Model.GeneralAnnouncements.Any())
+                    {
+                        <div class="section-title mb-4">Danh sách Thông báo Chung từ Ban Quản lý</div>
+
+                        @foreach (var tb in Model.GeneralAnnouncements)
+                        {
+                            <div class="rule-item">
+                                <div class="rule-icon text-primary">📣</div>
+                                <div class="rule-content">
+                                    <strong>@tb.TieuDe</strong>
+                                    <small class="text-muted d-block mb-1">
+                                        Ngày: @tb.NgayTB.ToString("dd/MM/yyyy")
+                                    </small>
+                                    <p class="mb-0">@Html.Raw(tb.NoiDung)</p>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="text-center p-4">
+                            <p class="text-muted mb-0">Hiện tại không có thông báo chung nào mới.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="notifications" role="tabpanel">
+                <div class="rules-card">
+                    @if (Model.PersonalNotifications != null && Model.PersonalNotifications.Any())
+                    {
+                        <div class="section-title mb-4">Thông báo Cá nhân Gửi đến Bạn</div>
+
+                        @foreach (var tb in Model.PersonalNotifications)
+                        {
+                            <div class="rule-item">
+                                <div class="rule-icon text-success">✉️</div>
+                                <div class="rule-content">
+                                    <strong>@tb.TieuDe</strong>
+                                    <small class="text-muted d-block mb-1">
+                                        Ngày: @tb.NgayTB.ToString("dd/MM/yyyy")
+                                    </small>
+                                    <p class="mb-0">@Html.Raw(tb.NoiDung)</p>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="text-center p-4">
+                            <p class="text-muted mb-0">Bạn không có thông báo cá nhân nào mới.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

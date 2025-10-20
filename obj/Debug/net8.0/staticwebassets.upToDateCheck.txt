@@ -1,5 +1,6 @@
 wwwroot\css\Layout.css
 wwwroot\css\Login.css
+wwwroot\css\Rules.css
 wwwroot\css\site.css
 wwwroot\css\Style.css
 wwwroot\favicon.ico
