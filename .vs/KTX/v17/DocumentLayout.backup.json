@@ -3,6 +3,42 @@
   "WorkspaceRootPath": "D:\\Web\\KTX\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\congdong\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\congdong\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\controllers\\congdongcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\congdongcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\congdong\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\congdong\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\models\\viewmodels\\congdongviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\viewmodels\\congdongviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\congdong\\partials\\congdongsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\congdong\\partials\\congdongsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\models\\entities\\baidang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\entities\\baidang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\models\\viewmodels\\roommateinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\viewmodels\\roommateinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\models\\entities\\danhgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\entities\\danhgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\thongbao\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongbao\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -38,11 +74,130 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "CongDongViewModel.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Models\\ViewModels\\CongDongViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\ViewModels\\CongDongViewModel.cs",
+              "ToolTip": "D:\\Web\\KTX\\Models\\ViewModels\\CongDongViewModel.cs",
+              "RelativeToolTip": "Models\\ViewModels\\CongDongViewModel.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAkwDwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T18:02:48.018Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CongDongController.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\CongDongController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CongDongController.cs",
+              "ToolTip": "D:\\Web\\KTX\\Controllers\\CongDongController.cs",
+              "RelativeToolTip": "Controllers\\CongDongController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAwDsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T18:09:55.424Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "D:\\Web\\KTX\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAwwC8AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-22T05:46:15.92Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BaiDang.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Models\\Entities\\BaiDang.cs",
+              "RelativeDocumentMoniker": "Models\\Entities\\BaiDang.cs",
+              "ToolTip": "D:\\Web\\KTX\\Models\\Entities\\BaiDang.cs",
+              "RelativeToolTip": "Models\\Entities\\BaiDang.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAvwA0AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T18:30:13.094Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\CongDong\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\CongDong\\Details.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\CongDong\\Details.cshtml",
+              "RelativeToolTip": "Views\\CongDong\\Details.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAAgAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-21T18:26:47.58Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CongDongSideBar.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\CongDong\\Partials\\CongDongSideBar.cshtml",
+              "RelativeDocumentMoniker": "Views\\CongDong\\Partials\\CongDongSideBar.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\CongDong\\Partials\\CongDongSideBar.cshtml",
+              "RelativeToolTip": "Views\\CongDong\\Partials\\CongDongSideBar.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-21T18:12:34.857Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\CongDong\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\CongDong\\Index.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\CongDong\\Index.cshtml*",
+              "RelativeToolTip": "Views\\CongDong\\Index.cshtml*",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAACsAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-21T18:10:17.76Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RoommateInfo.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Models\\ViewModels\\RoommateInfo.cs",
+              "RelativeDocumentMoniker": "Models\\ViewModels\\RoommateInfo.cs",
+              "ToolTip": "D:\\Web\\KTX\\Models\\ViewModels\\RoommateInfo.cs",
+              "RelativeToolTip": "Models\\ViewModels\\RoommateInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T18:03:07.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DanhGia.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Models\\Entities\\DanhGia.cs",
+              "RelativeDocumentMoniker": "Models\\Entities\\DanhGia.cs",
+              "ToolTip": "D:\\Web\\KTX\\Models\\Entities\\DanhGia.cs",
+              "RelativeToolTip": "Models\\Entities\\DanhGia.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T17:55:56.172Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "Layout.css",
               "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\css\\Layout.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Layout.css",
@@ -50,12 +205,11 @@
               "RelativeToolTip": "wwwroot\\css\\Layout.css",
               "ViewState": "AgIAAA8AAADgzMzMzAwswAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-10-20T11:34:36.012Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T11:34:36.012Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 14,
               "Title": "Login.css",
               "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\css\\Login.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Login.css",
@@ -63,12 +217,11 @@
               "RelativeToolTip": "wwwroot\\css\\Login.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-10-20T11:31:17.993Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T11:31:17.993Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 11,
               "Title": "Rules.css",
               "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\css\\Rules.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Rules.css",
@@ -76,12 +229,11 @@
               "RelativeToolTip": "wwwroot\\css\\Rules.css",
               "ViewState": "AgIAANMAAAAAAAAAAAAiwOkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-10-20T11:28:57.494Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T11:28:57.494Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 12,
               "Title": "site.css",
               "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
@@ -89,25 +241,24 @@
               "RelativeToolTip": "wwwroot\\css\\site.css",
               "ViewState": "AgIAACUAAADgMjMzMzMrwDkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-10-20T11:23:16.827Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T11:23:16.827Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\ThongBao\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\ThongBao\\Index.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\ThongBao\\Index.cshtml*",
-              "RelativeToolTip": "Views\\ThongBao\\Index.cshtml*",
-              "ViewState": "AgIAAGkAAABAAQAAAIAZwDoAAABjAAAAAAAAAA==",
+              "ToolTip": "D:\\Web\\KTX\\Views\\ThongBao\\Index.cshtml",
+              "RelativeToolTip": "Views\\ThongBao\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-10-20T11:14:02.013Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 10,
               "Title": "ThongBaoController.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\ThongBaoController.cs",
               "RelativeDocumentMoniker": "Controllers\\ThongBaoController.cs",
@@ -115,12 +266,11 @@
               "RelativeToolTip": "Controllers\\ThongBaoController.cs",
               "ViewState": "AgIAADEAAACAy8zMzAwgwBUAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-20T11:10:16.309Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T11:10:16.309Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 15,
               "Title": "RulesAnnouncementsViewModel.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Models\\ViewModels\\RulesAnnouncementsViewModel.cs",
               "RelativeDocumentMoniker": "Models\\ViewModels\\RulesAnnouncementsViewModel.cs",
@@ -128,8 +278,7 @@
               "RelativeToolTip": "Models\\ViewModels\\RulesAnnouncementsViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-20T11:10:10.523Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T11:10:10.523Z"
             }
           ]
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace KTX.Entities;
 
-public partial class DanhGium
+public partial class DanhGia
 {
     public int MaDg { get; set; }
 
