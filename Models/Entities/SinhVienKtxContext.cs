@@ -70,7 +70,7 @@ public partial class SinhVienKtxContext : DbContext
             entity.Property(e => e.MaYc).HasColumnName("MaYC");
             entity.Property(e => e.NgayGuiDg).HasColumnName("NgayGuiDG");
             entity.Property(e => e.NoiDungDg).HasColumnName("NoiDungDG");
-            entity.Property(e => e.ĐiemDg)
+            entity.Property(e => e.DiemDg)
                 .HasMaxLength(20)
                 .HasColumnName("ĐiemDG");
 

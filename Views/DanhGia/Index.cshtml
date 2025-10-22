@@ -1,0 +1,105 @@
+﻿@model List<KTX.Models.ViewModels.DanhGiaViewModel>
+
+@{
+    ViewData["Title"] = "Phản hồi & Đánh giá dịch vụ";
+}
+
+<div class="container py-4">
+
+    <!-- Thông báo -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <!-- Form gửi yêu cầu -->
+    <div class="card shadow-sm mb-5">
+        <div class="card-header bg-primary text-white fw-bold">
+            Gửi yêu cầu dịch vụ mới
+        </div>
+        <div class="card-body">
+            <form asp-action="GuiYeuCau" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Loại yêu cầu</label>
+                    <input type="text" name="loaiYc" class="form-control" placeholder="Ví dụ: Sửa điện, Sửa nước..." required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Nội dung yêu cầu</label>
+                    <textarea name="noiDungYc" class="form-control" rows="3" placeholder="Nhập chi tiết vấn đề..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    <i class="bi bi-send"></i> Gửi yêu cầu
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Danh sách yêu cầu -->
+    <h4 class="mb-3 text-primary fw-bold">
+        <i class="bi bi-chat-left-heart-fill"></i> Yêu cầu & Đánh giá gần đây
+    </h4>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive shadow-sm rounded">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Mã yêu cầu</th>
+                        <th>Loại yêu cầu</th>
+                        <th>Nội dung</th>
+                        <th>Ngày gửi</th>
+                        <th>Trạng thái</th>
+                        <th width="250">Đánh giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var yc in Model)
+                    {
+                        <tr>
+                            <td>@yc.MaYC</td>
+                            <td>@yc.LoaiYC</td>
+                            <td>@yc.NoiDungYC</td>
+                            <td>@yc.NgayGuiYC?.ToString("dd/MM/yyyy")</td>
+                            <td><span class="badge bg-info text-dark">@yc.TrangThaiYC</span></td>
+                            <td>
+                                @if (yc.DanhSachDanhGia == null || !yc.DanhSachDanhGia.Any())
+                                {
+                                    @await Html.PartialAsync("_FormDanhGia", yc)
+                                }
+                                else
+                                {
+                                    <div class="p-2 border rounded bg-light">
+                                        @foreach (var dg in yc.DanhSachDanhGia)
+                                        {
+                                            <div class="mb-2">
+                                                <strong>@dg.DiemDG ★</strong>
+                                                <p class="mb-1 small">@dg.NoiDungDG</p>
+                                                <span class="text-muted small">@dg.NgayGuiDG?.ToString("dd/MM/yyyy")</span>
+                                                <hr />
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </td>
+                            
+                        </tr>
+                        
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center">
+            <i class="bi bi-info-circle"></i> Không có yêu cầu trong 3 ngày gần đây.
+        </div>
+    }
+</div>
