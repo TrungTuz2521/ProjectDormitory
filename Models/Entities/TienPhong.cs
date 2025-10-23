@@ -9,7 +9,7 @@ public partial class TienPhong
 
     public int MaHd { get; set; }
 
-    public decimal? TongTienP { get; set; }
+    public decimal? TongTienP { get; set; } = default(decimal?);
 
     public DateOnly? HanTtp { get; set; }
 

@@ -1,0 +1,50 @@
+﻿# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Rr]elease/
+[Dd]ebug/
+[Tt]est[Rr]esults/
+*.dbmdl
+
+# Visual Studio Code
+.vscode/
+
+# Copilot, cache, database files
+*.db
+*.db-shm
+*.db-wal
+*.cache
+*.pdb
+*.log
+
+# Backup & temp
+*.bak
+*.tmp
+*.temp
+*.svclog
+
+# User-specific files
+*.userprefs
+*.DS_Store
+Thumbs.db
+
+# Publish profiles
+*.pubxml
+*.publishproj
+
+# Packages
+packages/
+*.nupkg
+*.snupkg
+
+# Others
+node_modules/
+wwwroot/lib/

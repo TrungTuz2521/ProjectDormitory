@@ -1,89 +1,113 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Web\\KTX\\",
+  "WorkspaceRootPath": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\thongtin\\_partials\\_thongtinchitiet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\_partials\\_thongtinchitiet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\views\\room\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\room\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\thongtin\\_partials\\_thongtinsinhvien.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\_partials\\_thongtinsinhvien.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\models\\viewmodels\\roommanagementviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\viewmodels\\roommanagementviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\thongtin\\_partials\\_danhsachroommate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\_partials\\_danhsachroommate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\thongtin\\_partials\\_thongtinphong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\_partials\\_thongtinphong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\controllers\\thongtincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\thongtincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\thongtin\\thongtincanhan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\thongtincanhan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\models\\viewmodels\\thongtincanhanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\models\\viewmodels\\thongtincanhanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\viewmodels\\thongtincanhanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\models\\entities\\hopdongphong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\entities\\hopdongphong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\models\\entities\\sinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\entities\\sinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\thongtin\\_partials\\_thongtinhopdong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\_partials\\_thongtinhopdong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\shared\\_roomdetailitem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\_roomdetailitem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\models\\entities\\phong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\entities\\phong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\models\\viewmodels\\roommateinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\models\\viewmodels\\roommateinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\viewmodels\\roommateinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\shared\\mylayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\mylayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\shared\\_leftsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\views\\shared\\_leftsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\_leftsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\wwwroot\\js\\layout.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\views\\shared\\mylayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\mylayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\views\\thongtin\\thongtincanhan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\thongtincanhan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\controllers\\thongtincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\thongtincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\models\\entities\\hopdongphong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\entities\\hopdongphong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\models\\entities\\phong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\entities\\phong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\views\\thongtin\\_partials\\_danhsachroommate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\_partials\\_danhsachroommate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\models\\entities\\danhgium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\entities\\danhgium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\models\\entities\\baidang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\entities\\baidang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\views\\thongtin\\_partials\\_thongtinchitiet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\_partials\\_thongtinchitiet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\views\\thongtin\\_partials\\_thongtinsinhvien.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\_partials\\_thongtinsinhvien.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\views\\thongtin\\_partials\\_thongtinphong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\_partials\\_thongtinphong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\models\\entities\\sinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\entities\\sinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\views\\thongtin\\_partials\\_thongtinhopdong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thongtin\\_partials\\_thongtinhopdong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\views\\shared\\_roomdetailitem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\_roomdetailitem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|c:\\users\\thuy linh\\source\\repos\\projectdormitory\\wwwroot\\js\\layout.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:wwwroot\\js\\layout.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
@@ -94,15 +118,212 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RoommateInfo.cs",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Models\\ViewModels\\RoommateInfo.cs",
+              "RelativeDocumentMoniker": "Models\\ViewModels\\RoommateInfo.cs",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Models\\ViewModels\\RoommateInfo.cs",
+              "RelativeToolTip": "Models\\ViewModels\\RoommateInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-22T18:11:24.02Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\Room\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Room\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\Room\\Index.cshtml",
+              "RelativeToolTip": "Views\\Room\\Index.cshtml",
+              "ViewState": "AgIAAEMBAAAAAAAAAAAQwEUBAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-20T09:05:57.135Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RoomManagementViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Models\\ViewModels\\RoomManagementViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\ViewModels\\RoomManagementViewModel.cs",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Models\\ViewModels\\RoomManagementViewModel.cs",
+              "RelativeToolTip": "Models\\ViewModels\\RoomManagementViewModel.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAA+wDQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T08:50:01.756Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RoomController.cs",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Controllers\\RoomController.cs",
+              "RelativeDocumentMoniker": "Controllers\\RoomController.cs",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Controllers\\RoomController.cs",
+              "RelativeToolTip": "Controllers\\RoomController.cs",
+              "ViewState": "AgIAAOUAAAAAAAAAAAAQwBcBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T08:53:03.933Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ThongTinCaNhanViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Models\\ViewModels\\ThongTinCaNhanViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\ViewModels\\ThongTinCaNhanViewModel.cs",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Models\\ViewModels\\ThongTinCaNhanViewModel.cs",
+              "RelativeToolTip": "Models\\ViewModels\\ThongTinCaNhanViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T06:25:31.985Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_LeftSideBar.cshtml",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\Shared\\_LeftSideBar.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_LeftSideBar.cshtml",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\Shared\\_LeftSideBar.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_LeftSideBar.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-20T04:11:51.631Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MyLayout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\Shared\\MyLayout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\MyLayout.cshtml",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\Shared\\MyLayout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\MyLayout.cshtml",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAiwBwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-19T13:05:15.448Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ThongTinCaNhan.cshtml",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\ThongTin\\ThongTinCaNhan.cshtml",
+              "RelativeDocumentMoniker": "Views\\ThongTin\\ThongTinCaNhan.cshtml",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\ThongTin\\ThongTinCaNhan.cshtml",
+              "RelativeToolTip": "Views\\ThongTin\\ThongTinCaNhan.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-20T07:05:18.735Z"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 9,
+              "Title": "HopDongPhong.cs",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Models\\Entities\\HopDongPhong.cs",
+              "RelativeDocumentMoniker": "Models\\Entities\\HopDongPhong.cs",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Models\\Entities\\HopDongPhong.cs",
+              "RelativeToolTip": "Models\\Entities\\HopDongPhong.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAiwBsAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T06:54:27.543Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ThongTinController.cs",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Controllers\\ThongTinController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ThongTinController.cs",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Controllers\\ThongTinController.cs",
+              "RelativeToolTip": "Controllers\\ThongTinController.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAgwC8AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T06:41:00.114Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "_DanhSachRoommate.cshtml",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\ThongTin\\_Partials\\_DanhSachRoommate.cshtml",
+              "RelativeDocumentMoniker": "Views\\ThongTin\\_Partials\\_DanhSachRoommate.cshtml",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\ThongTin\\_Partials\\_DanhSachRoommate.cshtml",
+              "RelativeToolTip": "Views\\ThongTin\\_Partials\\_DanhSachRoommate.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-20T07:08:41.14Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DanhGium.cs",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Models\\Entities\\DanhGium.cs",
+              "RelativeDocumentMoniker": "Models\\Entities\\DanhGium.cs",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Models\\Entities\\DanhGium.cs",
+              "RelativeToolTip": "Models\\Entities\\DanhGium.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T08:36:56.091Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Phong.cs",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Models\\Entities\\Phong.cs",
+              "RelativeDocumentMoniker": "Models\\Entities\\Phong.cs",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Models\\Entities\\Phong.cs",
+              "RelativeToolTip": "Models\\Entities\\Phong.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAzwBMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T06:55:18.653Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAADaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-20T08:29:09.303Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "BaiDang.cs",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Models\\Entities\\BaiDang.cs",
+              "RelativeDocumentMoniker": "Models\\Entities\\BaiDang.cs",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Models\\Entities\\BaiDang.cs",
+              "RelativeToolTip": "Models\\Entities\\BaiDang.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T08:24:35.453Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "_ThongTinPhong.cshtml",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\ThongTin\\_Partials\\_ThongTinPhong.cshtml",
+              "RelativeDocumentMoniker": "Views\\ThongTin\\_Partials\\_ThongTinPhong.cshtml",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\ThongTin\\_Partials\\_ThongTinPhong.cshtml",
+              "RelativeToolTip": "Views\\ThongTin\\_Partials\\_ThongTinPhong.cshtml",
+              "ViewState": "AgIAABoAAAAAAAAAAAAYwDIAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-20T07:07:39.819Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
               "Title": "_ThongTinHopDong.cshtml",
-              "DocumentMoniker": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_ThongTinHopDong.cshtml",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\ThongTin\\_Partials\\_ThongTinHopDong.cshtml",
               "RelativeDocumentMoniker": "Views\\ThongTin\\_Partials\\_ThongTinHopDong.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_ThongTinHopDong.cshtml",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\ThongTin\\_Partials\\_ThongTinHopDong.cshtml",
               "RelativeToolTip": "Views\\ThongTin\\_Partials\\_ThongTinHopDong.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGsAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -110,100 +331,35 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_DanhSachRoommate.cshtml",
-              "DocumentMoniker": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_DanhSachRoommate.cshtml",
-              "RelativeDocumentMoniker": "Views\\ThongTin\\_Partials\\_DanhSachRoommate.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_DanhSachRoommate.cshtml",
-              "RelativeToolTip": "Views\\ThongTin\\_Partials\\_DanhSachRoommate.cshtml",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABgAAABmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-20T07:08:41.14Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "_ThongTinPhong.cshtml",
-              "DocumentMoniker": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_ThongTinPhong.cshtml",
-              "RelativeDocumentMoniker": "Views\\ThongTin\\_Partials\\_ThongTinPhong.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_ThongTinPhong.cshtml",
-              "RelativeToolTip": "Views\\ThongTin\\_Partials\\_ThongTinPhong.cshtml",
-              "ViewState": "AgIAABoAAAAAAAAAAAAYwDIAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-20T07:07:39.819Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 15,
               "Title": "_ThongTinChiTiet.cshtml",
-              "DocumentMoniker": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_ThongTinChiTiet.cshtml",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\ThongTin\\_Partials\\_ThongTinChiTiet.cshtml",
               "RelativeDocumentMoniker": "Views\\ThongTin\\_Partials\\_ThongTinChiTiet.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_ThongTinChiTiet.cshtml",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\ThongTin\\_Partials\\_ThongTinChiTiet.cshtml",
               "RelativeToolTip": "Views\\ThongTin\\_Partials\\_ThongTinChiTiet.cshtml",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-20T07:06:57.497Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T07:06:57.497Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 16,
               "Title": "_ThongTinSinhVien.cshtml",
-              "DocumentMoniker": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_ThongTinSinhVien.cshtml",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\ThongTin\\_Partials\\_ThongTinSinhVien.cshtml",
               "RelativeDocumentMoniker": "Views\\ThongTin\\_Partials\\_ThongTinSinhVien.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\ThongTin\\_Partials\\_ThongTinSinhVien.cshtml",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\ThongTin\\_Partials\\_ThongTinSinhVien.cshtml",
               "RelativeToolTip": "Views\\ThongTin\\_Partials\\_ThongTinSinhVien.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-20T07:06:06.66Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T07:06:06.66Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ThongTinCaNhan.cshtml",
-              "DocumentMoniker": "D:\\Web\\KTX\\Views\\ThongTin\\ThongTinCaNhan.cshtml",
-              "RelativeDocumentMoniker": "Views\\ThongTin\\ThongTinCaNhan.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\ThongTin\\ThongTinCaNhan.cshtml",
-              "RelativeToolTip": "Views\\ThongTin\\ThongTinCaNhan.cshtml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAADwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-20T07:05:18.735Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Phong.cs",
-              "DocumentMoniker": "D:\\Web\\KTX\\Models\\Entities\\Phong.cs",
-              "RelativeDocumentMoniker": "Models\\Entities\\Phong.cs",
-              "ToolTip": "D:\\Web\\KTX\\Models\\Entities\\Phong.cs",
-              "RelativeToolTip": "Models\\Entities\\Phong.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-20T06:55:18.653Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "HopDongPhong.cs",
-              "DocumentMoniker": "D:\\Web\\KTX\\Models\\Entities\\HopDongPhong.cs",
-              "RelativeDocumentMoniker": "Models\\Entities\\HopDongPhong.cs",
-              "ToolTip": "D:\\Web\\KTX\\Models\\Entities\\HopDongPhong.cs",
-              "RelativeToolTip": "Models\\Entities\\HopDongPhong.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAA9wAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-20T06:54:27.543Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 18,
               "Title": "SinhVien.cs",
-              "DocumentMoniker": "D:\\Web\\KTX\\Models\\Entities\\SinhVien.cs",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Models\\Entities\\SinhVien.cs",
               "RelativeDocumentMoniker": "Models\\Entities\\SinhVien.cs",
-              "ToolTip": "D:\\Web\\KTX\\Models\\Entities\\SinhVien.cs",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Models\\Entities\\SinhVien.cs",
               "RelativeToolTip": "Models\\Entities\\SinhVien.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAxwA0AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -211,11 +367,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 22,
               "Title": "site.css",
-              "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\css\\site.css",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
-              "ToolTip": "D:\\Web\\KTX\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\wwwroot\\css\\site.css",
               "RelativeToolTip": "wwwroot\\css\\site.css",
               "ViewState": "AgIAACsAAAAAAAAAAAAowBYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
@@ -223,11 +379,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 20,
               "Title": "_RoomDetailItem.cshtml",
-              "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\_RoomDetailItem.cshtml",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\Shared\\_RoomDetailItem.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_RoomDetailItem.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\Shared\\_RoomDetailItem.cshtml",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\Shared\\_RoomDetailItem.cshtml",
               "RelativeToolTip": "Views\\Shared\\_RoomDetailItem.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -235,48 +391,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ThongTinController.cs",
-              "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\ThongTinController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ThongTinController.cs",
-              "ToolTip": "D:\\Web\\KTX\\Controllers\\ThongTinController.cs",
-              "RelativeToolTip": "Controllers\\ThongTinController.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAwwC4AAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-20T06:41:00.114Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "RoommateInfo.cs",
-              "DocumentMoniker": "D:\\Web\\KTX\\Models\\ViewModels\\RoommateInfo.cs",
-              "RelativeDocumentMoniker": "Models\\ViewModels\\RoommateInfo.cs",
-              "ToolTip": "D:\\Web\\KTX\\Models\\ViewModels\\RoommateInfo.cs",
-              "RelativeToolTip": "Models\\ViewModels\\RoommateInfo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-20T06:33:36.798Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ThongTinCaNhanViewModel.cs",
-              "DocumentMoniker": "D:\\Web\\KTX\\Models\\ViewModels\\ThongTinCaNhanViewModel.cs",
-              "RelativeDocumentMoniker": "Models\\ViewModels\\ThongTinCaNhanViewModel.cs",
-              "ToolTip": "D:\\Web\\KTX\\Models\\ViewModels\\ThongTinCaNhanViewModel.cs",
-              "RelativeToolTip": "Models\\ViewModels\\ThongTinCaNhanViewModel.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAuwBEAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-20T06:25:31.985Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 23,
               "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Web\\KTX\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\Web\\KTX\\Program.cs",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Program.cs",
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAwwCYAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -284,23 +403,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "_LeftSideBar.cshtml",
-              "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\_LeftSideBar.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_LeftSideBar.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\Shared\\_LeftSideBar.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_LeftSideBar.cshtml",
-              "ViewState": "AgIAADsAAAAAAAAAAAAswE4AAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-20T04:11:51.631Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 21,
               "Title": "AccountController.cs",
-              "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
-              "ToolTip": "D:\\Web\\KTX\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Controllers\\AccountController.cs",
               "RelativeToolTip": "Controllers\\AccountController.cs",
               "ViewState": "AgIAAC8AAAAAAAAAAAAuwDwAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -308,11 +415,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 25,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Web\\KTX\\Views\\Home\\Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -320,11 +427,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 26,
               "Title": "Layout.js",
-              "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\js\\Layout.js",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\wwwroot\\js\\Layout.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\Layout.js",
-              "ToolTip": "D:\\Web\\KTX\\wwwroot\\js\\Layout.js",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\wwwroot\\js\\Layout.js",
               "RelativeToolTip": "wwwroot\\js\\Layout.js",
               "ViewState": "AgIAABAAAAAAAAAAAAAmwCcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
@@ -332,23 +439,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "MyLayout.cshtml",
-              "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\MyLayout.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\MyLayout.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\Shared\\MyLayout.cshtml",
-              "RelativeToolTip": "Views\\Shared\\MyLayout.cshtml",
-              "ViewState": "AgIAABEAAAAAAAAAAAAiwBwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-19T13:05:15.448Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 24,
               "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
-              "ToolTip": "D:\\Web\\KTX\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Thuy Linh\\source\\repos\\ProjectDormitory\\Controllers\\HomeController.cs",
               "RelativeToolTip": "Controllers\\HomeController.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAcAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

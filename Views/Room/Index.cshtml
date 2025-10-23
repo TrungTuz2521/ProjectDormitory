@@ -1,0 +1,758 @@
+﻿@model KTX.Models.ViewModels.RoomManagementViewModel
+@{
+    ViewData["Title"] = "Quản lý phòng";
+}
+
+<style>
+    .gradient-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 15px;
+        padding: 1.5rem;
+        color: white;
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        transition: transform 0.3s ease;
+    }
+
+    .gradient-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .stat-card {
+        border-radius: 12px;
+        padding: 1.5rem;
+        height: 100%;
+        transition: all 0.3s ease;
+        border: none;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .stat-card:hover {
+        box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+        transform: translateY(-3px);
+    }
+
+    .feature-badge {
+        padding: 0.6rem 1rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+        border-left: 3px solid;
+    }
+
+    .feature-badge:hover {
+        background: #667eea !important;
+        color: white !important;
+        border-left-color: #764ba2 !important;
+    }
+
+    .roommate-card {
+        border-radius: 12px;
+        padding: 1.2rem;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .roommate-card:hover {
+        border-color: #667eea;
+        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+        transform: translateX(5px);
+    }
+
+    .avatar-gradient {
+        width: 55px;
+        height: 55px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: white;
+        box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+
+    .btn-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        color: white;
+        padding: 0.7rem 2rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-gradient:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        color: white;
+    }
+
+    .alert-custom {
+        border-radius: 12px;
+        border: none;
+        padding: 1.2rem;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .info-item {
+        padding: 0.7rem 0;
+        border-bottom: 1px solid #f0f0f0;
+        transition: all 0.2s ease;
+    }
+
+    .info-item:hover {
+        background: #f8f9fa;
+        padding-left: 0.5rem;
+        border-left: 3px solid #667eea;
+    }
+
+    .info-item:last-child {
+        border-bottom: none;
+    }
+</style>
+
+<div class="container py-4">
+    @* Thông báo TempData với animation *@
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show alert-custom" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            <strong>Thành công!</strong> @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show alert-custom" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <strong>Lỗi!</strong> @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @* Header Section *@
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1 fw-bold" style="color: #667eea;">
+                <i class="bi bi-house-door-fill me-2"></i>Quản lý phòng ở
+            </h2>
+            <p class="text-muted mb-0">Theo dõi phòng, hợp đồng và các yêu cầu của bạn</p>
+        </div>
+        @if (Model.IsContractActive)
+        {
+            <div class="text-end">
+                <span class="badge fs-6 px-4 py-2" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); border-radius: 25px;">
+                    <i class="bi bi-calendar-check-fill me-1"></i>Hợp đồng còn hiệu lực
+                </span>
+            </div>
+        }
+    </div>
+
+    @* Trạng thái hợp đồng *@
+    @if (!Model.IsContractActive)
+    {
+        <div class="alert alert-warning border-0 alert-custom mb-4">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-exclamation-circle-fill fs-3 me-3"></i>
+                <div>
+                    <strong class="d-block mb-1">Thông báo quan trọng</strong>
+                    <span>Hợp đồng hiện tại của bạn chưa có hiệu lực hoặc bạn chưa được phân phòng.</span>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info border-0 alert-custom mb-4" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-info-circle-fill fs-3 me-3" style="color: #667eea;"></i>
+                <div>
+                    <span>Hợp đồng có hiệu lực đến ngày </span>
+                    <strong style="color: #667eea;">@Model.NgayKetThuc?.ToString("dd/MM/yyyy")</strong>
+                    <span class="badge bg-primary ms-2">Còn @Model.RemainingDays ngày</span>
+                </div>
+            </div>
+        </div>
+    }
+
+    @* Thông tin phòng - Card chính *@
+    <div class="card border-0 shadow-sm mb-4" style="border-radius: 15px;">
+        <div class="card-body p-4">
+            <h5 class="card-title mb-4 fw-bold" style="color: #667eea;">
+                <i class="bi bi-house-door-fill me-2"></i>Thông tin phòng ở
+            </h5>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-3">
+                    <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="text-white-50 small mb-2">
+                            <i class="bi bi-hash me-1"></i>Mã phòng
+                        </div>
+                        <div class="h3 mb-0 text-white fw-bold">@Model.MaPhong</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <div class="text-white-50 small mb-2">
+                            <i class="bi bi-door-open me-1"></i>Loại phòng
+                        </div>
+                        <div class="h5 mb-0 text-white fw-semibold">@Model.LoaiPhong</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <div class="text-white-50 small mb-2">
+                            <i class="bi bi-people me-1"></i>Sức chứa
+                        </div>
+                        <div class="h5 mb-0 text-white fw-semibold">
+                            @Model.SoGiuongHienTai / @Model.SoGiuongToiDa người
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <div class="text-white-50 small mb-2">
+                            <i class="bi bi-cash-coin me-1"></i>Phí tháng
+                        </div>
+                        <div class="h5 mb-0 text-white fw-bold">
+                            @((Model.TienPhongHangThang?.ToString("N0") ?? "0")) đ
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @* Tiện nghi phòng *@
+            <div class="mb-4">
+                <h6 class="text-muted mb-3 fw-semibold">
+                    <i class="bi bi-star-fill me-2" style="color: #ffd700;"></i>Tiện nghi & Đặc điểm
+                </h6>
+                <div class="row g-3">
+                    @foreach (var f in Model.RoomFeatures)
+                    {
+                        <div class="col-md-3 col-6">
+                            <div class="feature-badge bg-light border-start border-primary border-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>@f
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <hr class="my-4" style="border-top: 2px solid #f0f0f0;" />
+
+            @* Thông tin hợp đồng *@
+            <h6 class="text-muted mb-3 fw-semibold">
+                <i class="bi bi-file-text-fill me-2" style="color: #667eea;"></i>Chi tiết hợp đồng
+            </h6>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="small text-muted mb-2">
+                        <i class="bi bi-info-circle me-1"></i>Trạng thái
+                    </div>
+                    @if (Model.IsContractActive)
+                    {
+                        <span class="badge bg-success fs-6 px-3 py-2">
+                            <i class="bi bi-check-circle-fill me-1"></i>Còn hiệu lực
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary fs-6 px-3 py-2">
+                            <i class="bi bi-x-circle-fill me-1"></i>Hết hiệu lực
+                        </span>
+                    }
+                </div>
+                <div class="col-md-3">
+                    <div class="small text-muted mb-2">
+                        <i class="bi bi-calendar-event me-1"></i>Ngày bắt đầu
+                    </div>
+                    <div class="fw-semibold" style="color: #667eea;">
+                        <i class="bi bi-calendar-check me-1"></i>
+                        @(Model.NgayBatDau?.ToString("dd/MM/yyyy") ?? "-")
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="small text-muted mb-2">
+                        <i class="bi bi-calendar-x me-1"></i>Ngày kết thúc
+                    </div>
+                    <div class="fw-semibold text-danger">
+                        <i class="bi bi-calendar-x-fill me-1"></i>
+                        @(Model.NgayKetThuc?.ToString("dd/MM/yyyy") ?? "-")
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="small text-muted mb-2">
+                        <i class="bi bi-hourglass-split me-1"></i>Thời gian còn lại
+                    </div>
+                    <div class="fw-bold" style="color: #43e97b; font-size: 1.1rem;">
+                        <i class="bi bi-clock-fill me-1"></i>
+                        @Model.RemainingDays ngày
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        @* Cột trái - Roommates và Đổi phòng *@
+        <div class="col-lg-8">
+            @* Danh sách bạn cùng phòng *@
+            <div class="card border-0 shadow-sm mb-4" style="border-radius: 15px;">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-4 fw-bold" style="color: #667eea;">
+                        <i class="bi bi-people-fill me-2"></i>Bạn cùng phòng
+                        @if (Model.Roommates != null && Model.Roommates.Any())
+                        {
+                            <span class="badge bg-primary ms-2">@Model.Roommates.Count()</span>
+                        }
+                    </h5>
+
+                    @if (Model.Roommates == null || !Model.Roommates.Any())
+                    {
+                        <div class="text-center py-5">
+                            <div class="mb-3">
+                                <i class="bi bi-person-x-fill" style="font-size: 4rem; color: #e0e0e0;"></i>
+                            </div>
+                            <p class="text-muted mb-0">Hiện bạn chưa có bạn cùng phòng</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="row g-3">
+                            @foreach (var r in Model.Roommates)
+                            {
+                                <div class="col-md-6">
+                                    <div class="roommate-card bg-light">
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-gradient me-3">
+                                                @r.Initial
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <div class="fw-bold mb-1" style="color: #667eea;">@r.HoTen</div>
+                                                <div class="small text-muted">
+                                                    <i class="bi bi-person-badge-fill me-1"></i>@r.MaSinhVien
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+
+            @* Form đổi phòng - IMPROVED *@
+            <div class="card border-0 shadow-sm" style="border-radius: 15px;">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-3 fw-bold" style="color: #667eea;">
+                        <i class="bi bi-arrow-left-right me-2"></i>Yêu cầu đổi phòng
+                    </h5>
+
+                    <div class="alert alert-light border-0 mb-4" style="background: rgba(102, 126, 234, 0.05); border-left: 4px solid #667eea !important;">
+                        <div class="d-flex">
+                            <i class="bi bi-info-circle-fill me-2" style="color: #667eea;"></i>
+                            <small class="text-muted">
+                                Yêu cầu đổi phòng sẽ được xem xét trong các đợt quy định.
+                                Lý do hợp lệ: xung đột bạn cùng phòng, lý do sức khỏe, nhu cầu học tập hoặc vị trí xa lớp học.
+                            </small>
+                        </div>
+                    </div>
+
+                    @if (!Model.IsContractActive)
+                    {
+                        <div class="alert alert-warning border-0 mb-3">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            Bạn cần có hợp đồng đang hoạt động để yêu cầu đổi phòng.
+                        </div>
+                    }
+
+                    <form asp-action="RequestChangeRoom" method="post" id="changeRoomForm">
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold" style="color: #667eea;">
+                                <i class="bi bi-chat-left-text me-1"></i>Lý do đổi phòng
+                                <span class="text-danger">*</span>
+                            </label>
+                            <textarea name="NoiDungYc" id="noiDungYc" class="form-control" rows="4"
+                                      placeholder="Vui lòng mô tả chi tiết lý do bạn muốn đổi phòng. Ví dụ: Xung đột với bạn cùng phòng, vấn đề sức khỏe cần môi trường yên tĩnh hơn..."
+                                      required
+                                      @(!Model.IsContractActive ? "disabled" : "")
+                                      style="border-radius: 10px;"></textarea>
+                            <div class="form-text">
+                                <i class="bi bi-pencil me-1"></i>Tối thiểu 20 ký tự
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold" style="color: #667eea;">
+                                <i class="bi bi-door-closed me-1"></i>Mã phòng muốn đổi (nếu có)
+                            </label>
+                            <input type="text" name="TargetMaP" id="targetMaP" class="form-control"
+                                   placeholder="Ví dụ: P101, P202, A301..."
+                                   @(!Model.IsContractActive ? "disabled" : "")
+                                   style="border-radius: 10px;" />
+                            <div class="form-text">
+                                <i class="bi bi-lightbulb me-1"></i>Để trống nếu chưa có phòng cụ thể trong đầu
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="small text-muted">
+                                <i class="bi bi-clock-history me-1"></i>
+                                <strong>Thời gian xử lý:</strong> 5-7 ngày làm việc
+                            </div>
+                            <button type="submit"
+                                    class="btn btn-gradient px-4 py-2"
+                                    @(!Model.IsContractActive ? "disabled" : "")
+                                    id="submitChangeRoom">
+                                <i class="bi bi-send-fill me-2"></i>Gửi yêu cầu
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        @* Cột phải - Hủy hợp đồng *@
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm mb-4" style="border-radius: 15px;">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-3 fw-bold text-danger">
+                        <i class="bi bi-x-circle-fill me-2"></i>Hủy hợp đồng
+                    </h5>
+
+                    <div class="alert alert-warning border-0 mb-3" style="border-radius: 10px;">
+                        <div class="d-flex">
+                            <i class="bi bi-exclamation-triangle-fill me-2 flex-shrink-0"></i>
+                            <small>
+                                <strong>Lưu ý quan trọng:</strong> Việc hủy sớm có thể phát sinh phí theo quy định trong hợp đồng.
+                            </small>
+                        </div>
+                    </div>
+
+                    @if (!Model.IsContractActive)
+                    {
+                        <div class="alert alert-secondary border-0 mb-3">
+                            <small>
+                                <i class="bi bi-info-circle me-1"></i>
+                                Bạn cần có hợp đồng đang hoạt động để yêu cầu hủy.
+                            </small>
+                        </div>
+                    }
+
+                    <form asp-action="RequestCancelRoom" method="post" id="cancelRoomForm">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="LoaiYC" value="Hủy Hợp Đồng" />
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold text-danger">
+                                <i class="bi bi-chat-left-text me-1"></i>Lý do hủy hợp đồng
+                                <span class="text-danger">*</span>
+                            </label>
+                            <textarea name="NoiDungYc" id="noiDungHuy" class="form-control" rows="4"
+                                      placeholder="Vui lòng cho biết lý do bạn muốn hủy hợp đồng. Ví dụ: Chuyển trường, vấn đề tài chính, lý do gia đình..."
+                                      required
+                                      @(!Model.CanCancelContract ? "disabled" : "")
+                                      style="border-radius: 10px;"></textarea>
+                            <div class="form-text">
+                                <i class="bi bi-pencil me-1"></i>Tối thiểu 20 ký tự
+                            </div>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit"
+                                    class="btn btn-danger py-2"
+                                    @(!Model.CanCancelContract ? "disabled" : "")
+                                    id="submitCancelRoom"
+                                    style="border-radius: 10px;">
+                                <i class="bi bi-file-earmark-x-fill me-2"></i>Gửi yêu cầu hủy
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            @* Thông tin nhanh *@
+            <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%); border-radius: 15px;">
+                <div class="card-body p-4">
+                    <h6 class="mb-3 fw-bold" style="color: #667eea;">
+                        <i class="bi bi-lightning-fill me-2"></i>Thông tin nhanh
+                    </h6>
+                    <div class="small">
+                        <div class="info-item d-flex justify-content-between">
+                            <span class="text-muted">
+                                <i class="bi bi-door-open me-1"></i>Phòng hiện tại:
+                            </span>
+                            <span class="fw-bold" style="color: #667eea;">@Model.MaPhong</span>
+                        </div>
+                        <div class="info-item d-flex justify-content-between">
+                            <span class="text-muted">
+                                <i class="bi bi-calendar-check me-1"></i>Số ngày còn lại:
+                            </span>
+                            <span class="fw-bold" style="color: #43e97b;">@Model.RemainingDays ngày</span>
+                        </div>
+                        <div class="info-item d-flex justify-content-between">
+                            <span class="text-muted">
+                                <i class="bi bi-people me-1"></i>Sức chứa:
+                            </span>
+                            <span class="fw-semibold">@Model.SoGiuongHienTai/@Model.SoGiuongToiDa người</span>
+                        </div>
+                        <div class="info-item d-flex justify-content-between">
+                            <span class="text-muted">
+                                <i class="bi bi-cash-stack me-1"></i>Phí tháng:
+                            </span>
+                            <span class="fw-bold text-success">@((Model.TienPhongHangThang?.ToString("N0") ?? "0")) đ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* PHẦN MỚI: Lịch sử yêu cầu *@
+    @if (Model.DanhSachYeuCau != null && Model.DanhSachYeuCau.Any())
+    {
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm" style="border-radius: 15px;">
+                    <div class="card-body p-4">
+                        <h5 class="card-title mb-4 fw-bold" style="color: #667eea;">
+                            <i class="bi bi-clock-history me-2"></i>Lịch sử yêu cầu
+                            <span class="badge bg-primary ms-2">@Model.DanhSachYeuCau.Count()</span>
+                        </h5>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);">
+                                    <tr>
+                                        <th class="border-0 py-3" style="width: 80px;">
+                                            <i class="bi bi-hash me-1"></i>Mã YC
+                                        </th>
+                                        <th class="border-0 py-3" style="width: 150px;">
+                                            <i class="bi bi-tag me-1"></i>Loại yêu cầu
+                                        </th>
+                                        <th class="border-0 py-3">
+                                            <i class="bi bi-file-text me-1"></i>Nội dung
+                                        </th>
+                                        <th class="border-0 py-3" style="width: 130px;">
+                                            <i class="bi bi-calendar me-1"></i>Ngày gửi
+                                        </th>
+                                        <th class="border-0 py-3" style="width: 150px;">
+                                            <i class="bi bi-flag me-1"></i>Trạng thái
+                                        </th>
+                                        <th class="border-0 py-3" style="width: 130px;">
+                                            <i class="bi bi-calendar-check me-1"></i>Ngày xử lý
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var yc in Model.DanhSachYeuCau)
+                                    {
+                                        <tr class="request-row">
+                                            <td class="fw-bold" style="color: #667eea;">
+                                                #@yc.MaYc
+                                            </td>
+                                            <td>
+                                                @if (yc.LoaiYc == "Đổi phòng")
+                                                {
+                                                    <span class="badge bg-info px-3 py-2">
+                                                        <i class="bi bi-arrow-left-right me-1"></i>Đổi phòng
+                                                    </span>
+                                                }
+                                                else if (yc.LoaiYc == "Hủy hợp đồng")
+                                                {
+                                                    <span class="badge bg-danger px-3 py-2">
+                                                        <i class="bi bi-x-circle me-1"></i>Hủy HĐ
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-secondary px-3 py-2">
+                                                        <i class="bi bi-question-circle me-1"></i>@yc.LoaiYc
+                                                    </span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <div class="request-content">
+                                                    @if (yc.NoiDungYc.Length > 80)
+                                                    {
+                                                        <span class="text-truncate d-inline-block" style="max-width: 400px;"
+                                                              data-bs-toggle="tooltip"
+                                                              data-bs-placement="top"
+                                                              title="@yc.NoiDungYc">
+                                                            @yc.NoiDungYc.Substring(0, 80)...
+                                                        </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        @yc.NoiDungYc
+                                                    }
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <i class="bi bi-calendar-event text-muted me-1"></i>
+                                                @yc.NgayGuiYc?.ToString("dd/MM/yyyy")
+                                            </td>
+                                            <td>
+                                                @if (yc.TrangThaiYc == "Đang xử lý")
+                                                {
+                                                    <span class="badge bg-warning text-dark px-3 py-2">
+                                                        <i class="bi bi-hourglass-split me-1"></i>Đang xử lý
+                                                    </span>
+                                                }
+                                                else if (yc.TrangThaiYc == "Đã duyệt" || yc.TrangThaiYc == "Hoàn thành")
+                                                {
+                                                    <span class="badge bg-success px-3 py-2">
+                                                        <i class="bi bi-check-circle me-1"></i>@yc.TrangThaiYc
+                                                    </span>
+                                                }
+                                                else if (yc.TrangThaiYc == "Từ chối")
+                                                {
+                                                    <span class="badge bg-danger px-3 py-2">
+                                                        <i class="bi bi-x-circle me-1"></i>Từ chối
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-secondary px-3 py-2">
+                                                        @yc.TrangThaiYc
+                                                    </span>
+                                                }
+                                            </td>
+                                            <td class="text-muted">
+                                                @if (yc.NgayXuLy.HasValue)
+                                                {
+                                                    <i class="bi bi-calendar-check text-success me-1"></i>
+                                                    @yc.NgayXuLy.Value.ToString("dd/MM/yyyy")
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">
+                                                        <i class="bi bi-dash-circle me-1"></i>Chưa xử lý
+                                                    </span>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        @* Thống kê nhanh *@
+                        <div class="row g-3 mt-3 pt-3 border-top">
+                            <div class="col-md-3">
+                                <div class="text-center p-3 rounded" style="background: rgba(255, 193, 7, 0.1);">
+                                    <div class="h4 mb-1 fw-bold" style="color: #ffc107;">
+                                        @Model.DanhSachYeuCau.Count(y => y.TrangThaiYc == "Đang xử lý")
+                                    </div>
+                                    <div class="small text-muted">Đang xử lý</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center p-3 rounded" style="background: rgba(40, 167, 69, 0.1);">
+                                    <div class="h4 mb-1 fw-bold" style="color: #28a745;">
+                                        @Model.DanhSachYeuCau.Count(y => y.TrangThaiYc == "Đã duyệt" || y.TrangThaiYc == "Hoàn thành")
+                                    </div>
+                                    <div class="small text-muted">Đã duyệt</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center p-3 rounded" style="background: rgba(220, 53, 69, 0.1);">
+                                    <div class="h4 mb-1 fw-bold" style="color: #dc3545;">
+                                        @Model.DanhSachYeuCau.Count(y => y.TrangThaiYc == "Từ chối")
+                                    </div>
+                                    <div class="small text-muted">Từ chối</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center p-3 rounded" style="background: rgba(102, 126, 234, 0.1);">
+                                    <div class="h4 mb-1 fw-bold" style="color: #667eea;">
+                                        @Model.DanhSachYeuCau.Count()
+                                    </div>
+                                    <div class="small text-muted">Tổng yêu cầu</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm" style="border-radius: 15px;">
+                    <div class="card-body p-5 text-center">
+                        <i class="bi bi-inbox" style="font-size: 4rem; color: #e0e0e0;"></i>
+                        <h5 class="mt-3 text-muted">Chưa có yêu cầu nào</h5>
+                        <p class="text-muted mb-0">Các yêu cầu đổi phòng hoặc hủy hợp đồng của bạn sẽ hiển thị ở đây</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        // Form validation cho đổi phòng
+        document.getElementById('changeRoomForm')?.addEventListener('submit', function(e) {
+            const noiDung = document.getElementById('noiDungYc').value.trim();
+
+            if (noiDung.length < 20) {
+                e.preventDefault();
+                alert('Vui lòng nhập lý do đổi phòng ít nhất 20 ký tự!');
+                return false;
+            }
+        });
+
+        // Form validation cho hủy hợp đồng
+        document.getElementById('cancelRoomForm')?.addEventListener('submit', function(e) {
+            const noiDung = document.getElementById('noiDungHuy').value.trim();
+
+            if (noiDung.length < 20) {
+                e.preventDefault();
+                alert('Vui lòng nhập lý do hủy hợp đồng ít nhất 20 ký tự!');
+                return false;
+            }
+
+            if (!confirm('Bạn có chắc chắn muốn gửi yêu cầu hủy hợp đồng?\n\nLưu ý: Việc hủy sớm có thể phát sinh phí phạt.')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Auto dismiss alerts after 5 seconds
+        setTimeout(function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
+        }, 5000);
+
+        // Smooth scroll animation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+}
+

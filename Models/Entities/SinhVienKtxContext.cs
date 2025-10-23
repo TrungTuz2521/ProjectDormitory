@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System;
 using System.Collections.Generic;
 
 namespace KTX.Entities;
@@ -13,6 +15,8 @@ public partial class SinhVienKtxContext : DbContext
         : base(options)
     {
     }
+   
+
 
     public virtual DbSet<BaiDang> BaiDangs { get; set; }
 
@@ -44,6 +48,16 @@ public partial class SinhVienKtxContext : DbContext
     {
         modelBuilder.Entity<BaiDang>(entity =>
         {
+            var dateOnlyConverter = new ValueConverter<DateOnly, DateTime>(
+            d => d.ToDateTime(TimeOnly.MinValue),
+            d => DateOnly.FromDateTime(d)
+        );
+
+            modelBuilder.Entity<YeuCau>()
+                .Property(e => e.NgayGuiYc)
+                .HasConversion(dateOnlyConverter);
+
+            base.OnModelCreating(modelBuilder);
             entity.HasKey(e => e.MaBd);
 
             entity.ToTable("BaiDang");
