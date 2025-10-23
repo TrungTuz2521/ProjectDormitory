@@ -1,6 +1,7 @@
-﻿using KTX.Models.ViewModels;
+﻿using System.ComponentModel.DataAnnotations;
+using KTX.Models.ViewModels;
 
-namespace KtxManagement.Models.ViewModels
+namespace KTX.Models.ViewModels
 {
     public class ThongTinCaNhanViewModel
     {
@@ -9,7 +10,11 @@ namespace KtxManagement.Models.ViewModels
         public string? HoTen { get; set; }
         public DateTime NgaySinh { get; set; }
         public string? GioiTinh { get; set; }
+        [Required(ErrorMessage = "Số điện thoại không được để trống")]
+        [Phone(ErrorMessage = "Số điện thoại không hợp lệ")]
         public string? DienThoai { get; set; }
+        [Required(ErrorMessage = "Email không được để trống")]
+        [EmailAddress(ErrorMessage = "Email không hợp lệ")]
         public string? Email { get; set; }
         public string? Khoa { get; set; }
         public string? AvatarUrl { get; set; }

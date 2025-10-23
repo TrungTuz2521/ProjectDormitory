@@ -1,0 +1,32 @@
+﻿@model KTX.Entities.BaiDang
+
+@{
+    ViewData["Title"] = "Chi tiết bài đăng";
+}
+
+<h3>@Model.NoiDungBd</h3>
+<p class="text-muted">
+    Đăng bởi: <strong>@Model.Msv</strong> —@Model.NgayDang.HasValue? Models.NgayDang.Value.ToString("dd/MM/yyyy") : "")
+
+</p>
+<hr />
+
+<h4>💬 Các trả lời:</h4>
+
+@if (Model.TraLois != null && Model.TraLois.Any())
+{
+    foreach (var tl in Model.TraLois.OrderByDescending(t => t.NgayTl))
+    {
+        <div class="border rounded p-3 mb-2">
+            <p>@tl.NoiDungTl</p>
+            <small class="text-muted">
+                Trả lời bởi: <strong>@tl.Msv</strong> — @tl.NgayTl?.ToString("dd/MM/yyyy")
+
+            </small>
+        </div>
+    }
+}
+else
+{
+    <p class="text-muted">Chưa có trả lời nào cho bài đăng này.</p>
+}

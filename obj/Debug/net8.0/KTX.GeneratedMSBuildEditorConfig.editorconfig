@@ -1,19 +1,11 @@
 is_global = true
 build_property.TargetFramework = net8.0
-build_property.TargetFramework = net8.0
-build_property.TargetPlatformMinVersion = 
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
-build_property.UsingMicrosoftNETSdkWeb = true
-build_property.ProjectTypeGuids = 
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
-build_property.InvariantGlobalization = 
-build_property.PlatformNeutralAssembly = 
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
-build_property.EnforceExtendedAnalyzerRules = 
-build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = KTX
 build_property.RootNamespace = KTX
@@ -30,6 +22,26 @@ build_property.EnableCodeStyleSeverity =
 
 [C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/CongDong/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZ0RvbmdcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/CongDong/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZ0RvbmdcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/CongDong/Partials/CongDongSideBar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZ0RvbmdcUGFydGlhbHNcQ29uZ0RvbmdTaWRlQmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/DanhGia/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFuaEdpYVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/DanhGia/_FormDanhGia.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFuaEdpYVxfRm9ybURhbmhHaWEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/Home/Index.cshtml]
@@ -70,6 +82,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/ThongBao/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGhvbmdCYW9cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/ThongTin/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGhvbmdUaW5cRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/ThongTin/ThongTinCaNhan.cshtml]

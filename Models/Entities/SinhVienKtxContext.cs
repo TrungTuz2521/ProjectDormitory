@@ -18,9 +18,9 @@ public partial class SinhVienKtxContext : DbContext
    
 
 
-    public virtual DbSet<BaiDang> BaiDangs { get; set; }
+    public virtual DbSet<BaiDang> BaiDang { get; set; }
 
-    public virtual DbSet<DanhGium> DanhGia { get; set; }
+    public virtual DbSet<DanhGia> DanhGia { get; set; }
 
     public virtual DbSet<HopDongPhong> HopDongPhongs { get; set; }
 
@@ -73,7 +73,7 @@ public partial class SinhVienKtxContext : DbContext
                 .HasConstraintName("FK_BaiDang_SinhVien");
         });
 
-        modelBuilder.Entity<DanhGium>(entity =>
+        modelBuilder.Entity<DanhGia>(entity =>
         {
             entity.HasKey(e => e.MaDg);
 
@@ -83,7 +83,7 @@ public partial class SinhVienKtxContext : DbContext
             entity.Property(e => e.MaYc).HasColumnName("MaYC");
             entity.Property(e => e.NgayGuiDg).HasColumnName("NgayGuiDG");
             entity.Property(e => e.NoiDungDg).HasColumnName("NoiDungDG");
-            entity.Property(e => e.ĐiemDg)
+            entity.Property(e => e.DiemDg)
                 .HasMaxLength(20)
                 .HasColumnName("ĐiemDG");
 

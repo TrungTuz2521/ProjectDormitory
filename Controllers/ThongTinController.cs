@@ -1,7 +1,8 @@
-﻿using System.Security.Claims;
+﻿using System.Diagnostics;
+using System.Security.Claims;
 using KTX.Entities;
 using KTX.Models.ViewModels;
-using KtxManagement.Models.ViewModels;
+using KTX.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -182,6 +183,7 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
     {
         if (!ModelState.IsValid)
         {
+            
             return View(model);
         }
 
@@ -198,6 +200,7 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
 
         if (sinhVien == null)
         {
+            Debug.WriteLine($"⚠ Không tìm thấy sinh viên có mã {maSinhVienInt}");
             return NotFound();
         }
 
@@ -207,13 +210,16 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
 
         try
         {
+            _context.Entry(sinhVien).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+            Debug.WriteLine($"✅ Sau khi Save: EntityState = {_context.Entry(sinhVien).State}");
             TempData["Success"] = "Cập nhật thông tin thành công!";
             return RedirectToAction(nameof(ThongTinCaNhan));
         }
         catch (Exception ex)
         {
             TempData["Error"] = $"Có lỗi xảy ra: {ex.Message}";
+            Console.WriteLine(ex);
             return View(model);
         }
     }
