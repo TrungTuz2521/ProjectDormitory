@@ -24,4 +24,5 @@ public partial class YeuCau
     public virtual ICollection<DanhGia> DanhGia { get; set; } = new List<DanhGia>();
 
     public virtual SinhVien MsvNavigation { get; set; } = null!;
+    public DateOnly? NgayXuLy { get; internal set; }
 }
