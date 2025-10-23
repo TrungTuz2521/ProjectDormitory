@@ -46,8 +46,7 @@
               "RelativeToolTip": "Models\\Entities\\YeuCau.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAswBsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T09:46:27.867Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-22T09:46:27.867Z"
             },
             {
               "$type": "Document",
@@ -59,8 +58,7 @@
               "RelativeToolTip": "Views\\DanhGia\\_FormDanhGia.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-22T09:43:40.511Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-22T09:43:40.511Z"
             },
             {
               "$type": "Document",
@@ -68,12 +66,11 @@
               "Title": "DanhGia.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Models\\Entities\\DanhGia.cs",
               "RelativeDocumentMoniker": "Models\\Entities\\DanhGia.cs",
-              "ToolTip": "D:\\Web\\KTX\\Models\\Entities\\DanhGia.cs*",
-              "RelativeToolTip": "Models\\Entities\\DanhGia.cs*",
+              "ToolTip": "D:\\Web\\KTX\\Models\\Entities\\DanhGia.cs",
+              "RelativeToolTip": "Models\\Entities\\DanhGia.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T09:14:15.211Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-22T09:14:15.211Z"
             },
             {
               "$type": "Document",
@@ -85,8 +82,7 @@
               "RelativeToolTip": "Views\\DanhGia\\Index.cshtml",
               "ViewState": "AgIAAFYAAAAAAAAAAAAYwGkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-22T09:11:26.15Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-22T09:11:26.15Z"
             },
             {
               "$type": "Document",
@@ -94,9 +90,9 @@
               "Title": "DanhGiaController.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\DanhGiaController.cs",
               "RelativeDocumentMoniker": "Controllers\\DanhGiaController.cs",
-              "ToolTip": "D:\\Web\\KTX\\Controllers\\DanhGiaController.cs*",
-              "RelativeToolTip": "Controllers\\DanhGiaController.cs*",
-              "ViewState": "AgIAAHwAAAAAAAAAAAAgwIUAAAAEAAAAAAAAAA==",
+              "ToolTip": "D:\\Web\\KTX\\Controllers\\DanhGiaController.cs",
+              "RelativeToolTip": "Controllers\\DanhGiaController.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAA2wI0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-22T09:08:47.457Z",
               "EditorCaption": ""
@@ -111,8 +107,7 @@
               "RelativeToolTip": "Models\\ViewModels\\DanhGiaViewModel.cs",
               "ViewState": "AgIAABcAAAAAAAAAAAAxwCAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T09:07:48.825Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-22T09:07:48.825Z"
             }
           ]
         }

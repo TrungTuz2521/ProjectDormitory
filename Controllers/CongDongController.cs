@@ -59,7 +59,7 @@ namespace KTX.Controllers
                 Msv = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value),
                 NgayTl = DateOnly.FromDateTime(DateTime.Now)
             };
-
+            traLoi.MaTl = _context.TraLois.Any() ? _context.TraLois.Max(y => y.MaTl) + 1 : 1;
             _context.TraLois.Add(traLoi);
             await _context.SaveChangesAsync();
 

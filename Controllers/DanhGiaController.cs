@@ -131,7 +131,7 @@ namespace KTX.Controllers
                     DiemDg = diem.ToString()
                 };
                 danhGia.MaDg = _context.DanhGia.Any()
-    ? _context.DanhGia.Max(d => d.MaDg) + 1
+     ? _context.DanhGia.Max(d => d.MaDg) + 1
     : 1;
                 _context.DanhGia.Add(danhGia);
             }
