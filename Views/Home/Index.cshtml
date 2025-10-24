@@ -1,10 +1,152 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-    Layout = "~/Views/Shared/MyLayout.cshtml";
+﻿@model KTX.Models.ViewModels.HomeViewModel
 
+@{
+    ViewData["Title"] = "Trang Chủ";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Thêm CDN Bootstrap nếu chưa có -->
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+<div class="container mt-4">
+    <h1 class="text-center mb-5 text-primary fw-bold">Chào mừng đến với Hệ thống Quản lý Ký túc xá</h1>
+
+    <div class="row g-4">
+        <!-- Khung Thông báo gần đây -->
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                    <h2 class="h5 mb-0">Thông báo gần đây</h2>
+                    <a href="#" class="text-white btn btn-sm btn-outline-light"><i class="bi bi-plus-lg"></i> Thêm</a>
+                </div>
+                <div class="card-body">
+                    @if (Model.Thongbaods.Any())
+                    {
+                        <ul class="list-group list-group-flush">
+                            @foreach (var tb in Model.Thongbaods)
+                            {
+                                <li class="list-group-item">
+                                    <strong>@tb.TieuDe</strong> - @tb.NgayTb?.ToString("dd/MM/yyyy")
+                                    <p class="text-muted mb-0 small">(Nội dung: @tb.NoiDung.Substring(0, 50)...)</p>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p class="text-center text-secondary">Không có thông báo mới.</p>
+                        
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Khung Yêu cầu đang chờ -->
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                    <h2 class="h5 mb-0">Yêu cầu đang chờ</h2>
+                    <a href="#" class="text-white btn btn-sm btn-outline-light"><i class="bi bi-clock"></i> Xem tất cả</a>
+                </div>
+                <div class="card-body">
+                    @if (Model.YeuCauds.Any())
+                    {
+                        <table class="table table-striped table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Loại yêu cầu</th>
+                                    <th>Ngày yêu cầu</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var y in Model.YeuCauds)
+                                {
+                                    <tr>
+                                        <td>@y.LoaiYc</td>
+                                        <td>@y.NgayGuiYc?.ToString("dd/MM/yyyy")</td>
+                                        <td>@y.TrangThaiYc</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p class="text-center text-secondary">Không có yêu cầu đang chờ.</p>
+                        <div class="text-center mt-3">
+                            <a asp-controller="DanhGia" asp-action="Index" class="btn btn-success btn-sm">Gửi yêu cầu mới</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mt-5">
+        <!-- Khung Hợp đồng phòng hiện tại -->
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-white d-flex justify-content-between align-items-center">
+                    <h2 class="h5 mb-0">Hợp đồng phòng hiện tại</h2>
+                    <a href="#" class="text-white btn btn-sm btn-outline-light"><i class="bi bi-info-circle"></i> Chi tiết</a>
+                </div>
+                <div class="card-body p-4">
+                    @if (Model.HopDong1 != null)
+                    {
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="mb-2"><i class="bi bi-house-door text-warning me-2"></i>Phòng: <strong>@Model.HopDong1.MaP</strong></p>
+                                <p class="mb-2"><i class="bi bi-calendar-check text-warning me-2"></i>Thời hạn: <strong>@Model.HopDong1.NgayBatDau?.ToString("dd/MM/yyyy")</strong> - <strong>@Model.HopDong1.NgayKetThuc?.ToString("dd/MM/yyyy")</strong></p>
+                                <p class="mb-2"><i class="bi bi-person text-warning me-2"></i>Tiền cọc :  <strong>@Model.HopDong1.TienCoc</strong></p>
+                                <p class="mb-2"><i class="bi bi-cash text-warning me-2"></i>Giá thuê: <strong>@Model.HopDong1.TienP VNĐ/tháng</strong> </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Trạng thái: <span class="badge bg-success">Hoạt động</span></p>
+                                <p class="mb-2"><i class="bi bi-clock-history text-warning me-2"></i>Ngày ký: <strong>@Model.HopDong1.NgayKi?.ToString("dd/MM/yyyy")</strong></p>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-center text-secondary mb-4">Không có hợp đồng hiện tại.</p>
+                        
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mt-5">
+        <!-- Khung Bài đăng cộng đồng gần đây -->
+        <div class="col-md-12">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h2 class="h5 mb-0">Bài đăng cộng đồng gần đây</h2>
+                    <a href="#" class="text-white btn btn-sm btn-outline-light"><i class="bi bi-chat-left"></i> Thảo luận</a>
+                </div>
+                <div class="card-body">
+                    @if (Model.BaiDangds.Any())
+                    {
+                        <ul class="list-group list-group-flush">
+                            @foreach (var bd in Model.BaiDangds)
+                            {
+                                <li class="list-group-item">
+                                    <strong>@bd.NoiDungBd</strong> - @bd.NgayDang?.ToString("dd/MM/yyyy")
+                                    <p class="text-muted mb-0 small">Trả lời: @bd.TraLois</p>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p class="text-center text-secondary">Không có bài đăng mới.</p>
+                        <div class="text-center mt-3">
+                            <a asp-controller="CongDong" asp-action="Index" class="btn btn-primary btn-sm">Đăng bài mới</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

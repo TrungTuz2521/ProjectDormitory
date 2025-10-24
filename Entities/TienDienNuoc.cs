@@ -25,9 +25,11 @@ public partial class TienDienNuoc
 
     public int? DotTtdn { get; set; }
 
-    public DateOnly? HanTtp { get; set; }
+    public DateOnly? Httdn { get; set; }
 
-    public string? TrangThaiTtp { get; set; }
+    public string? TrangThaiTtdn { get; set; }
+
+    public DateOnly? NgayTtdn { get; set; }
 
     public virtual Phong MaPNavigation { get; set; } = null!;
 }

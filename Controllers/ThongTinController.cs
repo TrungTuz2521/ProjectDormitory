@@ -59,7 +59,7 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
             {
                 MaSinhVien = maSinhVienString,
                 HoTen = sinhVien.HoTen ?? string.Empty,
-                NgaySinh = sinhVien.NgaySinh,
+                NgaySinh = sinhVien.NgaySinh.ToDateTime(TimeOnly.MinValue),
                 GioiTinh = sinhVien.GioiTinh,
                 DienThoai = sinhVien.Sdt ?? string.Empty,
                 Email = sinhVien.Email ?? string.Empty,
@@ -110,7 +110,7 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
             // Thông tin sinh viên
             MaSinhVien = maSinhVienString,
             HoTen = sinhVien.HoTen ?? string.Empty,
-            NgaySinh = sinhVien.NgaySinh,
+            NgaySinh = sinhVien.NgaySinh.ToDateTime(TimeOnly.MinValue),
             GioiTinh = sinhVien.GioiTinh,
             DienThoai = sinhVien.Sdt ?? string.Empty,
             Email = sinhVien.Email ?? string.Empty,
@@ -167,7 +167,7 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
         {
             MaSinhVien = maSinhVienString,
             HoTen = sinhVien.HoTen ?? string.Empty,
-            NgaySinh = sinhVien.NgaySinh,
+            NgaySinh = sinhVien.NgaySinh.ToDateTime(TimeOnly.MinValue),
             GioiTinh = sinhVien.GioiTinh,
             DienThoai = sinhVien.Sdt ?? string.Empty,
             Email = sinhVien.Email ?? string.Empty,
@@ -200,27 +200,26 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
 
         if (sinhVien == null)
         {
-            Debug.WriteLine($"⚠ Không tìm thấy sinh viên có mã {maSinhVienInt}");
             return NotFound();
         }
 
         // Cập nhật thông tin
-        sinhVien.Sdt = model.DienThoai;
-        sinhVien.Email = model.Email;
+        // Chỉ gán 2 field cần thay đổi
+        sinhVien.Sdt = model.DienThoai?.Trim() ;
+        sinhVien.Email = model.Email?.Trim();
 
         try
         {
-            _context.Entry(sinhVien).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            Debug.WriteLine($"✅ Sau khi Save: EntityState = {_context.Entry(sinhVien).State}");
             TempData["Success"] = "Cập nhật thông tin thành công!";
             return RedirectToAction(nameof(ThongTinCaNhan));
         }
-        catch (Exception ex)
+        catch (DbUpdateException ex)
         {
-            TempData["Error"] = $"Có lỗi xảy ra: {ex.Message}";
-            Console.WriteLine(ex);
+            TempData["Error"] = $"Lỗi khi lưu dữ liệu: {ex.InnerException?.Message ?? ex.Message}";
             return View(model);
         }
+
+
     }
 }

@@ -1,129 +1,137 @@
 is_global = true
 build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = KTX
 build_property.RootNamespace = KTX
-build_property.ProjectDir = C:\Users\Thuy Linh\Source\Repos\ProjectDormitory\
+build_property.ProjectDir = D:\Web\KTX\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Thuy Linh\Source\Repos\ProjectDormitory
+build_property.MSBuildProjectDirectory = D:\Web\KTX
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/Account/Login.cshtml]
+[D:/Web/KTX/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/CongDong/Details.cshtml]
+[D:/Web/KTX/Views/CongDong/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZ0RvbmdcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/CongDong/Index.cshtml]
+[D:/Web/KTX/Views/CongDong/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZ0RvbmdcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/CongDong/Partials/CongDongSideBar.cshtml]
+[D:/Web/KTX/Views/CongDong/Partials/CongDongSideBar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZ0RvbmdcUGFydGlhbHNcQ29uZ0RvbmdTaWRlQmFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/DanhGia/Index.cshtml]
+[D:/Web/KTX/Views/DanhGia/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFuaEdpYVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/DanhGia/_FormDanhGia.cshtml]
+[D:/Web/KTX/Views/DanhGia/_FormDanhGia.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFuaEdpYVxfRm9ybURhbmhHaWEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/Home/Index.cshtml]
+[D:/Web/KTX/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/Home/Privacy.cshtml]
+[D:/Web/KTX/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/Room/Index.cshtml]
+[D:/Web/KTX/Views/Room/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/Shared/Error.cshtml]
+[D:/Web/KTX/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/Shared/MyLayout.cshtml]
+[D:/Web/KTX/Views/Shared/MyLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE15TGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/Shared/_Footer.cshtml]
+[D:/Web/KTX/Views/Shared/_Footer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb290ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/Shared/_LeftSideBar.cshtml]
+[D:/Web/KTX/Views/Shared/_LeftSideBar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MZWZ0U2lkZUJhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/Shared/_RoomDetailItem.cshtml]
+[D:/Web/KTX/Views/Shared/_RoomDetailItem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Sb29tRGV0YWlsSXRlbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/Shared/_TopNav.cshtml]
+[D:/Web/KTX/Views/Shared/_TopNav.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ub3BOYXYuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Web/KTX/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/ThongBao/Index.cshtml]
+[D:/Web/KTX/Views/ThongBao/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGhvbmdCYW9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/ThongTin/Edit.cshtml]
+[D:/Web/KTX/Views/ThongTin/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGhvbmdUaW5cRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/ThongTin/ThongTinCaNhan.cshtml]
+[D:/Web/KTX/Views/ThongTin/ThongTinCaNhan.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGhvbmdUaW5cVGhvbmdUaW5DYU5oYW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/ThongTin/_Partials/_DanhSachRoommate.cshtml]
+[D:/Web/KTX/Views/ThongTin/_Partials/_DanhSachRoommate.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGhvbmdUaW5cX1BhcnRpYWxzXF9EYW5oU2FjaFJvb21tYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/ThongTin/_Partials/_ThongTinChiTiet.cshtml]
+[D:/Web/KTX/Views/ThongTin/_Partials/_ThongTinChiTiet.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGhvbmdUaW5cX1BhcnRpYWxzXF9UaG9uZ1RpbkNoaVRpZXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/ThongTin/_Partials/_ThongTinHopDong.cshtml]
+[D:/Web/KTX/Views/ThongTin/_Partials/_ThongTinHopDong.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGhvbmdUaW5cX1BhcnRpYWxzXF9UaG9uZ1RpbkhvcERvbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/ThongTin/_Partials/_ThongTinPhong.cshtml]
+[D:/Web/KTX/Views/ThongTin/_Partials/_ThongTinPhong.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGhvbmdUaW5cX1BhcnRpYWxzXF9UaG9uZ1RpblBob25nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/ThongTin/_Partials/_ThongTinSinhVien.cshtml]
+[D:/Web/KTX/Views/ThongTin/_Partials/_ThongTinSinhVien.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGhvbmdUaW5cX1BhcnRpYWxzXF9UaG9uZ1RpblNpbmhWaWVuLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/_ViewImports.cshtml]
+[D:/Web/KTX/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/_ViewStart.cshtml]
+[D:/Web/KTX/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Thuy Linh/Source/Repos/ProjectDormitory/Views/Shared/_Layout.cshtml]
+[D:/Web/KTX/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-lv9jcuip5e

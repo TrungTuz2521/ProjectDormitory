@@ -51,7 +51,6 @@
             <table class="table table-hover align-middle">
                 <thead class="table-light">
                     <tr>
-                        <th>Mã yêu cầu</th>
                         <th>Loại yêu cầu</th>
                         <th>Nội dung</th>
                         <th>Ngày gửi</th>
@@ -63,7 +62,6 @@
                     @foreach (var yc in Model)
                     {
                         <tr>
-                            <td>@yc.MaYC</td>
                             <td>@yc.LoaiYC</td>
                             <td>@yc.NoiDungYC</td>
                             <td>@yc.NgayGuiYC?.ToString("dd/MM/yyyy")</td>

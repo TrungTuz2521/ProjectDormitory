@@ -1,16 +1,87 @@
-﻿<footer id="footer" class="footer position-relative light-background">
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer KTX Support</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="~/css/Footer.css" rel="stylesheet"/>
+</head>
+<body>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container ">
+            <div class="footer-content">
+                <!-- Về chúng tôi -->
+                <div class="footer-section">
 
-    <div class="container">
-        <div class="copyright text-center ">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">iPortfolio</strong> <span>All Rights Reserved</span></p>
-        </div>
-        <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you've purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
-    </div>
+                    <div class="logo-section">
+                        <div class="logo-icon me-2 mb-2">
+                            <img src="~/images/LogoTittle.png" alt="Logo KTX" class="rounded-circle" />
+                        </div>
+                        <h3>KTX Sinh Viên<br /> Đại Học Giao Thông Vận Tải</h3>
+                    </div>
+                    <p>Hệ thống hỗ trợ sinh viên ký túc xá toàn diện, giúp sinh viên có trải nghiệm tốt nhất trong suốt thời gian sinh hoạt tại KTX.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Zalo"><i class="fas fa-comment"></i></a>
+                        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="#" aria-label="Phone"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
 
-</footer>
+                <!-- Liên kết nhanh -->
+                <div class="footer-section">
+                    <h3>Liên Kết Nhanh</h3>
+                    <ul class="footer-links">
+                        <li><a asp-controller="Home" asp-action="Index" ><i class="fas fa-home"></i>Trang chủ</a></li>
+                        <li><a asp-controller ="ThongTin" asp-action="ThongTinCaNhan"><i class="fas fa-info-circle"></i>Thông tin cá nhân</a></li>
+                        <li><a asp-controller="Room" asp-action="Index"><i class="fas fa-file-alt"></i>Quản lý phòng</a></li>
+                        <li><a asp-controller="DanhGia" asp-action="Index"><i class="fas fa-tools"></i>Báo cáo sự cố</a></li>
+                        <li><a asp-controller="Room" asp-action="Index"><i class="fas fa-calendar-check"></i>Kiểm tra hợp đồng</a></li>
+                       
+                    </ul>
+                </div>
+
+                <!-- Dịch vụ -->
+                <div class="footer-section">
+                    <h3>Dịch Vụ</h3>
+                    <ul class="footer-links">
+                        <li><a asp-controller="Room" asp-action="Index"><i class="fas fa-bed"></i>Quản lý phòng</a></li>
+                        <li><a asp-controller="Payment" asp-action="Index"><i class="fas fa-credit-card"></i>Thanh toán</a></li>
+                        <li><a asp-controller="DanhGia" asp-action="Index"><i class="fas fa-wifi"></i>Đăng ký dịch vụ</a></li>
+                        <li><a asp-controller="DanhGia" asp-action="Index"><i class="fas fa-comments"></i>Hỗ trợ 24/7</a></li>
+                    </ul>
+                </div>
+
+                <!-- Thông tin liên hệ -->
+                <div class="footer-section">
+                    <h3>Liên Hệ</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Khu ký túc xá, Đại Học Giao Thông Vận Tải</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>Hotline: 1900 xxxx</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>Email: support@ktx.edu.vn</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Thứ 2 - Thứ 6: 8:00 - 17:00<br>Thứ 7 - CN: 8:00 - 12:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 KTX Support System. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #e74c3c;"></i> for Students</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

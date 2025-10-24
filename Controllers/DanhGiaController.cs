@@ -33,7 +33,6 @@ namespace KTX.Controllers
                 .Include(y => y.DanhGia)
                 .Where(yc => yc.Msv.ToString() == msv && yc.NgayGuiYc.HasValue)
                 .ToList()
-                .Where(yc => (today.DayNumber - yc.NgayGuiYc.Value.DayNumber) <= 3)
                 .Select(yc => new DanhGiaViewModel
                 {
                     MaYC = yc.MaYc,

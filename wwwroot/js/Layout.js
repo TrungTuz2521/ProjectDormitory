@@ -1,4 +1,4 @@
-﻿<script>
+﻿
         // Toggle sidebar on mobile
     document.getElementById('sidebarToggle')?.addEventListener('click', function() {
             const sidebar = document.getElementById('leftSidebar');
@@ -37,4 +37,3 @@
             }
         });
         });
-</script>

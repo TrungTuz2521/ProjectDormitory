@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace KTX.Entities;
 
@@ -15,10 +14,8 @@ public partial class SinhVienKtxContext : DbContext
         : base(options)
     {
     }
-   
 
-
-    public virtual DbSet<BaiDang> BaiDang { get; set; }
+    public virtual DbSet<BaiDang> BaiDangs { get; set; }
 
     public virtual DbSet<DanhGia> DanhGia { get; set; }
 
@@ -40,24 +37,14 @@ public partial class SinhVienKtxContext : DbContext
 
     public virtual DbSet<YeuCau> YeuCaus { get; set; }
 
-//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-//        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-U195TOE\\SQLEXPRESS;Initial Catalog=SinhVienKTX;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-U195TOE\\SQLEXPRESS;Database=SinhVienKTX;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<BaiDang>(entity =>
         {
-            var dateOnlyConverter = new ValueConverter<DateOnly, DateTime>(
-            d => d.ToDateTime(TimeOnly.MinValue),
-            d => DateOnly.FromDateTime(d)
-        );
-
-            modelBuilder.Entity<YeuCau>()
-                .Property(e => e.NgayGuiYc)
-                .HasConversion(dateOnlyConverter);
-
-            base.OnModelCreating(modelBuilder);
             entity.HasKey(e => e.MaBd);
 
             entity.ToTable("BaiDang");
@@ -80,12 +67,12 @@ public partial class SinhVienKtxContext : DbContext
             entity.Property(e => e.MaDg)
                 .ValueGeneratedNever()
                 .HasColumnName("MaDG");
+            entity.Property(e => e.DiemDg)
+                .HasMaxLength(20)
+                .HasColumnName("DiemDG");
             entity.Property(e => e.MaYc).HasColumnName("MaYC");
             entity.Property(e => e.NgayGuiDg).HasColumnName("NgayGuiDG");
             entity.Property(e => e.NoiDungDg).HasColumnName("NoiDungDG");
-            entity.Property(e => e.DiemDg)
-                .HasMaxLength(20)
-                .HasColumnName("ĐiemDG");
 
             entity.HasOne(d => d.MaYcNavigation).WithMany(p => p.DanhGia)
                 .HasForeignKey(d => d.MaYc)
@@ -211,15 +198,16 @@ public partial class SinhVienKtxContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("MaHDDN");
             entity.Property(e => e.DotTtdn).HasColumnName("DotTTDN");
-            entity.Property(e => e.HanTtp).HasColumnName("HanTTP");
+            entity.Property(e => e.Httdn).HasColumnName("HTTDN");
+            entity.Property(e => e.NgayTtdn).HasColumnName("NgayTTDN");
             entity.Property(e => e.TienDien).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.TienNuoc).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.TongTienDn)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("TongTienDN");
-            entity.Property(e => e.TrangThaiTtp)
+            entity.Property(e => e.TrangThaiTtdn)
                 .HasMaxLength(20)
-                .HasColumnName("TrangThaiTTP");
+                .HasColumnName("TrangThaiTTDN");
 
             entity.HasOne(d => d.MaPNavigation).WithMany(p => p.TienDienNuocs)
                 .HasForeignKey(d => d.MaP)
@@ -237,6 +225,7 @@ public partial class SinhVienKtxContext : DbContext
                 .HasColumnName("MaHDP");
             entity.Property(e => e.HanTtp).HasColumnName("HanTTP");
             entity.Property(e => e.MaHd).HasColumnName("MaHD");
+            entity.Property(e => e.NgayTtp).HasColumnName("NgayTTP");
             entity.Property(e => e.TongTienP).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.TrangThaiTtp)
                 .HasMaxLength(20)

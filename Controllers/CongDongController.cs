@@ -17,7 +17,7 @@ namespace KTX.Controllers
         // Hiển thị danh sách bài đăng
         public async Task<IActionResult> Index()
         {
-            var baiDangs = await _context.BaiDang
+            var baiDangs = await _context.BaiDangs
                 .Include(b => b.TraLois)
                 .OrderByDescending(b => b.NgayDang)
                 .ToListAsync();
@@ -39,7 +39,7 @@ namespace KTX.Controllers
                 NgayDang = DateOnly.FromDateTime(DateTime.Now)
             };
 
-            _context.BaiDang.Add(baiDang);
+            _context.BaiDangs.Add(baiDang);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index");
