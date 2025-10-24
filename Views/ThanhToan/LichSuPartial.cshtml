@@ -1,0 +1,52 @@
+﻿@model KTX.ViewModels.DanhSachLichSuViewModel
+
+<div class="table-custom">
+    <table class="table table-hover mb-0">
+        <thead>
+            <tr>
+                <th>Loại</th>
+                <th>Mã hóa đơn</th>
+                <th>Kỳ thanh toán</th>
+                <th>Số tiền</th>
+                <th>Ngày thanh toán</th>
+                <th>Trạng thái</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.DanhSachThanhToan != null && Model.DanhSachThanhToan.Any())
+            {
+                foreach (var payment in Model.DanhSachThanhToan)
+                {
+                    <tr>
+                        <td>
+                            <span class="badge-room"><i class="bi bi-house-door me-1"></i>Phòng</span>
+                        </td>
+                        <td><strong>@payment.MaHD</strong></td>
+                        <td>Tháng @payment.NgayBatDau.ToString("MM/yyyy")</td>
+                        <td><strong>@payment.TongTien.ToString("N0")₫</strong></td>
+                        <td>@(payment.NgayThanhToan.HasValue? payment.NgayThanhToan.Value.ToString("dd/MM/yyyy HH:mm") : "Chưa thanh toán")</td>
+                        <td>
+                            @if (payment.DaThanhToan)
+                            {
+                                <span class="badge-paid"><i class="bi bi-check-circle me-1"></i>@payment.TrangThaiThanhToan</span>
+                            }
+                            else
+                            {
+                                <span class="badge-pending"><i class="bi bi-clock me-1"></i>@payment.TrangThaiThanhToan</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center py-4">
+                        <i class="bi bi-inbox fs-1 text-muted"></i>
+                        <p class="text-muted mt-2">Chưa có lịch sử thanh toán</p>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

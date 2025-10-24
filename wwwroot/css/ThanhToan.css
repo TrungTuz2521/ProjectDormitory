@@ -1,0 +1,94 @@
+﻿/* Custom Select Styles */
+.custom-select {
+    border: 2px solid #667eea;
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    color: #333;
+    background: white;
+    transition: all 0.3s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23667eea' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    cursor: pointer;
+}
+
+    .custom-select:focus {
+        outline: none;
+        border-color: #764ba2;
+        box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+    }
+
+    .custom-select:hover {
+        border-color: #764ba2;
+    }
+
+.bank-select-wrapper {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+/* Enhanced Button Styles */
+.enhanced-btn {
+    padding: 0.7rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-qr.enhanced-btn {
+    background: white;
+    border: 2px solid #667eea;
+    color: #667eea;
+}
+
+    .btn-qr.enhanced-btn:hover {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+.btn-pay.enhanced-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+}
+
+    .btn-pay.enhanced-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.6);
+    }
+
+/* Payment Actions Container */
+.payment-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+    .payment-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .custom-select,
+    .btn-qr.enhanced-btn,
+    .btn-pay.enhanced-btn {
+        width: 100%;
+    }
+
+    .bank-select-wrapper {
+        width: 100%;
+        margin-right: 0;
+    }
+}
+

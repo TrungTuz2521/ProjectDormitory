@@ -26,6 +26,7 @@
   <ItemGroup>
     <Folder Include="ViewComponents\SinhVien\" />
     <Folder Include="Views\Shared\Components\" />
+    <Folder Include="Views\ThanhToan\_partials\" />
   </ItemGroup>
 
 </Project>
