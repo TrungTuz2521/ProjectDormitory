@@ -107,7 +107,7 @@ namespace KTX.Controllers
 
             if (tienPhongGanNhat != null)
             {
-                vm.TienPhongHangThang = tienPhongGanNhat.TongTienP;
+                vm.TienPhongHangThang = tienPhongGanNhat.TongTienP/6;
             }
 
             vm.MaPhong = phong.MaP.ToString();

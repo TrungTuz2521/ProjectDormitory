@@ -7,8 +7,24 @@
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\thanhtoan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\wwwroot\\css\\thanhtoan.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:wwwroot\\css\\thanhtoan.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\shared\\mylayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\mylayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\shared\\_leftsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\_leftsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\wwwroot\\css\\thanhtoan1.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:wwwroot\\css\\thanhtoan1.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\controllers\\thanhtoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,58 +46,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ThanhToan.css",
-              "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\css\\ThanhToan.css",
-              "RelativeDocumentMoniker": "wwwroot\\css\\ThanhToan.css",
-              "ToolTip": "D:\\Web\\KTX\\wwwroot\\css\\ThanhToan.css*",
-              "RelativeToolTip": "wwwroot\\css\\ThanhToan.css*",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAiwF4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-10-24T15:29:40.945Z",
+              "DocumentIndex": 2,
+              "Title": "_LeftSideBar.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\_LeftSideBar.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_LeftSideBar.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\Shared\\_LeftSideBar.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_LeftSideBar.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-25T07:31:40.322Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LichSuPartial.cshtml",
-              "DocumentMoniker": "D:\\Web\\KTX\\Views\\ThanhToan\\LichSuPartial.cshtml",
-              "RelativeDocumentMoniker": "Views\\ThanhToan\\LichSuPartial.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\ThanhToan\\LichSuPartial.cshtml",
-              "RelativeToolTip": "Views\\ThanhToan\\LichSuPartial.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAAGAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "MyLayout.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\MyLayout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\MyLayout.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\Shared\\MyLayout.cshtml*",
+              "RelativeToolTip": "Views\\Shared\\MyLayout.cshtml*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-24T14:30:15.86Z",
+              "WhenOpened": "2025-10-25T07:29:42.717Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RoomController.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\RoomController.cs",
+              "RelativeDocumentMoniker": "Controllers\\RoomController.cs",
+              "ToolTip": "D:\\Web\\KTX\\Controllers\\RoomController.cs",
+              "RelativeToolTip": "Controllers\\RoomController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAADgv20AAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-25T07:14:55.573Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ThanhToanViewModel.cs",
-              "DocumentMoniker": "D:\\Web\\KTX\\Models\\ViewModels\\ThanhToanViewModel.cs",
-              "RelativeDocumentMoniker": "Models\\ViewModels\\ThanhToanViewModel.cs",
-              "ToolTip": "D:\\Web\\KTX\\Models\\ViewModels\\ThanhToanViewModel.cs",
-              "RelativeToolTip": "Models\\ViewModels\\ThanhToanViewModel.cs",
-              "ViewState": "AgIAAHoAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T14:24:56.897Z",
+              "Title": "ThanhToan1.css",
+              "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\css\\ThanhToan1.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\ThanhToan1.css",
+              "ToolTip": "D:\\Web\\KTX\\wwwroot\\css\\ThanhToan1.css",
+              "RelativeToolTip": "wwwroot\\css\\ThanhToan1.css",
+              "ViewState": "AgIAALEBAAAAAAAAAAAmwMsBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-10-25T07:10:20.964Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ThanhToanController.cs",
-              "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\ThanhToanController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ThanhToanController.cs",
-              "ToolTip": "D:\\Web\\KTX\\Controllers\\ThanhToanController.cs",
-              "RelativeToolTip": "Controllers\\ThanhToanController.cs",
-              "ViewState": "AgIAABUBAAAAAAAAAADwvx4BAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T14:19:21.974Z",
+              "DocumentIndex": 4,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-25T06:33:52.941Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LichSuPartial.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\ThanhToan\\LichSuPartial.cshtml",
+              "RelativeDocumentMoniker": "Views\\ThanhToan\\LichSuPartial.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\ThanhToan\\LichSuPartial.cshtml",
+              "RelativeToolTip": "Views\\ThanhToan\\LichSuPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-24T14:30:15.86Z",
               "EditorCaption": ""
             },
             {
@@ -92,9 +134,35 @@
               "RelativeDocumentMoniker": "Views\\ThanhToan\\Index.cshtml",
               "ToolTip": "D:\\Web\\KTX\\Views\\ThanhToan\\Index.cshtml*",
               "RelativeToolTip": "Views\\ThanhToan\\Index.cshtml*",
-              "ViewState": "AgIAAG8AAAAAAAAAAADwv4UAAABVAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-10-24T11:47:22.361Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ThanhToanViewModel.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Models\\ViewModels\\ThanhToanViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\ViewModels\\ThanhToanViewModel.cs",
+              "ToolTip": "D:\\Web\\KTX\\Models\\ViewModels\\ThanhToanViewModel.cs",
+              "RelativeToolTip": "Models\\ViewModels\\ThanhToanViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T14:24:56.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ThanhToanController.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\ThanhToanController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ThanhToanController.cs",
+              "ToolTip": "D:\\Web\\KTX\\Controllers\\ThanhToanController.cs",
+              "RelativeToolTip": "Controllers\\ThanhToanController.cs",
+              "ViewState": "AgIAAKIBAAAAAAAAAAAYwKwBAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T14:19:21.974Z",
               "EditorCaption": ""
             }
           ]
