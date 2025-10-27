@@ -43,6 +43,17 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
         var today = DateOnly.FromDateTime(DateTime.Today);
         var minTime = TimeOnly.MinValue; // Khắc phục lỗi "optional arguments" trong ToDateTime
 
+        var thanNhans = await _context.ThanNhans
+        .Where(tn => tn.Msv == maSinhVienInt)
+        .Select(tn => new ThanNhan
+        {
+            MaPh = tn.MaPh,
+            HoTen = tn.HoTen,
+            QuanHe = tn.QuanHe,
+            Sdt = tn.Sdt
+        })
+        .ToListAsync();
+
         // 3. Lấy hợp đồng đang Active
         var hopDongActive = sinhVien.HopDongPhongs?
             .Where(hd => hd.TrangThaiHd == "Đăng Kí Thành Công" &&
@@ -65,6 +76,7 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
                 Email = sinhVien.Email ?? string.Empty,
                 Khoa = sinhVien.Khoa,
                 AvatarUrl = sinhVien.Avatar,
+                DanhSachThanNhan = thanNhans,
                 BanCungPhong = []
             });
         }
@@ -137,7 +149,8 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
                 : DateTime.MinValue,
 
             // Danh sách bạn cùng phòng
-            BanCungPhong = roommates
+            BanCungPhong = roommates,
+            DanhSachThanNhan = thanNhans
         };
 
         return View(viewModel);
@@ -156,6 +169,17 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
 
         var sinhVien = await _context.SinhViens
             .FirstOrDefaultAsync(s => s.Msv == maSinhVienInt);
+        var thanNhans = await _context.ThanNhans
+            .Where(tn => tn.Msv == maSinhVienInt) // Lọc theo MSV hiện tại
+            .Select(tn => new ThanNhan
+            {
+                MaPh = tn.MaPh,
+                HoTen = tn.HoTen,
+                QuanHe = tn.QuanHe,
+                Sdt = tn.Sdt,
+                
+            })
+            .ToListAsync();
 
         if (sinhVien == null)
         {
@@ -171,7 +195,8 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
             GioiTinh = sinhVien.GioiTinh,
             DienThoai = sinhVien.Sdt ?? string.Empty,
             Email = sinhVien.Email ?? string.Empty,
-            Khoa = sinhVien.Khoa
+            Khoa = sinhVien.Khoa,
+            DanhSachThanNhan = thanNhans,
         };
 
         return View(viewModel);
@@ -221,5 +246,162 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
         }
 
 
+    }
+    // ========================================
+    // THÊM THÂN NHÂN
+    // ========================================
+    [HttpGet]
+    public IActionResult ThemThanNhan()
+    {
+        return View(new ThanNhan());
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> ThemThanNhan(ThanNhan model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        var maSinhVienString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(maSinhVienString) ||
+            !int.TryParse(maSinhVienString, out int maSinhVienInt))
+        {
+            return RedirectToAction("Login", "Account");
+        }
+
+        // Tìm MaPh lớn nhất hiện tại
+        int maxMaPh = await _context.ThanNhans.AnyAsync()
+            ? await _context.ThanNhans.MaxAsync(tn => tn.MaPh)
+            : 0;
+        int newMaPh = maxMaPh + 1;
+
+        var thanNhan = new ThanNhan
+        {
+            MaPh = newMaPh, // Gán MaPh mới
+            Msv = maSinhVienInt,
+            HoTen = model.HoTen?.Trim(),
+            QuanHe = model.QuanHe?.Trim(),
+            Sdt = model.Sdt?.Trim(),
+        };
+
+        try
+        {
+            _context.ThanNhans.Add(thanNhan);
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Thêm thông tin thân nhân thành công!";
+            return RedirectToAction(nameof(ThongTinCaNhan));
+        }
+        catch (DbUpdateException ex)
+        {
+            TempData["Error"] = $"Lỗi khi lưu dữ liệu: {ex.InnerException?.Message ?? ex.Message}";
+            return View(model);
+        }
+    }
+
+    // ========================================
+    // SỬA THÂN NHÂN
+    // ========================================
+    
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> SuaThanNhan(ThanNhan model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        var maSinhVienString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(maSinhVienString) ||
+            !int.TryParse(maSinhVienString, out int maSinhVienInt))
+        {
+            return RedirectToAction("Login", "Account");
+        }
+
+        var thanNhan = await _context.ThanNhans
+            .FirstOrDefaultAsync(tn => tn.MaPh == model.MaPh && tn.Msv == maSinhVienInt);
+
+        if (thanNhan == null)
+        {
+            TempData["Error"] = "Không tìm thấy thông tin thân nhân!";
+            return RedirectToAction(nameof(ThongTinCaNhan));
+        }
+
+
+
+        // Cập nhật thông tin
+        thanNhan.HoTen = model.HoTen?.Trim();
+        thanNhan.QuanHe = model.QuanHe?.Trim();
+        thanNhan.Sdt = model.Sdt?.Trim();
+
+
+        try
+        {
+            await _context.SaveChangesAsync();
+            TempData["Success"] = "Cập nhật thông tin thân nhân thành công!";
+            return RedirectToAction(nameof(ThongTinCaNhan));
+        }
+        catch (DbUpdateException ex)
+        {
+            TempData["Error"] = $"Lỗi khi lưu dữ liệu: {ex.InnerException?.Message ?? ex.Message}";
+            return View(model);
+        }
+    }
+
+    // ========================================
+    // XÓA THÂN NHÂN
+    // ========================================
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> XoaThanNhan(int maThanNhan)
+    {
+        var maSinhVienString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(maSinhVienString) ||
+            !int.TryParse(maSinhVienString, out int maSinhVienInt))
+        {
+            return RedirectToAction("Login", "Account");
+        }
+
+        var thanNhan = await _context.ThanNhans
+            .FirstOrDefaultAsync(tn => tn.MaPh == maThanNhan && tn.Msv == maSinhVienInt);
+
+        if (thanNhan == null)
+        {
+            TempData["Error"] = "Không tìm thấy thông tin thân nhân!";
+            return RedirectToAction(nameof(ThongTinCaNhan));
+        }
+
+        try
+        {
+            // Xóa bản ghi
+            _context.ThanNhans.Remove(thanNhan);
+
+            // Giảm MaPh của các bản ghi có MaPh lớn hơn
+            var thanNhansToUpdate = await _context.ThanNhans
+                .Where(tn => tn.MaPh > maThanNhan)
+                .ToListAsync();
+            foreach (var tn in thanNhansToUpdate)
+            {
+                tn.MaPh -= 1;
+            }
+
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Xóa thông tin thân nhân thành công!";
+        }
+        catch (DbUpdateException ex)
+        {
+            TempData["Error"] = $"Lỗi khi xóa dữ liệu: {ex.InnerException?.Message ?? ex.Message}";
+        }
+
+        return RedirectToAction(nameof(ThongTinCaNhan));
     }
 }

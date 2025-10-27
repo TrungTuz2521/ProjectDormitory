@@ -24,31 +24,11 @@ namespace KTX.Controllers
             {
                 new BankInfoViewModel
                 {
-                    MaNganHang = "970416",
-                    TenNganHang = "Ngân hàng TMCP Á Châu",
-                    TenVietTat = "ACB",
-                    Logo = "/images/banks/acb.png",
-                    SoTaiKhoan = "1234567890",
-                    TenTaiKhoan = "CONG TY KTX",
-                    ChiNhanh = "Chi nhánh Hà Nội"
-                },
-                new BankInfoViewModel
-                {
-                    MaNganHang = "970415",
-                    TenNganHang = "Ngân hàng TMCP Công thương Việt Nam",
-                    TenVietTat = "VietinBank",
-                    Logo = "/images/banks/vietinbank.png",
-                    SoTaiKhoan = "1234567890",
-                    TenTaiKhoan = "CONG TY KTX",
-                    ChiNhanh = "Chi nhánh Hà Nội"
-                },
-                new BankInfoViewModel
-                {
                     MaNganHang = "970422",
                     TenNganHang = "Ngân hàng TMCP Quân đội",
                     TenVietTat = "MB Bank",
                     Logo = "/images/banks/mbbank.png",
-                    SoTaiKhoan = "1234567890",
+                    SoTaiKhoan = "0399955675",
                     TenTaiKhoan = "CONG TY KTX",
                     ChiNhanh = "Chi nhánh Hà Nội"
                 },
@@ -58,17 +38,7 @@ namespace KTX.Controllers
                     TenNganHang = "Ngân hàng TMCP Đầu tư và Phát triển Việt Nam",
                     TenVietTat = "BIDV",
                     Logo = "/images/banks/bidv.png",
-                    SoTaiKhoan = "1234567890",
-                    TenTaiKhoan = "CONG TY KTX",
-                    ChiNhanh = "Chi nhánh Hà Nội"
-                },
-                new BankInfoViewModel
-                {
-                    MaNganHang = "970405",
-                    TenNganHang = "Ngân hàng TMCP Ngoại thương Việt Nam",
-                    TenVietTat = "Vietcombank",
-                    Logo = "/images/banks/vietcombank.png",
-                    SoTaiKhoan = "1234567890",
+                    SoTaiKhoan = "0399955675",
                     TenTaiKhoan = "CONG TY KTX",
                     ChiNhanh = "Chi nhánh Hà Nội"
                 },
@@ -78,30 +48,11 @@ namespace KTX.Controllers
                     TenNganHang = "Ngân hàng TMCP Kỹ thương Việt Nam",
                     TenVietTat = "Techcombank",
                     Logo = "/images/banks/techcombank.png",
-                    SoTaiKhoan = "1234567890",
+                    SoTaiKhoan = "21112005200510",
                     TenTaiKhoan = "CONG TY KTX",
                     ChiNhanh = "Chi nhánh Hà Nội"
                 },
-                new BankInfoViewModel
-                {
-                    MaNganHang = "970423",
-                    TenNganHang = "Ngân hàng TMCP Tiên Phong",
-                    TenVietTat = "TPBank",
-                    Logo = "/images/banks/tpbank.png",
-                    SoTaiKhoan = "1234567890",
-                    TenTaiKhoan = "CONG TY KTX",
-                    ChiNhanh = "Chi nhánh Hà Nội"
-                },
-                new BankInfoViewModel
-                {
-                    MaNganHang = "970403",
-                    TenNganHang = "Ngân hàng TMCP Sài Gòn Thương Tín",
-                    TenVietTat = "Sacombank",
-                    Logo = "/images/banks/sacombank.png",
-                    SoTaiKhoan = "1234567890",
-                    TenTaiKhoan = "CONG TY KTX",
-                    ChiNhanh = "Chi nhánh Hà Nội"
-                }
+               
             };
         }
 

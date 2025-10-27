@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Security.Claims;
-using KTX.Entities;
+﻿using KTX.Entities;
 using KTX.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using System.Security.Claims;
 
 namespace KTX.Controllers
 {
@@ -21,48 +21,58 @@ namespace KTX.Controllers
 
         public IActionResult Index()
         {
-            // Lấy ID người dùng từ claims (giả sử người dùng đã đăng nhập qua ASP.NET Identity hoặc tương tự)
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrEmpty(userId))
-            {
-                // Nếu chưa đăng nhập, redirect đến trang login
-                return RedirectToAction("Index", "Login"); // Hoặc trang login của bạn
-            }
+            // Lấy MSV từ claim
+            var msvString = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            // Tạo HomeViewModel và lấy dữ liệu trực tiếp từ DB
-            var homeViewModel = new HomeViewModel();
+            // Kiểm tra rỗng hoặc không hợp lệ
+            if (string.IsNullOrEmpty(msvString))
+                return RedirectToAction("Index", "Login");
 
-            // Lấy 5 thông báo gần nhất
-            homeViewModel.Thongbaods = _context.ThongBaos
-                .Where(tb => tb.Msv.ToString() == userId  ) // Lọc theo user hoặc thông báo công khai
-               
-                .Take(5)
-                .ToList();
+            // Chuyển sang int nếu Msv là kiểu int trong database
+            if (!int.TryParse(msvString, out int msv))
+                return RedirectToAction("Index", "Login");
 
-            // Lấy các yêu cầu đang chờ xử lý
-            homeViewModel.YeuCauds = _context.YeuCaus
-                .Where(y => y.Msv.ToString() == userId && y.TrangThaiYc == "Đang xử lí") 
+            // --- phần code phía dưới giữ nguyên ---
+            var hopDong = _context.HopDongPhongs
+                .Include(h => h.MaPNavigation)
+                .FirstOrDefault(h => h.Msv == msv);
+
+            var sinhVien = _context.SinhViens
+                .FirstOrDefault(s => s.Msv == msv);
+
+            var yeuCaus = _context.YeuCaus
+                .Where(y => y.Msv == msv)
                 .OrderByDescending(y => y.NgayGuiYc)
-                .Take(3)
                 .ToList();
 
-            // Lấy hợp đồng phòng hiện tại
-            homeViewModel.HopDong1 = _context.HopDongPhongs
-                .Where(hd => hd.Msv.ToString() == userId && hd.TrangThaiHd == "Đăng Kí Thành Công") // Giả sử có trường IsActive
-                .FirstOrDefault();
-
-            //// Lấy hóa đơn điện nước mới nhất
-            //homeViewModel.LatestUtilityBill = _context.TienDienNuoc
-            //    .Where(tdn => tdn.RoomId == homeViewModel.CurrentContract?.RoomId) // Liên kết với phòng từ hợp đồng
-            //    .OrderByDescending(tdn => tdn.BillDate)
-            //    .FirstOrDefault();
-
-            // Lấy bài đăng cộng đồng gần đây
-            homeViewModel.BaiDangds = _context.BaiDangs
-                .OrderByDescending(bd => bd.NgayDang)
-                .Take(4)
+            var thongBaos = _context.ThongBaos
+                .OrderByDescending(t => t.NgayTb)
+                .Take(10)
                 .ToList();
-            return View(homeViewModel);
+
+            var baiDangs = _context.BaiDangs
+                .OrderByDescending(b => b.NgayDang)
+                .Take(10)
+                .ToList();
+
+            var traLois = _context.TraLois
+                .OrderByDescending(tl => tl.NgayTl)
+                .Take(10)
+                .ToList();
+
+            var vm = new HomeViewModel
+            {
+               SinhVien1 = sinhVien,
+                HopDong1 = hopDong,
+                YeuCauds = yeuCaus,
+                Thongbaods = thongBaos,
+                BaiDangds = baiDangs,
+                TraLois = traLois,
+               
+            };
+
+            return View(vm);
         }
     }
+
 }

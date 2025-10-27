@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using KTX.Entities;
 using KTX.Models.ViewModels;
 
 namespace KTX.Models.ViewModels
@@ -33,5 +34,8 @@ namespace KTX.Models.ViewModels
 
         // Cung cấp giá trị mặc định cho List
         public List<RoommateInfo> BanCungPhong { get; set; } = new List<RoommateInfo>();
+        // === DANH SÁCH THÂN NHÂN ===
+        public List<ThanNhan> DanhSachThanNhan { get; set; } = new List<ThanNhan>();
+
     }
 }

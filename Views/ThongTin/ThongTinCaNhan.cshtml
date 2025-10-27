@@ -25,10 +25,7 @@
 <div class="row g-4">
     <!-- Cột trái: Thông tin sinh viên -->
     <div class="col-lg-4">
-        <!-- Partial: Avatar & Profile Card -->
         <partial name="_Partials/_ThongTinSinhVien" model="Model" />
-
-        <!-- Partial: Chi tiết thông tin cá nhân -->
         <partial name="_Partials/_ThongTinChiTiet" model="Model" />
     </div>
 
@@ -36,26 +33,343 @@
     <div class="col-lg-8">
         <div class="card shadow-sm border-0">
             <div class="card-body p-4">
-                <!-- Partial: Room Summary -->
                 <partial name="_Partials/_ThongTinPhong" model="Model" />
-
                 <hr class="my-4">
-
-                <!-- Partial: Roommates List -->
                 <partial name="_Partials/_DanhSachRoommate" model="Model" />
-
                 <hr class="my-4">
-
-                <!-- Partial: Contract Information -->
                 <partial name="_Partials/_ThongTinHopDong" model="Model" />
             </div>
         </div>
     </div>
 </div>
 
+<!-- Phần Thân Nhân -->
+<div class="container mt-4">
+    <h2 class="mb-4"><i class="fas fa-user"></i> Thông Tin Thân Nhân</h2>
+
+    <!-- Card Thông tin thân nhân -->
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">
+                <i class="fas fa-users"></i> Thông tin thân nhân
+            </h5>
+            <button type="button" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#themThanNhanModal">
+                <i class="fas fa-plus"></i> Thêm thân nhân
+            </button>
+        </div>
+        <div class="card-body">
+            <div id="loading" style="display: none;" class="text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Đang tải...</span>
+                </div>
+            </div>
+            @if (Model.DanhSachThanNhan?.Any() == true)
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover" id="thanNhanTable">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Họ tên</th>
+                                <th>Quan hệ</th>
+                                <th>Số điện thoại</th>
+                                <th class="text-center">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var tn in Model.DanhSachThanNhan)
+                            {
+                                <tr data-id="@tn.MaPh">
+                                    <td><strong>@tn.HoTen</strong></td>
+                                    <td><span class="badge bg-secondary">@tn.QuanHe</span></td>
+                                    <td><i class="fas fa-phone"></i> @tn.Sdt</td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-sm btn-warning me-1"
+                                                onclick="suaThanNhan(@tn.MaPh, '@(tn.HoTen?.Replace("'", "\\'"))', '@(tn.QuanHe?.Replace("'", "\\'"))', '@(tn.Sdt?.Replace("'", "\\'"))')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <form class="xoa-than-nhan-form d-inline" data-id="@tn.MaPh">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="text-center py-5">
+                    <i class="fas fa-info-circle text-muted" style="font-size: 3rem;"></i>
+                    <p class="text-muted mt-3">Chưa có thông tin thân nhân</p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#themThanNhanModal">
+                        <i class="fas fa-plus"></i> Thêm thân nhân đầu tiên
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Modal Thêm Thân Nhân -->
+    <div class="modal fade" id="themThanNhanModal" tabindex="-1" aria-labelledby="themThanNhanModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="themThanNhanForm" asp-action="ThemThanNhan" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="themThanNhanModalLabel">
+                            <i class="fas fa-user-plus"></i> Thêm thông tin thân nhân
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="errorMessages" class="alert alert-danger d-none"></div>
+                        <div class="mb-3">
+                            <label class="form-label">Họ và tên <span class="text-danger">*</span></label>
+                            <input type="text" name="HoTen" class="form-control" placeholder="Nhập họ tên thân nhân" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Quan hệ <span class="text-danger">*</span></label>
+                            <select name="QuanHe" class="form-select" required>
+                                <option value="">-- Chọn quan hệ --</option>
+                                <option value="Cha">Cha</option>
+                                <option value="Mẹ">Mẹ</option>
+                                <option value="Anh">Anh</option>
+                                <option value="Chị">Chị</option>
+                                <option value="Em">Em</option>
+                                <option value="Ông">Ông</option>
+                                <option value="Bà">Bà</option>
+                                <option value="Chú">Chú</option>
+                                <option value="Cô">Cô</option>
+                                <option value="Dì">Dì</option>
+                                <option value="Bác">Bác</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+                            <input type="tel" name="Sdt" class="form-control" placeholder="Nhập số điện thoại" required />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="fas fa-times"></i> Đóng
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Lưu thông tin
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Sửa Thân Nhân -->
+    <div class="modal fade" id="suaThanNhanModal" tabindex="-1" aria-labelledby="suaThanNhanModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="suaThanNhanForm" asp-action="SuaThanNhan" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="MaPh" id="editMaPh" />
+                    <div class="modal-header bg-warning">
+                        <h5 class="modal-title" id="suaThanNhanModalLabel">
+                            <i class="fas fa-edit"></i> Sửa thông tin thân nhân
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="errorMessagesEdit" class="alert alert-danger d-none"></div>
+                        <div class="mb-3">
+                            <label class="form-label">Họ và tên <span class="text-danger">*</span></label>
+                            <input type="text" name="HoTen" id="editHoTen" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Quan hệ <span class="text-danger">*</span></label>
+                            <select name="QuanHe" id="editQuanHe" class="form-select" required>
+                                <option value="">-- Chọn quan hệ --</option>
+                                <option value="Cha">Cha</option>
+                                <option value="Mẹ">Mẹ</option>
+                                <option value="Anh">Anh</option>
+                                <option value="Chị">Chị</option>
+                                <option value="Em">Em</option>
+                                <option value="Ông">Ông</option>
+                                <option value="Bà">Bà</option>
+                                <option value="Chú">Chú</option>
+                                <option value="Cô">Cô</option>
+                                <option value="Dì">Dì</option>
+                                <option value="Bác">Bác</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+                            <input type="tel" name="Sdt" id="editSoDienThoai" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="fas fa-times"></i> Đóng
+                        </button>
+                        <button type="submit" class="btn btn-warning">
+                            <i class="fas fa-save"></i> Cập nhật
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hiển thị thông báo -->
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
 @section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
     <script>
-        // Add any interactive JavaScript here
-        console.log('Thông tin cá nhân loaded');
+        $(document).ready(function () {
+            // Validation client-side
+            $("#themThanNhanForm, #suaThanNhanForm").validate({
+                rules: {
+                    HoTen: {
+                        required: true,
+                        maxlength: 50,
+                        pattern: /^[a-zA-ZÀ-ỹ\s]+$/
+                    },
+                    QuanHe: {
+                        required: true
+                    },
+                    Sdt: {
+                        required: true,
+                        pattern: /^0[0-9]{9,10}$/
+                    }
+                },
+                messages: {
+                    HoTen: {
+                        required: "Vui lòng nhập họ tên.",
+                        maxlength: "Họ tên không được vượt quá 50 ký tự.",
+                        pattern: "Họ tên chỉ được chứa chữ cái và khoảng trắng."
+                    },
+                    QuanHe: {
+                        required: "Vui lòng chọn quan hệ."
+                    },
+                    Sdt: {
+                        required: "Vui lòng nhập số điện thoại.",
+                        pattern: "Số điện thoại phải bắt đầu bằng 0 và có 10-11 chữ số."
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.closest(".mb-3"));
+                }
+            });
+
+            // AJAX cho form thêm thân nhân
+            $("#themThanNhanForm").submit(function (e) {
+                e.preventDefault();
+                if (!$(this).valid()) return;
+
+                $("#loading").show();
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        $("#loading").hide();
+                        if (response.success) {
+                            $("#themThanNhanModal").modal("hide");
+                            location.reload(); // Có thể thay bằng cập nhật bảng
+                        } else {
+                            $("#errorMessages").removeClass("d-none").html(response.errors.join("<br>"));
+                        }
+                    },
+                    error: function () {
+                        $("#loading").hide();
+                        $("#errorMessages").removeClass("d-none").text("Đã xảy ra lỗi. Vui lòng thử lại.");
+                    }
+                });
+            });
+
+            // AJAX cho form sửa thân nhân
+            $("#suaThanNhanForm").submit(function (e) {
+                e.preventDefault();
+                if (!$(this).valid()) return;
+
+                $("#loading").show();
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        $("#loading").hide();
+                        if (response.success) {
+                            $("#suaThanNhanModal").modal("hide");
+                            location.reload(); // Có thể thay bằng cập nhật bảng
+                        } else {
+                            $("#errorMessagesEdit").removeClass("d-none").html(response.errors.join("<br>"));
+                        }
+                    },
+                    error: function () {
+                        $("#loading").hide();
+                        $("#errorMessagesEdit").removeClass("d-none").text("Đã xảy ra lỗi. Vui lòng thử lại.");
+                    }
+                });
+            });
+
+            // AJAX cho xóa thân nhân
+            $(".xoa-than-nhan-form").submit(function (e) {
+                e.preventDefault();
+                if (!confirm("Bạn có chắc muốn xóa thân nhân này?")) return;
+
+                $("#loading").show();
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        $("#loading").hide();
+                        if (response.success) {
+                            $(`tr[data-id='${$(this).data("id")}']`).remove();
+                        } else {
+                            alert(response.message);
+                        }
+                    }.bind(this),
+                    error: function () {
+                        $("#loading").hide();
+                        alert("Đã xảy ra lỗi. Vui lòng thử lại.");
+                    }
+                });
+            });
+
+            // Hàm sửa thân nhân
+            window.suaThanNhan = function (maThanNhan, hoTen, quanHe, soDienThoai) {
+                $("#editMaPh").val(maThanNhan);
+                $("#editHoTen").val(hoTen);
+                $("#editQuanHe").val(quanHe);
+                $("#editSoDienThoai").val(soDienThoai);
+                $("#errorMessagesEdit").addClass("d-none");
+                var modal = new bootstrap.Modal(document.getElementById("suaThanNhanModal"));
+                modal.show();
+            };
+
+            // Log thông tin cá nhân
+            console.log('Thông tin cá nhân loaded');
+        });
     </script>
 }

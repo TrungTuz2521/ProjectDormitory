@@ -33,7 +33,7 @@
 
 /* ===== ENHANCED BUTTON STYLES ===== */
 .enhanced-btn {
-    padding: 0.7rem 1.5rem;
+    padding: 0.7rem ;
     border-radius: 25px;
     font-weight: 600;
     text-transform: uppercase;
@@ -198,13 +198,39 @@
     }
 
 /* ===== BADGES ===== */
+
+td {
+    white-space: nowrap; /* Ngăn ngắt dòng */
+    overflow: hidden; /* Ẩn nội dung nếu vượt quá kích thước */
+    text-overflow: ellipsis; /* Thêm dấu "..." nếu nội dung bị cắt (tùy chọn) */
+}
+
+.badge-paid, .badge-pending {
+    display: inline-block; /* Giữ badge trên một dòng */
+    vertical-align: middle; /* Căn giữa theo chiều dọc */
+    padding: 0.25rem 0.75rem; /* Điều chỉnh padding nếu cần */
+    border-radius: 12px; /* Bo góc nhẹ */
+}
+
 .badge-paid {
+    background-color: #28a745; /* Màu xanh lá cho trạng thái đã thanh toán */
+    color: white;
+}
+
+.badge-pending {
+    background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%); /* Gradient cam */
+    color: white;
+    /*clip-path: polygon(0 0, 100% 0, 100% 80%, 80% 100%, 0 100%, 20% 80%);*/ /* Hình dạng cắt góc */
+}
+
+/*.badge-paid {
     background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
+    max-width:auto;
 }
 
 .badge-pending {
@@ -214,7 +240,8 @@
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
-}
+    width:auto;
+}*/
 
 .badge-room {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);

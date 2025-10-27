@@ -11,15 +11,16 @@
     <!-- Footer -->
     <footer>
         <div class="footer-container ">
-            <div class="footer-content">
+            <div class="footer-content ">
+                
                 <!-- Về chúng tôi -->
-                <div class="footer-section">
+                <div class="footer-section align-content-center ">
 
                     <div class="logo-section">
-                        <div class="logo-icon me-2 mb-2">
+                        <div class="logo-icon p-1 ">
                             <img src="~/images/LogoTittle.png" alt="Logo KTX" class="rounded-circle" />
                         </div>
-                        <h3>KTX Sinh Viên<br /> Đại Học Giao Thông Vận Tải</h3>
+                        <p class="MyName">KTX Sinh Viên<br /> Đại Học Giao Thông Vận Tải</p>
                     </div>
                     <p>Hệ thống hỗ trợ sinh viên ký túc xá toàn diện, giúp sinh viên có trải nghiệm tốt nhất trong suốt thời gian sinh hoạt tại KTX.</p>
                     <div class="social-links">
@@ -29,9 +30,18 @@
                         <a href="#" aria-label="Phone"><i class="fas fa-phone"></i></a>
                     </div>
                 </div>
-
+                <!-- Dịch vụ -->
+                <div class="footer-section ">
+                    <h3>Dịch Vụ</h3>
+                    <ul class="footer-links">
+                        <li><a asp-controller="Room" asp-action="Index"><i class="fas fa-bed"></i>Quản lý phòng</a></li>
+                        <li><a asp-controller="Payment" asp-action="Index"><i class="fas fa-credit-card"></i>Thanh toán</a></li>
+                        <li><a asp-controller="DanhGia" asp-action="Index"><i class="fas fa-wifi"></i>Đăng ký dịch vụ</a></li>
+                        <li><a asp-controller="DanhGia" asp-action="Index"><i class="fas fa-comments"></i>Hỗ trợ 24/7</a></li>
+                    </ul>
+                </div>
                 <!-- Liên kết nhanh -->
-                <div class="footer-section">
+                <div class="footer-section ">
                     <h3>Liên Kết Nhanh</h3>
                     <ul class="footer-links">
                         <li><a asp-controller="Home" asp-action="Index" ><i class="fas fa-home"></i>Trang chủ</a></li>
@@ -42,25 +52,13 @@
                        
                     </ul>
                 </div>
-
-                <!-- Dịch vụ -->
-                <div class="footer-section">
-                    <h3>Dịch Vụ</h3>
-                    <ul class="footer-links">
-                        <li><a asp-controller="Room" asp-action="Index"><i class="fas fa-bed"></i>Quản lý phòng</a></li>
-                        <li><a asp-controller="Payment" asp-action="Index"><i class="fas fa-credit-card"></i>Thanh toán</a></li>
-                        <li><a asp-controller="DanhGia" asp-action="Index"><i class="fas fa-wifi"></i>Đăng ký dịch vụ</a></li>
-                        <li><a asp-controller="DanhGia" asp-action="Index"><i class="fas fa-comments"></i>Hỗ trợ 24/7</a></li>
-                    </ul>
-                </div>
-
                 <!-- Thông tin liên hệ -->
-                <div class="footer-section">
+                <div class="footer-section ">
                     <h3>Liên Hệ</h3>
                     <ul class="contact-info">
                         <li>
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>Khu ký túc xá, Đại Học Giao Thông Vận Tải</span>
+                            <span>Khu ký túc xá, Đại Học Giao Thông Vận Tải <br /> 99 NCT,Láng Hạ,HN</span>
                         </li>
                         <li>
                             <i class="fas fa-phone"></i>
@@ -68,14 +66,18 @@
                         </li>
                         <li>
                             <i class="fas fa-envelope"></i>
-                            <span>Email: support@ktx.edu.vn</span>
+                            <span>support@ktx.edu.vn</span>
                         </li>
                         <li>
                             <i class="fas fa-clock"></i>
-                            <span>Thứ 2 - Thứ 6: 8:00 - 17:00<br>Thứ 7 - CN: 8:00 - 12:00</span>
+                            <span>
+                               8:00 - 17:00</span>
                         </li>
                     </ul>
                 </div>
+
+
+                
             </div>
 
             <div class="footer-bottom">
