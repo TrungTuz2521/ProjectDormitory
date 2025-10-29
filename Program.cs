@@ -42,7 +42,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 // ⚡ Thứ tự quan trọng:
-app.UseAuthentication();   // ✅ Đặt trước Authorization
+app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
 

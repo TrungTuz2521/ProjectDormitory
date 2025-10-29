@@ -96,7 +96,8 @@ namespace KTX.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.Session.Clear();
-            return RedirectToAction("Login", "Account");
+            return Redirect("~/Home/Index");
+
         }
 
         // Hàm hash password bằng SHA256

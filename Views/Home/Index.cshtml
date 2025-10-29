@@ -4,8 +4,6 @@
     ViewData["Title"] = "Trang Chủ";
 }
 
-
-
 @section Styles {
     <link href="~/css/Home.css" rel="stylesheet" />
 }
@@ -46,8 +44,11 @@
         <div class="stat-card orange">
             <div class="stat-icon-wrapper">📄</div>
             <div class="stat-label">Hợp đồng hết hạn</div>
-            <div class="stat-value" style="font-size: 20px;">
-                @Model.HopDong1?.NgayKetThuc
+            <div style="font-size: 28px;
+                 font-weight: 800;
+                 color: #32325d; line-height: 1.2;
+    margin-bottom: 4px;">
+                @(Model.HopDong1?.NgayKetThuc?.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture))
             </div>
             <div class="stat-subtitle">Ngày kết thúc</div>
         </div>
@@ -69,7 +70,7 @@
                     <span class="section-icon"><i class="bi bi-bell-fill"></i></span>
                     Thông báo gần đây
                 </h2>
-                <a href="#" class="section-action">
+                <a class="section-action" asp-controller="ThongBao" asp-action="Index">
                     <i class="bi bi-arrow-right-circle"></i>
                     Xem tất cả
                 </a>
@@ -82,13 +83,13 @@
                         <div class="notification-item">
                             <div class="notification-header">
                                 <div class="notification-title">@tb.TieuDe</div>
-                                <span class="notification-badge">Mới</span>
+                  
                             </div>
                             <div class="notification-meta">
                                 <span><i class="bi bi-calendar3"></i>@tb.NgayTb</span>
                             </div>
                             <div class="notification-content">
-                                @(tb.NoiDung?.Length > 100 ? tb.NoiDung.Substring(0, 100) + "..." : tb.NoiDung)
+                                @(tb.NoiDung  )
                             </div>
                         </div>
                     }
@@ -111,7 +112,7 @@
                     <span class="section-icon"><i class="bi bi-clipboard-check-fill"></i></span>
                     Yêu cầu của bạn
                 </h2>
-                <a href="#" class="section-action">
+                <a class="section-action" asp-controller="DanhGia" asp-action="Index">
                     <i class="bi bi-plus-circle"></i>
                     Tạo yêu cầu
                 </a>
@@ -141,7 +142,7 @@
                         <div class="empty-icon">📝</div>
                         <div class="empty-title">Chưa có yêu cầu</div>
                         <p class="empty-text">Bạn chưa gửi yêu cầu nào</p>
-                        <a href="#" class="btn-primary-custom">
+                        <a class="section-action" asp-controller="DanhGia" asp-action="Index">
                             <i class="bi bi-plus-circle"></i>
                             Gửi yêu cầu đầu tiên
                         </a>
@@ -158,15 +159,13 @@
                 <span class="section-icon"><i class="bi bi-file-text-fill"></i></span>
                 Hợp đồng phòng hiện tại
             </h2>
-            <a href="#" class="section-action">
+            <a class="section-action" asp-controller="Room" asp-action="Index">
                 <i class="bi bi-info-circle"></i>
                 Chi tiết hợp đồng
             </a>
         </div>
         <div class="section-body">
-            @if (Model.HopDong1 != null)
-            {
-                <div class="contract-grid">
+           <div class="contract-grid">
                     <div class="contract-item">
                         <div class="contract-icon">
                             <i class="bi bi-door-open-fill"></i>
@@ -244,7 +243,7 @@
                         <div class="contract-info">
                             <div class="contract-label">Trạng thái</div>
                             <div class="contract-value">
-                                <span class="badge bg-success" style="font-size: 14px;">✓ Hoạt động</span>
+                                <span class="badge bg-success" style="font-size: 12px;">✓ Hoạt động</span>
                             </div>
                         </div>
                     </div>
@@ -261,19 +260,7 @@
                         </div>
                     </div>
                 </div>
-            }
-            else
-            {
-                <div class="empty-state">
-                    <div class="empty-icon">📄</div>
-                    <div class="empty-title">Chưa có hợp đồng</div>
-                    <p class="empty-text">Bạn chưa có hợp đồng phòng nào đang hoạt động</p>
-                    <a href="#" class="btn-primary-custom">
-                        <i class="bi bi-file-earmark-plus"></i>
-                        Đăng ký phòng mới
-                    </a>
-                </div>
-            }
+ 
         </div>
     </div>
 
@@ -301,7 +288,7 @@
                             <i class="bi bi-calendar3"></i>
                             @bd.NgayDang
                         </span>
-                     
+
                     </span>
                     <div class="post-item">
                         <div class="post-content">
@@ -314,11 +301,11 @@
                                     <ul>
                                         @foreach (var traLoi in bd.TraLois.Take(3))
                                         {
-                                            
+
                                             <li class="list-group">
-                                               
+
                                                 <strong class="bi bi-person-circle"> : @traLoi.Msv</strong> @traLoi.NoiDungTl
-                                                
+
                                             </li>
                                         }
                                     </ul>
