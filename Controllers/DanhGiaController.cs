@@ -98,7 +98,7 @@ namespace KTX.Controllers
         [HttpPost]
         public IActionResult GuiDanhGia(int maYC, string noiDung, int diem)
         {
-            if (string.IsNullOrWhiteSpace(noiDung) || diem < 1 || diem > 5)
+            if (string.IsNullOrWhiteSpace(noiDung) || diem < 1 )
             {
                 TempData["Error"] = "Vui lòng nhập đầy đủ thông tin đánh giá.";
                 return RedirectToAction("Index");

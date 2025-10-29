@@ -106,7 +106,7 @@
                             <select id="bankSelect_@Model.MaHD" class="form-select form-select-sm custom-select" style="width: 120px; font-size: 0.8rem;">
                                 @foreach (var bank in Model.DanhSachNganHang ?? new List<KTX.ViewModels.BankInfoViewModel>())
                                 {
-                                    <option value="@bank.MaNganHang">@bank.TenNganHang</option>
+                                    <option value="@bank.MaNganHang">@bank.MaNganHang</option>
                                 }
                             </select>
                             <button class="btn btn-sm btn-qr enhanced-btn" onclick="showQRCode('room', @Model.MaHD, @Model.TienPhong)">
@@ -166,7 +166,7 @@
                                 <select id="bankSelect_utility_@Model.MaHD" class="form-select form-select-sm custom-select" style="width: 120px; font-size: 0.8rem;">
                                     @foreach (var bank in Model.DanhSachNganHang ?? new List<KTX.ViewModels.BankInfoViewModel>())
                                     {
-                                        <option value="@bank.MaNganHang">@bank.TenNganHang</option>
+                                        <option value="@bank.MaNganHang">@bank.MaNganHang</option>
                                     }
                                 </select>
                                 <button class="btn btn-sm btn-qr enhanced-btn" onclick="showQRCode('utility', @Model.MaHD, @(Model.TienDien + Model.TienNuoc))">

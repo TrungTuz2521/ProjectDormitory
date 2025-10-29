@@ -87,12 +87,14 @@
                                                 onclick="suaThanNhan(@tn.MaPh, '@(tn.HoTen?.Replace("'", "\\'"))', '@(tn.QuanHe?.Replace("'", "\\'"))', '@(tn.Sdt?.Replace("'", "\\'"))')">
                                             <i class="fas fa-edit"></i>
                                         </button>
-                                        <form class="xoa-than-nhan-form d-inline" data-id="@tn.MaPh">
+                                        <form class="xoa-than-nhan-form d-inline" asp-action="XoaThanNhan" method="post">
                                             @Html.AntiForgeryToken()
+                                            <input type="hidden" name="maThanNhan" value="@tn.MaPh" />
                                             <button type="submit" class="btn btn-sm btn-danger">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
+
                                     </td>
                                 </tr>
                             }
@@ -117,7 +119,7 @@
     <div class="modal fade" id="themThanNhanModal" tabindex="-1" aria-labelledby="themThanNhanModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="themThanNhanForm" asp-action="ThemThanNhan" method="post">
+                <form id="themThanNhanForm" asp-controller="ThongTin" asp-action="ThemThanNhan" method="post">
                     @Html.AntiForgeryToken()
                     <div class="modal-header bg-primary text-white">
                         <h5 class="modal-title" id="themThanNhanModalLabel">
@@ -332,30 +334,32 @@
                 });
             });
 
-            // AJAX cho xóa thân nhân
-            $(".xoa-than-nhan-form").submit(function (e) {
-                e.preventDefault();
-                if (!confirm("Bạn có chắc muốn xóa thân nhân này?")) return;
+                    $(".xoa-than-nhan-form").submit(function (e) {
+            e.preventDefault();
+            if (!confirm("Bạn có chắc muốn xóa thân nhân này?")) return;
 
-                $("#loading").show();
-                $.ajax({
-                    url: $(this).attr("action"),
-                    type: "POST",
-                    data: $(this).serialize(),
-                    success: function (response) {
-                        $("#loading").hide();
-                        if (response.success) {
-                            $(`tr[data-id='${$(this).data("id")}']`).remove();
-                        } else {
-                            alert(response.message);
-                        }
-                    }.bind(this),
-                    error: function () {
-                        $("#loading").hide();
-                        alert("Đã xảy ra lỗi. Vui lòng thử lại.");
+            const row = $(this).closest("tr");
+            $("#loading").show();
+
+            $.ajax({
+                url: $(this).attr("action"),
+                type: "POST",
+                data: $(this).serialize(),
+                success: function (response) {
+                    $("#loading").hide();
+                    if (response.success) {
+                        row.remove();
+                    } else {
+                        alert(response.message);
                     }
-                });
+                },
+                error: function () {
+                    $("#loading").hide();
+                    alert("Đã xảy ra lỗi. Vui lòng thử lại.");
+                }
             });
+        });
+
 
             // Hàm sửa thân nhân
             window.suaThanNhan = function (maThanNhan, hoTen, quanHe, soDienThoai) {
