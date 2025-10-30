@@ -136,8 +136,8 @@ namespace KTX.Controllers
                     LoaiYc = y.LoaiYc ?? string.Empty,
                     NoiDungYc = y.NoiDungYc ?? string.Empty,
                     NgayGuiYc = y.NgayGuiYc,
-                    TrangThaiYc = y.TrangThaiYc ?? "Chưa xử lý"
-                    // Bỏ NgayXuLy nếu không có trong database
+                    TrangThaiYc = y.TrangThaiYc ?? "Chưa xử lý",
+                   NgayXuLy = y.NgayXuLy
                 })
                 .ToListAsync();
 
@@ -261,6 +261,7 @@ namespace KTX.Controllers
                 NoiDungYc = NoiDungYc.Trim(),
                 NgayGuiYc = DateOnly.FromDateTime(DateTime.Today),
                 TrangThaiYc = "Đang xử lý"
+  
             };
 
             try

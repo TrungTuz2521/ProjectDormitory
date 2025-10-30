@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\views\\shared\\_leftsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\_leftsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\views\\room\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\room\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\models\\viewmodels\\roommanagementviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\viewmodels\\roommanagementviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\entities\\yeucau.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:entities\\yeucau.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +26,16 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
@@ -26,15 +46,54 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RoomManagementViewModel.cs",
+              "DocumentMoniker": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Models\\ViewModels\\RoomManagementViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\ViewModels\\RoomManagementViewModel.cs",
+              "ToolTip": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Models\\ViewModels\\RoomManagementViewModel.cs",
+              "RelativeToolTip": "Models\\ViewModels\\RoomManagementViewModel.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAiwDgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T03:55:03.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "_LeftSideBar.cshtml",
-              "DocumentMoniker": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Views\\Shared\\_LeftSideBar.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_LeftSideBar.cshtml",
-              "ToolTip": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Views\\Shared\\_LeftSideBar.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_LeftSideBar.cshtml",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAAC8AAAAbAAAAAAAAAA==",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Views\\Room\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Room\\Index.cshtml",
+              "ToolTip": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Views\\Room\\Index.cshtml*",
+              "RelativeToolTip": "Views\\Room\\Index.cshtml*",
+              "ViewState": "AgIAAJsBAAAAAAAAAAAswKsBAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-28T09:47:20.365Z",
+              "WhenOpened": "2025-10-30T03:38:10.427Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "YeuCau.cs",
+              "DocumentMoniker": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Entities\\YeuCau.cs",
+              "RelativeDocumentMoniker": "Entities\\YeuCau.cs",
+              "ToolTip": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Entities\\YeuCau.cs",
+              "RelativeToolTip": "Entities\\YeuCau.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA7wBIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T03:37:38.303Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RoomController.cs",
+              "DocumentMoniker": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Controllers\\RoomController.cs",
+              "RelativeDocumentMoniker": "Controllers\\RoomController.cs",
+              "ToolTip": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Controllers\\RoomController.cs",
+              "RelativeToolTip": "Controllers\\RoomController.cs",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAYwI8AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T03:30:53.977Z",
               "EditorCaption": ""
             }
           ]

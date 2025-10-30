@@ -297,56 +297,57 @@
             </div>
         </div>
     </div>
+    @* Danh sách bạn cùng phòng *@
+    <div class="card border-0 shadow-sm mb-4" style="border-radius: 15px;">
+        <div class="card-body p-4">
+            <h5 class="card-title mb-4 fw-bold" style="color: #667eea;">
+                <i class="bi bi-people-fill me-2"></i>Bạn cùng phòng
+                @if (Model.Roommates != null && Model.Roommates.Any())
+                {
+                    <span class="badge bg-primary ms-2">@Model.Roommates.Count()</span>
+                }
+            </h5>
 
-    <div class="row g-4">
-        @* Cột trái - Roommates và Đổi phòng *@
-        <div class="col-lg-8">
-            @* Danh sách bạn cùng phòng *@
-            <div class="card border-0 shadow-sm mb-4" style="border-radius: 15px;">
-                <div class="card-body p-4">
-                    <h5 class="card-title mb-4 fw-bold" style="color: #667eea;">
-                        <i class="bi bi-people-fill me-2"></i>Bạn cùng phòng
-                        @if (Model.Roommates != null && Model.Roommates.Any())
-                        {
-                            <span class="badge bg-primary ms-2">@Model.Roommates.Count()</span>
-                        }
-                    </h5>
-
-                    @if (Model.Roommates == null || !Model.Roommates.Any())
+            @if (Model.Roommates == null || !Model.Roommates.Any())
+            {
+                <div class="text-center py-5">
+                    <div class="mb-3">
+                        <i class="bi bi-person-x-fill" style="font-size: 4rem; color: #e0e0e0;"></i>
+                    </div>
+                    <p class="text-muted mb-0">Hiện bạn chưa có bạn cùng phòng</p>
+                </div>
+            }
+            else
+            {
+                <div class="row g-3">
+                    @foreach (var r in Model.Roommates)
                     {
-                        <div class="text-center py-5">
-                            <div class="mb-3">
-                                <i class="bi bi-person-x-fill" style="font-size: 4rem; color: #e0e0e0;"></i>
-                            </div>
-                            <p class="text-muted mb-0">Hiện bạn chưa có bạn cùng phòng</p>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="row g-3">
-                            @foreach (var r in Model.Roommates)
-                            {
-                                <div class="col-md-6">
-                                    <div class="roommate-card bg-light">
-                                        <div class="d-flex align-items-center">
-                                            <div class="avatar-gradient me-3">
-                                                @r.Initial
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <div class="fw-bold mb-1" style="color: #667eea;">@r.HoTen</div>
-                                                <div class="small text-muted">
-                                                    <i class="bi bi-person-badge-fill me-1"></i>@r.MaSinhVien
-                                                </div>
-                                            </div>
+                        <div class="col-md-4">
+                            <div class="roommate-card bg-light">
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar-gradient me-3">
+                                        @r.Initial
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="fw-bold mb-1" style="color: #667eea;">@r.HoTen</div>
+                                        <div class="small text-muted">
+                                            <i class="bi bi-person-badge-fill me-1"></i>@r.MaSinhVien
                                         </div>
                                     </div>
                                 </div>
-                            }
+                            </div>
                         </div>
                     }
                 </div>
-            </div>
-
+            }
+        </div>
+    </div>
+    <div class="row g-4 align-items-stretch">
+        <!-- Cột Yêu cầu đổi phòng -->
+        <div class="col-lg-8 d-flex">
+            <div class="card border-0 shadow-sm flex-fill" style="border-radius: 15px;">
+                <div class="card-body d-flex flex-column h-50">
+           
             @* Form đổi phòng - IMPROVED *@
             <div class="card border-0 shadow-sm" style="border-radius: 15px;">
                 <div class="card-body p-4">
@@ -419,12 +420,14 @@
 
                 </div>
             </div>
+                </div>
+            </div>
         </div>
 
-        @* Cột phải - Hủy hợp đồng *@
-        <div class="col-lg-4">
-            <div class="card border-0 shadow-sm mb-4" style="border-radius: 15px;">
-                <div class="card-body p-4">
+        @* Cột phải - Hủy hợp đồng  *@
+        <div class="col-lg-4 d-flex mt-5">
+            <div class="card border-0 shadow-sm flex-fill" style="border-radius: 15px;">
+                <div class="card-body d-flex flex-column h-50">
                     <h5 class="card-title mb-3 fw-bold text-danger">
                         <i class="bi bi-x-circle-fill me-2"></i>Hủy hợp đồng
                     </h5>
@@ -480,40 +483,7 @@
                 </div>
             </div>
 
-            @* Thông tin nhanh *@
-            <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%); border-radius: 15px;">
-                <div class="card-body p-4">
-                    <h6 class="mb-3 fw-bold" style="color: #667eea;">
-                        <i class="bi bi-lightning-fill me-2"></i>Thông tin nhanh
-                    </h6>
-                    <div class="small">
-                        <div class="info-item d-flex justify-content-between">
-                            <span class="text-muted">
-                                <i class="bi bi-door-open me-1"></i>Phòng hiện tại:
-                            </span>
-                            <span class="fw-bold" style="color: #667eea;">@Model.MaPhong</span>
-                        </div>
-                        <div class="info-item d-flex justify-content-between">
-                            <span class="text-muted">
-                                <i class="bi bi-calendar-check me-1"></i>Số ngày còn lại:
-                            </span>
-                            <span class="fw-bold" style="color: #43e97b;">@Model.RemainingDays ngày</span>
-                        </div>
-                        <div class="info-item d-flex justify-content-between">
-                            <span class="text-muted">
-                                <i class="bi bi-people me-1"></i>Sức chứa:
-                            </span>
-                            <span class="fw-semibold">@Model.SoGiuongHienTai/@Model.SoGiuongToiDa người</span>
-                        </div>
-                        <div class="info-item d-flex justify-content-between">
-                            <span class="text-muted">
-                                <i class="bi bi-cash-stack me-1"></i>Phí tháng:
-                            </span>
-                            <span class="fw-bold text-success">@((Model.TienPhongHangThang?.ToString("N0") ?? "0")) đ</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
         </div>
     </div>
 
@@ -659,9 +629,9 @@
                             <div class="col-md-3">
                                 <div class="text-center p-3 rounded" style="background: rgba(40, 167, 69, 0.1);">
                                     <div class="h4 mb-1 fw-bold" style="color: #28a745;">
-                                        @Model.DanhSachYeuCau.Count(y => y.TrangThaiYc == "Đã duyệt" || y.TrangThaiYc == "Hoàn thành")
+                                        @Model.DanhSachYeuCau.Count(y =>y.TrangThaiYc == "Hoàn Thành")
                                     </div>
-                                    <div class="small text-muted">Đã duyệt</div>
+                                    <div class="small text-muted">Hoàn Thành </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
