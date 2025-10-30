@@ -1,20 +1,25 @@
 ﻿@model KTX.Models.ViewModels.DanhGiaViewModel
 
-<form asp-action="GuiDanhGia" method="post" class="d-flex flex-column gap-2">
+<form asp-action="GuiDanhGia" method="post" class="d-flex flex-column gap-2 p-3 bg-white border rounded shadow-sm danhgia-form">
     <input type="hidden" name="maYC" value="@Model.MaYC" />
-    <textarea name="noiDung" class="form-control" rows="2" placeholder="Nhập phản hồi của bạn..." required></textarea>
+
+    <textarea name="noiDung"
+              class="form-control"
+              rows="2"
+              placeholder="Nhập phản hồi của bạn..."
+              required></textarea>
 
     <div class="d-flex align-items-center mt-1">
-        <label class="me-2">Điểm:</label>
-        <select name="diem" class="form-select w-auto" required>
-            <option value="">-- Chọn --</option>
+        <label class="me-2 fw-semibold text-primary">Điểm:</label>
+        <select name="diem" class="form-select w-auto select-diem" required>
+            <option value="">-Chọn</option>
             @for (int i = 1; i <= 10; i++)
             {
                 <option value="@i">@i</option>
             }
         </select>
-        <button type="submit" class="btn btn-primary btn-sm ms-2">
-            <i class="bi bi-send"></i> Gửi
+        <button type="submit" class="btn btn-primary btn-sm ms-2 px-3">
+            Gửi
         </button>
     </div>
 </form>

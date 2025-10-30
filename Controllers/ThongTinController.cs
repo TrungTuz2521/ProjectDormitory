@@ -160,7 +160,6 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
     public async Task<IActionResult> Edit()
     {
         var maSinhVienString = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
         if (string.IsNullOrEmpty(maSinhVienString) ||
             !int.TryParse(maSinhVienString, out int maSinhVienInt))
         {
@@ -169,34 +168,21 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
 
         var sinhVien = await _context.SinhViens
             .FirstOrDefaultAsync(s => s.Msv == maSinhVienInt);
-        var thanNhans = await _context.ThanNhans
-            .Where(tn => tn.Msv == maSinhVienInt) // Lọc theo MSV hiện tại
-            .Select(tn => new ThanNhan
-            {
-                MaPh = tn.MaPh,
-                HoTen = tn.HoTen,
-                QuanHe = tn.QuanHe,
-                Sdt = tn.Sdt,
-                
-            })
-            .ToListAsync();
 
         if (sinhVien == null)
         {
             return NotFound();
         }
 
-        // FIX: Sử dụng new() đơn giản hóa
-        var viewModel = new ThongTinCaNhanViewModel
+        var viewModel = new EditThongTinViewModel
         {
             MaSinhVien = maSinhVienString,
-            HoTen = sinhVien.HoTen ?? string.Empty,
+            HoTen = sinhVien.HoTen,
             NgaySinh = sinhVien.NgaySinh.ToDateTime(TimeOnly.MinValue),
             GioiTinh = sinhVien.GioiTinh,
-            DienThoai = sinhVien.Sdt ?? string.Empty,
-            Email = sinhVien.Email ?? string.Empty,
             Khoa = sinhVien.Khoa,
-            DanhSachThanNhan = thanNhans,
+            DienThoai = sinhVien.Sdt,
+            Email = sinhVien.Email
         };
 
         return View(viewModel);
@@ -204,18 +190,28 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(ThongTinCaNhanViewModel model)
+    public async Task<IActionResult> Edit(EditThongTinViewModel model)
     {
         if (!ModelState.IsValid)
         {
-            
+            // Load lại thông tin hiển thị
+            var msvTemp = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (int.TryParse(msvTemp, out int msvInt))
+            {
+                var sv = await _context.SinhViens.FindAsync(msvInt);
+                if (sv != null)
+                {
+                    model.HoTen = sv.HoTen;
+                    model.NgaySinh = sv.NgaySinh.ToDateTime(TimeOnly.MinValue);
+                    model.GioiTinh = sv.GioiTinh;
+                    model.Khoa = sv.Khoa;
+                }
+            }
             return View(model);
         }
 
         var maSinhVienString = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        if (string.IsNullOrEmpty(maSinhVienString) ||
-            !int.TryParse(maSinhVienString, out int maSinhVienInt))
+        if (!int.TryParse(maSinhVienString, out int maSinhVienInt))
         {
             return RedirectToAction("Login", "Account");
         }
@@ -228,9 +224,7 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
             return NotFound();
         }
 
-        // Cập nhật thông tin
-        // Chỉ gán 2 field cần thay đổi
-        sinhVien.Sdt = model.DienThoai?.Trim() ;
+        sinhVien.Sdt = model.DienThoai?.Trim();
         sinhVien.Email = model.Email?.Trim();
 
         try
@@ -241,20 +235,18 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
         }
         catch (DbUpdateException ex)
         {
-            TempData["Error"] = $"Lỗi khi lưu dữ liệu: {ex.InnerException?.Message ?? ex.Message}";
+            TempData["Error"] = $"Lỗi: {ex.InnerException?.Message ?? ex.Message}";
             return View(model);
         }
-
-
     }
     // ========================================
     // THÊM THÂN NHÂN
     // ========================================
-    [HttpGet]
-    public IActionResult ThemThanNhan()
-    {
-        return View(new ThanNhan());
-    }
+    //[HttpGet]
+    //public IActionResult ThemThanNhan()
+    //{
+    //    return View(new ThanNhan());
+    //}
 
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -262,7 +254,12 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
     {
         if (!ModelState.IsValid)
         {
-            return View(model);
+            var errors = ModelState.Values
+            .SelectMany(v => v.Errors)
+            .Select(e => e.ErrorMessage)
+            .ToList();
+
+            return Json(new { success = false, errors });
         }
 
         var maSinhVienString = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -292,21 +289,19 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
         {
             _context.ThanNhans.Add(thanNhan);
             await _context.SaveChangesAsync();
-
-            TempData["Success"] = "Thêm thông tin thân nhân thành công!";
-            return RedirectToAction(nameof(ThongTinCaNhan));
+            return Json(new { success = true });
         }
         catch (DbUpdateException ex)
         {
-            TempData["Error"] = $"Lỗi khi lưu dữ liệu: {ex.InnerException?.Message ?? ex.Message}";
-            return View(model);
+            return Json(new { success = false, errors = new[] { "Lỗi khi lưu dữ liệu: " + ex.Message } });
         }
+
     }
 
     // ========================================
     // SỬA THÂN NHÂN
     // ========================================
-    
+
 
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -314,7 +309,12 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
     {
         if (!ModelState.IsValid)
         {
-            return View(model);
+            var errors = ModelState.Values
+            .SelectMany(v => v.Errors)
+            .Select(e => e.ErrorMessage)
+            .ToList();
+
+            return Json(new { success = false, errors });
         }
 
         var maSinhVienString = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -345,14 +345,17 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
         try
         {
             await _context.SaveChangesAsync();
-            TempData["Success"] = "Cập nhật thông tin thân nhân thành công!";
-            return RedirectToAction(nameof(ThongTinCaNhan));
+            return Json(new { success = true, message = "Cập nhật thông tin thân nhân thành công!" });
         }
         catch (DbUpdateException ex)
         {
-            TempData["Error"] = $"Lỗi khi lưu dữ liệu: {ex.InnerException?.Message ?? ex.Message}";
-            return View(model);
+            return Json(new
+            {
+                success = false,
+                errors = new[] { ex.InnerException?.Message ?? ex.Message }
+            });
         }
+
     }
 
     // ========================================
@@ -363,11 +366,10 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
     public async Task<IActionResult> XoaThanNhan(int maThanNhan)
     {
         var maSinhVienString = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
         if (string.IsNullOrEmpty(maSinhVienString) ||
             !int.TryParse(maSinhVienString, out int maSinhVienInt))
         {
-            return RedirectToAction("Login", "Account");
+            return Json(new { success = false, message = "Không xác định sinh viên." });
         }
 
         var thanNhan = await _context.ThanNhans
@@ -375,33 +377,19 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
 
         if (thanNhan == null)
         {
-            TempData["Error"] = "Không tìm thấy thông tin thân nhân!";
-            return RedirectToAction(nameof(ThongTinCaNhan));
+            return Json(new { success = false, message = "Không tìm thấy thông tin thân nhân!" });
         }
 
         try
         {
-            // Xóa bản ghi
             _context.ThanNhans.Remove(thanNhan);
-
-            // Giảm MaPh của các bản ghi có MaPh lớn hơn
-            var thanNhansToUpdate = await _context.ThanNhans
-                .Where(tn => tn.MaPh > maThanNhan)
-                .ToListAsync();
-            foreach (var tn in thanNhansToUpdate)
-            {
-                tn.MaPh -= 1;
-            }
-
             await _context.SaveChangesAsync();
-
-            TempData["Success"] = "Xóa thông tin thân nhân thành công!";
+            return Json(new { success = true, message = "Đã xóa thân nhân thành công!" });
         }
         catch (DbUpdateException ex)
         {
-            TempData["Error"] = $"Lỗi khi xóa dữ liệu: {ex.InnerException?.Message ?? ex.Message}";
+            return Json(new { success = false, message = ex.InnerException?.Message ?? ex.Message });
         }
-
-        return RedirectToAction(nameof(ThongTinCaNhan));
     }
+
 }

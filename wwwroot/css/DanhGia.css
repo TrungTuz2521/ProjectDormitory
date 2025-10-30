@@ -1,0 +1,463 @@
+﻿/* ==============================
+   wwwroot/css/DanhGia.css
+   Phản hồi & Đánh giá - GIAO DIỆN SIÊU SẠCH, ĐẸP, DỄ NHÌN
+   Màu chủ đạo: XANH DƯƠNG NHẸ + TRẮNG + XANH LÁ
+   ============================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary: #2563eb; /* Xanh dương đậm - nút chính */
+    --success: #10b981; /* Xanh lá - gửi yêu cầu */
+    --info: #0ea5e9; /* Trạng thái */
+    --light: #f8fafc; /* Nền sáng */
+    --border: #e2e8f0; /* Viền nhẹ */
+    --text: #1e293b; /* Chữ chính */
+    --text-muted: #64748b; /* Chữ phụ */
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --radius: 16px;
+    --radius-sm: 12px;
+    --shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 12px 30px rgba(37, 99, 235, 0.15);
+    --transition: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #f8fafc;
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1100px;
+    padding: 2rem 1rem;
+}
+
+/* ==============================
+   THÔNG BÁO - SẠCH & NỔI BẬT
+   ============================== */
+.alert {
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.alert-success {
+    background: #ecfdf5;
+    color: #065f46;
+    border-left: 4px solid var(--success);
+}
+
+.alert-danger {
+    background: #fef2f2;
+    color: #991b1b;
+    border-left: 4px solid var(--danger);
+}
+
+.alert-info {
+    background: #f0f9ff;
+    color: #0c4a6e;
+    border-left: 4px solid var(--primary);
+    font-size: 1.05rem;
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+}
+
+/* ==============================
+   FORM GỬI YÊU CẦU - SẠCH & GỌN
+   ============================== */
+.card {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: var(--radius) !important;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    margin-bottom: 2.5rem;
+}
+
+    .card:hover {
+        border-color: #93c5fd !important;
+        box-shadow: var(--shadow-hover);
+        transform: translateY(-4px);
+    }
+
+.card-header {
+    background: #2563eb !important;
+    color: white !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 1rem 1.5rem;
+    border: none;
+}
+
+.card-body {
+    background: white;
+    padding: 1.8rem;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
+}
+
+.form-control,
+textarea.form-control {
+    border: 1px solid #cbd5e1;
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: var(--transition);
+    background: #ffffff;
+}
+
+    .form-control:focus,
+    textarea.form-control:focus {
+        border-color: var(--primary) !important;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+        background: white;
+    }
+
+textarea.form-control {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.btn-success {
+    background: var(--success);
+    border: none;
+    border-radius: 50px;
+    padding: 0.75rem 2rem;
+    font-weight: 700;
+    font-size: 1rem;
+    color: white;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+}
+
+    .btn-success:hover {
+        background: #059669;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
+    }
+
+/* ==============================
+   TIÊU ĐỀ DANH SÁCH - NỔI BẬT
+   ============================== */
+h4 {
+    font-weight: 700;
+    color: #1e40af;
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #bfdbfe;
+}
+
+    h4 i {
+        font-size: 1.5rem;
+        color: #ec4899;
+    }
+
+/* ==============================
+   BẢNG DỮ LIỆU - SIÊU SẠCH
+   ============================== */
+.table-responsive {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: white;
+}
+
+.table {
+    margin: 0;
+    background: white;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+    .table thead {
+        background: #f1f5f9;
+    }
+
+    .table th {
+        font-weight: 700;
+        color: #1e293b;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        padding: 1rem 0.75rem;
+        border-bottom: 2px solid #e2e8f0;
+        background: #f8fafc;
+    }
+
+    .table td {
+        padding: 1rem 0.75rem;
+        vertical-align: middle;
+        font-size: 0.95rem;
+        color: var(--text);
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+.table-hover tbody tr {
+    transition: var(--transition);
+}
+
+    .table-hover tbody tr:hover {
+        background-color: #f8fafc;
+    }
+
+/* Badge trạng thái */
+.badge {
+    font-weight: 600;
+    padding: 0.4em 0.9em;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    background: #dbeafe !important;
+    color: #1e40af !important;
+}
+
+/* Đánh giá đã gửi */
+.border.rounded.bg-light {
+    background: #f0fdf4 !important;
+    border: 1px solid #bbf7d0 !important;
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+}
+
+    .border.rounded.bg-light strong {
+        color: #166534;
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+
+    .border.rounded.bg-light p {
+        margin: 0.25rem 0 0.5rem 0;
+        color: #166534;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    .border.rounded.bg-light .text-muted {
+        font-size: 0.85rem;
+        color: #4b5563;
+    }
+
+    .border.rounded.bg-light hr {
+        border: none;
+        height: 1px;
+        background: #86efac;
+        margin: 0.75rem 0;
+    }
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .card-body {
+        padding: 1.2rem;
+    }
+
+    .btn-success {
+        width: 100%;
+    }
+
+    .table {
+        font-size: 0.85rem;
+    }
+
+        .table th,
+        .table td {
+            padding: 0.6rem 0.4rem;
+        }
+
+    h4 {
+        font-size: 1.2rem;
+    }
+
+    .badge {
+        font-size: 0.75rem;
+        padding: 0.3em 0.7em;
+    }
+}
+
+
+
+/* ==============================
+   PHÂN CÁCH YÊU CẦU - SIÊU RÕ RÀNG, DỄ NHÌN
+   ============================== */
+
+/* Mỗi yêu cầu là 1 khối riêng biệt */
+.request-item1 {
+    background: #ffffff;
+    border-radius: 14px !important;
+    overflow: hidden;
+    margin-bottom: 1.5rem !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+    /* Hover: nổi bật */
+    .request-item1:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 25px rgba(59, 130, 246, 0.15);
+        border-color: #93c5fd;
+    }
+
+    /* Khoảng cách bên trong */
+    .request-item1 td {
+        padding: 1.3rem 1rem !important;
+        border: none !important;
+        vertical-align: top;
+    }
+
+    /* Đường line phân cách giữa các khối */
+    .request-item1 + .request-item {
+        margin-top: 1.8rem;
+        position: relative;
+    }
+
+        .request-item1 + .request-item::before {
+            content: '';
+            position: absolute;
+            top: -0.9rem;
+            left: 2rem;
+            right: 2rem;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #cbd5e1 15%, #cbd5e1 85%, transparent 100% );
+            border-radius: 1px;
+        }
+
+    /* Cột Đánh giá: form không bị dính */
+    .request-item1 .danhgia-form {
+        margin: 0.5rem 0;
+        border-radius: 12px;
+    }
+
+/* Bảng: loại bỏ viền mặc định */
+.table {
+    border-collapse: separate !important;
+    border-spacing: 0 1.5rem !important;
+}
+
+    /* Loại bỏ padding mặc định của tbody */
+    .table tbody {
+        padding: 0 !important;
+    }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .request-item {
+        margin-bottom: 1.2rem !important;
+    }
+
+        .request-item td {
+            padding: 1rem 0.75rem !important;
+            font-size: 0.9rem;
+        }
+
+        .request-item + .request-item::before {
+            left: 1rem;
+            right: 1rem;
+        }
+}
+
+/* ==============================
+   _FormDanhGia.cshtml - LÀM ĐẸP GIỮ NGUYÊN CODE
+   ============================== */
+.danhgia-form {
+    background: #ffffff;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 14px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+    .danhgia-form:hover {
+        border-color: #93c5fd !important;
+        box-shadow: 0 6px 16px rgba(59, 130, 246, 0.12);
+        transform: translateY(-2px);
+    }
+
+    /* Textarea - đẹp hơn */
+    .danhgia-form .form-control {
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        padding: 0.65rem 0.9rem;
+        transition: all 0.3s ease;
+        resize: vertical;
+        min-height: 70px;
+    }
+
+        .danhgia-form .form-control:focus {
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+            background: #ffffff;
+        }
+
+/* Select - làm nổi bật */
+.select-diem {
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.9rem;
+    min-width: 80px;
+    background-color: #f8fafc;
+    transition: all 0.3s ease;
+}
+
+    .select-diem:focus {
+        border-color: #3b82f6 !important;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+        background-color: white;
+    }
+
+/* Nút Gửi - đẹp hơn */
+.danhgia-form .btn-primary {
+    background: #3b82f6;
+    border: none;
+    border-radius: 50px;
+    padding: 0.4rem 1.1rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(59, 130, 246, 0.25);
+}
+
+    .danhgia-form .btn-primary:hover {
+        background: #2563eb;
+        transform: translateY(-1px);
+        box-shadow: 0 5px 12px rgba(59, 130, 246, 0.35);
+    }
+
+/* Label - rõ ràng */
+.danhgia-form label {
+    font-size: 0.9rem;
+    min-width: 50px;
+}
+

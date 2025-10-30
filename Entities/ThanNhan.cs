@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace KTX.Entities;
 
 public partial class ThanNhan
 {
+    [Key]
     public int MaPh { get; set; }
 
     public int Msv { get; set; }
@@ -19,6 +21,7 @@ public partial class ThanNhan
     [Phone(ErrorMessage = "Số điện thoại không hợp lệ")]
     [RegularExpression(@"^[0-9]{10,11}$", ErrorMessage = "Số điện thoại phải có 10-11 chữ số")]
     public string? Sdt { get; set; }
+    [ValidateNever]
+    public virtual SinhVien? MsvNavigation { get; set; }
 
-    public virtual SinhVien MsvNavigation { get; set; } = null!;
 }

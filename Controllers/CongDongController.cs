@@ -39,6 +39,7 @@ namespace KTX.Controllers
                 NgayDang = DateOnly.FromDateTime(DateTime.Now)
             };
 
+            baiDang.MaBd = _context.BaiDangs.Any() ? _context.BaiDangs.Max(y => y.MaBd) + 1 : 1; 
             _context.BaiDangs.Add(baiDang);
             await _context.SaveChangesAsync();
 

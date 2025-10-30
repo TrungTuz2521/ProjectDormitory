@@ -4,6 +4,11 @@
     ViewData["Title"] = "Phản hồi & Đánh giá dịch vụ";
 }
 
+@section Styles {
+   
+    <link href="~/css/DanhGia.css" rel="stylesheet" />
+}
+
 <div class="container py-4">
 
     <!-- Thông báo -->
@@ -34,7 +39,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-success">
-                    <i class="bi bi-send"></i> Gửi yêu cầu
+                    Gửi yêu cầu
                 </button>
             </form>
         </div>
@@ -42,7 +47,7 @@
 
     <!-- Danh sách yêu cầu -->
     <h4 class="mb-3 text-primary fw-bold">
-        <i class="bi bi-chat-left-heart-fill"></i> Yêu cầu & Đánh giá gần đây
+        Yêu cầu & Đánh giá gần đây
     </h4>
 
     @if (Model != null && Model.Any())
@@ -61,7 +66,7 @@
                 <tbody>
                     @foreach (var yc in Model)
                     {
-                        <tr>
+                        <tr class="request-item1">
                             <td>@yc.LoaiYC</td>
                             <td>@yc.NoiDungYC</td>
                             <td>@yc.NgayGuiYC?.ToString("dd/MM/yyyy")</td>
@@ -86,9 +91,7 @@
                                     </div>
                                 }
                             </td>
-                            
                         </tr>
-                        
                     }
                 </tbody>
             </table>
@@ -97,7 +100,9 @@
     else
     {
         <div class="alert alert-info text-center">
-            <i class="bi bi-info-circle"></i> Không có yêu cầu trong 3 ngày gần đây.
+            Không có yêu cầu trong 3 ngày gần đây.
         </div>
     }
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

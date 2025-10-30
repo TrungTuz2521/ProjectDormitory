@@ -3,22 +3,6 @@
   "WorkspaceRootPath": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\wwwroot\\css\\home.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:wwwroot\\css\\home.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\controllers\\thongtincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\thongtincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\views\\shared\\_leftsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\_leftsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
@@ -30,11 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "_LeftSideBar.cshtml",
               "DocumentMoniker": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Views\\Shared\\_LeftSideBar.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_LeftSideBar.cshtml",
@@ -42,57 +34,7 @@
               "RelativeToolTip": "Views\\Shared\\_LeftSideBar.cshtml",
               "ViewState": "AgIAABUAAAAAAAAAAAAAAC8AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-28T09:47:20.365Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
-              "ToolTip": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Controllers\\HomeController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T09:34:17.468Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Home.css",
-              "DocumentMoniker": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\wwwroot\\css\\Home.css",
-              "RelativeDocumentMoniker": "wwwroot\\css\\Home.css",
-              "ToolTip": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\wwwroot\\css\\Home.css",
-              "RelativeToolTip": "wwwroot\\css\\Home.css",
-              "ViewState": "AgIAAP0AAAAAAAAAAAASwAkBAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-10-28T08:46:16.062Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Views\\Home\\Index.cshtml*",
-              "RelativeToolTip": "Views\\Home\\Index.cshtml*",
-              "ViewState": "AgIAAKEBAAAAAAAAAAAAAFcBAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-28T08:44:37.026Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ThongTinController.cs",
-              "DocumentMoniker": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Controllers\\ThongTinController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ThongTinController.cs",
-              "ToolTip": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Controllers\\ThongTinController.cs",
-              "RelativeToolTip": "Controllers\\ThongTinController.cs",
-              "ViewState": "AgIAAPoAAAAAAAAAAAAqwAwBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T07:14:40.994Z",
+              "WhenOpened": "2025-10-28T09:47:20.365Z",
               "EditorCaption": ""
             }
           ]

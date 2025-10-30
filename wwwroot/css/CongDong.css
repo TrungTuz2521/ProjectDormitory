@@ -1,0 +1,277 @@
+﻿/* ==============================
+   wwwroot/css/CongDong.css
+   PHIÊN BẢN: RÕ RÀNG - NỔI BẬT - DỄ NHÌN
+   Màu chủ đạo: XANH DƯƠNG NHẸ + TRẮNG
+   Tương phản cao, chữ đen rõ, nút nổi
+   ============================== */
+
+:root {
+    --primary: #2563eb; /* Xanh dương đậm - nút chính */
+    --primary-light: #dbeafe; /* Nền form, bình luận */
+    --primary-bg: #f8fafc; /* Nền trang */
+    --text: #1e293b; /* Chữ chính - ĐEN RÕ */
+    --text-light: #64748b; /* Chữ phụ */
+    --border: #e2e8f0; /* Viền nhẹ */
+    --success: #16a34a; /* Xanh lá cho MSV */
+    --radius: 16px;
+    --radius-sm: 12px;
+    --shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+    --shadow-hover: 0 12px 30px rgba(37, 99, 235, 0.18);
+    --transition: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--primary-bg);
+    color: var(--text);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+}
+
+/* ==============================
+   TIÊU ĐỀ CHÍNH - NỔI BẬT
+   ============================== */
+h2 {
+    font-weight: 700;
+    color: #1e40af;
+    font-size: 2.1rem;
+    text-align: center;
+    margin: 2rem 0 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid #3b82f6;
+    display: inline-block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==============================
+   FORM TẠO BÀI ĐĂNG - NỔI BẬT NHẤT
+   ============================== */
+.ThemBaiDangCon {
+    background: white;
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    box-shadow: var(--shadow);
+    border: 2px solid #bfdbfe;
+    margin-bottom: 2.5rem;
+    position: relative;
+    transition: var(--transition);
+}
+
+    .ThemBaiDangCon::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border: 2px solid #3b82f6;
+        border-radius: var(--radius);
+        opacity: 0;
+        transition: var(--transition);
+        z-index: -1;
+    }
+
+    .ThemBaiDangCon:hover::before {
+        opacity: 1;
+    }
+
+    .ThemBaiDangCon h5 {
+        color: #1e40af;
+        font-weight: 700;
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+.post-textarea {
+    border: 2px solid #e2e8f0 !important;
+    resize: none;
+    min-height: 120px;
+    padding: 1rem 1.2rem;
+    font-size: 1.05rem;
+    border-radius: var(--radius-sm);
+    background: #ffffff;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+    .post-textarea:focus {
+        border-color: var(--primary) !important;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2) !important;
+        background: white;
+    }
+
+.btn-post {
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 0.75rem 2rem;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+    .btn-post:hover {
+        background: #1d4ed8;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+    }
+
+/* ==============================
+   CARD BÀI ĐĂNG - RÕ RÀNG
+   ============================== */
+.card {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: var(--radius) !important;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    margin-bottom: 2rem;
+    background: white;
+}
+
+    .card:hover {
+        border-color: #93c5fd !important;
+        box-shadow: var(--shadow-hover);
+        transform: translateY(-4px);
+    }
+
+.card-header {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe) !important;
+    border-bottom: 2px solid #93c5fd;
+    padding: 1rem 1.4rem;
+    font-weight: 600;
+}
+
+    .card-header h5 {
+        color: var(--success);
+        font-weight: 700;
+        margin: 0;
+        font-size: 1.15rem;
+    }
+
+    .card-header small {
+        color: #475569;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+.card-body {
+    background: white;
+    padding: 1.6rem;
+}
+
+    .card-body p {
+        font-size: 1.06rem;
+        line-height: 1.8;
+        color: #1e293b;
+        margin-bottom: 1.3rem;
+        font-weight: 500;
+    }
+
+/* ==============================
+   BÌNH LUẬN - NỔI BẬT RIÊNG
+   ============================== */
+.border-start {
+    border-left: 5px solid #3b82f6 !important;
+    background: #f0f5ff;
+    padding: 1rem 1.2rem;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin-bottom: 1rem;
+    transition: var(--transition);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+}
+
+    .border-start:hover {
+        background: #dbeafe;
+        transform: translateX(6px);
+        box-shadow: 0 4px 14px rgba(59, 130, 246, 0.15);
+    }
+
+    .border-start p {
+        margin: 0 0 0.5rem 0;
+        font-size: 0.98rem;
+        color: #1e293b;
+        font-weight: 500;
+    }
+
+    .border-start small {
+        font-size: 0.85rem;
+        color: #475569;
+        font-weight: 600;
+    }
+
+/* Form bình luận */
+.input-group .form-control {
+    border: 2px solid #e2e8f0;
+    border-radius: 50px;
+    padding: 0.75rem 1.4rem;
+    font-size: 0.95rem;
+    background: white;
+}
+
+    .input-group .form-control:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.16);
+    }
+
+.input-group .btn {
+    border-radius: 50px;
+    padding: 0.75rem 1.8rem;
+    background: var(--primary);
+    border: none;
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+    .input-group .btn:hover {
+        background: #1d4ed8;
+    }
+
+/* Trạng thái rỗng */
+.text-muted.fst-italic {
+    color: #94a3b8 !important;
+    font-style: italic;
+    font-weight: 500;
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .input-group {
+        flex-direction: column;
+    }
+
+        .input-group .btn {
+            margin-top: 0.5rem;
+        }
+
+    .post-textarea {
+        min-height: 100px;
+    }
+
+    h2 {
+        font-size: 1.9rem;
+    }
+}

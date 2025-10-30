@@ -1,9 +1,8 @@
-﻿@model KTX.Models.ViewModels.ThongTinCaNhanViewModel
+﻿@model KTX.Models.ViewModels.EditThongTinViewModel
 
 @{
     ViewData["Title"] = "Chỉnh Sửa Thông Tin Cá Nhân";
-    // Thiết lập Layout nếu cần, ví dụ:
-    Layout = "~/Views/Shared/MyLayout.cshtml";
+    
 }
 
 <div class="container py-4">
@@ -34,7 +33,7 @@
             <div class="card shadow-sm border-0">
                 <div class="card-body p-4 p-md-5">
 
-                    <form asp-action="Edit" method="post">
+                    <form asp-action="Edit" asp-controller="ThongTin" method="post">
                         <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
 
                         @* Ẩn các trường không cần chỉnh sửa nhưng cần gửi lên POST *@

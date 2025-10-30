@@ -24,7 +24,7 @@ namespace KTX.Controllers
             {
                 new BankInfoViewModel
                 {
-                    MaNganHang = "970422",
+                    MaNganHang = "MBbank",
                     TenNganHang = "Ngân hàng TMCP Quân đội",
                     TenVietTat = "MB Bank",
                     Logo = "/images/banks/mbbank.png",
@@ -34,7 +34,7 @@ namespace KTX.Controllers
                 },
                 new BankInfoViewModel
                 {
-                    MaNganHang = "970418",
+                    MaNganHang = "BIDVBank",
                     TenNganHang = "Ngân hàng TMCP Đầu tư và Phát triển Việt Nam",
                     TenVietTat = "BIDV",
                     Logo = "/images/banks/bidv.png",
@@ -44,7 +44,7 @@ namespace KTX.Controllers
                 },
                 new BankInfoViewModel
                 {
-                    MaNganHang = "970407",
+                    MaNganHang = "TCBank",
                     TenNganHang = "Ngân hàng TMCP Kỹ thương Việt Nam",
                     TenVietTat = "Techcombank",
                     Logo = "/images/banks/techcombank.png",
