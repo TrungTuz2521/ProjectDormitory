@@ -282,5 +282,8 @@ public partial class SinhVienKtxContext : DbContext
         OnModelCreatingPartial(modelBuilder);
     }
 
+    
+
+
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

@@ -97,7 +97,8 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
             {
                 // Lấy HoTen và Msv (mà EF Core có thể dịch)
                 HoTen = hd.MsvNavigation.HoTen,
-                Msv = hd.Msv
+                Msv = hd.Msv,
+                Sdt = hd.MsvNavigation.Sdt
             })
             .ToListAsync(); // Chạy truy vấn SQL và kéo dữ liệu về bộ nhớ.
 
@@ -111,7 +112,8 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
                         ? r.HoTen.Split(' ').Last().Substring(0, 1).ToUpper()
                         : "?",
             HoTen = r.HoTen ?? "N/A",
-            MaSinhVien = r.Msv.ToString()
+            MaSinhVien = r.Msv.ToString(),
+            Sdt = r.Sdt ?? "Chưa thêm"
         }).ToList();
 
         // Thay thế biến 'roommates' ban đầu bằng 'roommates' mới này trong ViewModel.

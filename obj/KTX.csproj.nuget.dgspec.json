@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Lập trình web\\ProjectDormitory\\KTX.csproj": {}
+    "D:\\Web\\KTX\\KTX.csproj": {}
   },
   "projects": {
-    "D:\\Lập trình web\\ProjectDormitory\\KTX.csproj": {
+    "D:\\Web\\KTX\\KTX.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Lập trình web\\ProjectDormitory\\KTX.csproj",
+        "projectUniqueName": "D:\\Web\\KTX\\KTX.csproj",
         "projectName": "KTX",
-        "projectPath": "D:\\Lập trình web\\ProjectDormitory\\KTX.csproj",
-        "packagesPath": "C:\\Users\\Thuy Linh\\.nuget\\packages\\",
-        "outputPath": "D:\\Lập trình web\\ProjectDormitory\\obj\\",
+        "projectPath": "D:\\Web\\KTX\\KTX.csproj",
+        "packagesPath": "C:\\Users\\nttu2\\.nuget\\packages\\",
+        "outputPath": "D:\\Web\\KTX\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Thuy Linh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nttu2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -106,7 +106,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
