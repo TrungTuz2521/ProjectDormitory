@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -41,10 +41,6 @@
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "RoomManagementViewModel.cs",
@@ -54,8 +50,7 @@
               "RelativeToolTip": "Models\\ViewModels\\RoomManagementViewModel.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAiwDgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T03:55:03.504Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-30T03:55:03.504Z"
             },
             {
               "$type": "Document",
@@ -63,9 +58,9 @@
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Views\\Room\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Room\\Index.cshtml",
-              "ToolTip": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Views\\Room\\Index.cshtml*",
-              "RelativeToolTip": "Views\\Room\\Index.cshtml*",
-              "ViewState": "AgIAAJsBAAAAAAAAAAAswOYBAAAOAAAAAAAAAA==",
+              "ToolTip": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Views\\Room\\Index.cshtml",
+              "RelativeToolTip": "Views\\Room\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKsBAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-10-30T03:38:10.427Z",
               "EditorCaption": ""
@@ -80,8 +75,7 @@
               "RelativeToolTip": "Entities\\YeuCau.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAA7wBIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T03:37:38.303Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-30T03:37:38.303Z"
             },
             {
               "$type": "Document",
@@ -93,8 +87,7 @@
               "RelativeToolTip": "Controllers\\RoomController.cs",
               "ViewState": "AgIAAHoAAAAAAAAAAAAYwI8AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T03:30:53.977Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-30T03:30:53.977Z"
             }
           ]
         }
