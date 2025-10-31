@@ -15,6 +15,8 @@
         <div class="list-group list-group-flush">
             @foreach (var roommate in Model.BanCungPhong)
             {
+                var index = Model.BanCungPhong.IndexOf(roommate); // OK
+
                 <div class="list-group-item d-flex align-items-center py-3 px-0 border-0 border-bottom">
                     <div class="avatar-circle-sm me-3">
                         @roommate.Initial
@@ -22,13 +24,25 @@
                     <div class="flex-grow-1">
                         <strong class="d-block">@roommate.HoTen</strong>
                         <small class="text-muted">
-                            <p class="card-text text-muted small">Mã Sinh Viên : @roommate.MaSinhVien</p>
+                            <p class="card-text text-muted small">Mã Sinh Viên: @roommate.MaSinhVien</p>
                         </small>
                     </div>
-                    <div>
-                        <button class="btn btn-sm btn-outline-primary">
+
+                    <div style="position: relative; display: inline-block;">
+                        <!-- Nút: dùng class + data-index -->
+                        <button type="button"
+                                class="btn btn-sm btn-outline-primary btn-show-phone"
+                                data-index="@index">
                             <i class="bi bi-chat-dots-fill"></i>
                         </button>
+
+                        <!-- Input: dùng class + data-index -->
+                        <input type="text"
+                               class="phone-box"
+                               data-index="@index"
+                               value="@roommate.Sdt"
+                               readonly
+                               style="display: none; position: absolute; top: 0; right: 50px; width: 120px; border: 1px solid #ccc; border-radius: 6px; padding: 4px 6px; font-size: 0.9rem; background-color: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
                     </div>
                 </div>
             }
@@ -62,3 +76,25 @@
         background-color: #f8f9fa;
     }
 </style>
+<script>
+    // Bắt TẤT CẢ các nút
+    document.querySelectorAll('.btn-show-phone').forEach(button => {
+        button.addEventListener('click', function () {
+            const index = this.getAttribute('data-index');
+            const phoneBox = document.querySelector(`.phone-box[data-index="${index}"]`);
+
+            // Toggle hiển thị
+            const isHidden = phoneBox.style.display === 'none' || phoneBox.style.display === '';
+            phoneBox.style.display = isHidden ? 'block' : 'none';
+
+            // Tự ẩn sau 3 giây
+            if (isHidden) {
+                setTimeout(() => {
+                    if (phoneBox.style.display === 'block') {
+                        phoneBox.style.display = 'none';
+                    }
+                }, 3000);
+            }
+        });
+    });
+</script>
