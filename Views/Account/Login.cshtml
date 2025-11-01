@@ -28,23 +28,24 @@
         Ký túc xá sinh viên Trường đại học Giao Thông Vận Tải
     </div>
 
-    <div class="login-container">
+    <div class="login-container", style="
+         margin-top: 10px;">
         <h3 class="login-title">ĐĂNG NHẬP</h3>
 
         @* THAY ĐỔI: Thêm d-flex, flex-column, và align-items-center vào form *@
         @using (Html.BeginForm("Login", "Account", FormMethod.Post,
-                new { @class = "form d-flex flex-column align-items-center" }))
+                new { @class = "form d-flex flex-column align-items-center", style = "padding-left: 30px; padding-right: 30px;" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="mb-3 w-100">
-                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Tên đăng nhập" })
+                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Tên đăng nhập", style = "height: 50px !important;" })
                 @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
             </div>
 
             <div class="mb-3 w-100">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Mật khẩu" })
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Mật khẩu", style = "height: 50px !important;" })
                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
             </div>
 
