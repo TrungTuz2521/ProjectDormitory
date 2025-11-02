@@ -304,7 +304,7 @@ namespace KTX.Controllers
             {
                 success = true,
                 qrCodeUrl = qrUrl,
-                nganHang = nganHang
+                nganHang
             });
         }
 

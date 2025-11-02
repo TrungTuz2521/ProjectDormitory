@@ -42,7 +42,7 @@ namespace KTX.Controllers
                     TrangThaiYC = yc.TrangThaiYc,
                     MaDG = yc.DanhGia.FirstOrDefault()?.MaDg,
                     NoiDungDG = yc.DanhGia.FirstOrDefault()?.NoiDungDg,
-                    DiemDG = int.TryParse(yc.DanhGia.FirstOrDefault()?.DiemDg, out var diem) ? diem : (int?)null,
+                    DiemDG = int.TryParse(yc.DanhGia.FirstOrDefault()?.DiemDg, out var diem) ? diem : null,
                     DanhSachDanhGia = yc.DanhGia.Select(dg => new DanhGiaItem
                     {
                         MaDG = dg.MaDg,

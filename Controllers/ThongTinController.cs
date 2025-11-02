@@ -96,9 +96,9 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
             .Select(hd => new // Sử dụng kiểu ẩn danh để chỉ lấy dữ liệu cần thiết
             {
                 // Lấy HoTen và Msv (mà EF Core có thể dịch)
-                HoTen = hd.MsvNavigation.HoTen,
-                Msv = hd.Msv,
-                Sdt = hd.MsvNavigation.Sdt
+                hd.MsvNavigation.HoTen,
+                hd.Msv,
+                hd.MsvNavigation.Sdt
             })
             .ToListAsync(); // Chạy truy vấn SQL và kéo dữ liệu về bộ nhớ.
 

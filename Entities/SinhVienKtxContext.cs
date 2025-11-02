@@ -15,6 +15,8 @@ public partial class SinhVienKtxContext : DbContext
     {
     }
 
+    public virtual DbSet<Admin> Admins { get; set; }
+
     public virtual DbSet<BaiDang> BaiDangs { get; set; }
 
     public virtual DbSet<DanhGia> DanhGia { get; set; }
@@ -39,10 +41,30 @@ public partial class SinhVienKtxContext : DbContext
 
 //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-//        => optionsBuilder.UseSqlServer("Server=DESKTOP-U195TOE\\SQLEXPRESS;Database=SinhVienKTX;Trusted_Connection=True;TrustServerCertificate=True;");
+//        => optionsBuilder.UseSqlServer("Data Source=THUYLINH\\SQLEXPRESS;Initial Catalog=SinhVienKTX;Integrated Security=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.UseCollation("Vietnamese_CI_AS");
+
+        modelBuilder.Entity<Admin>(entity =>
+        {
+            entity.HasKey(e => e.MaAdmin).HasName("PK__Admin__49341E389F5B5DBB");
+
+            entity.ToTable("Admin");
+
+            entity.HasIndex(e => e.TenDn, "UQ__Admin__4CF9655890EADAFA").IsUnique();
+
+            entity.Property(e => e.MatKhau)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+            entity.Property(e => e.TenDn)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("TenDN");
+            entity.Property(e => e.VaiTro).HasMaxLength(100);
+        });
+
         modelBuilder.Entity<BaiDang>(entity =>
         {
             entity.HasKey(e => e.MaBd);
@@ -60,7 +82,7 @@ public partial class SinhVienKtxContext : DbContext
                 .HasConstraintName("FK_BaiDang_SinhVien");
         });
 
-        modelBuilder.Entity<DanhGia>(entity =>
+        modelBuilder.Entity<DanhGium>(entity =>
         {
             entity.HasKey(e => e.MaDg);
 
@@ -281,9 +303,6 @@ public partial class SinhVienKtxContext : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
-
-    
-
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
