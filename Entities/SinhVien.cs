@@ -1,37 +1,37 @@
-﻿    using System;
-    using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-    namespace KTX.Entities;
+namespace KTX.Entities;
 
-    public partial class SinhVien
-    {
-        public int Msv { get; set; }
+public partial class SinhVien
+{
+    public int Msv { get; set; }
 
-        public string HoTen { get; set; } = null!;
+    public string HoTen { get; set; } = null!;
 
-        public string GioiTinh { get; set; } = null!;
+    public string GioiTinh { get; set; } = null!;
 
-        public DateOnly NgaySinh { get; set; }
+    public DateOnly NgaySinh { get; set; }
 
-        public string Sdt { get; set; } = null!;
+    public string Sdt { get; set; } = null!;
 
-        public string? Email { get; set; }
+    public string? Email { get; set; }
 
-        public string? Khoa { get; set; }
+    public string? Khoa { get; set; }
 
-        public string? Avatar { get; set; }
+    public string? Avatar { get; set; }
 
-        public string TenDn { get; set; } = null!;
+    public string TenDn { get; set; } = null!;
 
-        public string MatKhau { get; set; } = null!;
+    public string MatKhau { get; set; } = null!;
 
-        public virtual ICollection<BaiDang> BaiDangs { get; set; } = new List<BaiDang>();
+    public virtual ICollection<BaiDang> BaiDangs { get; set; } = new List<BaiDang>();
 
-        public virtual ICollection<HopDongPhong> HopDongPhongs { get; set; } = new List<HopDongPhong>();
+    public virtual ICollection<HopDongPhong> HopDongPhongs { get; set; } = new List<HopDongPhong>();
 
-        public virtual ICollection<ThanNhan> ThanNhans { get; set; } = new List<ThanNhan>();
+    public virtual ICollection<ThanNhan> ThanNhans { get; set; } = new List<ThanNhan>();
 
-        public virtual ICollection<ThongBao> ThongBaos { get; set; } = new List<ThongBao>();
+    public virtual ICollection<ThongBao> ThongBaos { get; set; } = new List<ThongBao>();
 
-        public virtual ICollection<YeuCau> YeuCaus { get; set; } = new List<YeuCau>();
-    }
+    public virtual ICollection<YeuCau> YeuCaus { get; set; } = new List<YeuCau>();
+}
