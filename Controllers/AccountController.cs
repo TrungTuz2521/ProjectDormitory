@@ -39,6 +39,40 @@ namespace KTX.Controllers
             {
                 // Hash password
                 string Password = model.Password.Trim();
+                //   Kiểm tra tài khoản admin trước
+                var admin = _context.Admins.FirstOrDefault(a =>
+                    a.TenDn.Trim() == model.Username.Trim() &&
+                    a.MatKhau.Trim() == Password);
+
+                if (admin != null)
+                {
+                    var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, admin.MaAdmin.ToString()),
+                new Claim(ClaimTypes.Name, admin.TenDn),
+                new Claim(ClaimTypes.Role, "Admin"),
+                new Claim("VaiTro", admin.VaiTro ?? "")
+            };
+
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var authProperties = new AuthenticationProperties
+                    {
+                        IsPersistent = model.RememberMe,
+                        ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30)
+                    };
+
+                    await HttpContext.SignInAsync(
+                        CookieAuthenticationDefaults.AuthenticationScheme,
+                        new ClaimsPrincipal(claimsIdentity),
+                        authProperties
+                    );
+
+                    HttpContext.Session.SetString("Admin", admin.TenDn);
+                    HttpContext.Session.SetString("VaiTro", admin.VaiTro ?? "");
+
+                    // 👉 Chuyển đến trang quản trị
+                    return RedirectToAction("Index", "Dashboard");
+                }
 
                 // Tìm sinh viên trong database
                 var user = _context.SinhViens.FirstOrDefault(u =>
