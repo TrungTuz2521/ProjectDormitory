@@ -1,0 +1,58 @@
+﻿@using KTX.Models.ViewModels
+@model QLThongBaoViewModel
+
+@{
+    ViewData["Title"] = "Tạo Thông báo mới";
+    Layout = "~/Views/Shared/Layoutadmin.cshtml";
+}
+
+<h2>Tạo thông báo mới</h2>
+
+<form asp-action="Create" method="post">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group mb-3">
+                        <label>Gửi đến</label>
+                        <select asp-for="MSV" class="form-control">
+                            <option value="">Tất cả sinh viên</option>
+                            <option value="" disabled>────────────────</option>
+                            @foreach (var sv in Model.DanhSachSinhVien)
+                            {
+                                <option value="@sv.MSV">@sv.HoTen (@sv.MSV)</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label>Tiêu đề</label>
+                        <input asp-for="TieuDe" class="form-control" />
+                        <span asp-validation-for="TieuDe" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label>Nội dung</label>
+                        <textarea asp-for="NoiDung" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="NoiDung" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Gửi thông báo</button>
+                    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="alert alert-info">
+                <strong>Lưu ý:</strong><br />
+                - Chọn "<strong>Tất cả sinh viên</strong>" để gửi thông báo chung.<br />
+                - Chọn sinh viên cụ thể để gửi riêng.
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

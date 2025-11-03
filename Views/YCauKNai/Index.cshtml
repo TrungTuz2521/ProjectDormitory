@@ -1,0 +1,129 @@
+﻿@model List<KTX.Models.ViewModels.YCauKNaiViewModel>
+@{
+    ViewData["Title"] = "Quản lý yêu cầu";
+    Layout = "~/Views/Shared/Layoutadmin.cshtml";
+}
+
+
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0 text-primary fw-bold">
+            Danh sách yêu cầu sinh viên
+        </h3>
+        <a asp-action="ThongKe" class="btn btn-outline-primary btn-sm shadow-sm">
+            Xem thống kê
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0 align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="text-muted small fw-semibold">MSV</th>
+                            <th class="text-muted small fw-semibold">Họ tên</th>
+                            <th class="text-muted small fw-semibold">Phòng</th>
+                            <th class="text-muted small fw-semibold">Loại</th>
+                            <th class="text-muted small fw-semibold">Nội dung</th>
+                            <th class="text-muted small fw-semibold">Ngày gửi</th>
+                            <th class="text-muted small fw-semibold">Trạng thái</th>
+                            <th class="text-muted small fw-semibold text-center">Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var y in Model)
+                        {
+                            <tr data-id="@y.MaYC" class="border-start border-3
+                                    @(y.TrangThai == "Chờ xử lý" ? "border-warning" :
+                                                                                    y.TrangThai == "Đang xử lý" ? "border-primary" :
+                                                                                    "border-success")">
+                                                                                   <td class="small text-secondary">@y.MSV</td>
+                                                                                   <td class="fw-semibold">@y.HoTen</td>
+                                                                                   <td>
+                                                                                       <span class="badge rounded-pill
+                                                                                               @(y.Phong.Contains("Chưa") ? "bg-light text-dark border" : "bg-secondary text-white")">
+                                                                                           @y.Phong
+                                                                                       </span>
+                                                                                   </td>
+                                                                                   <td>
+                                                                                       <span class="badge rounded-pill bg-info text-white">@y.LoaiYC</span>
+                                                                                   </td>
+                                                                                   <td class="small text-muted" style="max-width: 200px;">@y.NoiDungYC</td>
+                                                                                   <td class="small text-secondary">@y.NgayGuiYC?.ToString("dd/MM/yyyy")</td>
+                                                                                   <td class="td-trangthai">
+                                                                                       <span class="badge rounded-pill
+                                            @(y.TrangThai == "Chờ xử lý" ? "bg-warning text-dark" :
+                                                                                    y.TrangThai == "Đang xử lý" ? "bg-primary text-white" :
+                                                                                    "bg-success text-white")">
+                                    @y.TrangThai
+                                </span>
+                            </td>
+                            <td class="td-hanhdong text-center">
+                                @if (y.TrangThai == "Chờ xử lý")
+                                    {
+                                        <button class="btn btn-sm btn-success rounded-pill px-3 shadow-sm"
+                                                onclick="capNhat(@y.MaYC, 'Đang xử lý')">
+                                            Phê duyệt
+                                        </button>
+                                    }
+                                    else if (y.TrangThai == "Đang xử lý")
+                                    {
+                                        <button class="btn btn-sm btn-success rounded-pill px-3 shadow-sm"
+                                                onclick="capNhat(@y.MaYC, 'Đã xử lý')">
+                                            Hoàn Thành
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-success small fw-semibold">Đã xử lý</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        async function capNhat(id, trangThaiMoi) {
+            const action = trangThaiMoi === 'Đang xử lý' ? 'phê duyệt' : 'hoàn thành';
+            if (!confirm(`Xác nhận ${action} yêu cầu này?`)) return;
+
+            const res = await fetch('/YCauKNai/CapNhatTrangThai', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `id=${id}&trangThaiMoi=${encodeURIComponent(trangThaiMoi)}`
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                const row = document.querySelector(`tr[data-id="${id}"]`);
+                const badge = row.querySelector('.td-trangthai .badge');
+                badge.textContent = data.trangThai;
+                badge.className = `badge rounded-pill ${
+                    data.trangThai === 'Đang xử lý' ? 'bg-primary text-white' : 'bg-success text-white'
+                }`;
+
+                const tdHanhDong = row.querySelector('.td-hanhdong');
+                if (data.trangThai === 'Đã xử lý') {
+                    tdHanhDong.innerHTML = '<span class="text-success small fw-semibold">Đã xử lý</span>';
+                } else {
+                    tdHanhDong.innerHTML = `
+                        <button class="btn btn-sm btn-success rounded-pill px-3 shadow-sm"
+                                onclick="capNhat(${id}, 'Đã xử lý')">
+                            Hoàn Thành
+                        </button>
+                    `;
+                }
+            } else {
+                alert("Lỗi cập nhật trạng thái!");
+            }
+        }
+    </script>
+}
