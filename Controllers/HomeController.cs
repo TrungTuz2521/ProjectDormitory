@@ -62,13 +62,12 @@ namespace KTX.Controllers
 
             var vm = new HomeViewModel
             {
-               SinhVien1 = sinhVien,
-                HopDong1 = hopDong,
-                YeuCauds = yeuCaus,
-                Thongbaods = thongBaos,
-                BaiDangds = baiDangs,
-                TraLois = traLois,
-               
+                SinhVien1 = sinhVien ?? new SinhVien(),
+                HopDong1 = hopDong ?? new HopDongPhong(),
+                YeuCauds = yeuCaus ?? new List<YeuCau>(),
+                Thongbaods = thongBaos ?? new List<ThongBao>(),
+                BaiDangds = baiDangs ?? new List<BaiDang>(),
+                TraLois = traLois ?? new List<TraLoi>()
             };
 
             return View(vm);

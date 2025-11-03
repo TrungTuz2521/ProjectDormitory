@@ -331,12 +331,12 @@ h4 {
     .request-item1 td {
         padding: 1.3rem 1rem !important;
         border: none !important;
-        vertical-align: top;
+        vertical-align: middle;
     }
 
     /* Đường line phân cách giữa các khối */
     .request-item1 + .request-item {
-        margin-top: 1.8rem;
+        margin-top: 1.5rem;
         position: relative;
     }
 

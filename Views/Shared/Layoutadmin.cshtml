@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using KTX.Entities
+@using System.Security.Claims
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
@@ -14,9 +16,10 @@
     <nav class="top-nav">
         <div class="container-fluid h-100">
             <div class="row h-100 align-items-center">
+
                 <!-- Nút mở sidebar khi ở mobile -->
                 <div class="col-auto d-lg-none">
-                    <button class="btn btn-link text-white p-0" id="sidebarToggle">
+                    <button class="btn btn-link text-white" id="sidebarToggle">
                         <i class="bi bi-list fs-3"></i>
                     </button>
                 </div>
@@ -28,36 +31,55 @@
                             <img src="~/images/LogoTittle.png" alt="LogoKTX" />
                         </div>
                         <div class="site-title text-white">
-                            <h1>Quản lý Ký túc xá</h1>
-                            <p>Trường Đại học Giao Thông Vận Tải</p>
+                            <h1 class="mb-0">Ký túc xá sinh viên</h1>
+                            <p class="mb-0">Trường Đại học Giao Thông Vận Tải</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Thông tin Admin -->
+                <!-- Thông tin người dùng -->
                 <div class="col-auto">
                     <div class="d-flex align-items-center gap-3 text-white">
-                        <div class="user-info text-end d-none d-sm-block">
-                            <p class="user-name mb-0">Administrator</p>
-                            <p class="user-role mb-0">Quản trị viên</p>
-                        </div>
-                        <div class="dropdown">
-                            <button class="user-avatar dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            // Lấy thông tin từ claim
+                            var fullName = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+                            var vaiTro = User.Claims.FirstOrDefault(c => c.Type == "VaiTro")?.Value;
+
+                            <div class="user-info text-end d-none d-sm-block">
+                                <p class="admin-name mb-0 fw-semibold">@fullName</p>
+                                <p class="user-role mb-0 text-white-50">@vaiTro</p>
+                            </div>
+
+                            <div class="dropdown">
+                                <button class="btn p-0 border-0 user-avatar dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-fill"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li>
+                                        <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                            <button type="submit" class="dropdown-item text-danger">Đăng xuất</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <span class="text-white">Khách</span>
+                            <div class="user-avatar">
                                 <i class="bi bi-person-fill"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-                                <li>
-                                    <a class="dropdown-item text-danger" href="@Url.Action("Logout", "Account")">
-                                        <i class="bi bi-box-arrow-right me-2"></i>Đăng xuất
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                            </div>
+                        }
+
                     </div>
                 </div>
+
             </div>
         </div>
     </nav>
+
 
     <!-- Left Sidebar -->
     <aside class="left-sidebar" id="leftSidebar">
@@ -83,21 +105,10 @@
             <li class="nav-item">
                 <a href="@Url.Action("Index", "HopDong")" class="nav-link">
                     <span class="nav-icon"><i class="bi bi-file-text"></i></span>
-                    <span>Quản lý Hợp đồng</span>
+                    <span>Quản lý Tài Chính</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="@Url.Action("Index", "DienNuoc")" class="nav-link">
-                    <span class="nav-icon"><i class="bi bi-lightning"></i></span>
-                    <span>Điện - Nước</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="@Url.Action("Index", "TienPhong")" class="nav-link">
-                    <span class="nav-icon"><i class="bi bi-cash-coin"></i></span>
-                    <span>Tiền phòng</span>
-                </a>
-            </li>
+            
             <li class="nav-item">
                 <a href="@Url.Action("Index", "YeuCau")" class="nav-link">
                     <span class="nav-icon"><i class="bi bi-envelope"></i></span>
@@ -122,6 +133,22 @@
                     <span>Tài khoản</span>
                 </a>
             </li>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <li class="nav-item">
+                    <hr class="text-white opacity-25 my-3 mx-3">
+                </li>
+                <li class="nav-item">
+                    <form method="post" asp-controller="Account" asp-action="Logout" class="m-0">
+                        <button type="submit" class="nav-link w-100 text-start border-0 bg-transparent">
+                            <span class="nav-icon">
+                                <i class="bi bi-box-arrow-right"></i>
+                            </span>
+                            <span>Đăng xuất</span>
+                        </button>
+                    </form>
+                </li>
+            }
         </ul>
     </aside>
 
@@ -165,5 +192,6 @@
         });
     </script>
     @RenderSection("Scripts", required: false)
+    @RenderSection("Styles", required: false)
 </body>
 </html>
