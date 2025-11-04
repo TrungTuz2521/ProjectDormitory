@@ -39,7 +39,8 @@ namespace KTX.Controllers
             {
                 // Hash password
                 string Password = model.Password.Trim();
-                //   Kiểm tra tài khoản admin trước
+
+                // 🟩 1️⃣ Kiểm tra tài khoản admin trước
                 var admin = _context.Admins.FirstOrDefault(a =>
                     a.TenDn.Trim() == model.Username.Trim() &&
                     a.MatKhau.Trim() == Password);
