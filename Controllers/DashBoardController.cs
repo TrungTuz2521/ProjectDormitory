@@ -1,13 +1,8 @@
 ﻿using KTX.Entities;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
+using KTX.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
-using KTX.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KTX.Controllers
 {
@@ -19,12 +14,13 @@ namespace KTX.Controllers
         {
             _context = context;
         }
+
         public async Task<IActionResult> Index()
         {
-            ViewBag.Title = "Dashboard";
+            var vm = new DashboardViewModel();
 
             // Tổng số sinh viên đang ở
-            var tongSinhVien = await _context.HopDongPhongs
+            vm.TongSinhVien = await _context.HopDongPhongs
                 .Where(h => h.TrangThaiHd == "Đăng Kí Thành Công")
                 .Select(h => h.Msv)
                 .Distinct()
@@ -33,83 +29,58 @@ namespace KTX.Controllers
             // Tổng số phòng
             var tongPhong = await _context.Phongs.CountAsync();
 
-            // Số phòng đang sử dụng
+            // Phòng đang sử dụng
             var phongDangSuDung = await _context.HopDongPhongs
                 .Where(h => h.TrangThaiHd == "Đăng Kí Thành Công")
                 .Select(h => h.MaP)
                 .Distinct()
                 .CountAsync();
 
-            // Tỷ lệ lấp đầy phòng
-            var tyLeLapDay = tongPhong > 0 ? (phongDangSuDung * 100.0 / tongPhong) : 0;
+            // Tỷ lệ lấp đầy
+            vm.TyLeLapDay = tongPhong > 0 ? Math.Round(phongDangSuDung * 100.0 / tongPhong, 2) : 0;
 
-            // Số yêu cầu đang chờ xử lý
-            var yeuCauChoCLy = await _context.YeuCaus
-                .Where(y => y.TrangThaiYc == "Đang xử lý")
-                .CountAsync();
+            // Yêu cầu chờ xử lý
+            vm.YeuCauChoCLy = await _context.YeuCaus
+                .CountAsync(y => y.TrangThaiYc == "Đang xử lý");
 
-            // Tổng doanh thu tháng này
-            var thangHienTai = DateTime.Now.Month;
-            var namHienTai = DateTime.Now.Year;
+            // Doanh thu tháng này
+            var thang = DateTime.Now.Month;
+            var nam = DateTime.Now.Year;
 
-            var tongTienPhong = await _context.TienPhongs
-                .Where(t => t.NgayTtp.HasValue &&
-                           t.NgayTtp.Value.Month == thangHienTai &&
-                           t.NgayTtp.Value.Year == namHienTai)
+            var tienPhong = await _context.TienPhongs
+                .Where(t => t.NgayTtp.HasValue && t.NgayTtp.Value.Month == thang && t.NgayTtp.Value.Year == nam)
                 .SumAsync(t => t.TongTienP ?? 0);
 
-            var tongTienDienNuoc = await _context.TienDienNuocs
-                .Where(t => t.NgayTtdn.HasValue &&
-                           t.NgayTtdn.Value.Month == thangHienTai &&
-                           t.NgayTtdn.Value.Year == namHienTai &&
-                           t.TrangThaiTtdn == "Đã thanh toán")
+            var tienDienNuoc = await _context.TienDienNuocs
+                .Where(t => t.NgayTtdn.HasValue && t.NgayTtdn.Value.Month == thang && t.NgayTtdn.Value.Year == nam && t.TrangThaiTtdn == "Đã thanh toán")
                 .SumAsync(t => t.TongTienDn ?? 0);
 
-            var tongDoanhThu = tongTienPhong + tongTienDienNuoc;
+            vm.TongDoanhThu = tienPhong + tienDienNuoc;
 
             // Hóa đơn chưa thanh toán
-            var hoaDonChuaThanhToan = await _context.TienPhongs
-                .Where(t => t.TrangThaiTtp == "Chưa Thanh Toán")//&& t.HanTtp < DateTime.Now)
-                .CountAsync();
+            vm.HoaDonChuaThanhToan = await _context.TienPhongs.CountAsync(t => t.TrangThaiTtp == "Chưa Thanh Toán");
 
             // Phòng vượt số lượng
-            var phongVuotSoLuong = await _context.Phongs
-                .Where(p => p.HienO > p.ToiDaO)
-                .CountAsync();
-
-            // Danh sách hóa đơn chưa thanh toán gần đây
-            //var hoaDonGanDay = await _context.TienPhongs
-            //    .Include(t => t.MaHd)
-            //    .Where(t => t.TrangThaiHd == null)
-            //    .OrderBy(t => t.HanTT)
-            //    .Take(5)
-            //    .ToListAsync();
+            vm.PhongVuotSoLuong = await _context.Phongs.CountAsync(p => p.HienO > p.ToiDaO);
 
             // Yêu cầu mới nhất
-            var yeuCauMoiNhat = await _context.YeuCaus
-    .Where(y => y.TrangThaiYc == "Đang xử lý")
-    .OrderByDescending(y => y.NgayGuiYc)
-    .Take(5)
-    .ToListAsync(); // ✅ trả về entity đầy đủ
+            vm.YeuCauMoiNhat = await _context.YeuCaus
+                .Where(y => y.TrangThaiYc == "Đang xử lý")
+                .OrderByDescending(y => y.NgayGuiYc)
+                .Take(5)
+                .Select(y => new YeuCauViewModel
+                {
+                    LoaiYc = y.LoaiYc,
+                    NoiDungYc = y.NoiDungYc,
+                    TrangThaiYc = y.TrangThaiYc,
+                    Msv =y.Msv.ToString(),
+                    NgayGuiYc =  y.NgayGuiYc
+                })
+                .ToListAsync();
 
-            ViewBag.YeuCauMoiNhat = yeuCauMoiNhat;
-
-
-
-
-            ViewBag.TongSinhVien = tongSinhVien;
-            ViewBag.TyLeLapDay = Math.Round(tyLeLapDay, 2);
-            ViewBag.YeuCauChoCLy = yeuCauChoCLy;
-            ViewBag.TongDoanhThu = tongDoanhThu;
-            ViewBag.HoaDonChuaThanhToan = hoaDonChuaThanhToan;
-            ViewBag.PhongVuotSoLuong = phongVuotSoLuong;
-            //ViewBag.HoaDonGanDay = hoaDonGanDay;
-            ViewBag.YeuCauMoiNhat = yeuCauMoiNhat;
-
-            return View();
+            return View(vm);
         }
 
-        // API cho biểu đồ doanh thu 6 tháng gần đây
         [HttpGet]
         public async Task<JsonResult> GetDoanhThuChart()
         {
@@ -119,7 +90,6 @@ namespace KTX.Controllers
             for (int i = 5; i >= 0; i--)
             {
                 var thang = now.AddMonths(-i);
-
                 var tienPhong = await _context.TienPhongs
                     .Where(t => t.NgayTtp.HasValue &&
                                t.NgayTtp.Value.Month == thang.Month &&
@@ -135,8 +105,8 @@ namespace KTX.Controllers
                 data.Add(new
                 {
                     thang = $"Tháng {thang.Month}/{thang.Year}",
-                    tienPhong = tienPhong,
-                    tienDienNuoc = tienDienNuoc,
+                    tienPhong,
+                    tienDienNuoc,
                     tong = tienPhong + tienDienNuoc
                 });
             }
@@ -144,7 +114,6 @@ namespace KTX.Controllers
             return Json(data);
         }
 
-        // API cho biểu đồ tỷ lệ phòng
         [HttpGet]
         public async Task<JsonResult> GetTyLePhongChart()
         {

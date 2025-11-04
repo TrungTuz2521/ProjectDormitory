@@ -1,0 +1,197 @@
+﻿@using KTX.Entities
+@using System.Security.Claims
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - Quản lý KTX</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link href="~/css/LayoutAdmin.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="container-fluid h-100">
+            <div class="row h-100 align-items-center">
+
+                <!-- Nút mở sidebar khi ở mobile -->
+                <div class="col-auto d-lg-none">
+                    <button class="btn btn-link text-white" id="sidebarToggle">
+                        <i class="bi bi-list fs-3"></i>
+                    </button>
+                </div>
+
+                <!-- Logo + tiêu đề -->
+                <div class="col">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="logo-box">
+                            <img src="~/images/LogoTittle.png" alt="LogoKTX" />
+                        </div>
+                        <div class="site-title text-white">
+                            <h1 class="mb-0">Ký túc xá sinh viên</h1>
+                            <p class="mb-0">Trường Đại học Giao Thông Vận Tải</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thông tin người dùng -->
+                <div class="col-auto">
+                    <div class="d-flex align-items-center gap-3 text-white">
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            // Lấy thông tin từ claim
+                            var fullName = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+                            var vaiTro = User.Claims.FirstOrDefault(c => c.Type == "VaiTro")?.Value;
+
+                            <div class="user-info text-end d-none d-sm-block">
+                                <p class="admin-name mb-0 fw-semibold">@fullName</p>
+                                <p class="user-role mb-0 text-white-50">@vaiTro</p>
+                            </div>
+
+                            <div class="dropdown">
+                                <button class="btn p-0 border-0 user-avatar dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-fill"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li>
+                                        <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                            <button type="submit" class="dropdown-item text-danger">Đăng xuất</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <span class="text-white">Khách</span>
+                            <div class="user-avatar">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Left Sidebar -->
+    <aside class="left-sidebar" id="leftSidebar">
+        <ul class="sidebar-nav">
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "Dashboard")" class="nav-link">
+                    <span class="nav-icon"><i class="bi bi-speedometer2"></i></span>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "SinhVien")" class="nav-link">
+                    <span class="nav-icon"><i class="bi bi-people"></i></span>
+                    <span>Quản lý Sinh viên</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "Phong")" class="nav-link">
+                    <span class="nav-icon"><i class="bi bi-door-closed"></i></span>
+                    <span>Quản lý Phòng</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "HopDong")" class="nav-link">
+                    <span class="nav-icon"><i class="bi bi-file-text"></i></span>
+                    <span>Quản lý Tài Chính</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "YeuCau")" class="nav-link">
+                    <span class="nav-icon"><i class="bi bi-envelope"></i></span>
+                    <span>Yêu cầu & Khiếu nại</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "BaiDang")" class="nav-link">
+                    <span class="nav-icon"><i class="bi bi-chat-left-text"></i></span>
+                    <span>Bài đăng & Thảo luận</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "ThongBao")" class="nav-link">
+                    <span class="nav-icon"><i class="bi bi-bell"></i></span>
+                    <span>Thông báo</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "TaiKhoan")" class="nav-link">
+                    <span class="nav-icon"><i class="bi bi-person-circle"></i></span>
+                    <span>Tài khoản</span>
+                </a>
+            </li>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <li class="nav-item">
+                    <hr class="text-white opacity-25 my-3 mx-3">
+                </li>
+                <li class="nav-item">
+                    <form method="post" asp-controller="Account" asp-action="Logout" class="m-0">
+                        <button type="submit" class="nav-link w-100 text-start border-0 bg-transparent">
+                            <span class="nav-icon">
+                                <i class="bi bi-box-arrow-right"></i>
+                            </span>
+                            <span>Đăng xuất</span>
+                        </button>
+                    </form>
+                </li>
+            }
+        </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content" id="mainContent">
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+        <partial name="_Footer" />
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Toggle sidebar on mobile
+        document.getElementById('sidebarToggle')?.addEventListener('click', function () {
+            document.getElementById('leftSidebar').classList.toggle('show');
+        });
+
+        // Active menu item
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function (e) {
+            const sidebar = document.getElementById('leftSidebar');
+            const toggle = document.getElementById('sidebarToggle');
+
+            if (window.innerWidth < 992) {
+                if (!sidebar.contains(e.target) && !toggle?.contains(e.target)) {
+                    sidebar.classList.remove('show');
+                }
+            }
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
+    @RenderSection("Styles", required: false)
+</body>
+</html>

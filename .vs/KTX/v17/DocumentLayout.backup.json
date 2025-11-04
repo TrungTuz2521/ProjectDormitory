@@ -1,8 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\",
+  "WorkspaceRootPath": "D:\\Web\\KTX\\",
   "Documents": [
     {
+<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -133,22 +134,47 @@
     {
       "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\wwwroot\\images\\logotittle.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:wwwroot\\images\\logotittle.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+=======
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\wwwroot\\css\\layoutadmin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:wwwroot\\css\\layoutadmin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\wwwroot\\css\\layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:wwwroot\\css\\layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\shared\\layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+>>>>>>> ac5064a92d8ae197352f49ad1899702d0852fda4
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\shared\\mylayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\mylayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\controllers\\thongtincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\thongtincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\models\\viewmodels\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\viewmodels\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+=======
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+>>>>>>> ac5064a92d8ae197352f49ad1899702d0852fda4
     }
   ],
   "DocumentGroupContainers": [
@@ -158,9 +184,10 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
+<<<<<<< HEAD
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
@@ -619,6 +646,110 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-01T20:58:51.455Z"
+=======
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Layout.css",
+              "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\css\\Layout.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\Layout.css",
+              "ToolTip": "D:\\Web\\KTX\\wwwroot\\css\\Layout.css",
+              "RelativeToolTip": "wwwroot\\css\\Layout.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-11-03T03:02:28.714Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LayoutAdmin.css",
+              "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\css\\LayoutAdmin.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\LayoutAdmin.css",
+              "ToolTip": "D:\\Web\\KTX\\wwwroot\\css\\LayoutAdmin.css*",
+              "RelativeToolTip": "wwwroot\\css\\LayoutAdmin.css*",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAwFsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-11-02T13:22:30.059Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DashBoardController.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\DashBoardController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DashBoardController.cs",
+              "ToolTip": "D:\\Web\\KTX\\Controllers\\DashBoardController.cs",
+              "RelativeToolTip": "Controllers\\DashBoardController.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAA2wIcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-02T13:20:43.667Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DashboardViewModel.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Models\\ViewModels\\DashboardViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\ViewModels\\DashboardViewModel.cs",
+              "ToolTip": "D:\\Web\\KTX\\Models\\ViewModels\\DashboardViewModel.cs",
+              "RelativeToolTip": "Models\\ViewModels\\DashboardViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-02T13:20:39.249Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MyLayout.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\MyLayout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\MyLayout.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\Shared\\MyLayout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\MyLayout.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-02T13:20:20.769Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAcwKQAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-02T13:19:44.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Layoutadmin.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\Layoutadmin.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\Layoutadmin.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\Shared\\Layoutadmin.cshtml",
+              "RelativeToolTip": "Views\\Shared\\Layoutadmin.cshtml",
+              "ViewState": "AgIAAHwAAAAAAAAAAAAcwLQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-02T13:18:36.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\DashBoard\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\DashBoard\\Index.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\DashBoard\\Index.cshtml",
+              "RelativeToolTip": "Views\\DashBoard\\Index.cshtml",
+              "ViewState": "AgIAAPYAAAAAAAAAAAAiwAcBAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-02T13:17:30.053Z",
+              "EditorCaption": ""
+>>>>>>> ac5064a92d8ae197352f49ad1899702d0852fda4
             }
           ]
         }
