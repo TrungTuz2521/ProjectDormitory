@@ -1,0 +1,1063 @@
+﻿@model KTX.Entities.SinhVien
+
+@{
+    ViewData["Title"] = "Chi tiết sinh viên";
+    var hopDongHienTai = ViewBag.HopDongHienTai as KTX.Entities.HopDongPhong;
+    var lichSuHopDong = ViewBag.LichSuHopDong as List<KTX.Entities.HopDongPhong>;
+    var lichSuTienPhong = ViewBag.LichSuTienPhong as List<KTX.Entities.TienPhong>;
+    var lichSuDienNuoc = ViewBag.LichSuDienNuoc as List<KTX.Entities.TienDienNuoc>;
+    var lichSuYeuCau = ViewBag.LichSuYeuCau as List<KTX.Entities.YeuCau>;
+    var phong = ViewBag.Phong as KTX.Entities.Phong;
+    var soNguoiTrongPhong = (int)ViewBag.SoNguoiTrongPhong;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .profile-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    .student-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 5px solid rgba(255,255,255,0.3);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        object-fit: cover;
+    }
+
+    .profile-avatar-lg {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 45px;
+        font-weight: 700;
+        border: 5px solid rgba(255,255,255,0.3);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+    .info-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        margin-bottom: 20px;
+        border: 1px solid #e9ecef;
+        transition: all 0.3s ease;
+
+    }
+
+        .info-card:hover {
+            box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+            transform: translateY(-3px);
+        }
+
+    .info-card-title {
+        font-size: 19px;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 3px solid #667eea;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .info-card-title i {
+            color: #667eea;
+            font-size: 22px;
+        }
+
+    .info-row {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        padding: 14px 0;
+        border-bottom: 1px solid #f1f3f5;
+        align-items: center;
+        gap: 15px;
+    }
+
+        .info-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .info-row:first-child {
+            padding-top: 0;
+        }
+
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 8px;
+        width: 100%;
+    }
+
+    .info-label {
+        font-weight: 600;
+        min-width: 120px;
+        display: flex;
+        gap: 6px;
+        align-items: center;
+    }
+
+    .info-value {
+        max-width: 60%;
+        word-break: break-word;
+        text-align: right;
+    }
+
+
+    .info-label {
+        font-weight: 600;
+        color: #6c757d;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+        .info-label i {
+            color: #667eea;
+            font-size: 16px;
+        }
+
+    .info-value {
+        color: #2c3e50;
+        font-weight: 500;
+        font-size: 15px;
+    }
+
+    .action-btn-group {
+        display: grid;
+        gap: 12px;
+    }
+
+    .action-btn-full {
+        width: 100%;
+        padding: 14px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+        .action-btn-full:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+    .history-timeline {
+        position: relative;
+        padding-left: 30px;
+        margin-top: 15px;
+    }
+
+        .history-timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 10px;
+        }
+
+    .history-item {
+        position: relative;
+        padding: 18px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        border-left: 4px solid #667eea;
+        transition: all 0.3s ease;
+    }
+
+        .history-item:hover {
+            background: #e9ecef;
+            transform: translateX(8px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+    
+
+    .history-title {
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 10px;
+        font-size: 15px;
+    }
+
+    .history-meta {
+        font-size: 13px;
+        color: #6c757d;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .status-badge {
+        padding: 5px 14px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .tab-custom {
+        border: none;
+        background: #f8f9fa;
+        border-radius: 12px;
+
+        margin-bottom: 20px;
+    }
+
+        .tab-custom .nav-link {
+            color: #6c757d;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 24px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+            .tab-custom .nav-link:hover {
+                background: rgba(102, 126, 234, 0.1);
+                color: #667eea;
+            }
+
+            .tab-custom .nav-link.active {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            }
+
+    .empty-state {
+        text-align: center;
+        padding: 50px 20px;
+        color: #6c757d;
+    }
+
+        .empty-state i {
+            font-size: 56px;
+            opacity: 0.3;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .empty-state p {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+    .section-subtitle {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 25px 0 15px 0;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e9ecef;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .section-subtitle:first-of-type {
+            margin-top: 10px;
+        }
+
+    /* Responsive adjustments */
+    @@media (max-width: 991px) {
+        .info-row {
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .info-label {
+            font-size: 13px;
+        }
+
+        .info-value {
+            font-size: 14px;
+            padding-left: 24px;
+        }
+    }
+
+    
+    }
+</style>
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<div class="container-fluid px-4 py-3">
+    <!-- Back Button -->
+    <div class="mb-3">
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left"></i> Quay lại danh sách
+        </a>
+    </div>
+
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                @if (!string.IsNullOrEmpty(Model.Avatar))
+                {
+                    <img src="@Url.Content("~/images/" + @Model.Avatar)" alt="Avatar" class="student-avatar" />
+                }
+                else
+                {
+                    <div class="profile-avatar-lg">
+                        @Model.HoTen.Substring(0, 1).ToUpper()
+                    </div>
+                }
+            </div>
+            <div class="col">
+                <h2 class="mb-2 fw-bold" style="font-size: 28px;">@Model.HoTen</h2>
+                <p class="mb-2 fs-6 opacity-90">
+                    <i class="bi bi-person-badge me-2"></i><strong>MSV:</strong> @Model.Msv
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                    @if (hopDongHienTai != null)
+                    {
+                        <span class="status-badge bg-success text-white">
+                            <i class="bi bi-house-check-fill"></i>
+                            Phòng @hopDongHienTai.MaPNavigation?.MaP
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="status-badge bg-warning text-dark">
+                            <i class="bi bi-house-x-fill"></i>
+                            Chưa có phòng
+                        </span>
+                    }
+                    <span class="status-badge bg-light text-dark">
+                        <i class="bi bi-calendar3"></i>
+                        @((DateTime.Now.Year - Model.NgaySinh.Year)) tuổi
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3">
+        <!-- ========== CỘT TRÁI: THÔNG TIN CƠ BẢN & PHÒNG ========== -->
+        <div class="col-lg-5 col-xl-5">
+            <!-- Thông tin cơ bản -->
+            <div class="info-card">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="info-card-title mb-0">
+                        <i class="bi bi-person-vcard"></i>
+                        Thông tin cơ bản
+                    </h5>
+                    <a asp-action="Edit" asp-route-id="@Model.Msv" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-pencil-square"></i> Sửa
+                    </a>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">
+                        <i class="bi bi-person"></i>Họ tên
+                    </div>
+                    <div class="info-value">@Model.HoTen</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">
+                        <i class="bi bi-calendar-event"></i>Ngày sinh
+                    </div>
+                    <div class="info-value">@Model.NgaySinh.ToString("dd/MM/yyyy")</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">
+                        <i class="bi bi-gender-ambiguous"></i>Giới tính
+                    </div>
+                    <div class="info-value">
+                        @if (Model.GioiTinh == "Nam")
+                        {
+                            <span class="badge bg-info">
+                                <i class="bi bi-gender-male"></i> Nam
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">
+                                <i class="bi bi-gender-female"></i> Nữ
+                            </span>
+                        }
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">
+                        <i class="bi bi-telephone"></i>SĐT
+                    </div>
+                    <div class="info-value">@Model.Sdt</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">
+                        <i class="bi bi-envelope info-value text-truncate" style="max-width: 60%;"></i>Email
+                    </div>
+                    <div class="info-value">@(Model.Email ?? "Chưa có")</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">
+                        <i class="bi bi-building"></i>Khoa
+                    </div>
+                    <div class="info-value">@(Model.Khoa ?? "Chưa có")</div>
+                </div>
+            </div>
+
+            <!-- Thông tin phòng hiện tại -->
+            @if (hopDongHienTai != null)
+            {
+                <div class="info-card">
+                    <h5 class="info-card-title">
+                        <i class="bi bi-house-door"></i>
+                        Phòng hiện tại
+                    </h5>
+                    <div class="info-row">
+                        <div class="info-label">
+                            <i class="bi bi-door-open"></i>Phòng
+                        </div>
+                        <div class="info-value">
+                            <strong class="text-primary">Phòng @hopDongHienTai.MaPNavigation?.MaP</strong>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">
+                            <i class="bi bi-calendar-range"></i>Thời gian
+                        </div>
+                        <div class="info-value">
+                            @hopDongHienTai.NgayBatDau?.ToString("dd/MM/yyyy") - @hopDongHienTai.NgayKetThuc?.ToString("dd/MM/yyyy")
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">
+                            <i class="bi bi-check-circle"></i>Trạng thái
+                        </div>
+                        <div class="info-value">
+                            <span class="status-badge bg-success text-white">
+                                <i class="bi bi-check-circle-fill"></i>
+                                @hopDongHienTai.TrangThaiHd
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="info-card text-center py-4">
+                    <i class="bi bi-house-x text-muted" style="font-size: 48px; opacity: 0.3;"></i>
+                    <p class="text-muted mt-3 mb-0">Sinh viên chưa được cấp phòng</p>
+                </div>
+            }
+        </div>
+
+
+
+        <!-- ========== CỘT PHẢI: THAO TÁC & LỊCH SỬ ========== -->
+        <div class="col-lg-7 col-xl-7">
+            <!-- Thao tác quản lý -->
+            <div class="info-card">
+                <h5 class="info-card-title">
+                    <i class="bi bi-gear me-2"></i>
+                    Thao tác quản lý
+                </h5>
+
+                <div class="action-btn-group">
+                    @if (hopDongHienTai == null)
+                    {
+                        <!-- Chưa có phòng -->
+                        <div class="d-grid gap-2">
+                            <a asp-action="CapPhong" asp-route-id="@Model.Msv"
+                               class="btn btn-success btn-lg">
+                                <i class="bi bi-door-open-fill me-2"></i>
+                                Cấp phòng
+                            </a>
+                         
+                            <form asp-action="Delete" asp-route-id="@Model.Msv" method="post"
+                                  onsubmit="return confirm('⚠️ Bạn có chắc muốn xóa sinh viên này không?');">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-outline-danger w-100">
+                                    <i class="bi bi-trash-fill me-2"></i>
+                                    Xóa sinh viên
+                                </button>
+                            </form>
+                        </div>
+                    }
+                    else
+                    {
+                        <!-- Đã có phòng -->
+                        <div class="row g-2">
+                            <!-- Chuyển phòng -->
+                            <div class="col-md-6">
+                                <a asp-action="ChuyenPhong" asp-route-id="@Model.Msv"
+                                   class="btn btn-warning w-100 d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-arrow-left-right me-2"></i>
+                                    Chuyển phòng
+                                </a>
+                            </div>
+
+                            <!-- Gia hạn hợp đồng -->
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-primary w-100 d-flex align-items-center justify-content-center"
+                                        data-bs-toggle="modal" data-bs-target="#giaHanModal">
+                                    <i class="bi bi-calendar-plus-fill me-2"></i>
+                                    Gia hạn HĐ
+                                </button>
+                            </div>
+
+                            <!-- Hủy hợp đồng -->
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-danger w-100 d-flex align-items-center justify-content-center"
+                                        data-bs-toggle="modal" data-bs-target="#huyHopDongModal">
+                                    <i class="bi bi-x-circle-fill me-2"></i>
+                                    Hủy hợp đồng
+                                </button>
+                            </div>
+
+                            <!-- Reset mật khẩu -->
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-info w-100 d-flex align-items-center justify-content-center"
+                                        data-bs-toggle="modal" data-bs-target="#resetPasswordModal">
+                                    <i class="bi bi-key-fill me-2"></i>
+                                    Reset MK
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Nút xóa sinh viên (nếu đã có phòng) -->
+                        <form asp-action="Delete" asp-route-id="@Model.Msv" method="post"
+                              onsubmit="return confirm('⚠️ Bạn có chắc muốn xóa sinh viên này không?');">
+                            @Html.AntiForgeryToken()
+
+                            <button type="submit" class="btn btn-outline-danger w-100" disabled>
+                                <i class="bi bi-trash-fill me-2"></i>
+                                Xóa sinh viên
+                            </button>
+
+                            <small class="text-muted d-block mt-2 text-center">
+                                Nếu muốn xóa sinh viên, hãy <span class="fw-semibold text-danger">hủy hợp đồng</span> của sinh viên trước.
+                            </small>
+                        </form>
+
+                    }
+                </div>
+            </div>
+
+            <!-- Lịch sử hoạt động -->
+            <div class="info-card mt-3">
+                <h5 class="info-card-title">
+                    <i class="bi bi-clock-history"></i>
+                    Lịch sử hoạt động
+                </h5>
+
+                <ul class="nav nav-tabs tab-custom" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#hopdong">
+                            <i class="bi bi-file-text me-2"></i>Hợp đồng
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#thanhtoan">
+                            <i class="bi bi-cash-coin me-2"></i>Thanh toán
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#yeucau">
+                            <i class="bi bi-envelope me-2"></i>Yêu cầu
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <!-- Tab Hợp đồng -->
+                    <div class="tab-pane fade show active" id="hopdong">
+                        @if (lichSuHopDong != null && lichSuHopDong.Any())
+                        {
+                            <div class="history-timeline">
+                                @foreach (var hd in lichSuHopDong)
+                                {
+                                    <div class="history-item">
+                                        <div class="history-title">
+                                            <i class="bi bi-door-open me-2"></i>
+                                            Phòng @hd.MaPNavigation?.MaP
+                                        </div>
+                                        <div class="history-meta">
+                                            <span>
+                                                <i class="bi bi-calendar-range"></i>
+                                                @hd.NgayBatDau?.ToString("dd/MM/yyyy") - @hd.NgayKetThuc?.ToString("dd/MM/yyyy")
+                                            </span>
+                                            <span class="status-badge bg-info text-white">
+                                                @hd.TrangThaiHd
+                                            </span>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="empty-state">
+                                <i class="bi bi-inbox"></i>
+                                <p>Chưa có lịch sử hợp đồng</p>
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Tab Thanh toán -->
+                    <div class="tab-pane fade" id="thanhtoan">
+                        <h6 class="section-subtitle text-primary">
+                            <i class="bi bi-house"></i>Tiền phòng
+                        </h6>
+                        @if (lichSuTienPhong != null && lichSuTienPhong.Any())
+                        {
+                            <div class="history-timeline">
+                                @foreach (var tp in lichSuTienPhong)
+                                {
+                                    <div class="history-item">
+                                        <div class="history-title">
+                                            @tp.TongTienP?.ToString("N0") đ
+                                        </div>
+                                        <div class="history-meta">
+                                            <span>
+                                                <i class="bi bi-calendar-check"></i>
+                                                Hạn: @tp.HanTtp?.ToString("dd/MM/yyyy")
+                                            </span>
+                                            @if (tp.NgayTtp.HasValue)
+                                            {
+                                                <span>
+                                                    <i class="bi bi-check-circle"></i>
+                                                    Đã TT: @tp.NgayTtp?.ToString("dd/MM/yyyy")
+                                                </span>
+                                            }
+                                            <span class="status-badge @(tp.TrangThaiTtp == "Đã Thanh Toán" ? "bg-success" : "bg-warning") text-white">
+                                                @tp.TrangThaiTtp 
+                                            </span>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="empty-state">
+                                <i class="bi bi-inbox"></i>
+                                <p>Chưa có lịch sử thanh toán tiền phòng</p>
+                            </div>
+                        }
+
+                        <h6 class="section-subtitle text-warning">
+                            <i class="bi bi-lightning"></i>Tiền điện nước
+                        </h6>
+                        @if (lichSuDienNuoc != null && lichSuDienNuoc.Any())
+                        {
+                            <div class="history-timeline">
+                                @foreach (var dn in lichSuDienNuoc)
+                                {
+                                    <div class="history-item">
+                                        <div class="history-title">
+                                            @( (dn.TongTienDn / soNguoiTrongPhong)?.ToString("N0") )₫
+
+                                        </div>
+                                        <div class="history-meta">
+                                            <span>
+                                                <i class="bi bi-calendar-month"></i>
+                                                Tháng: @dn.NgayTtdn?.ToString("MM/yyyy")
+                                            </span>
+                                            @if (dn.NgayTtdn.HasValue)
+                                            {
+                                                <span>
+                                                    <i class="bi bi-check-circle"></i>
+                                                    Đã TT: @dn.NgayTtdn?.ToString("dd/MM/yyyy")
+                                                </span>
+                                            }
+                                            <span class="status-badge @(dn.TrangThaiTtdn == "Đã thanh toán" ? "bg-success" : "bg-warning") text-white">
+                                                @dn.TrangThaiTtdn
+                                            </span>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="empty-state">
+                                <i class="bi bi-inbox"></i>
+                                <p>Chưa có lịch sử thanh toán điện nước</p>
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Tab Yêu cầu -->
+                    <div class="tab-pane fade" id="yeucau">
+                        @if (lichSuYeuCau != null && lichSuYeuCau.Any())
+                        {
+                            <div class="history-timeline">
+                                @foreach (var yc in lichSuYeuCau)
+                                {
+                                    <div class="history-item">
+                                        <div class="history-title">
+                                            @yc.NoiDungYc
+                                        </div>
+                                        <div class="history-meta">
+                                            <span>
+                                                <i class="bi bi-calendar-event"></i>
+                                                @yc.NgayGuiYc?.ToString("dd/MM/yyyy")
+                                            </span>
+                                            <span class="status-badge bg-info text-white">
+                                                @yc.TrangThaiYc
+                                            </span>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="empty-state">
+                                <i class="bi bi-inbox"></i>
+                                <p>Chưa có yêu cầu nào</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Tạo Hợp Đồng Mới -->
+<div class="modal fade" id="taoHopDongModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-0" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                <h5 class="modal-title">
+                    <i class="bi bi-file-earmark-plus-fill me-2"></i>
+                    Tạo hợp đồng mới
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <form asp-action="TaoHopDongMoi" method="post" id="taoHopDongForm">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="msv" value="@Model.Msv" />
+
+                <div class="modal-body">
+                    @if (hopDongHienTai != null)
+                    {
+                        <div class="alert alert-warning">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            <strong>Lưu ý:</strong> Sinh viên đang có hợp đồng phòng <strong>@hopDongHienTai.MaPNavigation?.MaP</strong>.
+                            Tạo hợp đồng mới sẽ không ảnh hưởng đến hợp đồng hiện tại.
+                        </div>
+                    }
+
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle-fill me-2"></i>
+                        <strong>Thông tin sinh viên:</strong>
+                        <div class="mt-2 ps-3">
+                            <div><i class="bi bi-person me-2"></i>Họ tên: <strong>@Model.HoTen</strong></div>
+                            <div><i class="bi bi-person-badge me-2"></i>MSV: <strong>@Model.Msv</strong></div>
+                            <div><i class="bi bi-telephone me-2"></i>SĐT: <strong>@Model.Sdt</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            <i class="bi bi-door-open me-1"></i>
+                            Chọn phòng <span class="text-danger">*</span>
+                        </label>
+                        <select name="maPhong" id="selectPhong" class="form-select" required onchange="updateRoomInfo(this)">
+                            <option value="">⏳ Đang tải danh sách phòng...</option>
+                        </select>
+                        <div class="form-text">
+                            <i class="bi bi-info-circle me-1"></i>
+                            Chỉ hiển thị các phòng còn chỗ trống
+                        </div>
+                    </div>
+
+                    <div id="roomInfoDisplay" class="alert alert-light d-none">
+                        <div class="row g-2">
+                            <div class="col-md-4">
+                                <small class="text-muted">Sức chứa:</small>
+                                <div class="fw-semibold" id="sucChuaInfo">-</div>
+                            </div>
+                            <div class="col-md-4">
+                                <small class="text-muted">Đã ở:</small>
+                                <div class="fw-semibold" id="soNguoiInfo">-</div>
+                            </div>
+                            <div class="col-md-4">
+                                <small class="text-muted">Còn lại:</small>
+                                <div class="fw-semibold text-success" id="conLaiInfo">-</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-calendar-check me-1"></i>
+                                Ngày bắt đầu <span class="text-danger">*</span>
+                            </label>
+                            <input type="date" name="ngayBatDau" class="form-control" required
+                                   min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-calendar-x me-1"></i>
+                                Ngày kết thúc <span class="text-danger">*</span>
+                            </label>
+                            <input type="date" name="ngayKetThuc" class="form-control" required
+                                   min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            <i class="bi bi-file-text me-1"></i>
+                            Ghi chú
+                        </label>
+                        <textarea name="ghiChu" class="form-control" rows="3"
+                                  placeholder="Nhập ghi chú cho hợp đồng (nếu có)"></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer border-0 bg-light">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Hủy
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-circle me-1"></i>Tạo hợp đồng
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Gia Hạn Hợp Đồng -->
+<div class="modal fade" id="giaHanModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
+                <h5 class="modal-title">
+                    <i class="bi bi-calendar-plus-fill me-2"></i>
+                    Gia hạn hợp đồng
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <form asp-action="GiaHanHopDong" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="msv" value="@Model.Msv" />
+
+                <div class="modal-body">
+                    @if (hopDongHienTai != null)
+                    {
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle-fill me-2"></i>
+                            <strong>Thông tin hợp đồng hiện tại:</strong>
+                            <div class="mt-2 ps-3">
+                                <div><i class="bi bi-door-open me-2"></i>Phòng: <strong>@hopDongHienTai.MaPNavigation?.MaP</strong></div>
+                                <div><i class="bi bi-calendar-range me-2"></i>Từ: <strong>@hopDongHienTai.NgayBatDau?.ToString("dd/MM/yyyy")</strong></div>
+                                <div><i class="bi bi-calendar-x me-2"></i>Đến: <strong>@hopDongHienTai.NgayKetThuc?.ToString("dd/MM/yyyy")</strong></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-calendar-plus me-1"></i>
+                                Ngày kết thúc mới <span class="text-danger">*</span>
+                            </label>
+                            <input type="date" name="ngayKetThucMoi" class="form-control" required
+                                   min="@(hopDongHienTai.NgayKetThuc?.AddDays(1).ToString("yyyy-MM-dd") ?? DateTime.Now.AddDays(1).ToString("yyyy-MM-dd"))" />
+                            <div class="form-text">
+                                <i class="bi bi-exclamation-circle me-1"></i>
+                                Ngày kết thúc mới phải sau ngày kết thúc hiện tại
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-file-text me-1"></i>
+                                Lý do gia hạn
+                            </label>
+                            <textarea name="lyDoGiaHan" class="form-control" rows="3"
+                                  placeholder="Nhập lý do gia hạn hợp đồng"></textarea>
+                        </div>
+                    }
+                </div>
+
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Hủy
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-circle me-1"></i>Xác nhận gia hạn
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Hủy Hợp Đồng -->
+<div class="modal fade" id="huyHopDongModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0 bg-danger text-white">
+                <h5 class="modal-title">
+                    <i class="bi bi-x-circle-fill me-2"></i>
+                    Xác nhận hủy hợp đồng
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <form asp-action="HuyHopDong" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="msv" value="@Model.Msv" />
+
+                <div class="modal-body">
+                    <div class="alert alert-danger">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        <strong>Cảnh báo:</strong> Bạn có chắc chắn muốn hủy hợp đồng của sinh viên <strong>@Model.HoTen</strong>?
+                    </div>
+
+                    @if (hopDongHienTai != null)
+                    {
+                        <div class="alert alert-light">
+                            <strong>Thông tin hợp đồng sẽ bị hủy:</strong>
+                            <div class="mt-2 ps-3">
+                                <div><i class="bi bi-door-open me-2"></i>Phòng: <strong>@hopDongHienTai.MaPNavigation?.MaP</strong></div>
+                                <div><i class="bi bi-calendar-range me-2"></i>Từ: <strong>@hopDongHienTai.NgayBatDau?.ToString("dd/MM/yyyy")</strong></div>
+                                <div><i class="bi bi-calendar-x me-2"></i>Đến: <strong>@hopDongHienTai.NgayKetThuc?.ToString("dd/MM/yyyy")</strong></div>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            <i class="bi bi-chat-left-text me-1"></i>
+                            Lý do hủy hợp đồng <span class="text-danger">*</span>
+                        </label>
+                        <textarea name="lyDoHuy" class="form-control" rows="3" required
+                                  placeholder="Nhập lý do hủy hợp đồng (bắt buộc)"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            <i class="bi bi-calendar-event me-1"></i>
+                            Ngày hủy <span class="text-danger">*</span>
+                        </label>
+                        <input type="date" name="ngayHuy" class="form-control" required
+                               value="@DateTime.Now.ToString("yyyy-MM-dd")"
+                               max="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                        <div class="form-text">
+                            <i class="bi bi-info-circle me-1"></i>
+                            Mặc định là ngày hiện tại
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning mb-0">
+                        <i class="bi bi-info-circle-fill me-2"></i>
+                        <strong>Lưu ý:</strong>
+                        <ul class="mb-0 mt-2 ps-3">
+                            <li>Sinh viên sẽ không còn quyền sử dụng phòng</li>
+                            <li>Phòng sẽ được giải phóng và có thể cấp cho sinh viên khác</li>
+                            <li>Hành động này không thể hoàn tác</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-arrow-left me-1"></i>Quay lại
+                    </button>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-check-circle me-1"></i>Xác nhận hủy
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Reset Password -->
+<div class="modal fade" id="resetPasswordModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">
+                    <i class="bi bi-key-fill me-2 text-warning"></i>
+                    Xác nhận reset mật khẩu
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    Bạn có chắc muốn reset mật khẩu cho sinh viên <strong>@Model.HoTen</strong>?
+                </div>
+                <p class="text-muted mb-0">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Mật khẩu mới sẽ là: <strong class="text-primary">@Model.Msv</strong>
+                </p>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <form asp-action="ResetPassword" asp-route-id="@Model.Msv" method="post" class="d-inline">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-warning">
+                        <i class="bi bi-check-circle me-1"></i>Xác nhận
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/sinhvien-details.js"></script>
+    <script>
+        // Sau 2 giây thì ẩn alert (fade out) và xóa khỏi DOM
+        setTimeout(() => {
+            document.querySelectorAll('.alert').forEach(a => {
+                a.classList.add('fade'); // hiệu ứng mờ dần (nếu dùng bootstrap)
+                a.classList.remove('show');
+                setTimeout(() => a.remove(), 500); // xóa sau khi fade-out
+            });
+        }, 2000);
+    </script>
+
+
+}

@@ -3,11 +3,13 @@ using System.Linq;
 using System.Security.Claims;
 using KTX.Entities;
 using KTX.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace KTX.Controllers
 {
+    [Authorize]
     public class DanhGiaController : Controller
     {
         private readonly SinhVienKtxContext _context;
@@ -113,7 +115,7 @@ namespace KTX.Controllers
             }
 
             // Nếu đã có đánh giá rồi thì cập nhật
-            var existingDG = _context.DanhGia.FirstOrDefault(d => d.MaYc == maYC);
+            var existingDG = _context.DanhGias.FirstOrDefault(d => d.MaYc == maYC);
             if (existingDG != null)
             {
                 existingDG.NoiDungDg = noiDung;
@@ -129,10 +131,10 @@ namespace KTX.Controllers
                     NoiDungDg = noiDung,
                     DiemDg = diem.ToString()
                 };
-                danhGia.MaDg = _context.DanhGia.Any()
-     ? _context.DanhGia.Max(d => d.MaDg) + 1
+                danhGia.MaDg = _context.DanhGias.Any()
+     ? _context.DanhGias.Max(d => d.MaDg) + 1
     : 1;
-                _context.DanhGia.Add(danhGia);
+                _context.DanhGias.Add(danhGia);
             }
 
             _context.SaveChanges();

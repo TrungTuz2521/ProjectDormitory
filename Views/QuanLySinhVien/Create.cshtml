@@ -1,0 +1,175 @@
+﻿@model KTX.Entities.SinhVien
+
+@{
+    ViewData["Title"] = "Thêm sinh viên mới";
+}
+
+<div class="container mt-4">
+    <h3 class="fw-bold mb-3 text-primary">
+        <i class="bi bi-person-plus-fill me-2"></i>Thêm sinh viên mới
+    </h3>
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data" class="row g-3 shadow-sm p-4 rounded bg-light">
+        @Html.AntiForgeryToken()
+
+        <!-- Mã sinh viên (tự sinh trong backend) -->
+        <input asp-for="Msv" type="hidden" value="0" />
+
+        <!-- Họ tên -->
+        <div class="col-md-6">
+            <label asp-for="HoTen" class="form-label fw-semibold required">Họ và tên</label>
+            <input asp-for="HoTen" class="form-control" placeholder="Nhập họ tên đầy đủ" required />
+            <span asp-validation-for="HoTen" class="text-danger small"></span>
+        </div>
+
+        <!-- Ngày sinh -->
+        <div class="col-md-6">
+            <label asp-for="NgaySinh" class="form-label fw-semibold">Ngày sinh</label>
+            <input asp-for="NgaySinh" type="date" class="form-control" />
+            <span asp-validation-for="NgaySinh" class="text-danger small"></span>
+        </div>
+
+        <!-- Giới tính -->
+        <div class="col-md-6">
+            <label asp-for="GioiTinh" class="form-label fw-semibold">Giới tính</label>
+            <select asp-for="GioiTinh" class="form-select">
+                <option value="">-- Chọn giới tính --</option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
+            </select>
+            <span asp-validation-for="GioiTinh" class="text-danger small"></span>
+        </div>
+
+        <!-- Số điện thoại -->
+        <div class="col-md-6">
+            <label asp-for="Sdt" class="form-label fw-semibold required">Số điện thoại</label>
+            <input asp-for="Sdt" class="form-control" placeholder="Nhập số điện thoại" required />
+            <span asp-validation-for="Sdt" class="text-danger small"></span>
+        </div>
+
+        <!-- Email -->
+        <div class="col-md-6">
+            <label asp-for="Email" class="form-label fw-semibold">Email</label>
+            <input asp-for="Email" type="email" class="form-control" placeholder="example@gmail.com" />
+            <span asp-validation-for="Email" class="text-danger small"></span>
+        </div>
+
+        <!-- ✅ KHOA (NEW) -->
+        <div class="col-md-6">
+            <label asp-for="Khoa" class="form-label fw-semibold">Khoa</label>
+            <select asp-for="Khoa" class="form-select">
+                <option value="">-- Chọn khoa --</option>
+                <option value="Công nghệ thông tin">Công nghệ thông tin</option>
+                <option value="Kinh tế">Kinh tế</option>
+                <option value="Kỹ thuật">Kỹ thuật</option>
+                <option value="Ngoại ngữ">Ngoại ngữ</option>
+                <option value="Khoa học tự nhiên">Khoa học tự nhiên</option>
+                <option value="Y dược">Y dược</option>
+                <option value="Luật">Luật</option>
+                <option value="Sư phạm">Sư phạm</option>
+                <option value="Nghệ thuật">Nghệ thuật</option>
+            </select>
+            <span asp-validation-for="Khoa" class="text-danger small"></span>
+        </div>
+
+        <!-- ✅ UPLOAD AVATAR (NEW) -->
+        <div class="col-md-12">
+            <label class="form-label fw-semibold">
+                <i class="bi bi-image me-2"></i>Ảnh đại diện
+            </label>
+            <input type="file" name="avatarFile" id="avatarFile" class="form-control" accept="image/*" />
+            <small class="text-muted">Chấp nhận: .jpg, .jpeg, .png, .gif (tối đa 5MB)</small>
+
+            <!-- Preview ảnh -->
+            <div id="imagePreview" class="mt-3" style="display: none;">
+                <p class="mb-2 text-muted">Xem trước:</p>
+                <img id="previewImg" src="" alt="Preview" class="img-thumbnail" style="max-width: 200px; max-height: 200px;">
+            </div>
+        </div>
+
+        <!-- Thông báo -->
+        <div class="alert alert-info mt-3">
+            <i class="bi bi-info-circle-fill me-2"></i>
+            <strong>Lưu ý:</strong> Mã sinh viên và mật khẩu mặc định sẽ được tự động tạo bởi hệ thống.
+        </div>
+
+        <!-- Nút hành động -->
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <a asp-action="Index" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left me-2"></i>Quay lại
+            </a>
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-check-circle me-2"></i>Thêm sinh viên
+            </button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // ✅ Preview ảnh khi chọn file
+        document.getElementById('avatarFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                // Kiểm tra dung lượng (5MB = 5 * 1024 * 1024 bytes)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('File ảnh quá lớn! Vui lòng chọn file dưới 5MB.');
+                    e.target.value = '';
+                    document.getElementById('imagePreview').style.display = 'none';
+                    return;
+                }
+
+                // Kiểm tra định dạng
+                const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+                if (!validTypes.includes(file.type)) {
+                    alert('Chỉ chấp nhận file ảnh (.jpg, .jpeg, .png, .gif)!');
+                    e.target.value = '';
+                    document.getElementById('imagePreview').style.display = 'none';
+                    return;
+                }
+
+                // Hiển thị preview
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('previewImg').src = event.target.result;
+                    document.getElementById('imagePreview').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById('imagePreview').style.display = 'none';
+            }
+        });
+
+        // Validate form trước khi submit
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const hoTen = document.querySelector('[name="HoTen"]').value.trim();
+            const sdt = document.querySelector('[name="Sdt"]').value.trim();
+
+            if (!hoTen) {
+                e.preventDefault();
+                alert('Vui lòng nhập họ và tên!');
+                return false;
+            }
+
+            if (!sdt) {
+                e.preventDefault();
+                alert('Vui lòng nhập số điện thoại!');
+                return false;
+            }
+
+            // Show loading
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Đang xử lý...';
+        });
+    </script>
+}
+
+<style>
+    .required::after {
+        content: " *";
+        color: red;
+    }
+</style>

@@ -19,7 +19,7 @@ public partial class SinhVienKtxContext : DbContext
 
     public virtual DbSet<BaiDang> BaiDangs { get; set; }
 
-    public virtual DbSet<DanhGia> DanhGia { get; set; }
+    public virtual DbSet<DanhGia> DanhGias { get; set; }
 
     public virtual DbSet<HopDongPhong> HopDongPhongs { get; set; }
 
@@ -82,9 +82,10 @@ public partial class SinhVienKtxContext : DbContext
                 .HasConstraintName("FK_BaiDang_SinhVien");
         });
 
-        modelBuilder.Entity<DanhGium>(entity =>
+        modelBuilder.Entity<DanhGia>(entity =>
         {
             entity.HasKey(e => e.MaDg);
+            entity.ToTable("DanhGia");
 
             entity.Property(e => e.MaDg)
                 .ValueGeneratedNever()
@@ -96,7 +97,7 @@ public partial class SinhVienKtxContext : DbContext
             entity.Property(e => e.NgayGuiDg).HasColumnName("NgayGuiDG");
             entity.Property(e => e.NoiDungDg).HasColumnName("NoiDungDG");
 
-            entity.HasOne(d => d.MaYcNavigation).WithMany(p => p.DanhGia)
+            entity.HasOne(d => d.MaYcNavigation).WithMany(p =>p.DanhGia)
                 .HasForeignKey(d => d.MaYc)
                 .HasConstraintName("FK_DanhGia_YeuCau");
         });

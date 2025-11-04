@@ -1,0 +1,333 @@
+﻿@model KTX.Models.ThemPhongViewModel
+
+@{
+    ViewData["Title"] = "Thêm phòng mới";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-action="Index">Danh sách phòng</a></li>
+                    <li class="breadcrumb-item active">Thêm phòng mới</li>
+                </ol>
+            </nav>
+
+            <!-- Card Form -->
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="bi bi-plus-circle me-2"></i>Thêm phòng mới
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Create" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <div class="row g-4">
+                            <!-- Cột trái -->
+                            <div class="col-md-6">
+                                <!-- Mã phòng -->
+                                <div class="mb-4">
+                                    <label asp-for="MaP" class="form-label fw-semibold">
+                                        <i class="bi bi-hash text-primary me-2"></i>Mã phòng
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input asp-for="MaP" type="number" class="form-control form-control-lg"
+                                           placeholder="VD: 101" />
+                                    <span asp-validation-for="MaP" class="text-danger small"></span>
+                                    <div class="form-text">
+                                        <i class="bi bi-info-circle me-1"></i>
+                                        Nhập số phòng (VD: 101, 102, 201...)
+                                    </div>
+                                </div>
+
+                                <!-- Loại phòng -->
+                                <div class="mb-4">
+                                    <label asp-for="LoaiPhong" class="form-label fw-semibold">
+                                        <i class="bi bi-tag text-primary me-2"></i>Loại phòng
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <select asp-for="LoaiPhong" class="form-select form-select-lg">
+                                        <option value="">-- Chọn loại phòng --</option>
+                                        <option value="4A">Phòng 4A (4 người)</option>
+                                        <option value="4B">Phòng 4B (4 người)</option>
+                                        <option value="4C">Phòng 4C (4 người)</option>
+
+                                        <option value="6A">Phòng 6A (6 người)</option>
+                                        <option value="6B">Phòng 6B (6 người)</option>
+                                        <option value="6C">Phòng 6C (6 người)</option>
+
+                                        <option value="8A">Phòng 8A (8 người)</option>
+                                        <option value="8B">Phòng 8B (8 người)</option>
+                                        <option value="8C">Phòng 8C (8 người)</option>
+                                    </select>
+
+                                    <span asp-validation-for="LoaiPhong" class="text-danger small"></span>
+                                </div>
+
+                                <!-- Số giường -->
+                                <div class="mb-4">
+                                    <label asp-for="ToiDaO" class="form-label fw-semibold">
+                                        <i class="bi bi-people text-primary me-2"></i>Số giường
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input asp-for="ToiDaO" type="number" min="1" max="20"
+                                           class="form-control form-control-lg" placeholder="VD: 4" />
+                                    <span asp-validation-for="ToiDaO" class="text-danger small"></span>
+                                    <div class="form-text">
+                                        <i class="bi bi-info-circle me-1"></i>
+                                        Số lượng giường tối đa trong phòng (1-20)
+                                    </div>
+                                </div>
+
+                                <!-- Giới tính -->
+                                <div class="mb-4">
+                                    <label asp-for="GioiTinh" class="form-label fw-semibold">
+                                        <i class="bi bi-gender-ambiguous text-primary me-2"></i>Giới tính
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="btn-group w-100" role="group">
+                                        <input type="radio" class="btn-check" name="GioiTinh" id="gioiTinhNam" value="Nam" />
+                                        <label class="btn btn-outline-primary btn-lg" for="gioiTinhNam">
+                                            <i class="bi bi-gender-male me-2"></i>Nam
+                                        </label>
+
+                                        <input type="radio" class="btn-check" name="GioiTinh" id="gioiTinhNu" value="Nữ" />
+                                        <label class="btn btn-outline-danger btn-lg" for="gioiTinhNu">
+                                            <i class="bi bi-gender-female me-2"></i>Nữ
+                                        </label>
+                                    </div>
+                                    <span asp-validation-for="GioiTinh" class="text-danger small d-block mt-2"></span>
+                                </div>
+                            </div>
+
+                            <!-- Cột phải -->
+                            <div class="col-md-6">
+                                <!-- Tình trạng -->
+                                <div class="mb-4">
+                                    <label asp-for="TinhTrang" class="form-label fw-semibold">
+                                        <i class="bi bi-flag text-primary me-2"></i>Tình trạng
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <select asp-for="TinhTrang" class="form-select form-select-lg">
+                                        <option value="">-- Chọn tình trạng --</option>
+                                        <option value="Trống" selected>Còn trống</option>
+                                        <option value="Đầy">Đầy</option>
+                                        <option value="Đang bảo trì">Đang bảo trì</option>
+                                    </select>
+                                    <span asp-validation-for="TinhTrang" class="text-danger small"></span>
+                                </div>
+
+                                <!-- Giá phòng -->
+                                <div class="mb-4">
+                                    <label asp-for="TienPhong" class="form-label fw-semibold">
+                                        <i class="bi bi-cash-coin text-success me-2"></i>Giá phòng/tháng
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="input-group input-group-lg">
+                                        <input asp-for="TienPhong" type="number" step="10000"
+                                               class="form-control" placeholder="VD: 500000" />
+                                        <span class="input-group-text">VNĐ</span>
+                                    </div>
+                                    <span asp-validation-for="TienPhong" class="text-danger small"></span>
+                                    <div class="form-text">
+                                        <i class="bi bi-info-circle me-1"></i>
+                                        Giá thuê phòng mỗi tháng
+                                    </div>
+                                </div>
+
+                                <!-- Tiền cọc -->
+                                <div class="mb-4">
+                                    <label asp-for="TienCoc" class="form-label fw-semibold">
+                                        <i class="bi bi-wallet2 text-warning me-2"></i>Tiền cọc
+                                    </label>
+                                    <div class="input-group input-group-lg">
+                                        <input asp-for="TienCoc" type="number" step="10000"
+                                               class="form-control" placeholder="VD: 1000000" />
+                                        <span class="input-group-text">VNĐ</span>
+                                    </div>
+                                    <span asp-validation-for="TienCoc" class="text-danger small"></span>
+                                    <div class="form-text">
+                                        <i class="bi bi-info-circle me-1"></i>
+                                        Số tiền cọc khi ký hợp đồng (không bắt buộc)
+                                    </div>
+                                </div>
+
+                                <!-- Preview card -->
+                                <div class="card bg-light border-primary">
+                                    <div class="card-body">
+                                        <h6 class="text-primary mb-3">
+                                            <i class="bi bi-eye me-2"></i>Xem trước
+                                        </h6>
+                                        <div class="row g-2 small">
+                                            <div class="col-6">
+                                                <strong>Mã phòng:</strong>
+                                                <p class="mb-1" id="previewMaP">-</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <strong>Loại:</strong>
+                                                <p class="mb-1" id="previewLoaiPhong">-</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <strong>Số giường:</strong>
+                                                <p class="mb-1" id="previewToiDaO">-</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <strong>Giới tính:</strong>
+                                                <p class="mb-1" id="previewGioiTinh">-</p>
+                                            </div>
+                                            <div class="col-12">
+                                                <strong>Giá phòng:</strong>
+                                                <p class="mb-0 text-success fw-bold" id="previewTienPhong">-</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4 pt-3 border-top">
+                            <a asp-action="Index" class="btn btn-outline-secondary btn-lg px-5">
+                                <i class="bi bi-x-circle me-2"></i>Hủy
+                            </a>
+                            <button type="submit" class="btn btn-primary btn-lg px-5">
+                                <i class="bi bi-check-circle me-2"></i>Thêm phòng
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Hướng dẫn -->
+            <div class="card mt-4 border-info">
+                <div class="card-body">
+                    <h6 class="card-title text-info">
+                        <i class="bi bi-lightbulb me-2"></i>Lưu ý khi thêm phòng
+                    </h6>
+                    <ul class="mb-0 small">
+                        <li class="mb-2">Mã phòng phải là số duy nhất, không trùng với phòng đã có</li>
+                        <li class="mb-2">Số giường nên phù hợp với loại phòng đã chọn</li>
+                        <li class="mb-2">Giới tính phòng cần được phân bổ hợp lý</li>
+                        <li class="mb-2">Giá phòng thường dao động từ 300.000 - 2.000.000 VNĐ/tháng</li>
+                        <li>Tiền cọc thường bằng 1-2 tháng tiền phòng</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        // Live preview
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = {
+                MaP: document.querySelector('input[name="MaP"]'),
+                LoaiPhong: document.querySelector('select[name="LoaiPhong"]'),
+                ToiDaO: document.querySelector('input[name="ToiDaO"]'),
+                GioiTinh: document.querySelectorAll('input[name="GioiTinh"]'),
+                TienPhong: document.querySelector('input[name="TienPhong"]')
+            };
+
+            function updatePreview() {
+                document.getElementById('previewMaP').textContent =
+                    inputs.MaP.value || '-';
+
+                document.getElementById('previewLoaiPhong').textContent =
+                    inputs.LoaiPhong.options[inputs.LoaiPhong.selectedIndex]?.text || '-';
+
+                document.getElementById('previewToiDaO').textContent =
+                    inputs.ToiDaO.value ? inputs.ToiDaO.value + ' giường' : '-';
+
+                const selectedGioiTinh = document.querySelector('input[name="GioiTinh"]:checked');
+                document.getElementById('previewGioiTinh').textContent =
+                    selectedGioiTinh?.value || '-';
+
+                const tienPhong = parseFloat(inputs.TienPhong.value) || 0;
+                document.getElementById('previewTienPhong').textContent =
+                    tienPhong > 0 ? tienPhong.toLocaleString('vi-VN') + ' VNĐ' : '-';
+            }
+
+            // Auto-fill số giường dựa trên loại phòng
+                    inputs.LoaiPhong.addEventListener('change', function () {
+            const loai = this.value;
+            if (loai.startsWith("4")) inputs.ToiDaO.value = 4;
+            else if (loai.startsWith("6")) inputs.ToiDaO.value = 6;
+            else if (loai.startsWith("8")) inputs.ToiDaO.value = 8;
+
+            updatePreview();
+        });
+
+            // Gợi ý giá phòng dựa trên loại
+                   inputs.LoaiPhong.addEventListener('change', function () {
+            const loai = this.value;
+            let price = 0;
+
+            switch (loai) {
+                case "4A": price = 950000; break;
+                case "4B": price = 900000; break;
+                case "4C": price = 850000; break;
+
+                case "6A": price = 850000; break;
+                case "6B": price = 800000; break;
+                case "6C": price = 750000; break;
+
+                case "8A": price = 750000; break;
+                case "8B": price = 700000; break;
+                case "8C": price = 650000; break;
+            }
+
+            inputs.TienPhong.value = price;
+            updatePreview();
+        });
+
+
+            // Event listeners
+            inputs.MaP.addEventListener('input', updatePreview);
+            inputs.LoaiPhong.addEventListener('change', updatePreview);
+            inputs.ToiDaO.addEventListener('input', updatePreview);
+            inputs.GioiTinh.forEach(radio => {
+                radio.addEventListener('change', updatePreview);
+            });
+            inputs.TienPhong.addEventListener('input', updatePreview);
+
+            // Format currency input
+            inputs.TienPhong.addEventListener('blur', function() {
+                if (this.value) {
+                    this.value = Math.round(this.value / 10000) * 10000;
+                }
+            });
+        });
+    </script>
+}
+
+<style>
+    .card {
+        border: none;
+        border-radius: 15px;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+
+    .btn-check:checked + .btn-outline-primary {
+        background-color: #0d6efd;
+        color: white;
+    }
+
+    .btn-check:checked + .btn-outline-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+</style>

@@ -1,0 +1,319 @@
+﻿@model KTX.Entities.SinhVien
+
+@{
+    ViewBag.Title = "Cấp phòng cho sinh viên";
+    var sinhVien = ViewBag.SinhVien as KTX.Entities.SinhVien;
+    var phongConCho = ViewBag.PhongConCho as List<KTX.Entities.Phong>;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4">
+    <!-- Header -->
+    <div class="mb-4">
+        <h4 class="mb-1"><i class="bi bi-door-open-fill me-2 text-success"></i>Cấp phòng cho sinh viên</h4>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a asp-controller="DashBoard" asp-action="Index">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a asp-action="Index">Quản lý sinh viên</a></li>
+                <li class="breadcrumb-item"><a asp-action="Details" asp-route-id="@sinhVien.Msv">@sinhVien.HoTen</a></li>
+                <li class="breadcrumb-item active">Cấp phòng</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row">
+        <!-- Thông tin sinh viên -->
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="bi bi-person-badge me-2"></i>Thông tin sinh viên</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-3">
+                        @if (!string.IsNullOrEmpty(sinhVien.Avatar))
+                        {
+                            <img src="@Url.Content("~/images/" + sinhVien.Avatar)" alt="Avatar"
+                                 class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover;" />
+                        }
+                        else
+                        {
+                            <div class="rounded-circle bg-info d-inline-flex align-items-center justify-content-center text-white"
+                                 style="width: 100px; height: 100px; font-size: 40px; font-weight: 600;">
+                                @sinhVien.HoTen.Substring(0, 1).ToUpper()
+                            </div>
+                        }
+                    </div>
+
+                    <table class="table table-borderless">
+                        <tr>
+                            <th class="text-muted">Mã SV:</th>
+                            <td class="fw-semibold">@sinhVien.Msv</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">Họ tên:</th>
+                            <td class="fw-semibold">@sinhVien.HoTen</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">Giới tính:</th>
+                            <td>@sinhVien.GioiTinh</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">Ngày sinh:</th>
+                            <td>@sinhVien.NgaySinh.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">SĐT:</th>
+                            <td>@sinhVien.Sdt</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">Email:</th>
+                            <td>@(sinhVien.Email ?? "Chưa có")</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">Khoa:</th>
+                            <td>@(sinhVien.Khoa ?? "Chưa có")</td>
+                        </tr>
+                    </table>
+
+                    <div class="alert alert-info mt-3">
+                        <i class="bi bi-info-circle me-2"></i>
+                        Sinh viên chưa có phòng
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form cấp phòng -->
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="bi bi-house-add-fill me-2"></i>Thông tin cấp phòng</h5>
+                </div>
+                <div class="card-body">
+                    @if (phongConCho != null && phongConCho.Any())
+                    {
+                        <form asp-action="CapPhong" method="post" id="capPhongForm">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="msv" value="@sinhVien.Msv" />
+
+                            <div class="row g-3">
+                                <!-- Chọn phòng -->
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold required">Chọn phòng</label>
+                                    <select name="maPhong" class="form-select" required onchange="updatePhongInfo(this)">
+                                        <option value="">-- Chọn phòng --</option>
+                                        @foreach (var phong in phongConCho)
+                                        {
+                                            var conLai = phong.ToiDaO - phong.HienO;
+                                            <option value="@phong.MaP"
+                                                    data-succhua="@phong.ToiDaO"
+                                                    data-hienco="@phong.HienO"
+                                                    data-conlai="@conLai">
+                                                Phòng @phong.MaP - Còn @conLai/@phong.ToiDaO chỗ
+                                            </option>
+                                        }
+                                    </select>
+                                </div>
+
+                                <!-- Thông tin phòng đã chọn -->
+                                <div class="col-12 d-none" id="phongInfoDisplay">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h6 class="card-title"><i class="bi bi-info-circle me-2"></i>Thông tin phòng</h6>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <small class="text-muted">Sức chứa</small>
+                                                    <div class="fw-bold" id="sucChuaDisplay">-</div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <small class="text-muted">Hiện có</small>
+                                                    <div class="fw-bold text-primary" id="hienCoDisplay">-</div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <small class="text-muted">Còn lại</small>
+                                                    <div class="fw-bold text-success" id="conLaiDisplay">-</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Ngày bắt đầu -->
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold required">Ngày bắt đầu</label>
+                                    <input type="date" name="ngayBatDau" class="form-control" required
+                                           value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                </div>
+
+                                <!-- Ngày kết thúc -->
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold required">Ngày kết thúc</label>
+                                    <input type="date" name="ngayKetThuc" class="form-control" required
+                                           value="@DateTime.Now.AddMonths(6).ToString("yyyy-MM-dd")" />
+                                </div>
+
+                                <!-- Thông báo -->
+                                <div class="col-12">
+                                    <div class="alert alert-warning">
+                                        <i class="bi bi-exclamation-triangle me-2"></i>
+                                        <strong>Lưu ý:</strong>
+                                        <ul class="mb-0 mt-2">
+                                            <li>Ngày kết thúc phải sau ngày bắt đầu</li>
+                                            <li>Thời gian hợp đồng tối thiểu là 1 tháng</li>
+                                            <li>Sau khi cấp phòng, sinh viên có thể chuyển phòng hoặc gia hạn hợp đồng</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="d-flex gap-2 justify-content-between mt-4">
+                                <a asp-action="Details" asp-route-id="@sinhVien.Msv" class="btn btn-secondary">
+                                    <i class="bi bi-arrow-left me-1"></i>Quay lại
+                                </a>
+                                <div class="d-flex gap-2">
+                                    <a asp-action="Index" class="btn btn-outline-secondary">
+                                        <i class="bi bi-x-circle me-1"></i>Hủy
+                                    </a>
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="bi bi-check-circle me-1"></i>Cấp phòng
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <i class="bi bi-house-x" style="font-size: 64px; color: #dc3545; opacity: 0.5;"></i>
+                            <h5 class="mt-3 text-muted">Không có phòng trống</h5>
+                            <p class="text-muted">Hiện tại tất cả các phòng đều đã đầy.</p>
+                            <a asp-action="Details" asp-route-id="@sinhVien.Msv" class="btn btn-primary mt-2">
+                                <i class="bi bi-arrow-left me-1"></i>Quay lại
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .required::after {
+        content: " *";
+        color: red;
+    }
+
+    .card {
+        border-radius: 12px;
+    }
+
+    .card-header {
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    }
+
+    .btn-success {
+        font-weight: 600;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        function updatePhongInfo(select) {
+            const infoDisplay = document.getElementById('phongInfoDisplay');
+
+            if (select.value) {
+                const option = select.options[select.selectedIndex];
+                const sucChua = option.getAttribute('data-succhua');
+                const hienCo = option.getAttribute('data-hienco');
+                const conLai = option.getAttribute('data-conlai');
+
+                document.getElementById('sucChuaDisplay').textContent = sucChua + ' người';
+                document.getElementById('hienCoDisplay').textContent = hienCo + ' người';
+                document.getElementById('conLaiDisplay').textContent = conLai + ' chỗ';
+
+                infoDisplay.classList.remove('d-none');
+            } else {
+                infoDisplay.classList.add('d-none');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('capPhongForm');
+            if (!form) return;
+
+            // Set min date = today, max date = +2 years
+            const ngayBatDauInput = form.querySelector('input[name="ngayBatDau"]');
+            const ngayKetThucInput = form.querySelector('input[name="ngayKetThuc"]');
+
+            if (ngayBatDauInput && ngayKetThucInput) {
+                const today = new Date();
+                const maxDate = new Date(today.getFullYear() + 2, today.getMonth(), today.getDate());
+
+                ngayBatDauInput.min = today.toISOString().split('T')[0];
+                ngayBatDauInput.max = maxDate.toISOString().split('T')[0];
+
+                // Update min date của ngày kết thúc khi thay đổi ngày bắt đầu
+                ngayBatDauInput.addEventListener('change', function () {
+                    const startDate = new Date(this.value);
+                    const minEndDate = new Date(startDate);
+                    minEndDate.setDate(minEndDate.getDate() + 1);
+
+                    ngayKetThucInput.min = minEndDate.toISOString().split('T')[0];
+
+                    // Auto set ngày kết thúc = ngày bắt đầu + 6 tháng
+                    if (!ngayKetThucInput.value || new Date(ngayKetThucInput.value) <= startDate) {
+                        const suggestedEnd = new Date(startDate);
+                        suggestedEnd.setMonth(suggestedEnd.getMonth() + 6);
+                        ngayKetThucInput.value = suggestedEnd.toISOString().split('T')[0];
+                    }
+                });
+            }
+
+            // Validate form
+            form.addEventListener('submit', function (e) {
+                const maPhong = form.querySelector('select[name="maPhong"]').value;
+                const ngayBatDau = new Date(ngayBatDauInput.value);
+                const ngayKetThuc = new Date(ngayKetThucInput.value);
+
+                if (!maPhong) {
+                    e.preventDefault();
+                    alert('Vui lòng chọn phòng!');
+                    return false;
+                }
+
+                if (ngayKetThuc <= ngayBatDau) {
+                    e.preventDefault();
+                    alert('Ngày kết thúc phải sau ngày bắt đầu!');
+                    return false;
+                }
+
+                const diffDays = Math.ceil((ngayKetThuc - ngayBatDau) / (1000 * 60 * 60 * 24));
+                if (diffDays < 30) {
+                    if (!confirm('Thời gian hợp đồng ngắn hơn 1 tháng. Bạn có chắc chắn muốn tiếp tục?')) {
+                        e.preventDefault();
+                        return false;
+                    }
+                }
+
+                if (!confirm(`Xác nhận cấp phòng ${maPhong} cho sinh viên ${@sinhVien.HoTen}?`)) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Disable button
+                const submitBtn = form.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="bi bi-hourglass-split me-1"></i>Đang xử lý...';
+            });
+        });
+    </script>
+}

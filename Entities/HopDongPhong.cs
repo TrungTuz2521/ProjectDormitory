@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KTX.Entities;
 
 public partial class HopDongPhong
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int MaHd { get; set; }
+
 
     public int Msv { get; set; }
 
