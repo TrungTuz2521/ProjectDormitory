@@ -1,0 +1,195 @@
+﻿@model KTX.Models.CapNhatPhongViewModel
+
+@{
+    ViewData["Title"] = $"Cập nhật phòng {Model.MaP}";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-action="Index">Danh sách phòng</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Details" asp-route-id="@Model.MaP">Phòng @Model.MaP</a></li>
+                    <li class="breadcrumb-item active">Cập nhật</li>
+                </ol>
+            </nav>
+
+            <!-- Card Form -->
+            <div class="card shadow-lg">
+                <div class="card-header bg-warning text-dark py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="bi bi-pencil-square me-2"></i>Cập nhật tình trạng phòng @Model.MaP
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Edit" method="post">
+                        <input type="hidden" asp-for="MaP" />
+
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <!-- Tình trạng -->
+                        <div class="mb-4">
+                            <label asp-for="TinhTrang" class="form-label fw-semibold">
+                                <i class="bi bi-flag me-2 text-warning"></i>Tình trạng phòng
+                            </label>
+                            <select asp-for="TinhTrang" class="form-select form-select-lg">
+                                <option value="">-- Chọn tình trạng --</option>
+                                <option value="Trống">Còn trống</option>
+                                <option value="Đầy">Đầy</option>
+                                <option value="Đang bảo trì">Đang bảo trì</option>
+                            </select>
+                            <span asp-validation-for="TinhTrang" class="text-danger small"></span>
+                            <div class="form-text">
+                                <i class="bi bi-info-circle me-1"></i>
+                                Chọn tình trạng hiện tại của phòng
+                            </div>
+                        </div>
+
+                        <!-- Số người ở hiện tại -->
+                        <div class="mb-4">
+                            <label asp-for="HienO" class="form-label fw-semibold">
+                                <i class="bi bi-people me-2 text-primary"></i>Số người ở hiện tại
+                            </label>
+                            <input asp-for="HienO" type="number" min="0" class="form-control form-control-lg" />
+                            <span asp-validation-for="HienO" class="text-danger small"></span>
+                            <div class="form-text">
+                                <i class="bi bi-info-circle me-1"></i>
+                                Nhập số lượng sinh viên đang ở trong phòng
+                            </div>
+                        </div>
+
+                        <!-- Số giường tối đa -->
+                        <div class="mb-4">
+                            <label asp-for="ToiDaO" class="form-label fw-semibold">
+                                <i class="bi bi-house-door me-2 text-success"></i>Số giường tối đa
+                            </label>
+                            <input asp-for="ToiDaO" type="number" min="1" max="20" class="form-control form-control-lg" />
+                            <span asp-validation-for="ToiDaO" class="text-danger small"></span>
+                            <div class="form-text">
+                                <i class="bi bi-info-circle me-1"></i>
+                                Sức chứa tối đa của phòng (từ 1 đến 20 người)
+                            </div>
+                        </div>
+
+                        <!-- Thông tin hiện tại -->
+                        <div class="alert alert-info" role="alert">
+                            <h6 class="alert-heading">
+                                <i class="bi bi-info-circle me-2"></i>Thông tin hiện tại
+                            </h6>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <strong>Tình trạng:</strong>
+                                    <p class="mb-0">@Model.TinhTrang</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <strong>Người ở:</strong>
+                                    <p class="mb-0">@Model.HienO người</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <strong>Sức chứa:</strong>
+                                    <p class="mb-0">@Model.ToiDaO giường</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                            <a asp-action="Details" asp-route-id="@Model.MaP" class="btn btn-outline-secondary btn-lg px-4">
+                                <i class="bi bi-x-circle me-2"></i>Hủy
+                            </a>
+                            <button type="submit" class="btn btn-warning btn-lg px-4">
+                                <i class="bi bi-check-circle me-2"></i>Cập nhật
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Hướng dẫn -->
+            <div class="card mt-4 border-primary">
+                <div class="card-body">
+                    <h6 class="card-title text-primary">
+                        <i class="bi bi-lightbulb me-2"></i>Hướng dẫn
+                    </h6>
+                    <ul class="mb-0 small">
+                        <li class="mb-2">
+                            <strong>Còn trống:</strong> Phòng còn chỗ trống, có thể nhận sinh viên mới
+                        </li>
+                        <li class="mb-2">
+                            <strong>Đầy:</strong> Phòng đã đủ số lượng sinh viên theo sức chứa
+                        </li>
+                        <li class="mb-2">
+                            <strong>Đang bảo trì:</strong> Phòng đang được sửa chữa, không thể sử dụng
+                        </li>
+                        <li>
+                            Số người ở hiện tại không được vượt quá số giường tối đa
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        // Tự động cập nhật tình trạng dựa trên số người
+        document.addEventListener('DOMContentLoaded', function() {
+            const hienOInput = document.querySelector('input[name="HienO"]');
+            const toiDaOInput = document.querySelector('input[name="ToiDaO"]');
+            const tinhTrangSelect = document.querySelector('select[name="TinhTrang"]');
+
+            function updateTinhTrang() {
+                const hienO = parseInt(hienOInput.value) || 0;
+                const toiDaO = parseInt(toiDaOInput.value) || 0;
+
+                if (toiDaO > 0 && hienO >= toiDaO && tinhTrangSelect.value !== 'Đang bảo trì') {
+                    tinhTrangSelect.value = 'Đầy';
+                } else if (hienO < toiDaO && tinhTrangSelect.value === 'Đầy') {
+                    tinhTrangSelect.value = 'Còn trống';
+                }
+            }
+
+            hienOInput.addEventListener('input', updateTinhTrang);
+            toiDaOInput.addEventListener('input', updateTinhTrang);
+
+            // Validate số người không vượt quá sức chứa
+            document.querySelector('form').addEventListener('submit', function(e) {
+                const hienO = parseInt(hienOInput.value) || 0;
+                const toiDaO = parseInt(toiDaOInput.value) || 0;
+
+                if (hienO > toiDaO) {
+                    e.preventDefault();
+                    alert('Số người ở hiện tại không được vượt quá số giường tối đa!');
+                    hienOInput.focus();
+                }
+            });
+        });
+    </script>
+}
+
+<style>
+    .card {
+        border: none;
+        border-radius: 15px;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #ffc107;
+        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+    }
+
+    .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.1rem;
+    }
+</style>
