@@ -91,48 +91,38 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="@Url.Action("Index", "SinhVien")" class="nav-link">
+                <a href="@Url.Action("Index", "QuanLySinhVien")" class="nav-link">
                     <span class="nav-icon"><i class="bi bi-people"></i></span>
                     <span>Quản lý Sinh viên</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="@Url.Action("Index", "Phong")" class="nav-link">
+                <a href="@Url.Action("Index", "QuanLyPhong")" class="nav-link">
                     <span class="nav-icon"><i class="bi bi-door-closed"></i></span>
                     <span>Quản lý Phòng</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="@Url.Action("Index", "HopDong")" class="nav-link">
+                <a href="@Url.Action("Index", "QuanLyTaiChinh")" class="nav-link">
                     <span class="nav-icon"><i class="bi bi-file-text"></i></span>
                     <span>Quản lý Tài Chính</span>
                 </a>
             </li>
             
             <li class="nav-item">
-                <a href="@Url.Action("Index", "YeuCau")" class="nav-link">
+                <a href="@Url.Action("Index", "YCauKNai")" class="nav-link">
                     <span class="nav-icon"><i class="bi bi-envelope"></i></span>
                     <span>Yêu cầu & Khiếu nại</span>
                 </a>
             </li>
+            
             <li class="nav-item">
-                <a href="@Url.Action("Index", "BaiDang")" class="nav-link">
-                    <span class="nav-icon"><i class="bi bi-chat-left-text"></i></span>
-                    <span>Bài đăng & Thảo luận</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="@Url.Action("Index", "ThongBao")" class="nav-link">
+                <a href="@Url.Action("Index", "QLThongBao")" class="nav-link">
                     <span class="nav-icon"><i class="bi bi-bell"></i></span>
                     <span>Thông báo</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="@Url.Action("Index", "TaiKhoan")" class="nav-link">
-                    <span class="nav-icon"><i class="bi bi-person-circle"></i></span>
-                    <span>Tài khoản</span>
-                </a>
-            </li>
+            
             @if (User.Identity?.IsAuthenticated == true)
             {
                 <li class="nav-item">

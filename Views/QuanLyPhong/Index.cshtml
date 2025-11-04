@@ -1,0 +1,266 @@
+﻿@model IEnumerable<KTX.Models.PhongViewModel>
+
+@{
+    ViewData["Title"] = "Quản lý phòng"; 
+    Layout = "~/Views/Shared/Layoutadmin.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="fw-bold text-primary">
+                <i class="bi bi-house-door-fill me-2"></i>Quản lý phòng KTX
+            </h2>
+        </div>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle me-2"></i>@TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="bi bi-exclamation-triangle me-2"></i>@TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <!-- Bộ lọc -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form method="get" asp-action="Index" class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Tình trạng</label>
+                    <select name="searchTinhTrang" class="form-select">
+                        <option value="">-- Tất cả --</option>
+                        @foreach (var item in ViewBag.DanhSachTinhTrang)
+                        {
+                            <option value="@item" selected="@(item == ViewBag.SearchTinhTrang)">@item</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Loại phòng</label>
+                    <select name="searchLoaiPhong" class="form-select">
+                        <option value="">-- Tất cả --</option>
+                        @foreach (var item in ViewBag.DanhSachLoaiPhong)
+                        {
+                            <option value="@item" selected="@(item == ViewBag.SearchLoaiPhong)">@item</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary me-2">
+                        <i class="bi bi-search me-1"></i>Lọc
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-clockwise me-1"></i>Đặt lại
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Thống kê nhanh -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-secondary text-white shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="card-subtitle mb-2">Còn trống</h6>
+                            <h3 class="card-title mb-0">@Model.Count(p => p.TinhTrang == "Trống")</h3>
+                        </div>
+                        <i class="bi bi-check-circle fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-danger text-white shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="card-subtitle mb-2">Đầy</h6>
+                            <h3 class="card-title mb-0">@Model.Count(p => p.TinhTrang == "Đầy")</h3>
+                        </div>
+                        <i class="bi bi-x-circle fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-dark shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="card-subtitle mb-2">Đang bảo trì</h6>
+                            <h3 class="card-title mb-0">@Model.Count(p => p.TinhTrang == "Đang bảo trì")</h3>
+                        </div>
+                        <i class="bi bi-tools fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="card-subtitle mb-2">Tổng phòng</h6>
+                            <h3 class="card-title mb-0">@Model.Count()</h3>
+                        </div>
+                        <i class="bi bi-house-fill fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Danh sách phòng -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-white py-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-semibold">
+                    <i class="bi bi-list-ul me-2"></i>Danh sách phòng
+                    <span class="badge bg-primary ms-2">@Model.Count() phòng</span>
+                </h5>
+                <a asp-action="Create" class="btn btn-primary">
+                    <i class="bi bi-plus-circle me-2"></i>Thêm phòng mới
+                </a>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="text-center">Số phòng</th>
+                            <th class="text-center">Loại phòng</th>
+                            <th class="text-center">Giới tính</th>
+                            <th class="text-center">Tình trạng</th>
+                            <th class="text-center">Số người/Số giường</th>
+                            <th class="text-center">SL sinh viên</th>
+                            <th class="text-end">Giá phòng</th>
+                            <th class="text-center">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="8" class="text-center py-5 text-muted">
+                                    <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                                    Không tìm thấy phòng nào
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var item in Model)
+                            {
+                                var badgeClass = item.TinhTrang switch
+                                {
+                                    "Trống" => "bg-secondary",
+                                    "Đầy" => "bg-danger",
+                                    "Đang bảo trì" => "bg-warning text-dark",
+                                    _ => "bg-success"
+                                };
+
+                                var progressPercent = item.ToiDaO > 0 ? (item.HienO * 100.0 / item.ToiDaO) : 0;
+                                var progressClass = progressPercent >= 100 ? "bg-danger" : 
+                                                   progressPercent >= 80 ? "bg-warning" : "bg-success";
+
+                                <tr>
+                                    <td class="text-center fw-bold">
+                                        <i class="bi bi-door-open me-1 text-primary"></i>
+                                        P.@item.MaP
+                                    </td>
+                                    <td class="text-center">@item.LoaiPhong</td>
+                                    <td class="text-center">
+                                        @if (item.GioiTinh == "Nam")
+                                        {
+                                            <span class="badge bg-primary">
+                                                <i class="bi bi-gender-male"></i> Nam
+                                            </span>
+                                        }
+                                        else if (item.GioiTinh == "Nữ")
+                                        {
+                                            <span class="badge bg-pink">
+                                                <i class="bi bi-gender-female"></i> Nữ
+                                            </span>
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge @badgeClass">@item.TinhTrang</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="progress" style="height: 25px;">
+                                            <div class="progress-bar @progressClass" 
+                                                 role="progressbar" 
+                                                 style="width: @progressPercent%"
+                                                 aria-valuenow="@item.HienO" 
+                                                 aria-valuemin="0" 
+                                                 aria-valuemax="@item.ToiDaO">
+                                                @item.HienO/@item.ToiDaO
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge bg-info">@item.SoLuongSinhVien người</span>
+                                    </td>
+                                    <td class="text-end fw-semibold text-primary">
+                                        @item.TienPhong.ToString("N0") VNĐ
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <a asp-action="Details" asp-route-id="@item.MaP" 
+                                               class="btn btn-outline-info" 
+                                               title="Xem chi tiết">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                            <a asp-action="Edit" asp-route-id="@item.MaP" 
+                                               class="btn btn-outline-warning" 
+                                               title="Cập nhật">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                            <a asp-action="Delete" asp-route-id="@item.MaP" 
+                                               class="btn btn-outline-danger" 
+                                               title="Xóa">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg-pink {
+        background-color: #e91e63;
+    }
+    
+    .card {
+        border: none;
+        border-radius: 10px;
+    }
+    
+    .table > :not(caption) > * > * {
+        padding: 1rem 0.75rem;
+    }
+    
+    .progress {
+        border-radius: 5px;
+    }
+</style>

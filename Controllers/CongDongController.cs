@@ -1,10 +1,12 @@
 ﻿using System.Security.Claims;
 using KTX.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace KTX.Controllers
 {
+    [Authorize]
     public class CongDongController : Controller
     {
         private readonly SinhVienKtxContext _context;

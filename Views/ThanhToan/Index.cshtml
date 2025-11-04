@@ -6,6 +6,7 @@
 @section Styles{
     <link href="~/css/ThanhToan1.css" rel="stylesheet" />
 }
+@Html.AntiForgeryToken()
 
 <div class="container-fluid py-4">
     <!-- Tiêu đề -->
@@ -15,58 +16,84 @@
         <p class="mb-0">Quản lý các khoản phí ký túc xá và thanh toán của bạn</p>
     </div>
 
-    <!-- Thống kê tổng quan -->
-    <div class="row mb-4">
-        <div class="col-md-3 mb-3">
-            <div class="stat-card">
-                <div class="stat-icon icon-blue">
-                    <i class="bi bi-house-door"></i>
-                </div>
-                <h6 class="text-muted mb-2">Phí Phòng</h6>
-                <h3 class="mb-0">@Model.TienPhong.ToString("N0")₫</h3>
-                <small class="text-success"><i class="bi bi-arrow-up"></i> Cố định</small>
+   <!-- Thống kê tổng quan -->
+<div class="row mb-4">
+    <div class="col-md-3 mb-3">
+        <div class="stat-card">
+            <div class="stat-icon icon-blue">
+                <i class="bi bi-house-door"></i>
             </div>
+            <h6 class="text-muted mb-2">Phí Phòng</h6>
+            <h3 class="mb-0">@Model.TienPhong.ToString("N0")₫</h3>
+            <small class="text-success"><i class="bi bi-check-circle"></i> Cố định</small>
         </div>
-        <div class="col-md-3 mb-3">
-            <div class="stat-card">
-                <div class="stat-icon icon-red">
-                    <i class="bi bi-exclamation-circle"></i>
-                </div>
-                <h6 class="text-muted mb-2">Tổng Phải Trả</h6>
-                <h3 class="mb-0 text-danger">@Model.TongCong.ToString("N0")₫</h3>
-                <small class="text-muted">@Model.TrangThaiThanhToan</small>
+    </div>
+    
+    <div class="col-md-3 mb-3">
+        <div class="stat-card">
+            <div class="stat-icon icon-orange">
+                <i class="bi bi-lightning-charge"></i>
             </div>
-        </div>
-        <div class="col-md-3 mb-3">
-            <div class="stat-card">
-                <div class="stat-icon icon-orange">
-                    <i class="bi bi-clock-history"></i>
-                </div>
-                <h6 class="text-muted mb-2">Hạn Thanh Toán</h6>
-                <h3 class="mb-0">@Model.NgayKetThuc.ToString("dd/MM/yyyy")</h3>
-                <small class="text-danger">
-                    <i class="bi bi-exclamation-circle"></i> Còn @((Model.NgayKetThuc - DateTime.Now).Days) ngày
+            <h6 class="text-muted mb-2">Điện + Nước</h6>
+            <h3 class="mb-0">@((Model.TienDien + Model.TienNuoc).ToString("N0"))₫</h3>
+            @if (Model.SoNguoiTrongPhong > 0)
+            {
+                <small class="text-info">
+                    <i class="bi bi-people"></i> Chia cho @Model.SoNguoiTrongPhong người
                 </small>
-            </div>
+            }
+            else
+            {
+                <small class="text-warning">
+                    <i class="bi bi-exclamation-triangle"></i> Chưa cập nhật số người
+                </small>
+            }
         </div>
-        <div class="col-md-3 mb-3">
-            <div class="stat-card">
-                <div class="stat-icon icon-green">
-                    <i class="bi bi-check2-circle"></i>
-                </div>
-                <h6 class="text-muted mb-2">Trạng Thái</h6>
-                <h3 class="mb-0">@Model.TrangThaiThanhToan</h3>
-                @if (Model.DaThanhToan)
+    </div>
+    
+    <div class="col-md-3 mb-3">
+        <div class="stat-card">
+            <div class="stat-icon icon-red">
+                <i class="bi bi-exclamation-circle"></i>
+            </div>
+            <h6 class="text-muted mb-2">Tổng Phải Trả</h6>
+            <h3 class="mb-0 text-danger">@Model.TongCong.ToString("N0")₫</h3>
+            <small class="text-muted">@Model.TrangThaiThanhToan</small>
+        </div>
+    </div>
+    
+    <div class="col-md-3 mb-3">
+        <div class="stat-card">
+            <div class="stat-icon icon-green">
+                <i class="bi bi-check2-circle"></i>
+            </div>
+            <h6 class="text-muted mb-2">Trạng Thái</h6>
+            <h3 class="mb-0">@Model.TrangThaiThanhToan</h3>
+            @if (Model.DaThanhToan)
+            {
+                <small class="text-success">
+                    <i class="bi bi-check-circle"></i> @Model.NgayThanhToan?.ToString("dd/MM/yyyy")
+                </small>
+            }
+            else
+            {var soNgayConLai = (Model.NgayKetThuc - DateTime.Now).Days;
+                
+                @if (soNgayConLai >= 0)
                 {
-                    <small class="text-success">Thanh toán ngày @Model.NgayThanhToan?.ToString("dd/MM/yyyy")</small>
+                    <small class="text-warning">
+                        <i class="bi bi-clock"></i> Còn @soNgayConLai ngày
+                    </small>
                 }
                 else
                 {
-                    <small class="text-warning">Chưa thanh toán</small>
+                    <small class="text-danger">
+                        <i class="bi bi-exclamation-triangle"></i> Quá hạn @Math.Abs(soNgayConLai) ngày
+                    </small>
                 }
-            </div>
+            }
         </div>
     </div>
+</div>
 
     <!-- Chi tiết hóa đơn -->
     <div class="mb-4">
@@ -129,40 +156,78 @@
                             <div>
                                 <h5 class="mb-1"><i class="bi bi-lightning-charge me-2"></i>Điện Nước</h5>
                                 <small class="text-muted">Thời gian ghi: @Model.ThoiGianGhi?.ToString("dd/MM/yyyy")</small>
+                                <br />
+                                @if (Model.SoNguoiTrongPhong > 0)
+                                {
+                                    <small class="text-info">
+                                        <i class="bi bi-people me-1"></i>Chia cho @Model.SoNguoiTrongPhong người trong phòng
+                                    </small>
+                                }
+                                else
+                                {
+                                    <small class="text-warning">
+                                        <i class="bi bi-exclamation-triangle me-1"></i>Chưa có thông tin số người ở
+                                    </small>
+                                }
                             </div>
-                            <span class="badge @(Model.DaThanhToan ? "bg-success" : " text-dark")">@Model.TrangThaiThanhToan</span>
+                            <span class="badge @(Model.DaThanhToan ? "bg-success" : "bg-warning text-dark")">@Model.TrangThaiThanhToan</span>
                         </div>
+
+                        @if (Model.SoNguoiTrongPhong > 0)
+                        {
+                            <div class="alert alert-info py-2 mb-3">
+                                <small>
+                                    <i class="bi bi-info-circle me-1"></i>
+                                    <strong>Tổng tiền điện nước phòng:</strong> @Model.TongTienDienNuocPhong.ToString("N0")₫
+                                    <br />
+                                    <i class="bi bi-arrow-down-short"></i>
+                                    <strong>Mỗi người trả:</strong> @((Model.TongTienDienNuocPhong / Model.SoNguoiTrongPhong).ToString("N0"))₫
+                                </small>
+                            </div>
+                        }
 
                         <div class="invoice-detail">
                             <span>Kỳ thanh toán</span>
                             <strong>@Model.ThoiGianGhi?.ToString("MM/yyyy")</strong>
                         </div>
+
                         @if (Model.SoDien.HasValue)
                         {
                             <div class="invoice-detail">
-                                <span>Điện (@Model.SoDien kWh)</span>
-                                <strong>@Model.TienDien.ToString("N0")₫</strong>
+                                <span><i class="bi bi-lightning-fill text-warning"></i> Điện (@Model.SoDien kWh × @(Model.GiaDien?.ToString("N0") ?? "0")₫)</span>
+                                <div>
+                                    <small class="text-muted">Phòng: @Model.TongTienDienPhong.ToString("N0")₫</small>
+                                    <br />
+                                    <strong class="text-primary">Bạn: @Model.TienDien.ToString("N0")₫</strong>
+                                </div>
                             </div>
                         }
+
                         @if (Model.SoNuoc.HasValue)
                         {
                             <div class="invoice-detail">
-                                <span>Nước (@Model.SoNuoc m³)</span>
-                                <strong>@Model.TienNuoc.ToString("N0")₫</strong>
+                                <span><i class="bi bi-droplet-fill text-info"></i> Nước (@Model.SoNuoc m³ × @(Model.GiaNuoc?.ToString("N0") ?? "0")₫)</span>
+                                <div>
+                                    <small class="text-muted">Phòng: @Model.TongTienNuocPhong.ToString("N0")₫</small>
+                                    <br />
+                                    <strong class="text-primary">Bạn: @Model.TienNuoc.ToString("N0")₫</strong>
+                                </div>
                             </div>
                         }
+
                         <div class="invoice-detail">
                             <span>Hạn thanh toán</span>
                             <strong class="text-danger">@Model.NgayKetThuc.ToString("dd/MM/yyyy")</strong>
                         </div>
-                        <div class="invoice-detail">
-                            <span>TỔNG CỘNG</span>
-                            <strong>@(Model.TienDien + Model.TienNuoc)₫</strong>
+
+                        <div class="invoice-detail border-top pt-2 mt-2" style="background-color: #fff3cd; margin: -10px; padding: 15px !important;">
+                            <span><strong><i class="bi bi-cash-coin"></i> BẠN PHẢI TRẢ (Điện + Nước)</strong></span>
+                            <strong class="text-danger fs-5">@((Model.TongTienDienNuocPhong / Model.SoNguoiTrongPhong).ToString("N0"))₫</strong>
                         </div>
 
                         @if (!Model.DaThanhToan)
                         {
-                            <div class="mt-2 d-flex gap-2 justify-content-end align-items-center">
+                            <div class="mt-3 d-flex gap-2 justify-content-end align-items-center">
                                 <select id="bankSelect_utility_@Model.MaHD" class="form-select form-select-sm custom-select" style="width: 120px; font-size: 0.8rem;">
                                     @foreach (var bank in Model.DanhSachNganHang ?? new List<KTX.ViewModels.BankInfoViewModel>())
                                     {
@@ -180,6 +245,7 @@
                     </div>
                 </div>
             }
+                     
 
             @if (Model.DaThanhToan)
             {
@@ -299,6 +365,7 @@
 </div>
 
 @section Scripts {
+
     <script>
         // Tải lịch sử thanh toán
         window.onload = function () {
@@ -307,7 +374,8 @@
 
         function fetchPaymentHistory() {
             const container = document.getElementById('paymentHistoryContainer');
-            fetch('@Url.Action("LichSu", "ThanhToan", new { maSV = Model.MaSV })')
+            // ✅ Không cần truyền maSV nữa, controller tự lấy từ Claims
+            fetch('@Url.Action("LichSu", "ThanhToan")')
                 .then(response => response.text())
                 .then(html => {
                     container.innerHTML = html;
@@ -357,7 +425,7 @@
             .then(data => {
                 if (data.success) {
                     qrImageContainer.innerHTML = `<img src="${data.qrCodeUrl}" alt="Mã QR" style="max-width: 300px;">`;
-                    bankEl.textContent = `${data.nganHang.TenNganHang} - ${data.nganHang.TenTaiKhoan}`;
+                    bankEl.textContent = `${data.nganHang.tenNganHang} - ${data.nganHang.tenTaiKhoan}`;
                 } else {
                     qrImageContainer.innerHTML = '<p class="text-danger">Không thể tạo mã QR: ' + data.message + '</p>';
                 }
@@ -388,7 +456,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '@Html.AntiForgeryToken()'.match(/value="([^"]+)"/)[1]
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value
                     },
                     body: JSON.stringify({
                         MaHD: invoiceId,
@@ -414,4 +482,5 @@
             }
         }
     </script>
+
 }

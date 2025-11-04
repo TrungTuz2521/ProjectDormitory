@@ -1,0 +1,313 @@
+﻿@model KTX.Entities.SinhVien
+
+@{
+    ViewBag.Title = "Chuyển phòng cho sinh viên";
+    var sinhVien = ViewBag.SinhVien as KTX.Entities.SinhVien;
+    var hopDongHienTai = ViewBag.HopDongHienTai as KTX.Entities.HopDongPhong;
+    var phongConCho = ViewBag.PhongConCho as List<KTX.Entities.Phong>;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4">
+    <!-- Header -->
+    <div class="mb-4">
+        <h4 class="mb-1"><i class="bi bi-arrow-left-right me-2 text-warning"></i>Chuyển phòng cho sinh viên</h4>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a asp-controller="DashBoard" asp-action="Index">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a asp-action="Index">Quản lý sinh viên</a></li>
+                <li class="breadcrumb-item"><a asp-action="Details" asp-route-id="@sinhVien.Msv">@sinhVien.HoTen</a></li>
+                <li class="breadcrumb-item active">Chuyển phòng</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row">
+        <!-- Thông tin sinh viên -->
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="bi bi-person-badge me-2"></i>Thông tin sinh viên</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-3">
+                        @if (!string.IsNullOrEmpty(sinhVien.Avatar))
+                        {
+                            <img src="@Url.Content("~/images/" + sinhVien.Avatar)" alt="Avatar"
+                                 class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover;" />
+                        }
+                        else
+                        {
+                            <div class="rounded-circle bg-info d-inline-flex align-items-center justify-content-center text-white"
+                                 style="width: 100px; height: 100px; font-size: 40px; font-weight: 600;">
+                                @sinhVien.HoTen.Substring(0, 1).ToUpper()
+                            </div>
+                        }
+                    </div>
+
+                    <table class="table table-borderless">
+                        <tr>
+                            <th class="text-muted">Mã SV:</th>
+                            <td class="fw-semibold">@sinhVien.Msv</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">Họ tên:</th>
+                            <td class="fw-semibold">@sinhVien.HoTen</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">Giới tính:</th>
+                            <td>@sinhVien.GioiTinh</td>
+                        </tr>
+                        <tr>
+                            <th class="text-muted">SĐT:</th>
+                            <td>@sinhVien.Sdt</td>
+                        </tr>
+                    </table>
+
+                    <!-- Phòng hiện tại -->
+                    <div class="alert alert-primary mt-3">
+                        <h6 class="alert-heading"><i class="bi bi-house-door me-2"></i>Phòng hiện tại</h6>
+                        <hr />
+                        <p class="mb-1"><strong>Phòng:</strong> @hopDongHienTai.MaPNavigation.MaP</p>
+                        <p class="mb-1"><strong>Từ ngày:</strong> @hopDongHienTai.NgayBatDau?.ToString("dd/MM/yyyy")</p>
+                        <p class="mb-0"><strong>Đến ngày:</strong> @(hopDongHienTai.NgayKetThuc?.ToString("dd/MM/yyyy") ?? "Không xác định")</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form chuyển phòng -->
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0"><i class="bi bi-arrow-repeat me-2"></i>Chuyển sang phòng mới</h5>
+                </div>
+                <div class="card-body">
+                    @if (phongConCho != null && phongConCho.Any())
+                    {
+                        <form asp-action="ChuyenPhong" method="post" id="chuyenPhongForm">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="msv" value="@sinhVien.Msv" />
+
+                            <div class="row g-3">
+                                <!-- Chọn phòng mới -->
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold required">Chọn phòng mới</label>
+                                    <select name="maPhongMoi" class="form-select" required onchange="updatePhongInfo(this)">
+                                        <option value="">-- Chọn phòng mới --</option>
+                                        @foreach (var phong in phongConCho)
+                                        {
+                                            var conLai = phong.ToiDaO - phong.HienO;
+                                            <option value="@phong.MaP"
+                                                    data-succhua="@phong.ToiDaO"
+                                                    data-hienco="@phong.HienO"
+                                                    data-conlai="@conLai">
+                                                Phòng @phong.MaP - Còn @conLai/@phong.ToiDaO chỗ
+                                            </option>
+                                        }
+                                    </select>
+                                </div>
+
+                                <!-- Thông tin phòng mới -->
+                                <div class="col-12 d-none" id="phongInfoDisplay">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h6 class="card-title"><i class="bi bi-info-circle me-2"></i>Thông tin phòng mới</h6>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <small class="text-muted">Sức chứa</small>
+                                                    <div class="fw-bold" id="sucChuaDisplay">-</div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <small class="text-muted">Hiện có</small>
+                                                    <div class="fw-bold text-primary" id="hienCoDisplay">-</div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <small class="text-muted">Còn lại</small>
+                                                    <div class="fw-bold text-success" id="conLaiDisplay">-</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Lý do chuyển phòng -->
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold required">Lý do chuyển phòng</label>
+                                    <textarea name="lyDo" class="form-control" rows="4"
+                                          placeholder="Nhập lý do chuyển phòng (tối thiểu 10 ký tự)"
+                                          required minlength="10"></textarea>
+                                    <small class="text-muted">Ví dụ: Sinh viên yêu cầu chuyển phòng do xung đột với bạn cùng phòng...</small>
+                                </div>
+
+                                <!-- Thông báo -->
+                                <div class="col-12">
+                                    <div class="alert alert-warning">
+                                        <i class="bi bi-exclamation-triangle me-2"></i>
+                                        <strong>Lưu ý:</strong>
+                                        <ul class="mb-0 mt-2">
+                                            <li>Hợp đồng phòng cũ sẽ bị kết thúc</li>
+                                            <li>Hợp đồng mới sẽ được tạo với thời gian kế thừa từ hợp đồng cũ</li>
+                                            <li>Số lượng người trong phòng cũ và phòng mới sẽ được cập nhật tự động</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- So sánh phòng -->
+                                <div class="col-12">
+                                    <div class="card border-primary">
+                                        <div class="card-header bg-primary text-white">
+                                            <i class="bi bi-arrow-left-right me-2"></i>So sánh
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h6 class="text-danger"><i class="bi bi-house-dash me-2"></i>Phòng cũ</h6>
+                                                    <p class="mb-0"><strong>Phòng @hopDongHienTai.MaPNavigation.MaP</strong></p>
+                                                    <small class="text-muted">Sẽ trống 1 chỗ</small>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h6 class="text-success"><i class="bi bi-house-add me-2"></i>Phòng mới</h6>
+                                                    <p class="mb-0" id="phongMoiText">Chưa chọn</p>
+                                                    <small class="text-muted" id="phongMoiNote">-</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="d-flex gap-2 justify-content-between mt-4">
+                                <a asp-action="Details" asp-route-id="@sinhVien.Msv" class="btn btn-secondary">
+                                    <i class="bi bi-arrow-left me-1"></i>Quay lại
+                                </a>
+                                <div class="d-flex gap-2">
+                                    <a asp-action="Index" class="btn btn-outline-secondary">
+                                        <i class="bi bi-x-circle me-1"></i>Hủy
+                                    </a>
+                                    <button type="submit" class="btn btn-warning text-dark">
+                                        <i class="bi bi-check-circle me-1"></i>Xác nhận chuyển
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <i class="bi bi-house-x" style="font-size: 64px; color: #dc3545; opacity: 0.5;"></i>
+                            <h5 class="mt-3 text-muted">Không có phòng trống</h5>
+                            <p class="text-muted">Hiện tại không có phòng nào khả dụng để chuyển.</p>
+                            <a asp-action="Details" asp-route-id="@sinhVien.Msv" class="btn btn-primary mt-2">
+                                <i class="bi bi-arrow-left me-1"></i>Quay lại
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .required::after {
+        content: " *";
+        color: red;
+    }
+
+    .card {
+        border-radius: 12px;
+    }
+
+    .card-header {
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #ffc107;
+        box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+    }
+
+    .btn-warning {
+        font-weight: 600;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        function updatePhongInfo(select) {
+            const infoDisplay = document.getElementById('phongInfoDisplay');
+            const phongMoiText = document.getElementById('phongMoiText');
+            const phongMoiNote = document.getElementById('phongMoiNote');
+
+            if (select.value) {
+                const option = select.options[select.selectedIndex];
+                const sucChua = option.getAttribute('data-succhua');
+                const hienCo = option.getAttribute('data-hienco');
+                const conLai = option.getAttribute('data-conlai');
+
+                document.getElementById('sucChuaDisplay').textContent = sucChua + ' người';
+                document.getElementById('hienCoDisplay').textContent = hienCo + ' người';
+                document.getElementById('conLaiDisplay').textContent = conLai + ' chỗ';
+
+                phongMoiText.innerHTML = `<strong>Phòng ${select.value}</strong>`;
+                phongMoiNote.textContent = `Còn ${conLai} chỗ trống`;
+
+                infoDisplay.classList.remove('d-none');
+            } else {
+                infoDisplay.classList.add('d-none');
+                phongMoiText.textContent = 'Chưa chọn';
+                phongMoiNote.textContent = '-';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('chuyenPhongForm');
+            if (!form) return;
+
+            // Validate form
+            form.addEventListener('submit', function (e) {
+                const maPhongMoi = form.querySelector('select[name="maPhongMoi"]').value;
+                const lyDo = form.querySelector('textarea[name="lyDo"]').value.trim();
+
+                if (!maPhongMoi) {
+                    e.preventDefault();
+                    alert('Vui lòng chọn phòng mới!');
+                    return false;
+                }
+
+                if (!lyDo) {
+                    e.preventDefault();
+                    alert('Vui lòng nhập lý do chuyển phòng!');
+                    return false;
+                }
+
+                if (lyDo.length < 10) {
+                    e.preventDefault();
+                    alert('Lý do chuyển phòng phải có ít nhất 10 ký tự!');
+                    return false;
+                }
+
+                const phongCu = @hopDongHienTai.MaP;
+                if (parseInt(maPhongMoi) === phongCu) {
+                    e.preventDefault();
+                    alert('Không thể chuyển sang chính phòng hiện tại!');
+                    return false;
+                }
+
+                if (!confirm(`Xác nhận chuyển sinh viên từ phòng ${phongCu} sang phòng ${maPhongMoi}?\n\nLý do: ${lyDo}`)) {
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Disable button
+                const submitBtn = form.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="bi bi-hourglass-split me-1"></i>Đang xử lý...';
+            });
+        });
+    </script>
+}

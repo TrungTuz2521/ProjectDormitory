@@ -1,0 +1,605 @@
+﻿@using Microsoft.EntityFrameworkCore
+@model IEnumerable<KTX.Entities.SinhVien>
+
+@{
+    ViewBag.Title = "Quản lý Sinh viên";
+    var currentPage = ViewBag.CurrentPage ?? 1;
+    var totalPages = ViewBag.TotalPages ?? 1;
+    var totalRecords = ViewBag.TotalRecords ?? 0;
+    Layout = "~/Views/Shared/Layoutadmin.cshtml";
+}
+
+<!-- Toast Container -->
+<div id="toastContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 9999;"></div>
+
+<style>
+    .filter-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        margin-bottom: 20px;
+    }
+
+    .student-card {
+        background: white;
+        border-radius: 12px;
+        padding: 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: all 0.3s;
+        overflow: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .student-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            transform: translateY(-2px);
+        }
+
+    .student-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 20px;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .student-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        font-weight: 600;
+        flex-shrink: 0;
+    }
+
+    .student-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .student-name {
+        font-size: 18px;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .student-id {
+        color: #6c757d;
+        font-size: 14px;
+    }
+
+    .student-body {
+        padding: 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .info-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+        .info-row i {
+            color: #667eea;
+            width: 20px;
+            flex-shrink: 0;
+        }
+
+        .info-row span {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+    .status-badge-card {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+
+        .status-badge-card.has-room {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+
+        .status-badge-card.no-room {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+        }
+
+    .btn-action {
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.2s;
+    }
+
+    .search-box {
+        position: relative;
+    }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+
+        .search-box input {
+            padding-left: 45px;
+        }
+
+    .hover-lift {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+        .stat-icon.blue {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .stat-icon.green {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+
+        .stat-icon.orange {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+    .stat-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        border: 1px solid #e9ecef;
+    }
+
+    .page-link {
+        border-radius: 6px;
+        margin: 0 2px;
+        border: 1px solid #dee2e6;
+    }
+
+    .page-item.active .page-link {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-color: #667eea;
+    }
+
+    .room-info-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        font-size: 13px;
+        color: #495057;
+        border: 1px solid #e9ecef;
+    }
+
+        .room-info-chip i {
+            color: #667eea;
+        }
+</style>
+
+<div class="container-fluid px-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h4 class="mb-1"><i class="bi bi-people-fill me-2 text-primary"></i>Quản lý Sinh viên</h4>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a  asp-controller="DashBoard" asp-action="Index">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Quản lý sinh viên</li>
+                </ol>
+            </nav>
+        </div>
+        <div>
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-person-plus-fill me-2"></i>Thêm sinh viên
+            </a>
+        </div>
+    </div>
+
+    <!-- Thống kê nhanh -->
+    @if (ViewBag.TongSinhVien != null)
+    {
+        var tongSV = (int)ViewBag.TongSinhVien;
+        var svDangO = (int)ViewBag.SvDangO;
+        var svChuaO = (int)ViewBag.SvChuaO;
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <div class="stat-card hover-lift">
+                    <div class="d-flex align-items-center">
+                        <div class="stat-icon blue me-3">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-0 fw-bold">@tongSV</h4>
+                            <p class="text-muted mb-0 small">Tổng sinh viên</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card hover-lift">
+                    <div class="d-flex align-items-center">
+                        <div class="stat-icon green me-3">
+                            <i class="bi bi-house-check-fill"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-0 fw-bold">@svDangO</h4>
+                            <p class="text-muted mb-0 small">Đang ở KTX</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card hover-lift">
+                    <div class="d-flex align-items-center">
+                        <div class="stat-icon orange me-3">
+                            <i class="bi bi-house-x-fill"></i>
+                        </div>
+                        <div>
+                            <h4 class="mb-0 fw-bold">@svChuaO</h4>
+                            <p class="text-muted mb-0 small">Chưa có phòng</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Filter Section -->
+    <div class="filter-card">
+        <form method="get" asp-action="Index">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Tìm kiếm</label>
+                    <div class="search-box">
+                        <i class="bi bi-search"></i>
+                        <input type="text" class="form-control" name="searchTerm"
+                               placeholder="MSV, tên, email, SĐT..."
+                               value="@ViewBag.SearchTerm">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold">Khoa</label>
+                    <select class="form-select" name="khoaFilter">
+                        <option value="">-- Tất cả --</option>
+                        @if (ViewBag.DanhSachKhoa != null)
+                        {
+                            @foreach (var khoa in ViewBag.DanhSachKhoa)
+                            {
+                                <option value="@khoa" selected="@(ViewBag.KhoaFilter == khoa)">@khoa</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold">Phòng</label>
+                    <select class="form-select" name="phongFilter">
+                        <option value="">-- Tất cả --</option>
+                        @if (ViewBag.DanhSachPhong != null)
+                        {
+                            @foreach (var phong in ViewBag.DanhSachPhong)
+                            {
+                                <option value="@phong.MaP" selected="@(ViewBag.PhongFilter == phong.MaP.ToString())">
+                                    Phòng @phong.MaP
+                                </option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold">Trạng thái</label>
+                    <select class="form-select" name="trangThaiFilter">
+                        <option value="">-- Tất cả --</option>
+                        <option value="DangO" selected="@(ViewBag.TrangThaiFilter == "DangO")">Đang ở</option>
+                        <option value="ChuaO" selected="@(ViewBag.TrangThaiFilter == "ChuaO")">Chưa có phòng</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-filter"></i> Lọc
+                    </button>
+                </div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(ViewBag.SearchTerm) || !string.IsNullOrEmpty(ViewBag.PhongFilter) ||
+                        !string.IsNullOrEmpty(ViewBag.TrangThaiFilter) || !string.IsNullOrEmpty(ViewBag.KhoaFilter))
+            {
+                <div class="d-flex gap-2 mt-3">
+                    <a href="@Url.Action("Index")" class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-x-circle me-1"></i>Xóa bộ lọc
+                    </a>
+                </div>
+            }
+        </form>
+    </div>
+
+    <!-- Student List -->
+    @if (Model != null && Model.Any())
+    {
+        <div class="row g-4">
+            @foreach (var sv in Model)
+            {
+                // Lấy thông tin hợp đồng hiện tại
+                var hopDong = Context.RequestServices.GetService<KTX.Entities.SinhVienKtxContext>()
+                ?.HopDongPhongs
+                .Include(h => h.MaPNavigation)
+                .FirstOrDefault(h => h.Msv == sv.Msv && h.TrangThaiHd == "Đăng Kí Thành Công");
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="student-card">
+                        <div class="student-header">
+                            @if (!string.IsNullOrEmpty(sv.Avatar))
+                            {
+                                <img src="@Url.Content("~/images/" + sv.Avatar)" alt="Avatar" class="student-avatar" style="object-fit: cover;" />
+                            }
+                            else
+                            {
+                                <div class="student-avatar">
+                                    @sv.HoTen.Substring(0, 1).ToUpper()
+                                </div>
+                            }
+
+                            <div class="student-info">
+                                <div class="student-name" title="@sv.HoTen">@sv.HoTen</div>
+                                <div class="student-id">MSV: @sv.Msv</div>
+                            </div>
+                        </div>
+                        <div class="student-body">
+                            <div class="info-row">
+                                <i class="bi bi-envelope"></i>
+                                <span title="@sv.Email">@(sv.Email ?? "Chưa có")</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="bi bi-telephone"></i>
+                                <span>@sv.Sdt</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="bi bi-calendar"></i>
+                                <span>@sv.NgaySinh.ToString("dd/MM/yyyy")</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="bi bi-gender-ambiguous"></i>
+                                <span>@sv.GioiTinh</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="bi bi-building"></i>
+                                <span title="@sv.Khoa">@(sv.Khoa ?? "Chưa có")</span>
+                            </div>
+
+                            <!-- Trạng thái phòng -->
+                            <div class="mt-auto pt-3 border-top">
+                                @if (hopDong != null)
+                                {
+                                    <div class="status-badge-card has-room">
+                                        <i class="bi bi-house-check-fill"></i>
+                                        <span>Phòng @hopDong.MaPNavigation?.MaP</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="status-badge-card no-room">
+                                        <i class="bi bi-house-x-fill"></i>
+                                        <span>Chưa có phòng</span>
+                                    </div>
+                                }
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="d-flex gap-2 mt-3">
+                                <a asp-action="Details" asp-route-id="@sv.Msv"
+                                   class="btn btn-primary btn-action btn-sm flex-grow-1">
+                                    <i class="bi bi-eye"></i> Chi tiết
+                                </a>
+                                @if (hopDong == null)
+                                {
+                                    <a asp-action="CapPhong" asp-route-id="@sv.Msv"
+                                       class="btn btn-success btn-action btn-sm">
+                                        <i class="bi bi-door-open"></i>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-action="ChuyenPhong" asp-route-id="@sv.Msv"
+                                       class="btn btn-warning btn-action btn-sm">
+                                        <i class="bi bi-arrow-left-right"></i>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="text-center py-5">
+            <i class="bi bi-inbox" style="font-size: 64px; color: #6c757d; opacity: 0.3;"></i>
+            <p class="mt-3 text-muted fw-semibold">Không tìm thấy sinh viên nào</p>
+            @if (!string.IsNullOrEmpty(ViewBag.SearchTerm) || !string.IsNullOrEmpty(ViewBag.PhongFilter))
+            {
+                <a href="@Url.Action("Index")" class="btn btn-outline-primary btn-sm mt-2">
+                    <i class="bi bi-arrow-counterclockwise me-1"></i>Xóa bộ lọc
+                </a>
+            }
+        </div>
+    }
+
+    <!-- Pagination -->
+    @if (totalPages > 1)
+    {
+        <div class="stat-card mt-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="small text-muted">
+                    <i class="bi bi-info-circle me-1"></i>
+                    Hiển thị <strong>@Model.Count()</strong> / <strong>@totalRecords</strong> sinh viên
+                </div>
+                <nav>
+                    <ul class="pagination pagination-sm mb-0">
+                        <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                            <a class="page-link" href="@GetPageUrl(currentPage - 1)">
+                                <i class="bi bi-chevron-left"></i>
+                            </a>
+                        </li>
+
+                        @for (int i = 1; i <= totalPages; i++)
+                        {
+                            if (i == 1 || i == totalPages || (i >= currentPage - 2 && i <= currentPage + 2))
+                            {
+                                <li class="page-item @(i == currentPage ? "active" : "")">
+                                    <a class="page-link" href="@GetPageUrl(i)">@i</a>
+                                </li>
+                            }
+                            else if (i == currentPage - 3 || i == currentPage + 3)
+                            {
+                                <li class="page-item disabled">
+                                    <span class="page-link">...</span>
+                                </li>
+                            }
+                        }
+
+                        <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+                            <a class="page-link" href="@GetPageUrl(currentPage + 1)">
+                                <i class="bi bi-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    }
+    else if (Model != null && Model.Any())
+    {
+        <div class="stat-card mt-4">
+            <div class="small text-muted">
+                <i class="bi bi-info-circle me-1"></i>
+                Hiển thị <strong>@Model.Count()</strong> sinh viên
+            </div>
+        </div>
+    }
+</div>
+
+@functions {
+    string GetPageUrl(int page)
+    {
+        var queryParams = new List<string> { $"page={page}" };
+
+        if (!string.IsNullOrEmpty(ViewBag.SearchTerm))
+            queryParams.Add($"searchTerm={ViewBag.SearchTerm}");
+        if (!string.IsNullOrEmpty(ViewBag.PhongFilter))
+            queryParams.Add($"phongFilter={ViewBag.PhongFilter}");
+        if (!string.IsNullOrEmpty(ViewBag.TrangThaiFilter))
+            queryParams.Add($"trangThaiFilter={ViewBag.TrangThaiFilter}");
+        if (!string.IsNullOrEmpty(ViewBag.KhoaFilter))
+            queryParams.Add($"khoaFilter={ViewBag.KhoaFilter}");
+
+        return "?" + string.Join("&", queryParams);
+    }
+}
+
+@section Scripts {
+    <script>
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toastContainer = document.getElementById('toastContainer');
+            const toastId = 'toast_' + Date.now();
+
+            const bgColor = type === 'success' ? 'bg-success' : 'bg-danger';
+            const icon = type === 'success' ? 'check-circle-fill' : 'exclamation-circle-fill';
+
+            const toastHtml = `
+                <div id="${toastId}" class="toast align-items-center text-white ${bgColor} border-0" role="alert">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            <i class="bi bi-${icon} me-2"></i>${message}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                    </div>
+                </div>
+            `;
+
+            toastContainer.insertAdjacentHTML('beforeend', toastHtml);
+            const toastElement = document.getElementById(toastId);
+            const toast = new bootstrap.Toast(toastElement, { delay: 5000 });
+            toast.show();
+
+            toastElement.addEventListener('hidden.bs.toast', () => {
+                toastElement.remove();
+            });
+        }
+
+        // Show TempData messages as toast
+        @if (TempData["Success"] != null)
+        {
+                <text>
+                showToast('@TempData["Success"]', 'success');
+                </text>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+                <text>
+                showToast('@TempData["Error"]', 'error');
+                </text>
+        }
+
+        // Auto submit form when select changes
+        document.querySelectorAll('select[name="phongFilter"], select[name="trangThaiFilter"], select[name="khoaFilter"]').forEach(select => {
+            select.addEventListener('change', function() {
+                this.form.submit();
+            });
+        });
+
+        // Smooth scrolling for pagination
+        document.querySelectorAll('.pagination a').forEach(link => {
+            link.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,175 @@
+﻿@model KTX.Models.PhongViewModel
+
+@{
+    ViewData["Title"] = $"Xóa phòng {Model.MaP}";
+    var hasActiveContract = ViewBag.HasActiveContract as bool? ?? false;
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-action="Index">Danh sách phòng</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Details" asp-route-id="@Model.MaP">Phòng @Model.MaP</a></li>
+                    <li class="breadcrumb-item active">Xóa phòng</li>
+                </ol>
+            </nav>
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle me-2"></i>@TempData["ErrorMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            <!-- Warning Card -->
+            <div class="card shadow-lg border-danger">
+                <div class="card-header bg-danger text-white py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="bi bi-exclamation-triangle me-2"></i>Xác nhận xóa phòng
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    @if (hasActiveContract)
+                    {
+                        <!-- Không thể xóa -->
+                        <div class="alert alert-danger" role="alert">
+                            <h5 class="alert-heading">
+                                <i class="bi bi-shield-exclamation me-2"></i>Không thể xóa phòng này!
+                            </h5>
+                            <hr>
+                            <p class="mb-0">
+                                Phòng này đang có sinh viên ở (có hợp đồng đang hiệu lực).
+                                Vui lòng chờ hết hợp đồng hoặc chuyển sinh viên sang phòng khác trước khi xóa.
+                            </p>
+                        </div>
+
+                        <div class="text-center py-4">
+                            <i class="bi bi-lock-fill text-danger" style="font-size: 5rem;"></i>
+                        </div>
+                    }
+                    else
+                    {
+                        <!-- Có thể xóa -->
+                        <div class="alert alert-warning" role="alert">
+                            <i class="bi bi-info-circle me-2"></i>
+                            Bạn có chắc chắn muốn xóa phòng này? Hành động này không thể hoàn tác!
+                        </div>
+                    }
+
+                    <!-- Thông tin phòng -->
+                    <div class="card bg-light mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger mb-3">
+                                <i class="bi bi-house-door me-2"></i>Thông tin phòng
+                            </h5>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="border-start border-danger border-3 ps-3">
+                                        <small class="text-muted">Mã phòng</small>
+                                        <p class="mb-0 fw-bold fs-4">Phòng @Model.MaP</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="border-start border-danger border-3 ps-3">
+                                        <small class="text-muted">Loại phòng</small>
+                                        <p class="mb-0 fw-semibold">@Model.LoaiPhong</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="border-start border-danger border-3 ps-3">
+                                        <small class="text-muted">Tình trạng</small>
+                                        <p class="mb-0">
+                                            @{
+                                                var badgeClass = Model.TinhTrang switch
+                                                {
+                                                    "Còn trống" => "bg-success",
+                                                    "Đầy" => "bg-danger",
+                                                    "Đang bảo trì" => "bg-warning text-dark",
+                                                    _ => "bg-secondary"
+                                                };
+                                            }
+                                            <span class="badge @badgeClass">@Model.TinhTrang</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="border-start border-danger border-3 ps-3">
+                                        <small class="text-muted">Giới tính</small>
+                                        <p class="mb-0">@Model.GioiTinh</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="border-start border-danger border-3 ps-3">
+                                        <small class="text-muted">Sức chứa</small>
+                                        <p class="mb-0">@Model.HienO / @Model.ToiDaO người</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="border-start border-danger border-3 ps-3">
+                                        <small class="text-muted">Giá phòng</small>
+                                        <p class="mb-0 text-success fw-bold">@Model.TienPhong.ToString("N0") VNĐ</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    @if (hasActiveContract)
+                    {
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <a asp-action="Details" asp-route-id="@Model.MaP" class="btn btn-primary btn-lg px-5">
+                                <i class="bi bi-arrow-left me-2"></i>Quay lại chi tiết
+                            </a>
+                            <a asp-action="Index" class="btn btn-outline-secondary btn-lg px-5">
+                                <i class="bi bi-house me-2"></i>Về danh sách phòng
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <form asp-action="Delete" method="post">
+                            <input type="hidden" asp-for="MaP" />
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                <a asp-action="Index" class="btn btn-outline-secondary btn-lg px-5">
+                                    <i class="bi bi-x-circle me-2"></i>Hủy
+                                </a>
+                                <button type="submit" class="btn btn-danger btn-lg px-5"
+                                        onclick="return confirm('Bạn có chắc chắn muốn xóa phòng @Model.MaP không?')">
+                                    <i class="bi bi-trash me-2"></i>Xác nhận xóa
+                                </button>
+                            </div>
+                        </form>
+                    }
+                </div>
+            </div>
+
+            <!-- Info -->
+            <div class="alert alert-info mt-4">
+                <h6 class="alert-heading">
+                    <i class="bi bi-info-circle me-2"></i>Lưu ý
+                </h6>
+                <ul class="mb-0 small">
+                    <li>Chỉ có thể xóa phòng khi không có sinh viên đang ở</li>
+                    <li>Các dữ liệu liên quan đến phòng (lịch sử hợp đồng, điện nước) sẽ bị ảnh hưởng</li>
+                    <li>Nên cân nhắc kỹ trước khi xóa phòng</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border: none;
+        border-radius: 15px;
+    }
+
+    .border-danger {
+        border-width: 3px !important;
+    }
+</style>

@@ -30,6 +30,56 @@
     display: inline-block;
     margin-right: 1rem;
 }
+/* Style cho phần thông tin chia tiền */
+.invoice-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+    .invoice-detail:last-child {
+        border-bottom: none;
+    }
+
+    .invoice-detail small.text-muted {
+        display: block;
+        font-size: 0.85rem;
+    }
+
+    .invoice-detail div {
+        text-align: right;
+    }
+
+    /* Highlight cho phần phải trả */
+    .invoice-detail.highlight-payment {
+        background-color: #fff3cd;
+        margin: 0 -15px;
+        padding: 15px !important;
+        border-radius: 8px;
+        font-size: 1.1rem;
+    }
+
+/* Alert info custom */
+.alert-info.py-2 {
+    background-color: #e7f3ff;
+    border-color: #b3d9ff;
+    color: #004085;
+}
+
+/* Icon colors */
+.bi-lightning-fill.text-warning {
+    color: #ffc107 !important;
+}
+
+.bi-droplet-fill.text-info {
+    color: #17a2b8 !important;
+}
+
+.bi-people.text-info {
+    color: #17a2b8 !important;
+}
 
 /* ===== ENHANCED BUTTON STYLES ===== */
 .enhanced-btn {
