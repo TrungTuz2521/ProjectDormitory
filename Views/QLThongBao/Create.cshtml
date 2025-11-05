@@ -1,58 +1,183 @@
 ﻿@using KTX.Models.ViewModels
 @model QLThongBaoViewModel
-
 @{
     ViewData["Title"] = "Tạo Thông báo mới";
     Layout = "~/Views/Shared/Layoutadmin.cshtml";
 }
 
-<h2>Tạo thông báo mới</h2>
+<div class="notification-page container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h3 class="mb-0 page-title text-primary fw-bold">Tạo thông báo mới</h3>
+        <a asp-action="Index" class="btn btn-outline-secondary btn-back shadow-sm">
+            Quay lại
+        </a>
+    </div>
 
-<form asp-action="Create" method="post">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body">
-                    <div class="form-group mb-3">
-                        <label>Gửi đến</label>
-                        <select asp-for="MSV" class="form-control">
-                            <option value="">Tất cả sinh viên</option>
-                            <option value="" disabled>────────────────</option>
-                            @foreach (var sv in Model.DanhSachSinhVien)
-                            {
-                                <option value="@sv.MSV">@sv.HoTen (@sv.MSV)</option>
-                            }
-                        </select>
+    <form asp-action="Create" method="post">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm" style="border-radius: 16px;">
+                    <div class="card-body p-4">
+
+                        <!-- GỬI ĐẾN - TÌM KIẾM + GỢI Ý -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold text-dark">Gửi đến</label>
+                            <div class="position-relative">
+                                <input type="text"
+                                       class="form-control form-control-lg"
+                                       placeholder="Tất cả sinh viên hoặc nhập MSV / Tên..."
+                                       autocomplete="off"
+                                       id="searchStudent"
+                                       value="@(Model.MSV == "0" || string.IsNullOrEmpty(Model.MSV) ? "" : Model.MSV)" />
+                                <input type="hidden" asp-for="MSV" id="MSV" />
+
+                                <!-- Danh sách gợi ý -->
+                                <div class="dropdown-menu w-100 shadow-lg" id="suggestionList" style="max-height: 300px; overflow-y: auto; display: none; border-radius: 12px; margin-top: 0.5rem;">
+                                    <a class="dropdown-item py-2 px-3 text-primary fw-semibold" href="#" data-value="">
+                                        Tất cả sinh viên
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    @foreach (var sv in Model.DanhSachSinhVien)
+                                    {
+                                        <a class="dropdown-item py-2 px-3 suggestion-item"
+                                           href="#"
+                                           data-value="@sv.MSV"
+                                           data-name="@sv.HoTen (@sv.MSV)">
+                                            <strong>@sv.HoTen</strong><br>
+                                            <small class="text-muted">MSV: @sv.MSV</small>
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                            <small class="text-muted d-block mt-1">
+                                Nhập để tìm theo tên hoặc MSV
+                            </small>
+                        </div>
+
+                        <!-- TIÊU ĐỀ -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold text-dark">Tiêu đề</label>
+                            <input asp-for="TieuDe" class="form-control form-control-lg" placeholder="Nhập tiêu đề thông báo..." />
+                            <span asp-validation-for="TieuDe" class="text-danger small"></span>
+                        </div>
+
+                        <!-- NỘI DUNG -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold text-dark">Nội dung</label>
+                            <textarea asp-for="NoiDung" class="form-control" rows="6" placeholder="Nhập nội dung thông báo..."></textarea>
+                            <span asp-validation-for="NoiDung" class="text-danger small"></span>
+                        </div>
+
+                        <!-- NÚT -->
+                        <div class="d-flex gap-3">
+                            <button type="submit" class="btn btn-success btn-lg px-5 shadow-sm">
+                                Gửi thông báo
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary btn-lg px-5">
+                                Hủy
+                            </a>
+                        </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="form-group mb-3">
-                        <label>Tiêu đề</label>
-                        <input asp-for="TieuDe" class="form-control" />
-                        <span asp-validation-for="TieuDe" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label>Nội dung</label>
-                        <textarea asp-for="NoiDung" class="form-control" rows="5"></textarea>
-                        <span asp-validation-for="NoiDung" class="text-danger"></span>
-                    </div>
-
-                    <button type="submit" class="btn btn-success">Gửi thông báo</button>
-                    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+            <!-- HƯỚNG DẪN -->
+            <div class="col-lg-4">
+                <div class="alert alert-info border-0 shadow-sm" style="border-radius: 16px;">
+                    <h6 class="alert-heading fw-bold">Hướng dẫn</h6>
+                    <hr class="my-2">
+                    <ul class="mb-0 small">
+                        <li>Để trống hoặc chọn <strong>"Tất cả sinh viên"</strong> → gửi chung.</li>
+                        <li>Nhập <strong>tên hoặc MSV</strong> → gợi ý tự động.</li>
+                        <li>Chọn 1 sinh viên → gửi riêng.</li>
+                    </ul>
                 </div>
             </div>
         </div>
+    </form>
+</div>
 
-        <div class="col-md-4">
-            <div class="alert alert-info">
-                <strong>Lưu ý:</strong><br />
-                - Chọn "<strong>Tất cả sinh viên</strong>" để gửi thông báo chung.<br />
-                - Chọn sinh viên cụ thể để gửi riêng.
-            </div>
-        </div>
-    </div>
-</form>
+@section Styles {
+    <link  href="~/css/CreateThongBao.css" rel="stylesheet"/>
+}
 
 @section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('searchStudent');
+            const hiddenInput = document.getElementById('MSV');
+            const dropdown = document.getElementById('suggestionList');
+            const items = dropdown.querySelectorAll('.suggestion-item');
+
+            // Hiển thị/ẩn dropdown
+            searchInput.addEventListener('focus', () => {
+                dropdown.style.display = 'block';
+                filterSuggestions('');
+            });
+
+            searchInput.addEventListener('input', () => {
+                const query = searchInput.value.toLowerCase().trim();
+                filterSuggestions(query);
+            });
+
+            // Click ngoài để ẩn
+            document.addEventListener('click', (e) => {
+                if (!searchInput.contains(e.target) && !dropdown.contains(e.target)) {
+                    dropdown.style.display = 'none';
+                }
+            });
+
+            // Chọn gợi ý
+            dropdown.addEventListener('click', (e) => {
+                if (e.target.closest('a')) {
+                    e.preventDefault();
+                    const link = e.target.closest('a');
+                    const value = link.getAttribute('data-value');
+                    const name = link.getAttribute('data-name') || 'Tất cả sinh viên';
+
+                    searchInput.value = name;
+                    hiddenInput.value = value || '';
+                    dropdown.style.display = 'none';
+
+                    // Đánh dấu active
+                    dropdown.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            });
+
+            // Lọc gợi ý
+            function filterSuggestions(query) {
+                let hasMatch = false;
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    const msv = item.getAttribute('data-value');
+                    if (query === '' || text.includes(query) || msv.includes(query)) {
+                        item.style.display = 'block';
+                        hasMatch = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Luôn hiển thị "Tất cả"
+                dropdown.querySelector('a[data-value=""]').style.display = 'block';
+
+                dropdown.style.display = hasMatch || query === '' ? 'block' : 'none';
+            }
+
+            // Khôi phục giá trị khi lỗi validate
+            @if (!ViewData.ModelState.IsValid && !string.IsNullOrEmpty(Model.MSV))
+            {
+                    <text>
+                    const selected = document.querySelector(`a[data-value="@Model.MSV"]`);
+                    if (selected) {
+                        searchInput.value = selected.getAttribute('data-name');
+                        hiddenInput.value = "@Model.MSV";
+                        selected.classList.add('active');
+                    }
+                    </text>
+            }
+        });
+    </script>
     <partial name="_ValidationScriptsPartial" />
 }

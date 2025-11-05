@@ -1,0 +1,266 @@
+﻿@model KTX.Models.ThongKeTaiChinhViewModel
+@{
+    ViewData["Title"] = "Thống Kê Tài Chính";
+    Layout = "~/Views/Shared/Layoutadmin.cshtml";
+}
+
+@section Styles{
+    <link href="~/css/QuanLyTaiChinh.css" rel="stylesheet"/>
+}
+<div class="main-content finance-page">
+<div class="container-fluid py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="fw-bold text-primary">
+                    <i class="fas fa-chart-line me-2"></i>Thống Kê Tài Chính
+                </h2>
+                <a href="@Url.Action("Index")" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Quay lại
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tổng quan -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 bg-gradient" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <div class="card-body text-white">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="text-white-50 mb-2">TỔNG DOANH THU</h6>
+                            <h2 class="fw-bold mb-0">@Model.TongDoanhThu.ToString("N0") VNĐ</h2>
+                        </div>
+                        <div class="display-4">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 bg-gradient" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                <div class="card-body text-white">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="text-white-50 mb-2">TỔNG CÔNG NỢ</h6>
+                            <h2 class="fw-bold mb-0">@Model.TongCongNo.ToString("N0") VNĐ</h2>
+                        </div>
+                        <div class="display-4">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tiền Phòng -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-home me-2"></i>Tiền Phòng</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card bg-success text-white mb-3">
+                                <div class="card-body">
+                                    <h6 class="text-white-50">Đã thu</h6>
+                                    <h4 class="fw-bold">@Model.TongTienPhongDaThu.ToString("N0")</h4>
+                                    <small>VNĐ</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-warning text-dark mb-3">
+                                <div class="card-body">
+                                    <h6>Chưa thu</h6>
+                                    <h4 class="fw-bold">@Model.TongTienPhongChuaThu.ToString("N0")</h4>
+                                    <small>VNĐ</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-info text-white mb-3">
+                                <div class="card-body">
+                                    <h6 class="text-white-50">Tổng cộng</h6>
+                                    <h4 class="fw-bold">@((Model.TongTienPhongDaThu + Model.TongTienPhongChuaThu).ToString("N0"))</h4>
+                                    <small>VNĐ</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-danger text-white mb-3">
+                                <div class="card-body">
+                                    <h6 class="text-white-50">HĐ chưa thu</h6>
+                                    <h4 class="fw-bold">@Model.SoHoaDonPhongChuaThu</h4>
+                                    <small>Hóa đơn</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress" style="height: 25px;">
+                        @{
+                            var tongPhong = Model.TongTienPhongDaThu + Model.TongTienPhongChuaThu;
+                            var tiLePhongDaThu = tongPhong > 0 ? (Model.TongTienPhongDaThu / tongPhong * 100) : 0;
+                        }
+                        <div class="progress-bar bg-success" role="progressbar"
+                             style="width: @tiLePhongDaThu.ToString("F1")%"
+                             aria-valuenow="@tiLePhongDaThu" aria-valuemin="0" aria-valuemax="100">
+                            @tiLePhongDaThu.ToString("F1")% Đã thu
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tiền Điện Nước -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0"><i class="fas fa-bolt me-2"></i>Tiền Điện Nước</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card bg-success text-white mb-3">
+                                <div class="card-body">
+                                    <h6 class="text-white-50">Đã thu</h6>
+                                    <h4 class="fw-bold">@Model.TongTienDienNuocDaThu.ToString("N0")</h4>
+                                    <small>VNĐ</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-warning text-dark mb-3">
+                                <div class="card-body">
+                                    <h6>Chưa thu</h6>
+                                    <h4 class="fw-bold">@Model.TongTienDienNuocChuaThu.ToString("N0")</h4>
+                                    <small>VNĐ</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-info text-white mb-3">
+                                <div class="card-body">
+                                    <h6 class="text-white-50">Tổng cộng</h6>
+                                    <h4 class="fw-bold">@((Model.TongTienDienNuocDaThu + Model.TongTienDienNuocChuaThu).ToString("N0"))</h4>
+                                    <small>VNĐ</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-danger text-white mb-3">
+                                <div class="card-body">
+                                    <h6 class="text-white-50">HĐ chưa thu</h6>
+                                    <h4 class="fw-bold">@Model.SoHoaDonDienNuocChuaThu</h4>
+                                    <small>Hóa đơn</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress" style="height: 25px;">
+                        @{
+                            var tongDienNuoc = Model.TongTienDienNuocDaThu + Model.TongTienDienNuocChuaThu;
+                            var tiLeDienNuocDaThu = tongDienNuoc > 0 ? (Model.TongTienDienNuocDaThu / tongDienNuoc * 100) : 0;
+                        }
+                        <div class="progress-bar bg-success" role="progressbar"
+                             style="width: @tiLeDienNuocDaThu.ToString("F1")%"
+                             aria-valuenow="@tiLeDienNuocDaThu" aria-valuemin="0" aria-valuemax="100">
+                            @tiLeDienNuocDaThu.ToString("F1")% Đã thu
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Biểu đồ so sánh -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h6 class="mb-0"><i class="fas fa-chart-pie me-2"></i>Biểu Đồ Tổng Quan</h6>
+                </div>
+                <div class="card-body">
+                    <canvas id="chartThuChi" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h6 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Biểu Đồ Tỉ Lệ</h6>
+                </div>
+                <div class="card-body">
+                    <canvas id="chartTiLe" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Biểu đồ Thu Chi
+        const ctxThuChi = document.getElementById('chartThuChi').getContext('2d');
+        new Chart(ctxThuChi, {
+            type: 'pie',
+            data: {
+                labels: ['Đã thu', 'Chưa thu'],
+                datasets: [{
+                    data: [@Model.TongDoanhThu, @Model.TongCongNo],
+                    backgroundColor: ['#28a745', '#ffc107']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // Biểu đồ Tỷ lệ
+        const ctxTiLe = document.getElementById('chartTiLe').getContext('2d');
+        new Chart(ctxTiLe, {
+            type: 'bar',
+            data: {
+                labels: ['Tiền Phòng', 'Điện Nước'],
+                datasets: [{
+                    label: 'Đã thu',
+                    data: [@Model.TongTienPhongDaThu, @Model.TongTienDienNuocDaThu],
+                    backgroundColor: '#28a745'
+                }, {
+                    label: 'Chưa thu',
+                    data: [@Model.TongTienPhongChuaThu, @Model.TongTienDienNuocChuaThu],
+                    backgroundColor: '#ffc107'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    </script>
+}

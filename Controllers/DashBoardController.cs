@@ -67,7 +67,7 @@ namespace KTX.Controllers
 
             // Yêu cầu mới nhất
             vm.YeuCauMoiNhat = await _context.YeuCaus
-                .Where(y => y.TrangThaiYc == "Đang xử lý")
+                .Where(y => y.TrangThaiYc == "Đang xử lý" || y.TrangThaiYc == "Chờ xử lý"|| y.TrangThaiYc == "Đã xử lý")
                 .OrderByDescending(y => y.NgayGuiYc)
                 .Take(5)
                 .Select(y => new YeuCauViewModel

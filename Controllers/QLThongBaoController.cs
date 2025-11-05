@@ -20,11 +20,12 @@ namespace KTX.Controllers
         public async Task<IActionResult> Index()
         {
             var thongBaos = await _context.ThongBaos
-                .Include(t => t.MsvNavigation)
-                .OrderByDescending(t => t.NgayTb)
-                .ThenByDescending(t => t.MaTb)
-                .ToListAsync();
+    .Include(t => t.MsvNavigation)
+    .OrderByDescending(t => t.NgayTb)
+    .ThenByDescending(t => t.MaTb)
+    .ToListAsync();
 
+            // XỬ LÝ VIEW MODEL
             var viewModel = new ThongBaoListViewModel
             {
                 ThongBaoChung = thongBaos
@@ -33,10 +34,11 @@ namespace KTX.Controllers
                     {
                         MaTB = t.MaTb,
                         MSV = 0,
-                        HoTen = "Tất cả sinh viên",
+                       
                         TieuDe = t.TieuDe ?? "",
                         NoiDung = t.NoiDung ?? "",
-                        NgayTB = t.NgayTb
+                        NgayTB = t.NgayTb,
+                        
                     })
                     .ToList(),
 
@@ -49,7 +51,8 @@ namespace KTX.Controllers
                         HoTen = t.MsvNavigation?.HoTen ?? "Không xác định",
                         TieuDe = t.TieuDe ?? "",
                         NoiDung = t.NoiDung ?? "",
-                        NgayTB = t.NgayTb
+                        NgayTB = t.NgayTb,
+                        
                     })
                     .ToList()
             };
@@ -76,80 +79,100 @@ namespace KTX.Controllers
             return View(model);
         }
 
-        // POST: Tạo
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(QLThongBaoViewModel model)
         {
+            Console.WriteLine($"[POST] MSV: '{model.MSV}' | Tiêu đề: '{model.TieuDe}'");
+
             if (!ModelState.IsValid)
             {
-                model.DanhSachSinhVien = await _context.SinhViens
-                    .Select(s => new SinhVienSelectViewModel
-                    {
-                        MSV = s.Msv,
-                        HoTen = s.HoTen,
-                        Email = s.Email
-                    })
-                    .ToListAsync();
+                await LoadSinhVienList(model);
                 return View(model);
             }
 
-            var ngayTB = DateOnly.FromDateTime(DateTime.Now);
-
-            if (string.IsNullOrWhiteSpace(model.MSV) || model.MSV == "0")
+            try
             {
-                // GỬI CHUNG
-                _context.ThongBaos.Add(new ThongBao
+                var tb = new ThongBao
                 {
-                    Msv = 0,
-                    TieuDe = model.TieuDe,
-                    NoiDung = model.NoiDung,
-                    NgayTb = ngayTB
-                });
-            }
-            else
-            {
-                if (int.TryParse(model.MSV, out int msv) && msv > 0)
+                    TieuDe = model.TieuDe?.Trim(),
+                    NoiDung = model.NoiDung?.Trim(),
+                    NgayTb = DateOnly.FromDateTime(DateTime.Now)
+                };
+                string msvInput = (model.MSV ?? "").Trim();
+                // XỬ LÝ MSV
+                if (string.IsNullOrWhiteSpace(msvInput) || msvInput == "0")
                 {
-                    _context.ThongBaos.Add(new ThongBao
+                    tb.Msv = 0;
+                    Console.WriteLine("[INFO] Gửi CHUNG - Msv = 0");
+                }
+                else if (int.TryParse(model.MSV.Trim(), out int msv) && msv > 0)
+                {
+                    var sv = await _context.SinhViens.AnyAsync(s => s.Msv == msv);
+                    if (!sv)
                     {
-                        Msv = msv,
-                        TieuDe = model.TieuDe,
-                        NoiDung = model.NoiDung,
-                        NgayTb = ngayTB
-                    });
+                        ModelState.AddModelError("MSV", "Sinh viên không tồn tại.");
+                        await LoadSinhVienList(model);
+                        return View(model);
+                    }
+                    tb.Msv = msv;
+                    Console.WriteLine($"[INFO] Gửi RIÊNG - Msv = {msv}");
                 }
                 else
                 {
-                    ModelState.AddModelError("MSV", "Mã sinh viên không hợp lệ.");
-                    model.DanhSachSinhVien = await _context.SinhViens
-                        .Select(s => new SinhVienSelectViewModel
-                        {
-                            MSV = s.Msv,
-                            HoTen = s.HoTen,
-                            Email = s.Email
-                        })
-                        .ToListAsync();
+                    ModelState.AddModelError("MSV", "MSV không hợp lệ.");
+                    await LoadSinhVienList(model);
+                    return View(model);
+                }
+                tb.MaTb = _context.ThongBaos.Any() ? _context.ThongBaos.Max(tb => tb.MaTb) + 1 : 1;
+                _context.ThongBaos.Add(tb);
+                int result = await _context.SaveChangesAsync();
+
+                Console.WriteLine($"[DB] Đã lưu: {result} bản ghi");
+
+                if (result > 0)
+                {
+                    TempData["Success"] = "Gửi thông báo thành công!";
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    TempData["Error"] = "Lưu thất bại!";
                     return View(model);
                 }
             }
-
-            await _context.SaveChangesAsync();
-            TempData["Success"] = "Gửi thông báo thành công!";
-            return RedirectToAction(nameof(Index));
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[LỖI] {ex.Message}");
+                TempData["Error"] = "Lỗi hệ thống!";
+                await LoadSinhVienList(model);
+                return View(model);
+            }
+        }
+        private async Task LoadSinhVienList(QLThongBaoViewModel model)
+        {
+            model.DanhSachSinhVien = await _context.SinhViens
+                .Select(s => new SinhVienSelectViewModel
+                {
+                    MSV = s.Msv,
+                    HoTen = s.HoTen,
+                    Email = s.Email
+                })
+                .OrderBy(s => s.HoTen)
+                .ToListAsync();
         }
 
-        // POST: Xóa
         [HttpPost]
+        [ValidateAntiForgeryToken]  // nên giữ để bảo mật
         public async Task<IActionResult> Delete(int id)
         {
             var tb = await _context.ThongBaos.FindAsync(id);
             if (tb == null)
-                return Json(new { success = false, message = "Không tìm thấy." });
+                return RedirectToAction(nameof(Index)); // hoặc thông báo lỗi
 
             _context.ThongBaos.Remove(tb);
             await _context.SaveChangesAsync();
-            return Json(new { success = true });
+            return RedirectToAction(nameof(Index));
         }
     }
 }

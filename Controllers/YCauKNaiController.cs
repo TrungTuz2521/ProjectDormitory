@@ -27,7 +27,7 @@ namespace KTX.Controllers
                     SinhVien = y.MsvNavigation,
                     // CHỈ LẤY MaP – NHANH & AN TOÀN
                     MaP = _context.HopDongPhongs
-                        .Where(h => h.Msv == y.Msv && h.TrangThaiHd == "Đăng Kí Thành Công")
+                        .Where(h => h.Msv == y.Msv && h.TrangThaiHd == "Đăng Kí Thành Công" || h.TrangThaiHd == "Đã thanh toán")
                         .OrderByDescending(h => h.NgayBatDau)
                         .Select(h => h.MaP)
                         .FirstOrDefault()

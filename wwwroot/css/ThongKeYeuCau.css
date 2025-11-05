@@ -1,0 +1,116 @@
+﻿
+    /* === SCOPED STYLES - Chỉ áp dụng trong .request-page === */
+    .request-page {
+        --primary-blue: #007bff;
+        --primary-blue-dark: #0056b3;
+        --light-blue: #e7f1ff;
+        --blue-gradient: linear-gradient(135deg, #007bff, #0056b3);
+        --border-radius: 16px;
+        --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+        --shadow-hover: 0 12px 25px rgba(0, 123, 255, 0.18);
+    }
+    /* === CARD STATS === */
+    .request-page .card-stats {
+        border-radius: var(--border-radius);
+        transition: all 0.25s ease;
+        overflow: hidden;
+        height: 100%;
+        box-shadow: var(--shadow-sm);
+        border: none;
+    }
+
+        .request-page .card-stats:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .request-page .card-stats .card-body {
+            padding: 2rem 1.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .request-page .card-stats h2 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin: 0 0 0.5rem 0;
+            line-height: 1;
+        }
+
+        .request-page .card-stats p {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    /* Card Tổng */
+    .request-page .card-total {
+        background: var(--blue-gradient);
+        color: white;
+    }
+    /* Card Chờ xử lý */
+    .request-page .card-pending {
+        background: linear-gradient(135deg, #fff8e1, #fff3cd);
+        border-left: 6px solid #ffc107;
+    }
+
+        .request-page .card-pending h2 {
+            color: #d39e00;
+        }
+    /* Card Đang xử lý */
+    .request-page .card-processing {
+        background: linear-gradient(135deg, #f0f8ff, #e7f1ff);
+        border-left: 6px solid var(--primary-blue);
+    }
+
+        .request-page .card-processing h2 {
+            color: var(--primary-blue-dark);
+        }
+    /* Card Đã xử lý */
+    .request-page .card-completed {
+        background: linear-gradient(135deg, #e6f4ea, #d4edda);
+        border-left: 6px solid #28a745;
+    }
+
+        .request-page .card-completed h2 {
+            color: #1e7e34;
+        }
+    /* === LAYOUT === */
+    .request-page .page-title {
+        font-weight: 800;
+        font-size: 1.75rem;
+        color: #2d3748;
+        margin: 0;
+    }
+
+    .request-page .btn-back {
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 0.5rem 1.2rem;
+        border-radius: 50px;
+        transition: all 0.2s;
+    }
+
+        .request-page .btn-back:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+        .request-page .card-stats .card-body {
+            padding: 1.5rem 1rem;
+        }
+
+        .request-page .card-stats h2 {
+            font-size: 2.2rem;
+        }
+
+        .request-page .page-title {
+            font-size: 1.5rem;
+        }
+    }
+

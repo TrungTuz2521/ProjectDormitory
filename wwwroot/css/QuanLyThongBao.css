@@ -1,0 +1,104 @@
+﻿
+/* === SCOPED STYLES - Chỉ áp dụng trong .notification-page === */
+.notification-page {
+    --primary-blue: #007bff;
+    --primary-blue-dark: #0056b3;
+    --border-radius: 16px;
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 12px 25px rgba(0, 123, 255, 0.18);
+}
+
+.notification-page .page-title {
+    font-weight: 800;
+    font-size: 1.75rem;
+    color: #2d3748;
+}
+
+.notification-page .btn-create {
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.55rem 1.3rem;
+    border-radius: 50px;
+    box-shadow: 0 3px 8px rgba(0, 123, 255, 0.2);
+    transition: all 0.2s;
+}
+
+    .notification-page .btn-create:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+    }
+
+.notification-page .notification-card {
+    border: none;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.25s ease;
+    margin-bottom: 1.75rem;
+}
+
+    .notification-page .notification-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-hover);
+    }
+
+.notification-page .card-header {
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+    border-bottom: none;
+}
+
+.notification-page .card-common .card-header {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+}
+
+.notification-page .card-personal .card-header {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    color: white;
+}
+
+.notification-page .table thead th {
+    background-color: #f8fafc;
+    color: #495057;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-bottom: 2px solid #e2e8f0;
+    padding: 1rem 0.75rem;
+}
+
+.notification-page .table tbody td {
+    padding: 1rem 0.75rem;
+    font-size: 0.92rem;
+    vertical-align: middle;
+}
+
+.notification-page .btn-delete {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px;
+    transition: all 0.2s;
+}
+
+    .notification-page .btn-delete:hover {
+        background-color: #dc3545;
+        color: white;
+        transform: translateY(-1px);
+    }
+
+@media (max-width: 768px) {
+    .notification-page .page-title {
+        font-size: 1.5rem;
+    }
+
+    .notification-page .table thead th,
+    .notification-page .table tbody td {
+        font-size: 0.85rem;
+        padding: 0.75rem 0.5rem;
+    }
+}
+
+

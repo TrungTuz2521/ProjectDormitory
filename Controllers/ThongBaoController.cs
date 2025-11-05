@@ -33,7 +33,7 @@ public class ThongBaoController(SinhVienKtxContext context) : Controller
         // 3. Truy vấn Thông báo chung (General Announcements)
         // Giả định: Thông báo chung có trường MSV là NULL
         var generalAnnouncements = await _context.ThongBaos
-            .Where(tb => tb.Msv == null)
+            .Where(tb => tb.Msv == 0)
             .OrderByDescending(tb => tb.NgayTb) // Sắp xếp theo ngày mới nhất
             .Select(tb => new RulesAnnouncementsViewModel.ThongBaoItem
             {

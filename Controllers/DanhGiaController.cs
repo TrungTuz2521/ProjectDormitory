@@ -83,7 +83,7 @@ namespace KTX.Controllers
                 LoaiYc = loaiYc,
                 NoiDungYc = noiDungYc,
                 NgayGuiYc = DateOnly.FromDateTime(DateTime.Now),
-                TrangThaiYc = "Đang xử lý",
+                TrangThaiYc = "Chờ xử lý",
                 
             };
             yc.MaYc = _context.YeuCaus.Any() ? _context.YeuCaus.Max(y => y.MaYc) + 1 : 1;
