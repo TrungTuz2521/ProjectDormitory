@@ -56,7 +56,7 @@ public class ThongTinController(SinhVienKtxContext context) : Controller
 
         // 3. Lấy hợp đồng đang Active
         var hopDongActive = sinhVien.HopDongPhongs?
-            .Where(hd => hd.TrangThaiHd == "Đăng Kí Thành Công" &&
+            .Where(hd => (hd.TrangThaiHd == "Đăng Kí Thành Công" || hd.TrangThaiHd == "Đã thanh toán") &&
                          hd.NgayKetThuc.HasValue &&
                          today <= hd.NgayKetThuc.Value)
             .OrderByDescending(hd => hd.NgayBatDau)
