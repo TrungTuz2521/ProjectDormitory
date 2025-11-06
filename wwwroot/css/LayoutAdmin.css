@@ -25,7 +25,8 @@
         height: 60px;
         width: 60px;
         border-radius: 50%;
-        border: 2px solid #ffffff55;
+        border: 6px solid #052c65;
+        box-shadow: 0 0 8px rgba(0, 86, 255, 0.4);
         object-fit: cover;
     }
 
@@ -62,7 +63,7 @@
         font-size: 1.8rem;
     }
 
-.user-info .user-name {
+.user-info .admin-name {
     font-size: 1.5rem;
     font-weight: 700;
     line-height: 1.1;

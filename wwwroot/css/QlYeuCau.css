@@ -19,6 +19,7 @@
     box-shadow: var(--shadow-sm);
     border: none;
 }
+white-space:normal
 
     .request-page .card-stats:hover {
         transform: translateY(-6px);
