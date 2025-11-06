@@ -9,7 +9,7 @@ using System.Security.Claims;
 
 namespace KTX.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "SinhVien")]
     public class HomeController : Controller
     {
         private readonly SinhVienKtxContext _context;

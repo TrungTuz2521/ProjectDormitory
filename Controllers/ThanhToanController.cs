@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KTX.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "SinhVien")]
     public class ThanhToanController : Controller
     {
         private readonly SinhVienKtxContext _context;

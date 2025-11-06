@@ -87,7 +87,8 @@ namespace KTX.Controllers
                     {
                         new Claim(ClaimTypes.NameIdentifier, user.Msv.ToString()),
                         new Claim(ClaimTypes.Name, user.TenDn),
-                        new Claim("HoTen", user.HoTen ?? "")
+                        new Claim("HoTen", user.HoTen ?? ""),
+                        new Claim(ClaimTypes.Role, "SinhVien")
                     };
 
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using KTX.Entities;
 using KTX.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace KTX.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TaiChinhController : Controller
     {
         private readonly SinhVienKtxContext _context;

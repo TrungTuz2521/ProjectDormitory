@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KTX.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class QuanLySinhVienController : Controller
     {
         private readonly SinhVienKtxContext _context;

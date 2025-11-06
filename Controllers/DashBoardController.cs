@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KTX.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class DashBoardController : Controller
     {
         private readonly SinhVienKtxContext _context;
