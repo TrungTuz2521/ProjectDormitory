@@ -1,25 +1,29 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Web\\KTX\\",
+  "WorkspaceRootPath": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\qlthongbao\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\views\\qlthongbao\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\qlthongbao\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\qlthongbao\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\views\\qlthongbao\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\qlthongbao\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\controllers\\qlthongbaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\controllers\\qlthongbaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\qlthongbaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\entities\\thongbao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\entities\\thongbao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:entities\\thongbao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\models\\viewmodels\\qlthongbaoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\l\u1EADp tr\u00ECnh web\\projectdormitory\\models\\viewmodels\\qlthongbaoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:models\\viewmodels\\qlthongbaoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -33,69 +37,90 @@
           "SelectedChildIndex": 3,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ThongBao.cs",
-              "DocumentMoniker": "D:\\Web\\KTX\\Entities\\ThongBao.cs",
-              "RelativeDocumentMoniker": "Entities\\ThongBao.cs",
-              "ToolTip": "D:\\Web\\KTX\\Entities\\ThongBao.cs",
-              "RelativeToolTip": "Entities\\ThongBao.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAswBMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T20:15:53.48Z",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\appsettings.json*",
+              "RelativeToolTip": "appsettings.json*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-05T06:24:22.518Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "ThongBao.cs",
+              "DocumentMoniker": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Entities\\ThongBao.cs",
+              "RelativeDocumentMoniker": "Entities\\ThongBao.cs",
+              "ToolTip": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Entities\\ThongBao.cs",
+              "RelativeToolTip": "Entities\\ThongBao.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAswBMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T20:15:53.48Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "QLThongBaoViewModel.cs",
-              "DocumentMoniker": "D:\\Web\\KTX\\Models\\ViewModels\\QLThongBaoViewModel.cs",
+              "DocumentMoniker": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Models\\ViewModels\\QLThongBaoViewModel.cs",
               "RelativeDocumentMoniker": "Models\\ViewModels\\QLThongBaoViewModel.cs",
-              "ToolTip": "D:\\Web\\KTX\\Models\\ViewModels\\QLThongBaoViewModel.cs",
+              "ToolTip": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Models\\ViewModels\\QLThongBaoViewModel.cs",
               "RelativeToolTip": "Models\\ViewModels\\QLThongBaoViewModel.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAAkwBIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T19:02:45.25Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-04T19:02:45.25Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Views\\QLThongBao\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\QLThongBao\\Create.cshtml",
+              "ToolTip": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Views\\QLThongBao\\Create.cshtml",
+              "RelativeToolTip": "Views\\QLThongBao\\Create.cshtml",
+              "ViewState": "AgIAAKIAAAAAAAAAAAAgwLYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-04T18:54:16.871Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\Web\\KTX\\Views\\QLThongBao\\Create.cshtml",
-              "RelativeDocumentMoniker": "Views\\QLThongBao\\Create.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\QLThongBao\\Create.cshtml",
-              "RelativeToolTip": "Views\\QLThongBao\\Create.cshtml",
-              "ViewState": "AgIAAKIAAAAAAAAAAAAgwLYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-04T18:54:16.871Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Web\\KTX\\Views\\QLThongBao\\Index.cshtml",
+              "DocumentMoniker": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Views\\QLThongBao\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\QLThongBao\\Index.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\QLThongBao\\Index.cshtml",
+              "ToolTip": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Views\\QLThongBao\\Index.cshtml",
               "RelativeToolTip": "Views\\QLThongBao\\Index.cshtml",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAUwFgAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAUwFkAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-04T18:26:10.038Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "QLThongBaoController.cs",
-              "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\QLThongBaoController.cs",
+              "DocumentMoniker": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Controllers\\QLThongBaoController.cs",
               "RelativeDocumentMoniker": "Controllers\\QLThongBaoController.cs",
-              "ToolTip": "D:\\Web\\KTX\\Controllers\\QLThongBaoController.cs",
+              "ToolTip": "D:\\L\u1EADp tr\u00ECnh web\\ProjectDormitory\\Controllers\\QLThongBaoController.cs",
               "RelativeToolTip": "Controllers\\QLThongBaoController.cs",
               "ViewState": "AgIAAJ4AAAAAAAAAAAAQwK8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T18:25:53.866Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-04T18:25:53.866Z"
             }
           ]
         }
