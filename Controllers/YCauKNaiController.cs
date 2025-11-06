@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KTX.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class YCauKNaiController : Controller
     {
         private readonly SinhVienKtxContext _context;

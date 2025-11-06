@@ -34,4 +34,6 @@ public partial class SinhVien
     public virtual ICollection<ThongBao> ThongBaos { get; set; } = new List<ThongBao>();
 
     public virtual ICollection<YeuCau> YeuCaus { get; set; } = new List<YeuCau>();
+
+    public virtual ICollection<ThongBao> MaTbs { get; set; } = new List<ThongBao>();
 }

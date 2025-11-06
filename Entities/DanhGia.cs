@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations; // cần namespace này
 
 namespace KTX.Entities;
 
 public partial class DanhGia
 {
-    [Key] // khai báo khóa chính
     public int MaDg { get; set; }
 
     public int MaYc { get; set; }

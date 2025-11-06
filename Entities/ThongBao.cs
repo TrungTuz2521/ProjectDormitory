@@ -16,4 +16,6 @@ public partial class ThongBao
     public DateOnly? NgayTb { get; set; }
 
     public virtual SinhVien MsvNavigation { get; set; } = null!;
+
+    public virtual ICollection<SinhVien> Msvs { get; set; } = new List<SinhVien>();
 }

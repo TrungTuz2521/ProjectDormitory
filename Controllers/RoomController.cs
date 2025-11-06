@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace KTX.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "SinhVien")]
     public class RoomController : Controller
     {
         private readonly SinhVienKtxContext _context;
@@ -36,7 +36,7 @@ namespace KTX.Controllers
             var hopDongActive = (await _context.HopDongPhongs
                 .Include(h => h.MaPNavigation)
                 .Where(h => h.Msv == maSinhVienInt
-                         && h.TrangThaiHd == "Đăng Kí Thành Công"
+                         && (h.TrangThaiHd == "Đăng Kí Thành Công" || h.TrangThaiHd == "Đã thanh toán")
                          && h.NgayKetThuc.HasValue)
                 .ToListAsync())
                 .FirstOrDefault(h => h.NgayKetThuc.Value.ToDateTime(TimeOnly.MinValue).Date >= today);
@@ -62,7 +62,7 @@ namespace KTX.Controllers
                 .AsNoTracking()
                 .Include(h => h.MsvNavigation)
                 .Where(h => h.MaP == phong.MaP
-                    && h.TrangThaiHd == "Đăng Kí Thành Công"
+                    && (h.TrangThaiHd == "Đăng Kí Thành Công" || h.TrangThaiHd == "Đã thanh toán")
                     && h.NgayKetThuc.HasValue
                     && h.Msv != maSinhVienInt)
                 .ToListAsync();
@@ -167,7 +167,7 @@ namespace KTX.Controllers
             var hopDongActive = (await _context.HopDongPhongs
                 .AsNoTracking()
                 .Where(h => h.Msv == maSinhVienInt
-                         && h.TrangThaiHd == "Đăng Kí Thành Công"
+                         && (h.TrangThaiHd == "Đăng Kí Thành Công" || h.TrangThaiHd == "Đã thanh toán")
                          && h.NgayKetThuc.HasValue)
                 .ToListAsync())
                 .FirstOrDefault(h => h.NgayKetThuc.Value.ToDateTime(TimeOnly.MinValue).Date >= today);

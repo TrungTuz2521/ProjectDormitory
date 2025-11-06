@@ -39,21 +39,19 @@ public partial class SinhVienKtxContext : DbContext
 
     public virtual DbSet<YeuCau> YeuCaus { get; set; }
 
-//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-//        => optionsBuilder.UseSqlServer("Data Source=THUYLINH\\SQLEXPRESS;Initial Catalog=SinhVienKTX;Integrated Security=True;Trust Server Certificate=True");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-U195TOE\\SQLEXPRESS;Database=SinhVienKTX;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.UseCollation("Vietnamese_CI_AS");
-
         modelBuilder.Entity<Admin>(entity =>
         {
-            entity.HasKey(e => e.MaAdmin).HasName("PK__Admin__49341E389F5B5DBB");
+            entity.HasKey(e => e.MaAdmin).HasName("PK__Admin__49341E38E2209019");
 
             entity.ToTable("Admin");
 
-            entity.HasIndex(e => e.TenDn, "UQ__Admin__4CF9655890EADAFA").IsUnique();
+            entity.HasIndex(e => e.TenDn, "UQ__Admin__4CF96558B5B0E7DB").IsUnique();
 
             entity.Property(e => e.MatKhau)
                 .HasMaxLength(255)
@@ -85,7 +83,7 @@ public partial class SinhVienKtxContext : DbContext
         modelBuilder.Entity<DanhGia>(entity =>
         {
             entity.HasKey(e => e.MaDg);
-            entity.ToTable("DanhGia");
+            entity.ToTable("DanhGia"); // ← BẮT BUỘC PHẢI CÓ
 
             entity.Property(e => e.MaDg)
                 .ValueGeneratedNever()
@@ -97,7 +95,7 @@ public partial class SinhVienKtxContext : DbContext
             entity.Property(e => e.NgayGuiDg).HasColumnName("NgayGuiDG");
             entity.Property(e => e.NoiDungDg).HasColumnName("NoiDungDG");
 
-            entity.HasOne(d => d.MaYcNavigation).WithMany(p =>p.DanhGia)
+            entity.HasOne(d => d.MaYcNavigation).WithMany(p => p.DanhGia)
                 .HasForeignKey(d => d.MaYc)
                 .HasConstraintName("FK_DanhGia_YeuCau");
         });
@@ -135,6 +133,10 @@ public partial class SinhVienKtxContext : DbContext
             entity.ToTable("Phong");
 
             entity.Property(e => e.MaP).ValueGeneratedNever();
+            entity.Property(e => e.GioiTinh).HasMaxLength(10);
+            entity.Property(e => e.LoaiPhong).HasMaxLength(10);
+            entity.Property(e => e.TienCoc).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.TienPhong).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.TinhTrang).HasMaxLength(50);
         });
 
@@ -209,6 +211,24 @@ public partial class SinhVienKtxContext : DbContext
             entity.HasOne(d => d.MsvNavigation).WithMany(p => p.ThongBaos)
                 .HasForeignKey(d => d.Msv)
                 .HasConstraintName("FK_ThongBao_SinhVien");
+
+            entity.HasMany(d => d.Msvs).WithMany(p => p.MaTbs)
+                .UsingEntity<Dictionary<string, object>>(
+                    "ThongBaoSinhVien",
+                    r => r.HasOne<SinhVien>().WithMany()
+                        .HasForeignKey("Msv")
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("FK_ThongBao_SinhVien_SinhVien"),
+                    l => l.HasOne<ThongBao>().WithMany()
+                        .HasForeignKey("MaTb")
+                        .HasConstraintName("FK_ThongBao_SinhVien_ThongBao"),
+                    j =>
+                    {
+                        j.HasKey("MaTb", "Msv");
+                        j.ToTable("ThongBao_SinhVien");
+                        j.IndexerProperty<int>("MaTb").HasColumnName("MaTB");
+                        j.IndexerProperty<int>("Msv").HasColumnName("MSV");
+                    });
         });
 
         modelBuilder.Entity<TienDienNuoc>(entity =>
