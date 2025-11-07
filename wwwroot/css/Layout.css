@@ -31,7 +31,8 @@ body {
         height: 60px;
         width: 60px;
         border-radius: 50%;
-        border: 2px solid #ffffff55;
+        border: 6px solid #052c65;
+        box-shadow: 0 0 8px rgba(0, 86, 255, 0.4);
         object-fit: cover;
     }
 

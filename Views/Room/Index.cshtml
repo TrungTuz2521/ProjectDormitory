@@ -545,7 +545,7 @@
                                                 }
                                                 else
                                                 {
-                                                    <span class="badge bg-secondary px-3 py-2">
+                                                    <span class="badge bg-primary px-3 py-2">
                                                         <i class="bi bi-question-circle me-1"></i>@yc.LoaiYc
                                                     </span>
                                                 }
@@ -578,7 +578,7 @@
                                                         <i class="bi bi-hourglass-split me-1"></i>Đang xử lý
                                                     </span>
                                                 }
-                                                else if (yc.TrangThaiYc == "Đã duyệt" || yc.TrangThaiYc == "Hoàn thành")
+                                                else if (yc.TrangThaiYc == "Đã xử lý")
                                                 {
                                                     <span class="badge bg-success px-3 py-2">
                                                         <i class="bi bi-check-circle me-1"></i>@yc.TrangThaiYc
@@ -618,7 +618,15 @@
 
                         @* Thống kê nhanh *@
                         <div class="row g-3 mt-3 pt-3 border-top">
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-sm-6">
+                                <div class="text-center p-3 rounded" style="background: rgba(108, 117, 125, 0.1);">
+                                    <div class="h4 mb-1 fw-bold" style="color: #6c757d;">
+                                        @Model.DanhSachYeuCau.Count(y => y.TrangThaiYc == "Chờ xử lý")
+                                    </div>
+                                    <div class="small text-muted">Chờ xử lý</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
                                 <div class="text-center p-3 rounded" style="background: rgba(255, 193, 7, 0.1);">
                                     <div class="h4 mb-1 fw-bold" style="color: #ffc107;">
                                         @Model.DanhSachYeuCau.Count(y => y.TrangThaiYc == "Đang xử lý")
@@ -626,23 +634,16 @@
                                     <div class="small text-muted">Đang xử lý</div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-sm-6">
                                 <div class="text-center p-3 rounded" style="background: rgba(40, 167, 69, 0.1);">
                                     <div class="h4 mb-1 fw-bold" style="color: #28a745;">
-                                        @Model.DanhSachYeuCau.Count(y =>y.TrangThaiYc == "Hoàn Thành")
+                                        @Model.DanhSachYeuCau.Count(y => y.TrangThaiYc == "Đã xử lý")
                                     </div>
-                                    <div class="small text-muted">Hoàn Thành </div>
+                                    <div class="small text-muted">Hoàn thành</div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="text-center p-3 rounded" style="background: rgba(220, 53, 69, 0.1);">
-                                    <div class="h4 mb-1 fw-bold" style="color: #dc3545;">
-                                        @Model.DanhSachYeuCau.Count(y => y.TrangThaiYc == "Từ chối")
-                                    </div>
-                                    <div class="small text-muted">Từ chối</div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
+                            
+                            <div class="col-md-3 col-sm-6">
                                 <div class="text-center p-3 rounded" style="background: rgba(102, 126, 234, 0.1);">
                                     <div class="h4 mb-1 fw-bold" style="color: #667eea;">
                                         @Model.DanhSachYeuCau.Count()
