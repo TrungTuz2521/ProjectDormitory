@@ -223,9 +223,7 @@ namespace KTX.Controllers
         {
             var viewModel = new NhapDienNuocViewModel
             {
-                DotTtdn = _context.TienDienNuocs.Any()
-                    ? _context.TienDienNuocs.Max(t => t.DotTtdn ?? 0) + 1
-                    : 1
+                
             };
 
             ViewBag.Phongs = _context.Phongs
@@ -237,7 +235,7 @@ namespace KTX.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult NhapDienNuoc(NhapDienNuocViewModel model)
+        public async Task<IActionResult> NhapDienNuocAsync(NhapDienNuocViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -266,6 +264,10 @@ namespace KTX.Controllers
                 TrangThaiTtdn = "Chưa thanh toán",
                 Httdn = DateOnly.FromDateTime(DateTime.Now)
             };
+
+            dienNuoc.MaHddn = await _context.TienDienNuocs.AnyAsync()
+                    ? await _context.TienDienNuocs.MaxAsync(dienNuoc => dienNuoc.MaHddn) + 1
+                    : 1;
 
             _context.TienDienNuocs.Add(dienNuoc);
             _context.SaveChanges();

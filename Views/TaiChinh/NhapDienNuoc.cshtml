@@ -1,6 +1,7 @@
 ﻿@model KTX.Models.NhapDienNuocViewModel
 @{
     ViewData["Title"] = "Nhập chỉ số điện nước";
+    Layout = "~/Views/Shared/Layoutadmin.cshtml";
 }
 @section Styles {
     <style>
@@ -74,7 +75,7 @@
 
                 <div class="mb-4">
                     <label class="form-label fw-bold">Đợt thanh toán</label>
-                    <input asp-for="DotTtdn" class="form-control bg-light" readonly />
+                    <input asp-for="DotTtdn" class="form-control bg-light"  />
                 </div>
 
                 <div class="d-flex justify-content-end gap-2">

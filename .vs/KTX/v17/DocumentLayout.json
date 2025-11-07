@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "D:\\Web\\KTX\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\taichinh\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\taichinh\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\controllers\\taichinhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\taichinhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\controllers\\qlthongbaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\qlthongbaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\taichinh\\nhapdiennuoc.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\taichinh\\nhapdiennuoc.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\taichinh\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\taichinh\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -33,10 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\qlthongbao\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\qlthongbao\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\controllers\\qlthongbaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\qlthongbaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\qlthongbao\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -190,7 +194,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -206,7 +210,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "TaiChinhController.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\TaiChinhController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TaiChinhController.cs",
+              "ToolTip": "D:\\Web\\KTX\\Controllers\\TaiChinhController.cs*",
+              "RelativeToolTip": "Controllers\\TaiChinhController.cs*",
+              "ViewState": "AgIAANkAAAAAAAAAAAAYwAwBAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-07T16:25:31.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -219,13 +236,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "NhapDienNuoc.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\TaiChinh\\NhapDienNuoc.cshtml",
               "RelativeDocumentMoniker": "Views\\TaiChinh\\NhapDienNuoc.cshtml",
               "ToolTip": "D:\\Web\\KTX\\Views\\TaiChinh\\NhapDienNuoc.cshtml",
               "RelativeToolTip": "Views\\TaiChinh\\NhapDienNuoc.cshtml",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-07T15:55:13.832Z",
               "EditorCaption": ""
@@ -237,6 +254,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Web\\KTX\\Views\\TaiChinh\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\TaiChinh\\Index.cshtml",
+              "ToolTip": "D:\\Web\\KTX\\Views\\TaiChinh\\Index.cshtml",
+              "RelativeToolTip": "Views\\TaiChinh\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-07T12:57:50.08Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "QLThongBaoController.cs",
+              "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\QLThongBaoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\QLThongBaoController.cs",
+              "ToolTip": "D:\\Web\\KTX\\Controllers\\QLThongBaoController.cs",
+              "RelativeToolTip": "Controllers\\QLThongBaoController.cs",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAmwJ0AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-07T12:57:49.968Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Web\\KTX\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -249,20 +292,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Web\\KTX\\Views\\TaiChinh\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\TaiChinh\\Index.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\TaiChinh\\Index.cshtml",
-              "RelativeToolTip": "Views\\TaiChinh\\Index.cshtml",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAAAIEAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-07T12:57:50.08Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "TaiChinhViewModel.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Models\\ViewModels\\TaiChinhViewModel.cs",
               "RelativeDocumentMoniker": "Models\\ViewModels\\TaiChinhViewModel.cs",
@@ -275,7 +305,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "ThongBaoViewModel.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Models\\ViewModels\\ThongBaoViewModel.cs",
               "RelativeDocumentMoniker": "Models\\ViewModels\\ThongBaoViewModel.cs",
@@ -288,7 +318,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\QuanLySinhVien\\Edit.cshtml",
               "RelativeDocumentMoniker": "Views\\QuanLySinhVien\\Edit.cshtml",
@@ -301,7 +331,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\QLThongBao\\Create.cshtml",
               "RelativeDocumentMoniker": "Views\\QLThongBao\\Create.cshtml",
@@ -314,7 +344,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\QLThongBao\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\QLThongBao\\Index.cshtml",
@@ -327,19 +357,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "QLThongBaoController.cs",
-              "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\QLThongBaoController.cs",
-              "RelativeDocumentMoniker": "Controllers\\QLThongBaoController.cs",
-              "ToolTip": "D:\\Web\\KTX\\Controllers\\QLThongBaoController.cs",
-              "RelativeToolTip": "Controllers\\QLThongBaoController.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAmwKIAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T12:57:49.968Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\QuanLySinhVien\\Details.cshtml",
               "RelativeDocumentMoniker": "Views\\QuanLySinhVien\\Details.cshtml",
@@ -351,7 +369,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\QuanLySinhVien\\Create.cshtml",
               "RelativeDocumentMoniker": "Views\\QuanLySinhVien\\Create.cshtml",
@@ -363,7 +381,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "QLThongBaoViewModel.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Models\\ViewModels\\QLThongBaoViewModel.cs",
               "RelativeDocumentMoniker": "Models\\ViewModels\\QLThongBaoViewModel.cs",
@@ -375,7 +393,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "ChuyenPhong.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\QuanLySinhVien\\ChuyenPhong.cshtml",
               "RelativeDocumentMoniker": "Views\\QuanLySinhVien\\ChuyenPhong.cshtml",
@@ -387,7 +405,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "CapPhong.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\QuanLySinhVien\\CapPhong.cshtml",
               "RelativeDocumentMoniker": "Views\\QuanLySinhVien\\CapPhong.cshtml",
@@ -399,7 +417,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\ThongBao\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\ThongBao\\Index.cshtml",
@@ -411,7 +429,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\YCauKNai\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\YCauKNai\\Index.cshtml",
@@ -424,7 +442,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\DashBoard\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\DashBoard\\Index.cshtml",
@@ -436,7 +454,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "DashBoardController.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\DashBoardController.cs",
               "RelativeDocumentMoniker": "Controllers\\DashBoardController.cs",
@@ -448,7 +466,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "Layoutadmin.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\Layoutadmin.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\Layoutadmin.cshtml",
@@ -460,7 +478,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\QuanLySinhVien\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\QuanLySinhVien\\Index.cshtml",
@@ -472,7 +490,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "Phong.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Entities\\Phong.cs",
               "RelativeDocumentMoniker": "Entities\\Phong.cs",
@@ -484,7 +502,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "DashboardViewModel.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Models\\ViewModels\\DashboardViewModel.cs",
               "RelativeDocumentMoniker": "Models\\ViewModels\\DashboardViewModel.cs",
@@ -496,7 +514,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "LayoutAdmin.css",
               "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\css\\LayoutAdmin.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\LayoutAdmin.css",
@@ -509,7 +527,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "MyLayout.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\MyLayout.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\MyLayout.cshtml",
@@ -521,7 +539,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "Views\\_ViewStart.cshtml",
@@ -533,7 +551,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
@@ -545,7 +563,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "HopDongPhong.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Entities\\HopDongPhong.cs",
               "RelativeDocumentMoniker": "Entities\\HopDongPhong.cs",
@@ -557,7 +575,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\QuanLyPhong\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\QuanLyPhong\\Index.cshtml",
@@ -569,7 +587,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "DanhGiaController.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\DanhGiaController.cs",
               "RelativeDocumentMoniker": "Controllers\\DanhGiaController.cs",
@@ -581,7 +599,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "_Footer.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\_Footer.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Footer.cshtml",
@@ -593,7 +611,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "Footer.css",
               "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\css\\Footer.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Footer.css",
@@ -605,7 +623,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "Layout.css",
               "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\css\\Layout.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Layout.css",
@@ -618,7 +636,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "Login.css",
               "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\css\\Login.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Login.css",
@@ -630,7 +648,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "DanhGiaViewModel.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Models\\ViewModels\\DanhGiaViewModel.cs",
               "RelativeDocumentMoniker": "Models\\ViewModels\\DanhGiaViewModel.cs",
@@ -642,7 +660,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "Dashboard.css",
               "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\css\\Dashboard.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\Dashboard.css",
@@ -654,7 +672,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "QlYeuCau.css",
               "DocumentMoniker": "D:\\Web\\KTX\\wwwroot\\css\\QlYeuCau.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\QlYeuCau.css",
@@ -667,7 +685,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\DanhGia\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\DanhGia\\Index.cshtml",
@@ -679,7 +697,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "YeuCau.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Entities\\YeuCau.cs",
               "RelativeDocumentMoniker": "Entities\\YeuCau.cs",
@@ -691,7 +709,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "_FormDanhGia.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\DanhGia\\_FormDanhGia.cshtml",
               "RelativeDocumentMoniker": "Views\\DanhGia\\_FormDanhGia.cshtml",
@@ -703,7 +721,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\Room\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Room\\Index.cshtml",
@@ -715,7 +733,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "_LeftSideBar.cshtml",
               "DocumentMoniker": "D:\\Web\\KTX\\Views\\Shared\\_LeftSideBar.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_LeftSideBar.cshtml",
@@ -727,7 +745,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 44,
               "Title": "ThongTinController.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\ThongTinController.cs",
               "RelativeDocumentMoniker": "Controllers\\ThongTinController.cs",
@@ -739,7 +757,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 45,
               "Title": "ThongBaoController.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\ThongBaoController.cs",
               "RelativeDocumentMoniker": "Controllers\\ThongBaoController.cs",
@@ -751,7 +769,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "YCauKNaiController.cs",
               "DocumentMoniker": "D:\\Web\\KTX\\Controllers\\YCauKNaiController.cs",
               "RelativeDocumentMoniker": "Controllers\\YCauKNaiController.cs",
