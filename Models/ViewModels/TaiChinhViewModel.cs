@@ -52,14 +52,4 @@ namespace KTX.Models
         public decimal TongDoanhThu { get; set; }
         public decimal TongCongNo { get; set; }
     }
-    public class NhapDienNuocViewModel
-    {
-        public int MaP { get; set; }
-        public string TenPhong { get; set; } = string.Empty;
-        public int? SoDien { get; set; }
-        public int? SoNuoc { get; set; }
-        public int GiaDien { get; set; } = 3500;
-        public int GiaNuoc { get; set; } = 10000;
-        public int DotTtdn { get; set; }
-    }
 }

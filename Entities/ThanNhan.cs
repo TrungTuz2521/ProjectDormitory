@@ -15,5 +15,5 @@ public partial class ThanNhan
 
     public string? Sdt { get; set; }
 
-    public virtual SinhVien MsvNavigation { get; set; } = null!;
+    public virtual SinhVien? MsvNavigation { get; set; } = null!;
 }

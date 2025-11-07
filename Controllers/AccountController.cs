@@ -10,7 +10,6 @@ using KTX.Models;
 
 namespace KTX.Controllers
 {
-    [AllowAnonymous]
     public class AccountController : Controller
     {
         private readonly SinhVienKtxContext _context;
@@ -150,12 +149,6 @@ namespace KTX.Controllers
                 }
                 return builder.ToString();
             }
-        }
-        [AllowAnonymous]
-        public IActionResult AccessDenied(string returnUrl)
-        {
-            ViewBag.ReturnUrl = "https://localhost:7091/Account/Login?ReturnUrl=%2F";
-            return View();
         }
     }
 }

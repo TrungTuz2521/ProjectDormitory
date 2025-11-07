@@ -7,8 +7,7 @@
       "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\views\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|solutionrelative:views\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\9.0.305\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E41C3791-2B43-464F-8D32-8CC429741E78}|KTX.csproj|d:\\web\\ktx\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -47,14 +46,12 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AccessDenied.cshtml",
-              "DocumentMoniker": "D:\\Web\\KTX\\Views\\Account\\AccessDenied.cshtml",
-              "RelativeDocumentMoniker": "Views\\Account\\AccessDenied.cshtml",
-              "ToolTip": "D:\\Web\\KTX\\Views\\Account\\AccessDenied.cshtml",
-              "RelativeToolTip": "Views\\Account\\AccessDenied.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-07T12:41:06.003Z",
+              "Title": "Microsoft.PackageDependencyResolution.targets",
+              "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\9.0.305\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "ToolTip": "C:\\Program Files\\dotnet\\sdk\\9.0.305\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "ViewState": "AgIAAAMBAAAAAAAAAIAwwAkBAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-11-07T12:54:24.242Z",
               "EditorCaption": ""
             },
             {
@@ -65,7 +62,7 @@
               "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
               "ToolTip": "D:\\Web\\KTX\\Controllers\\AccountController.cs",
               "RelativeToolTip": "Controllers\\AccountController.cs",
-              "ViewState": "AgIAAIwAAAAAAAAAAAAQwJwAAABTAAAAAAAAAA==",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAwwFgAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-07T12:35:19.749Z",
               "EditorCaption": ""
@@ -91,7 +88,7 @@
               "RelativeDocumentMoniker": "Views\\QLThongBao\\Index.cshtml",
               "ToolTip": "D:\\Web\\KTX\\Views\\QLThongBao\\Index.cshtml",
               "RelativeToolTip": "Views\\QLThongBao\\Index.cshtml",
-              "ViewState": "AgIAACoAAAAAAAAAAAAUwDoAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAUwCoAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-07T12:26:28.384Z",
               "EditorCaption": ""
@@ -104,7 +101,7 @@
               "RelativeDocumentMoniker": "Views\\QLThongBao\\Create.cshtml",
               "ToolTip": "D:\\Web\\KTX\\Views\\QLThongBao\\Create.cshtml",
               "RelativeToolTip": "Views\\QLThongBao\\Create.cshtml",
-              "ViewState": "AgIAAMUAAAAAAAAAAAAqwNwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAALMAAAAAAAAAAAAqwLYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-07T07:01:39.772Z",
               "EditorCaption": ""
@@ -117,7 +114,7 @@
               "RelativeDocumentMoniker": "Entities\\ThongBao.cs",
               "ToolTip": "D:\\Web\\KTX\\Entities\\ThongBao.cs",
               "RelativeToolTip": "Entities\\ThongBao.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAQwBMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAQwBUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-07T06:59:01.58Z",
               "EditorCaption": ""
@@ -130,7 +127,7 @@
               "RelativeDocumentMoniker": "Controllers\\QLThongBaoController.cs",
               "ToolTip": "D:\\Web\\KTX\\Controllers\\QLThongBaoController.cs",
               "RelativeToolTip": "Controllers\\QLThongBaoController.cs",
-              "ViewState": "AgIAAJwAAAAAAAAAAAAUwK4AAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAUwI0AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-07T06:57:37.235Z",
               "EditorCaption": ""
@@ -143,7 +140,7 @@
               "RelativeDocumentMoniker": "Models\\ViewModels\\QLThongBaoViewModel.cs",
               "ToolTip": "D:\\Web\\KTX\\Models\\ViewModels\\QLThongBaoViewModel.cs",
               "RelativeToolTip": "Models\\ViewModels\\QLThongBaoViewModel.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAuwBEAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAA8wAkAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-07T06:57:28.819Z",
               "EditorCaption": ""

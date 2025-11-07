@@ -13,8 +13,7 @@
         </a>
     </div>
 
-    <form asp-action="Create" method="post" id="formThongBao">
-        @Html.AntiForgeryToken()
+    <form asp-action="Create" method="post">
         <div class="row g-4">
             <div class="col-lg-8">
                 <div class="card border-0 shadow-sm" style="border-radius: 16px;">
@@ -29,7 +28,7 @@
                                        placeholder="Tất cả sinh viên hoặc nhập MSV / Tên..."
                                        autocomplete="off"
                                        id="searchStudent"
-                                       value="@(Model.MSV == null || string.IsNullOrEmpty(Model.MSV) ? "" : Model.MSV)" />
+                                       value="@(Model.MSV == "0" || string.IsNullOrEmpty(Model.MSV) ? "" : Model.MSV)" />
                                 <input type="hidden" asp-for="MSV" id="MSV" />
 
                                 <!-- Danh sách gợi ý -->
@@ -74,7 +73,6 @@
                             <button type="submit" class="btn btn-success btn-lg px-5 shadow-sm">
                                 Gửi thông báo
                             </button>
-                            <div id="resultMessage" class="mt-3"></div>
                             <a asp-action="Index" class="btn btn-secondary btn-lg px-5">
                                 Hủy
                             </a>
@@ -179,43 +177,7 @@
                     }
                     </text>
             }
-
         });
-                $("#formThongBao").on("submit", function (e) {
-            e.preventDefault();
-
-            // Lấy token từ hidden input
-            const token = $('input[name="__RequestVerificationToken"]').val();
-
-            $.ajax({
-                url: '@Url.Action("Create", "QLThongBao")',
-                type: 'POST',
-                data: {
-                    MSV: $('#MSV').val() || null,
-                    TieuDe: $('#TieuDe').val(),
-                    NoiDung: $('#NoiDung').val(),
-                    __RequestVerificationToken: token  // Gửi như field bình thường
-                },
-                success: function (res) {
-                    if (res.success) {
-                        $("#resultMessage").html('<div class="alert alert-success mt-3">Gửi thông báo thành công!</div>');
-                        $("#formThongBao")[0].reset();
-                        $('#searchStudent').val('');
-                        $('#MSV').val('');
-                    } else {
-                        $("#resultMessage").html('<div class="alert alert-danger mt-3">Gửi thất bại! Vui lòng kiểm tra lại.</div>');
-                    }
-                },
-                error: function (xhr) {
-                    console.log(xhr.responseText); // Xem lỗi chi tiết
-                    $("#resultMessage").html('<div class="alert alert-danger mt-3">Lỗi hệ thống!</div>');
-                }
-            });
-        });
-                if (res.success) {
-            $("#resultMessage").html('<div class="alert alert-success mt-3">Gửi thông báo thành công!</div>');
-            setTimeout(() => window.location.href = '@Url.Action("Index", "QLThongBao")', 1000);
-        }
     </script>
     <partial name="_ValidationScriptsPartial" />
 }

@@ -52,17 +52,28 @@ namespace KTX.Controllers
             return View(ds);
         }
 
+
         [HttpPost]
         public async Task<IActionResult> CapNhatTrangThai(int id, string trangThaiMoi)
         {
             var yc = await _context.YeuCaus.FindAsync(id);
-            if (yc == null) return Json(new { success = false });
+            if (yc == null)
+                return Json(new { success = false });
 
             yc.TrangThaiYc = trangThaiMoi;
+
+            // ✅ Chỉ khi chuyển sang "Đã xử lý" thì mới cập nhật ngày xử lý
+            if (trangThaiMoi == "Đã xử lý")
+            {
+                yc.NgayXuLy = DateOnly.FromDateTime(DateTime.Now);
+            }
+
             await _context.SaveChangesAsync();
 
-            return Json(new { success = true, trangThai = trangThaiMoi });
+            return Json(new { success = true, trangThai = trangThaiMoi, ngayXuLy = yc.NgayXuLy });
         }
+
+
 
         public async Task<IActionResult> ThongKe()
         {

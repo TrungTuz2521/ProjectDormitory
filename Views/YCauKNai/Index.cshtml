@@ -9,7 +9,7 @@
 }
 <div class="request-page container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-5">
-        <h3 class="mb-0 page-title text-primary">
+        <h3 class="fw-bold text-primary bi bi-envelope-fill">
             Danh sách yêu cầu sinh viên
         </h3>
         <a asp-action="ThongKe" class="btn btn-primary btn-stats shadow-sm">
@@ -51,9 +51,9 @@
                                                                                    <td>
                                                                                        <span class="badge rounded-pill bg-info text-white">@y.LoaiYC</span>
                                                                                    </td>
-                                                                                   <td class="small text-muted text-truncate" style="max-width: 200px; white-space:normal" title="@y.NoiDungYC">
-                                                                                       @y.NoiDungYC
-                                                                                   </td>
+                                                                                                                                     <td class="small text-muted text-truncate" style="max-width: 200px; white-space:normal" title="@y.NoiDungYC">
+                                                                                                                                         @y.NoiDungYC
+                                                                                                                                     </td>
                                                                                    <td class="small text-secondary">@y.NgayGuiYC?.ToString("dd/MM/yyyy")</td>
                                                                                    <td class="td-trangthai">
                                                                                        <span class="badge rounded-pill
@@ -97,7 +97,7 @@
 @section Scripts {
     <script>
         async function capNhat(id, trangThaiMoi) {
-            const action = trangThaiMoi === 'Đang xử lý' ? 'phê duyệt' : 'hoàn thành';
+            const action = trangThaiMoi === 'Đang xử lý' ? 'phê duyệt' : 'Đã xử lý';
             if (!confirm(`Xác nhận ${action} yêu cầu này?`)) return;
 
             const res = await fetch('/YCauKNai/CapNhatTrangThai', {
@@ -131,5 +131,6 @@
                 alert("Lỗi cập nhật trạng thái!");
             }
         }
+
     </script>
 }
