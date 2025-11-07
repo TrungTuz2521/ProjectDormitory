@@ -1,13 +1,21 @@
 ﻿// KTX/Models/ViewModels/QLThongBaoViewModel.cs
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+
 namespace KTX.Models.ViewModels
 {
     public class QLThongBaoViewModel
     {
-        public string MSV { get; set; } = string.Empty; // string để binding từ dropdown
-        public string TieuDe { get; set; } = string.Empty;
-        public string NoiDung { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Tiêu đề không được để trống")]
+        [StringLength(200)]
+        public string TieuDe { get; set; }
 
-        public List<SinhVienSelectViewModel> DanhSachSinhVien { get; set; } = new();
+        [Required(ErrorMessage = "Nội dung không được để trống")]
+        [StringLength(2000)]
+        public string NoiDung { get; set; }
+
+        public string? MSV { get; set; } // Optional
+        public List<SinhVienSelectViewModel>? DanhSachSinhVien { get; set; }
     }
 
     public class SinhVienSelectViewModel

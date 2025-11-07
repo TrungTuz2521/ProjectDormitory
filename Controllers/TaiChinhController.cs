@@ -218,5 +218,60 @@ namespace KTX.Controllers
 
             return View(thongKe);
         }
+        [HttpGet]
+        public IActionResult NhapDienNuoc()
+        {
+            var viewModel = new NhapDienNuocViewModel
+            {
+                DotTtdn = _context.TienDienNuocs.Any()
+                    ? _context.TienDienNuocs.Max(t => t.DotTtdn ?? 0) + 1
+                    : 1
+            };
+
+            ViewBag.Phongs = _context.Phongs
+                .Select(p => new { p.MaP, TenPhong = "Phòng " + p.MaP })
+                .ToList();
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult NhapDienNuoc(NhapDienNuocViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Phongs = _context.Phongs
+                    .Select(p => new { p.MaP, TenPhong = "Phòng " + p.MaP })
+                    .ToList();
+                return View(model);
+            }
+
+            // Tính toán
+            decimal tienDien = (model.SoDien ?? 0) * model.GiaDien;
+            decimal tienNuoc = (model.SoNuoc ?? 0) * model.GiaNuoc;
+            decimal tongTien = tienDien + tienNuoc;
+
+            var dienNuoc = new TienDienNuoc
+            {
+                MaP = model.MaP,
+                SoDien = model.SoDien,
+                SoNuoc = model.SoNuoc,
+                GiaDien = model.GiaDien,
+                GiaNuoc = model.GiaNuoc,
+                TienDien = tienDien,
+                TienNuoc = tienNuoc,
+                TongTienDn = tongTien,
+                DotTtdn = model.DotTtdn,
+                TrangThaiTtdn = "Chưa thanh toán",
+                Httdn = DateOnly.FromDateTime(DateTime.Now)
+            };
+
+            _context.TienDienNuocs.Add(dienNuoc);
+            _context.SaveChanges();
+
+            TempData["SuccessMessage"] = $"Đã nhập chỉ số điện nước cho phòng {model.MaP} (Tháng {model.DotTtdn})";
+            return RedirectToAction(nameof(Index), new { loai = "diennuoc", dotTtdn = model.DotTtdn });
+        }
     }
 }

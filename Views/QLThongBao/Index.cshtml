@@ -21,12 +21,17 @@
         <div class="card-body p-0">
             @if (Model.ThongBaoChung.Any())
             {
-                <div class="card mb-4 border-primary">
-                    <div class="card-header bg-primary text-white">
-                        <h5>Thông báo chung</h5>
-                    </div>
+                
                     <div class="card-body p-0">
-                        <table class="table table-hover mb-0">
+                        <table class="table table-hover mb-0 align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="text-muted small fw-semibold">Tiêu đề</th>
+                                    <th class="text-muted small fw-semibold">Nội dung</th>
+                                    <th class="text-muted small fw-semibold">Ngày</th>
+                                    <th class="text-center text-muted small fw-semibold" style="width: 100px;">Thao tác</th>
+                                </tr>
+                            </thead>
                             <tbody>
                                 @foreach (var item in Model.ThongBaoChung)
                                 {
@@ -34,14 +39,26 @@
                                         <td><strong>@item.TieuDe</strong></td>
                                         <td>@item.NoiDung</td>
                                         <td>@item.NgayTBFormatted</td>
-                                        <td><button class=" btn btn-sm btn-danger delete-btn" data-id="@item.MaTB">Xóa</button></td>
+                                        <td class="text-center">
+                                            <form asp-controller="QLThongBao"
+                                                  asp-action="Delete"
+                                                  method="post"
+                                                  style="display:inline;"
+                                                  onsubmit="return confirm('Bạn có chắc muốn xóa thông báo này không?');">
+                                                <input type="hidden" name="id" value="@item.MaTB" />
+                                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                    <i class="bi bi-trash"></i> Xóa
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
                     </div>
-                </div>
+                
             }
+
             else
             {
                 <p class="p-4 text-center text-muted mb-0">
@@ -86,11 +103,16 @@
                                     <td class="text-muted small" style="max-width: 250px;">@item.NoiDung</td>
                                     <td class="text-secondary small">@item.NgayTBFormatted</td>
                                     <td class="text-center">
-                                   
-                                        <form asp-controller="QLThongBao" asp-action="Delete" method="post" style="display:inline;"
+
+                                        <form asp-controller="QLThongBao"
+                                              asp-action="Delete"
+                                              method="post"
+                                              style="display:inline;"
                                               onsubmit="return confirm('Bạn có chắc muốn xóa thông báo này không?');">
                                             <input type="hidden" name="id" value="@item.MaTB" />
-                                            <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                <i class="bi bi-trash"></i> Xóa
+                                            </button>
                                         </form>
                                     </td>
                                     

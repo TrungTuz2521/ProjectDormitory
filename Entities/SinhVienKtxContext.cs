@@ -83,7 +83,6 @@ public partial class SinhVienKtxContext : DbContext
         modelBuilder.Entity<DanhGia>(entity =>
         {
             entity.HasKey(e => e.MaDg);
-            entity.ToTable("DanhGia"); // ← BẮT BUỘC PHẢI CÓ
 
             entity.Property(e => e.MaDg)
                 .ValueGeneratedNever()
@@ -210,25 +209,8 @@ public partial class SinhVienKtxContext : DbContext
 
             entity.HasOne(d => d.MsvNavigation).WithMany(p => p.ThongBaos)
                 .HasForeignKey(d => d.Msv)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_ThongBao_SinhVien");
-
-            entity.HasMany(d => d.Msvs).WithMany(p => p.MaTbs)
-                .UsingEntity<Dictionary<string, object>>(
-                    "ThongBaoSinhVien",
-                    r => r.HasOne<SinhVien>().WithMany()
-                        .HasForeignKey("Msv")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK_ThongBao_SinhVien_SinhVien"),
-                    l => l.HasOne<ThongBao>().WithMany()
-                        .HasForeignKey("MaTb")
-                        .HasConstraintName("FK_ThongBao_SinhVien_ThongBao"),
-                    j =>
-                    {
-                        j.HasKey("MaTb", "Msv");
-                        j.ToTable("ThongBao_SinhVien");
-                        j.IndexerProperty<int>("MaTb").HasColumnName("MaTB");
-                        j.IndexerProperty<int>("Msv").HasColumnName("MSV");
-                    });
         });
 
         modelBuilder.Entity<TienDienNuoc>(entity =>
