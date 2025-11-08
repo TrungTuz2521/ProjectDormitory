@@ -606,20 +606,17 @@
     </div>
 
     <!-- YÊU CẦU CẦN XỬ LÝ -->
-    @if (Model.YeuCauMoiNhat != null && Model.YeuCauMoiNhat.Any(y => y.TrangThaiYc == "Chờ xử lý" || y.TrangThaiYc == "Đang xử lý"))
-    {
+@if (Model.YeuCauMoiNhat != null && Model.YeuCauMoiNhat.Any(y => y.TrangThaiYc == "Chờ xử lý" || y.TrangThaiYc == "Đang xử lý"))
+{
         <div class="table-card mb-4" id="section-yeu-cau">
             <div class="table-header">
                 <h5 class="chart-title m-0 section-title">
                     <i class="bi bi-list-task text-warning"></i> Yêu cầu cần xử lý
                 </h5>
-                <a href="@Url.Action("Index", "YCauKNai")" class="btn btn-sm btn-outline-warning">
-                    Xem tất cả <i class="bi bi-arrow-right"></i>
-                </a>
             </div>
 
-            <div class="request-list">
-                @foreach (var yc in Model.YeuCauMoiNhat.Where(y => y.TrangThaiYc == "Chờ xử lý" || y.TrangThaiYc == "Đang xử lý").Take(5))
+            <div class="request-list" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
+                @foreach (var yc in Model.YeuCauMoiNhat.Where(y => y.TrangThaiYc == "Chờ xử lý" || y.TrangThaiYc == "Đang xử lý"))
                 {
                     var cssClass = yc.TrangThaiYc == "Chờ xử lý" ? "cho-xu-ly" :
                     yc.TrangThaiYc == "Đang xử lý" ? "dang-xu-ly" : "da-xu-ly";
@@ -665,87 +662,109 @@
                                     </span>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                 }
             </div>
         </div>
-    }
+}
 
     <!-- HÓA ĐƠN QUÁ HẠN -->
-    @if (Model.DanhSachHoaDonQuaHan != null && Model.DanhSachHoaDonQuaHan.Count > 0)
-    {
-        <div class="table-card" id="section-hoa-don">
+@if (Model.DanhSachHoaDonQuaHan != null && Model.DanhSachHoaDonQuaHan.Count > 0)
+{
+        <div class="table-card mb-4" id="section-hoa-don">
             <div class="table-header">
                 <h5 class="chart-title m-0 section-title">
                     <i class="bi bi-receipt text-danger"></i> Hóa đơn quá hạn cần xử lý
                 </h5>
-                <a href="@Url.Action("Index", "TaiChinh")" class="btn btn-sm btn-outline-danger">
-                    Xem tất cả <i class="bi bi-arrow-right"></i>
-                </a>
             </div>
-            @foreach (var hd in Model.DanhSachHoaDonQuaHan)
-            {
-                <div class="item-row">
-                    <div class="d-flex justify-content-between align-items-start flex-wrap">
-                        <div class="flex-grow-1 mb-2 mb-sm-0">
-                            <h6 class="mb-2 fw-bold">@hd.HoTen - MSV: @hd.Msv</h6>
-                            <p class="small text-muted mb-2">
-                                <i class="bi bi-door-closed"></i> Phòng: <strong>@hd.MaPhong</strong> |
-                                <i class="bi bi-cash"></i> Số tiền: <strong class="text-danger">@hd.SoTien.ToString("N0")đ</strong>
-                            </p>
-                            <small class="text-danger fw-medium">
-                                <i class="bi bi-exclamation-circle"></i> Quá hạn @hd.SoNgayQuaHan ngày
-                                (Hạn: @hd.NgayHetHan.ToString("dd/MM/yyyy"))
-                            </small>
+
+            <div style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
+                @foreach (var hd in Model.DanhSachHoaDonQuaHan)
+                {
+                    <div class="item-row">
+                        <div class="d-flex justify-content-between align-items-start flex-wrap">
+                            <div class="flex-grow-1 mb-2 mb-sm-0">
+                                <h6 class="mb-2 fw-bold">@hd.HoTen - MSV: @hd.Msv</h6>
+                                <p class="small text-muted mb-2">
+                                    <i class="bi bi-door-closed"></i> Phòng: <strong>@hd.MaPhong</strong> |
+                                    <i class="bi bi-cash"></i> Số tiền: <strong class="text-danger">@hd.SoTien.ToString("N0")đ</strong>
+                                </p>
+                                <small class="text-danger fw-medium">
+                                    <i class="bi bi-exclamation-circle"></i> Quá hạn @hd.SoNgayQuaHan ngày
+                                    (Hạn: @hd.NgayHetHan.ToString("dd/MM/yyyy"))
+                                </small>
+                            </div>
+                            <span class="badge-priority priority-high">
+                                <i class="bi bi-exclamation-triangle"></i> Khẩn cấp
+                            </span>
                         </div>
-                        <span class="badge-priority priority-high">
-                            <i class="bi bi-exclamation-triangle"></i> Khẩn cấp
-                        </span>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
-    }
+}
 
     <!-- HỢP ĐỒNG SẮP HẾT HẠN -->
-    @if (Model.DanhSachHopDongSapHetHan != null && Model.DanhSachHopDongSapHetHan.Count > 0)
-    {
+@if (Model.DanhSachHopDongSapHetHan != null && Model.DanhSachHopDongSapHetHan.Count > 0)
+{
         <div class="table-card" id="section-hop-dong">
             <div class="table-header">
                 <h5 class="chart-title m-0 section-title">
                     <i class="bi bi-calendar-exclamation me-2"></i> Hợp đồng sắp hết hạn
                 </h5>
-                <a href="@Url.Action("SapHetHan", "QuanLySinhVien")" class="btn btn-sm btn-outline-warning">
-                    Xem tất cả <i class="bi bi-arrow-right"></i>
-                </a>
             </div>
 
-            @foreach (var hd in Model.DanhSachHopDongSapHetHan)
-            {
-                <div class="item-row">
-                    <div class="d-flex justify-content-between align-items-start flex-wrap">
-                        <div class="flex-grow-1 mb-2 mb-sm-0">
-                            <h6 class="mb-2 fw-bold">@hd.HoTen - MSV: @hd.Msv</h6>
-                            <p class="small text-muted mb-2">
-                                <i class="bi bi-door-closed"></i> Phòng: <strong>@hd.MaPhong</strong> |
-                                <i class="bi bi-calendar-check"></i> @hd.NgayBatDau.ToString("dd/MM/yyyy")
-                                → @hd.NgayKetThuc.ToString("dd/MM/yyyy")
-                            </p>
-                            <small class="@(hd.SoNgayConLai <= 15 ? "text-danger" : "text-warning") fw-medium">
-                                <i class="bi bi-hourglass-split"></i> Còn @hd.SoNgayConLai ngày
-                            </small>
+            <div style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
+                @foreach (var hd in Model.DanhSachHopDongSapHetHan)
+                {
+                    <div class="item-row">
+                        <div class="d-flex justify-content-between align-items-start flex-wrap">
+                            <div class="flex-grow-1 mb-2 mb-sm-0">
+                                <h6 class="mb-2 fw-bold">@hd.HoTen - MSV: @hd.Msv</h6>
+                                <p class="small text-muted mb-2">
+                                    <i class="bi bi-door-closed"></i> Phòng: <strong>@hd.MaPhong</strong> |
+                                    <i class="bi bi-calendar-check"></i> @hd.NgayBatDau.ToString("dd/MM/yyyy")
+                                    → @hd.NgayKetThuc.ToString("dd/MM/yyyy")
+                                </p>
+                                <small class="@(hd.SoNgayConLai <= 15 ? "text-danger" : "text-warning") fw-medium">
+                                    <i class="bi bi-hourglass-split"></i> Còn @hd.SoNgayConLai ngày
+                                </small>
+                            </div>
+                            <span class="badge-priority @(hd.SoNgayConLai <= 15 ? "priority-high" : "priority-medium")">
+                                @(hd.SoNgayConLai <= 15 ? "Ưu tiên" : "Lưu ý")
+                            </span>
                         </div>
-                        <span class="badge-priority @(hd.SoNgayConLai <= 15 ? "priority-high" : "priority-medium")">
-                            @(hd.SoNgayConLai <= 15 ? "Ưu tiên" : "Lưu ý")
-                        </span>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
-    }
-</div>
+}
+@* thêm style *@
+    <style>
+        /* Custom scrollbar styling */
+        .request-list::-webkit-scrollbar,
+        div[style*="overflow-y: auto"]::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .request-list::-webkit-scrollbar-track,
+        div[style*="overflow-y: auto"]::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .request-list::-webkit-scrollbar-thumb,
+        div[style*="overflow-y: auto"]::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+            .request-list::-webkit-scrollbar-thumb:hover,
+            div[style*="overflow-y: auto"]::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+    </style>
 
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

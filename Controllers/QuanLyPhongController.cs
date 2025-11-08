@@ -20,10 +20,9 @@ namespace KTX.Controllers
         public async Task<IActionResult> Index(string? searchTinhTrang, string? searchLoaiPhong)
         {
             var phongs = _context.Phongs
-                .Include(p => p.HopDongPhongs)
-                    .ThenInclude(hd => hd.MsvNavigation)
-                .AsQueryable();
-
+        .Include(p => p.HopDongPhongs)  // ✅ THÊM DÒNG NÀY
+            .ThenInclude(hd => hd.MsvNavigation)
+        .AsQueryable();
             // Lọc theo tình trạng
             if (!string.IsNullOrEmpty(searchTinhTrang))
             {
@@ -37,19 +36,23 @@ namespace KTX.Controllers
             }
 
             var danhSachPhong = await phongs
-                .OrderBy(p => p.MaP)
-                .Select(p => new PhongViewModel
-                {
-                    MaP = p.MaP,
-                    TinhTrang = p.TinhTrang,
-                    HienO = p.HienO ?? 0,
-                    ToiDaO = p.ToiDaO ?? 0,
-                    LoaiPhong = p.LoaiPhong,
-                    TienPhong = p.TienPhong ?? 0,
-                    GioiTinh = p.GioiTinh,
-                    SoLuongSinhVien = p.HienO ?? 0
-                })
-                .ToListAsync();
+    .OrderBy(p => p.MaP)
+    .Select(p => new PhongViewModel
+    {
+        MaP = p.MaP,
+        TinhTrang = p.TinhTrang,
+        HienO = p.HienO ?? 0,
+        ToiDaO = p.ToiDaO ?? 0,
+        LoaiPhong = p.LoaiPhong,
+        TienPhong = p.TienPhong ?? 0,
+        GioiTinh = p.GioiTinh,
+        // ✅ Đếm số hợp đồng đang hiệu lực
+        SoLuongSinhVien = p.HopDongPhongs.Count(hd =>
+            hd.TrangThaiHd == "Đăng Kí Thành Công" ||
+            hd.TrangThaiHd == "Đã thanh toán" ||
+            hd.TrangThaiHd == "Đã chuyển phòng")
+    })
+    .ToListAsync();
 
             // Lấy danh sách tình trạng và loại phòng cho filter
             ViewBag.DanhSachTinhTrang = await _context.Phongs
@@ -324,6 +327,21 @@ namespace KTX.Controllers
         private bool PhongExists(int id)
         {
             return _context.Phongs.Any(e => e.MaP == id);
+        }
+        //update thi thêm hợp đồng phòng hoặc xóa hợp đồng phòng thì gọi hàm này để cập nhật lại số người ở hiện tại
+        private async Task UpdateHienOAsync(int maPhong)
+        {
+            var phong = await _context.Phongs.FindAsync(maPhong);
+            if (phong != null)
+            {
+                phong.HienO = await _context.HopDongPhongs
+                    .CountAsync(hd => hd.MaP == maPhong &&
+                        (hd.TrangThaiHd == "Đăng Kí Thành Công" ||
+                         hd.TrangThaiHd == "Đã thanh toán" ||
+                         hd.TrangThaiHd == "Đã chuyển phòng"));
+
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

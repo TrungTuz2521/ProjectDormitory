@@ -86,7 +86,7 @@ namespace KTX.Controllers
                         TrangThai = g.All(t => t.TrangThaiTtdn == "Đã thanh toán") ? "Đã thanh toán" :
                                    g.Any(t => t.TrangThaiTtdn == "Đã thanh toán") ? "Thanh toán 1 phần" : "Chưa thanh toán",
                         SinhViens = g.First().MaPNavigation.HopDongPhongs
-                            .Where(h => h.TrangThaiHd == "Đang hiệu lực")
+                            .Where(h => h.TrangThaiHd == "Đang hiệu lực"|| h.TrangThaiHd == "Đăng Kí Thành Công")
                             .Select(h => new SinhVienTienDienNuoc
                             {
                                 Msv = h.Msv.ToString()  ,
