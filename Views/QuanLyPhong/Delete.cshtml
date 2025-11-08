@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = $"Xóa phòng {Model.MaP}";
     var hasActiveContract = ViewBag.HasActiveContract as bool? ?? false;
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
 
 <div class="container py-4">

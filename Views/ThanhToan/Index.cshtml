@@ -28,28 +28,38 @@
             <small class="text-success"><i class="bi bi-check-circle"></i> Cố định</small>
         </div>
     </div>
-    
-    <div class="col-md-3 mb-3">
-        <div class="stat-card">
-            <div class="stat-icon icon-orange">
-                <i class="bi bi-lightning-charge"></i>
+
+        <div class="col-md-3 mb-3">
+            <div class="stat-card">
+                <div class="stat-icon icon-orange">
+                    <i class="bi bi-lightning-charge"></i>
+                </div>
+                <h6 class="text-muted mb-2">Điện + Nước</h6>
+                @if (Model.TienDien > 0 || Model.TienNuoc > 0)
+                {
+                    <h3 class="mb-0">@((Model.TienDien + Model.TienNuoc).ToString("N0"))₫</h3>
+                    @if (Model.SoNguoiTrongPhong > 0)
+                    {
+                        <small class="text-info">
+                            <i class="bi bi-people"></i> Chia cho @Model.SoNguoiTrongPhong người
+                        </small>
+                    }
+                    else
+                    {
+                        <small class="text-warning">
+                            <i class="bi bi-exclamation-triangle"></i> Chưa cập nhật số người
+                        </small>
+                    }
+                }
+                else
+                {
+                    <h3 class="mb-0 text-muted">Chưa có</h3>
+                    <small class="text-muted">
+                        <i class="bi bi-info-circle"></i> Chưa cập nhật tiền điện nước
+                    </small>
+                }
             </div>
-            <h6 class="text-muted mb-2">Điện + Nước</h6>
-            <h3 class="mb-0">@((Model.TienDien + Model.TienNuoc).ToString("N0"))₫</h3>
-            @if (Model.SoNguoiTrongPhong > 0)
-            {
-                <small class="text-info">
-                    <i class="bi bi-people"></i> Chia cho @Model.SoNguoiTrongPhong người
-                </small>
-            }
-            else
-            {
-                <small class="text-warning">
-                    <i class="bi bi-exclamation-triangle"></i> Chưa cập nhật số người
-                </small>
-            }
         </div>
-    </div>
     
     <div class="col-md-3 mb-3">
         <div class="stat-card">

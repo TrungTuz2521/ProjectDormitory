@@ -20,11 +20,13 @@ namespace KTX.Controllers
             int maSinhVienInt = 0;
 
             // Kiểm tra và chuyển đổi MSV
-            if (!string.IsNullOrEmpty(maSinhVienString) &&
-                !int.TryParse(maSinhVienString, out maSinhVienInt))
+            if (!string.IsNullOrEmpty(maSinhVienString))
             {
-                // Xử lý lỗi nếu MSV không hợp lệ (nên chuyển hướng hoặc báo lỗi)
-                // Tạm thời bỏ qua nếu không thể Parse, MSV sẽ là 0
+                if (!int.TryParse(maSinhVienString, out maSinhVienInt))
+                {
+                    // Nếu không parse được thì gán 0 (người dùng có thể chưa có MSV)
+                    maSinhVienInt = 0;
+                }
             }
 
             // BƯỚC 2: Khởi tạo ViewModel (đã được fix để tránh NullReferenceException)
@@ -33,7 +35,7 @@ namespace KTX.Controllers
             // 3. Truy vấn Thông báo chung (General Announcements)
             // Giả định: Thông báo chung có trường MSV là NULL
             var generalAnnouncements = await _context.ThongBaos
-                .Where(tb => tb.Msv == 0)
+                .Where(tb => tb.Msv == null)
                 .OrderByDescending(tb => tb.NgayTb) // Sắp xếp theo ngày mới nhất
                 .Select(tb => new RulesAnnouncementsViewModel.ThongBaoItem
                 {
