@@ -99,9 +99,9 @@
     <div class="mb-4">
         <h2 class="section-title">Hóa Đơn Cần Thanh Toán</h2>
 
-        <div class="row">
+        <div class="row d-flex align-items-stretch">
             <!-- Hóa đơn tiền phòng -->
-            <div class="col-md-6 mb-3">
+            <div class="mb-3">
                 <div class="invoice-card @(Model.DaThanhToan ? "paid" : "unpaid")">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div>
@@ -150,7 +150,7 @@
             <!-- Hóa đơn điện nước -->
             @if (Model.SoDien.HasValue || Model.SoNuoc.HasValue)
             {
-                <div class="col-md-6 mb-3">
+                <div class=" mb-3">
                     <div class="invoice-card utility">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <div>
