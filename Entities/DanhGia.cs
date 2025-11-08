@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KTX.Entities;
-
+[Table("DanhGia")]
 public partial class DanhGia
 {
     public int MaDg { get; set; }
