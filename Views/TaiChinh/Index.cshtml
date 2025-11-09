@@ -186,7 +186,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Nút hành động -->
+                                            @* <!-- Nút hành động -->
                                             @if (sv.TrangThaiCaNhan != "Đã thanh toán")
                                             {
                                                 <div class="mt-2">
@@ -203,7 +203,8 @@
                                                         <i class="fas fa-info-circle"></i> Đã thanh toán: @sv.SoTienDaTra?.ToString("N0") VNĐ
                                                     </small>
                                                 </div>
-                                            }
+                                            } *@
+                                            @* sinh viên chỉ thanh toán tiền điện nước qua web *@
                                         </li>
                                     }
                                 </ul>

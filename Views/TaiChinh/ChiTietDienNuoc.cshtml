@@ -168,7 +168,7 @@
                                         <th class="text-end">Số tiền đã trả</th>
                                         <th class="text-center">Trạng thái</th>
                                         <th class="text-center">Ngày TT</th>
-                                        <th class="text-center">Thao tác</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -219,21 +219,7 @@
                                                     <span class="text-muted">-</span>
                                                 }
                                             </td>
-                                            <td class="text-center">
-                                                @if (chiTiet.TrangThai != "Đã thanh toán")
-                                                {
-                                                    <a href="@Url.Action("ThanhToanDienNuocCaNhan", new { maCtttdn = chiTiet.MaCtttdn })"
-                                                       class="btn btn-sm btn-success">
-                                                        <i class="fas fa-money-bill"></i> Thanh toán
-                                                    </a>
-                                                }
-                                                else
-                                                {
-                                                    <span class="text-success">
-                                                        <i class="fas fa-check-circle"></i>
-                                                    </span>
-                                                }
-                                            </td>
+                                           
                                         </tr>
                                         stt++;
                                     }
