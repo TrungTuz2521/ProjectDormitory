@@ -1,5 +1,8 @@
 ﻿@model KTX.ViewModels.DanhSachLichSuViewModel
-@section Styles {<link  href="~/css/ThanhToan1.css"/>}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/ThanhToan1.css" />
+}
 
 <div class="table-custom">
     <table class="table table-hover mb-0">
@@ -7,6 +10,7 @@
             <tr>
                 <th>Loại</th>
                 <th>Mã hóa đơn</th>
+                <th>Phòng</th>
                 <th>Kỳ thanh toán</th>
                 <th>Số tiền</th>
                 <th>Ngày thanh toán</th>
@@ -14,35 +18,61 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model.DanhSachThanhToan != null && Model.DanhSachThanhToan.Any())
+            @if (Model?.DanhSachThanhToan != null && Model.DanhSachThanhToan.Any())
             {
                 foreach (var payment in Model.DanhSachThanhToan)
                 {
                     <tr>
                         <td>
-                            <span class="badge-room"><i class="bi bi-house-door me-1"></i>Phòng</span>
-                        </td>
-                        <td><strong>@payment.MaHD</strong></td>
-                        <td>Tháng @payment.NgayBatDau.ToString("MM/yyyy")</td>
-                        <td><strong>@payment.TongTien.ToString("N0")₫</strong></td>
-                        <td>@(payment.NgayThanhToan.HasValue? payment.NgayThanhToan.Value.ToString("dd/MM/yyyy HH:mm") : "Chưa thanh toán")</td>
-                        <td>
-                            @if (payment.DaThanhToan)
+                            @if (payment.LoaiThanhToan == "Tiền phòng")
                             {
-                                <span class="badge-paid"><i class="bi bi-check-circle me-1"></i>@payment.TrangThaiThanhToan</span>
+                                <span class="badge bg-primary">
+                                    <i class="bi bi-house-door me-1"></i>Tiền phòng
+                                </span>
                             }
                             else
                             {
-                                <span class="badge-pending"><i class="bi bi-clock me-1"></i>@payment.TrangThaiThanhToan</span>
+                                <span class="badge bg-info">
+                                    <i class="bi bi-lightning me-1"></i>Điện nước
+                                </span>
+                            }
+                        </td>
+                        <td><strong>@payment.MaHoaDon</strong></td>
+                        <td>@payment.TenPhong</td>
+                        <td>@payment.KyThanhToan</td>
+                        <td><strong class="text-primary">@payment.TongTien.ToString("N0")₫</strong></td>
+                        <td>
+                            @if (payment.NgayThanhToan.HasValue)
+                            {
+                                <span>@payment.NgayThanhToan.Value.ToString("dd/MM/yyyy")</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Chưa thanh toán</span>
+                            }
+                        </td>
+                        <td>
+                            @if (payment.DaThanhToan)
+                            {
+                                <span class="badge bg-success">
+                                    <i class="bi bi-check-circle me-1"></i>Đã thanh toán
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark">
+                                    <i class="bi bi-clock me-1"></i>Chưa thanh toán
+                                </span>
                             }
                         </td>
                     </tr>
+                   
                 }
             }
             else
             {
                 <tr>
-                    <td colspan="6" class="text-center py-4">
+                    <td colspan="7" class="text-center py-4">
                         <i class="bi bi-inbox fs-1 text-muted"></i>
                         <p class="text-muted mt-2">Chưa có lịch sử thanh toán</p>
                     </td>
@@ -50,4 +80,22 @@
             }
         </tbody>
     </table>
+</div>
+
+<!-- Tổng hợp -->
+<div class="row mt-3">
+    <div class="col-md-6">
+        <div class="alert alert-success">
+            <strong><i class="bi bi-check-circle me-2"></i>Đã thanh toán:</strong>
+            @Model.TongDaThanhToan.ToString("N0")₫
+            <span class="text-muted">(@Model.SoLanDaThanhToan lần)</span>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="alert alert-warning">
+            <strong><i class="bi bi-clock me-2"></i>Chưa thanh toán:</strong>
+            @Model.TongChuaThanhToan.ToString("N0")₫
+            <span class="text-muted">(@Model.SoLanChuaThanhToan lần)</span>
+        </div>
+    </div>
 </div>

@@ -34,4 +34,12 @@ public partial class SinhVien
     public virtual ICollection<ThongBao> ThongBaos { get; set; } = new List<ThongBao>();
 
     public virtual ICollection<YeuCau> YeuCaus { get; set; } = new List<YeuCau>();
+    // ✅ THÊM Navigation Property
+    public virtual ICollection<ChiTietThanhToanDienNuoc> ChiTietThanhToanDienNuocs { get; set; }
+
+    public SinhVien()
+    {
+        // ... các collection hiện tại ...
+        ChiTietThanhToanDienNuocs = new HashSet<ChiTietThanhToanDienNuoc>();
+    }
 }

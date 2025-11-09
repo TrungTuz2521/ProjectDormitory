@@ -3,7 +3,7 @@
     ViewData["Title"] = "Thanh Toán & Dịch Vụ";
 }
 
-@section Styles{
+@section Styles {
     <link href="~/css/ThanhToan1.css" rel="stylesheet" />
 }
 @Html.AntiForgeryToken()
@@ -16,18 +16,18 @@
         <p class="mb-0">Quản lý các khoản phí ký túc xá và thanh toán của bạn</p>
     </div>
 
-   <!-- Thống kê tổng quan -->
-<div class="row mb-4">
-    <div class="col-md-3 mb-3">
-        <div class="stat-card">
-            <div class="stat-icon icon-blue">
-                <i class="bi bi-house-door"></i>
+    <!-- Thống kê tổng quan -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="stat-card">
+                <div class="stat-icon icon-blue">
+                    <i class="bi bi-house-door"></i>
+                </div>
+                <h6 class="text-muted mb-2">Phí Phòng</h6>
+                <h3 class="mb-0">@Model.TienPhong.ToString("N0")₫</h3>
+                <small class="text-success"><i class="bi bi-check-circle"></i> Cố định</small>
             </div>
-            <h6 class="text-muted mb-2">Phí Phòng</h6>
-            <h3 class="mb-0">@Model.TienPhong.ToString("N0")₫</h3>
-            <small class="text-success"><i class="bi bi-check-circle"></i> Cố định</small>
         </div>
-    </div>
 
         <div class="col-md-3 mb-3">
             <div class="stat-card">
@@ -41,7 +41,7 @@
                     @if (Model.SoNguoiTrongPhong > 0)
                     {
                         <small class="text-info">
-                            <i class="bi bi-people"></i> Chia cho @Model.SoNguoiTrongPhong người
+                            <i class="bi bi-people"></i> Phòng gồm @Model.SoNguoiTrongPhong người
                         </small>
                     }
                     else
@@ -60,215 +60,421 @@
                 }
             </div>
         </div>
-    
-    <div class="col-md-3 mb-3">
-        <div class="stat-card">
-            <div class="stat-icon icon-red">
-                <i class="bi bi-exclamation-circle"></i>
+
+        <div class="col-md-3 mb-3">
+            <div class="stat-card">
+                <div class="stat-icon icon-red">
+                    <i class="bi bi-exclamation-circle"></i>
+                </div>
+                <h6 class="text-muted mb-2">Tổng Phải Trả</h6>
+                <h3 class="mb-0 text-danger">@Model.TongCong.ToString("N0")₫</h3>
+                <small class="text-muted">@Model.TrangThaiThanhToan</small>
             </div>
-            <h6 class="text-muted mb-2">Tổng Phải Trả</h6>
-            <h3 class="mb-0 text-danger">@Model.TongCong.ToString("N0")₫</h3>
-            <small class="text-muted">@Model.TrangThaiThanhToan</small>
         </div>
-    </div>
-    
-    <div class="col-md-3 mb-3">
-        <div class="stat-card">
-            <div class="stat-icon icon-green">
-                <i class="bi bi-check2-circle"></i>
-            </div>
-            <h6 class="text-muted mb-2">Trạng Thái</h6>
-            <h3 class="mb-0">@Model.TrangThaiThanhToan</h3>
-            @if (Model.DaThanhToan)
-            {
-                <small class="text-success">
-                    <i class="bi bi-check-circle"></i> @Model.NgayThanhToan?.ToString("dd/MM/yyyy")
-                </small>
-            }
-            else
-            {var soNgayConLai = (Model.NgayKetThuc - DateTime.Now).Days;
-                
-                @if (soNgayConLai >= 0)
+
+        <div class="col-md-3 mb-3">
+            <div class="stat-card">
+                @{
+                    bool tienPhongDaThu = ViewBag.TienPhongDaThu == true;
+                    bool dienNuocDaThu = ViewBag.DienNuocDaThu == true;
+                    bool tatCaDaThu = tienPhongDaThu && dienNuocDaThu;
+                    int soLuongDaThu = (tienPhongDaThu ? 1 : 0) + (dienNuocDaThu ? 1 : 0);
+                }
+
+                <div class="stat-icon @(tatCaDaThu ? "icon-green" : "icon-orange")">
+                    <i class="bi @(tatCaDaThu ? "bi-check-circle-fill" : "bi-clock-history")"></i>
+                </div>
+
+                <h6 class="text-muted mb-2">Trạng Thái</h6>
+
+                @if (tatCaDaThu)
                 {
-                    <small class="text-warning">
-                        <i class="bi bi-clock"></i> Còn @soNgayConLai ngày
+                    <h3 class="mb-0 text-success">Đã thanh toán</h3>
+                    <small class="text-success">
+                        <i class="bi bi-check-circle"></i> Hoàn tất 2/2 khoản
                     </small>
                 }
                 else
                 {
-                    <small class="text-danger">
-                        <i class="bi bi-exclamation-triangle"></i> Quá hạn @Math.Abs(soNgayConLai) ngày
+                    <h3 class="mb-0 text-warning">Chưa đủ</h3>
+                    <small class="text-warning">
+                        <i class="bi bi-info-circle"></i> Đã thanh toán @soLuongDaThu/2 khoản
                     </small>
                 }
-            }
+
+                <div class="mt-2">
+                    <small class="d-block @(tienPhongDaThu ? "text-success" : "text-muted")">
+                        @(tienPhongDaThu ? "✓" : "○") Tiền phòng
+                    </small>
+                    <small class="d-block @(dienNuocDaThu ? "text-success" : "text-muted")">
+                        @(dienNuocDaThu ? "✓" : "○") Điện nước
+                    </small>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
     <!-- Chi tiết hóa đơn -->
     <div class="mb-4">
-        <h2 class="section-title">Hóa Đơn Cần Thanh Toán</h2>
+        <h2 class="section-title mb-4">
+            <i class="bi bi-receipt me-2"></i>Hóa Đơn Cần Thanh Toán
+        </h2>
 
-        <div class="row d-flex align-items-stretch">
-            <!-- Hóa đơn tiền phòng -->
-            <div class="mb-3">
-                <div class="invoice-card @(Model.DaThanhToan ? "paid" : "unpaid")">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div>
-                            <h5 class="mb-1"><i class="bi bi-house-door me-2"></i>Tiền Phòng</h5>
+        <div class="row g-4">
+            <!-- Card Tiền Phòng -->
+            <div class="col-lg-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-gradient text-white d-flex justify-content-between align-items-center"
+                         style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <h5 class="mb-0">
+                            <i class="bi bi-house-door-fill me-2"></i>Tiền Phòng
+                        </h5>
+                        @if (ViewBag.TienPhongDaThu == true)
+                        {
+                            <span class="badge bg-success">
+                                <i class="bi bi-check-circle-fill me-1"></i>Đã thanh toán
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning text-dark">
+                                <i class="bi bi-clock-fill me-1"></i>Chưa thanh toán
+                            </span>
+                        }
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                                <span class="text-muted">
+                                    <i class="bi bi-calendar-range me-2"></i>Kỳ thanh toán
+                                </span>
+                                <span class="fw-semibold">@Model.NgayBatDau.ToString("MM/yyyy") - @Model.NgayKetThuc.ToString("MM/yyyy")</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                                <span class="text-muted">
+                                    <i class="bi bi-cash-coin me-2"></i>Tiền phòng
+                                </span>
+                                <span class="fs-5 fw-bold text-primary">@Model.TienPhong.ToString("N0")₫</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center py-2">
+                                <span class="text-muted">
+                                    <i class="bi bi-alarm me-2"></i>Hạn thanh toán
+                                </span>
+                                <span class="text-danger fw-semibold">
+                                    <i class="bi bi-exclamation-circle me-1"></i>@Model.NgayKetThuc.ToString("dd/MM/yyyy")
+                                </span>
+                            </div>
                         </div>
-                        <span class="badge-@(Model.DaThanhToan ? "paid" : "pending")">@Model.TrangThaiThanhToan</span>
-                    </div>
 
-                    <div class="invoice-detail">
-                        <span>Kỳ thanh toán</span>
-                        <strong>@Model.NgayBatDau.ToString("MM/yyyy") - @Model.NgayKetThuc.ToString("MM/yyyy")</strong>
+                        @if (ViewBag.TienPhongDaThu != true)
+                        {
+                            <div class="mb-3">
+                                <label class="form-label small text-muted">
+                                    <i class="bi bi-bank me-1"></i>Chọn ngân hàng
+                                </label>
+                                <select class="form-select" id="bankSelect_@Model.MaHD" required>
+                                    <option value="">-- Chọn ngân hàng --</option>
+                                    @if (Model.DanhSachNganHang != null && Model.DanhSachNganHang.Any())
+                                    {
+                                        @foreach (var bank in Model.DanhSachNganHang)
+                                        {
+                                            <option value="@bank.MaNganHang">@bank.TenNganHang - @bank.TenTaiKhoan</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-lg btn-primary" onclick="showQRCode('room', @Model.MaHD, @Model.TienPhong)">
+                                    <i class="bi bi-credit-card-fill me-2"></i>THANH TOÁN NGAY
+                                </button>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-success mb-0">
+                                <i class="bi bi-check-circle-fill me-2"></i>Đã hoàn tất thanh toán
+                            </div>
+                        }
                     </div>
-                    <div class="invoice-detail">
-                        <span>Tiền phòng</span>
-                        <strong>@Model.TienPhong.ToString("N0")₫</strong>
-                    </div>
-                    <div class="invoice-detail">
-                        <span>Hạn thanh toán</span>
-                        <strong class="text-danger">@Model.NgayKetThuc.ToString("dd/MM/yyyy")</strong>
-                    </div>
-                    <div class="invoice-detail">
-                        <span>TỔNG CỘNG</span>
-                        <strong>@Model.TienPhong.ToString("N0")₫</strong>
-                    </div>
-
-                    @if (!Model.DaThanhToan)
-                    {
-                        <div class="mt-2 d-flex gap-2 justify-content-end align-items-center">
-                            <select id="bankSelect_@Model.MaHD" class="form-select form-select-sm custom-select" style="width: 120px; font-size: 0.8rem;">
-                                @foreach (var bank in Model.DanhSachNganHang ?? new List<KTX.ViewModels.BankInfoViewModel>())
-                                {
-                                    <option value="@bank.MaNganHang">@bank.MaNganHang</option>
-                                }
-                            </select>
-                            <button class="btn btn-sm btn-qr enhanced-btn" onclick="showQRCode('room', @Model.MaHD, @Model.TienPhong)">
-                                <i class="bi bi-qr-code me-1"></i>QR
-                            </button>
-                            <button class="btn btn-sm btn-pay enhanced-btn" onclick="processPayment('room', @Model.MaHD)">
-                                <i class="bi bi-check-circle me-1"></i>Thanh toán
-                            </button>
-                        </div>
-                    }
                 </div>
             </div>
 
-            <!-- Hóa đơn điện nước -->
-            @if (Model.SoDien.HasValue || Model.SoNuoc.HasValue)
-            {
-                <div class=" mb-3">
-                    <div class="invoice-card utility">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
+            <!-- Card Điện Nước -->
+            <div class="col-lg-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-gradient text-white d-flex justify-content-between align-items-center"
+                         style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <h5 class="mb-0">
+                            <i class="bi bi-lightning-charge-fill me-2"></i>Điện Nước
+                        </h5>
+                        @if (ViewBag.DienNuocDaThu == true)
+                        {
+                            <span class="badge bg-success">
+                                <i class="bi bi-check-circle-fill me-1"></i>Đã thanh toán
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning text-dark">
+                                <i class="bi bi-clock-fill me-1"></i>Chưa thanh toán
+                            </span>
+                        }
+                    </div>
+                    <div class="card-body">
+                        @if (Model.SoDien.HasValue || Model.SoNuoc.HasValue)
+                        {
+                            <div class="alert alert-info mb-3">
+                                <i class="bi bi-people-fill me-2"></i>
+                                Chia cho <strong>@Model.SoNguoiTrongPhong người</strong> trong phòng
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                                    <span class="text-muted small">
+                                        <i class="bi bi-calendar-check me-2"></i>Thời gian ghi
+                                    </span>
+                                    <span class="fw-semibold">@(Model.ThoiGianGhi?.ToString("dd/MM/yyyy") ?? "N/A")</span>
+                                </div>
+
+                                <div class="py-2 border-bottom">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <i class="bi bi-lightning-fill text-warning me-2"></i>
+                                            <span class="text-muted">Điện</span>
+                                            <div class="small text-muted ms-4">
+                                                @Model.SoDien kWh ÷ @Model.SoNguoiTrongPhong người × @Model.GiaDien₫
+                                            </div>
+                                        </div>
+                                        <span class="fw-bold">@Model.TienDien.ToString("N0")₫</span>
+                                    </div>
+                                </div>
+
+                                <div class="py-2 border-bottom">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <i class="bi bi-droplet-fill text-info me-2"></i>
+                                            <span class="text-muted">Nước</span>
+                                            <div class="small text-muted ms-4">
+                                                @Model.SoNuoc m³ ÷ @Model.SoNguoiTrongPhong người × @Model.GiaNuoc₫
+                                            </div>
+                                        </div>
+                                        <span class="fw-bold">@Model.TienNuoc.ToString("N0")₫</span>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center py-2 bg-light rounded px-2 mt-2">
+                                    <span class="fw-bold">
+                                        <i class="bi bi-calculator me-2"></i>Tổng (của bạn)
+                                    </span>
+                                    <span class="fs-5 fw-bold text-danger">@((Model.TienDien + Model.TienNuoc).ToString("N0"))₫</span>
+                                </div>
+                            </div>
+
+                            @if (ViewBag.DienNuocDaThu != true)
+                            {
+                                <div class="mb-3">
+                                    <label class="form-label small text-muted">
+                                        <i class="bi bi-bank me-1"></i>Chọn ngân hàng
+                                    </label>
+                                    <select class="form-select" id="bankSelect_utility_@Model.MaHD" required>
+                                        <option value="">-- Chọn ngân hàng --</option>
+                                        @if (ViewBag.DanhSachNganHang != null)
+                                        {
+                                            @foreach (var bank in ViewBag.DanhSachNganHang)
+                                            {
+                                                <option value="@bank.MaNganHang">@bank.TenNganHang - @bank.TenTaiKhoan</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-lg btn-primary" onclick="showQRCode('utility', @Model.MaHD, @(Model.TienDien + Model.TienNuoc))">
+                                        <i class="bi bi-credit-card-fill me-2"></i>THANH TOÁN NGAY
+                                    </button>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="alert alert-success mb-0">
+                                    <i class="bi bi-check-circle-fill me-2"></i>Đã hoàn tất thanh toán
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="alert alert-secondary mb-0">
+                                <i class="bi bi-info-circle-fill me-2"></i>Chưa có hóa đơn điện nước cho kỳ này
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tổng cộng -->
+        <div class="card shadow-sm border-0 mt-4">
+            <div class="card-body p-4">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h3 class="mb-0">
+                            <i class="bi bi-wallet2 me-2"></i>TỔNG CỘNG
+                        </h3>
+                    </div>
+                    <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                        <h2 class="mb-0 text-primary fw-bold">@Model.TongCong.ToString("N0")₫</h2>
+                    </div>
+                </div>
+
+                <hr class="my-3">
+
+                @if (ViewBag.TienPhongDaThu == true && ViewBag.DienNuocDaThu == true)
+                {
+                    <div class="alert alert-success mb-0">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-check-circle-fill fs-3 me-3"></i>
                             <div>
-                                <h5 class="mb-1"><i class="bi bi-lightning-charge me-2"></i>Điện Nước</h5>
-                                <small class="text-muted">Thời gian ghi: @Model.ThoiGianGhi?.ToString("dd/MM/yyyy")</small>
-                                <br />
-                                @if (Model.SoNguoiTrongPhong > 0)
-                                {
-                                    <small class="text-info">
-                                        <i class="bi bi-people me-1"></i>Chia cho @Model.SoNguoiTrongPhong người trong phòng
-                                    </small>
-                                }
-                                else
-                                {
-                                    <small class="text-warning">
-                                        <i class="bi bi-exclamation-triangle me-1"></i>Chưa có thông tin số người ở
-                                    </small>
-                                }
+                                <h5 class="mb-1">Đã thanh toán đầy đủ!</h5>
+                                <p class="mb-0">Cảm ơn bạn đã thanh toán đúng hạn.</p>
                             </div>
-                            <span class="badge @(Model.DaThanhToan ? "bg-success" : "bg-warning text-dark")">@Model.TrangThaiThanhToan</span>
                         </div>
-
-                        @if (Model.SoNguoiTrongPhong > 0)
-                        {
-                            <div class="alert alert-info py-2 mb-3">
-                                <small>
-                                    <i class="bi bi-info-circle me-1"></i>
-                                    <strong>Tổng tiền điện nước phòng:</strong> @Model.TongTienDienNuocPhong.ToString("N0")₫
-                                    <br />
-                                    <i class="bi bi-arrow-down-short"></i>
-                                    <strong>Mỗi người trả:</strong> @((Model.TongTienDienNuocPhong / Model.SoNguoiTrongPhong).ToString("N0"))₫
-                                </small>
-                            </div>
-                        }
-
-                        <div class="invoice-detail">
-                            <span>Kỳ thanh toán</span>
-                            <strong>@Model.ThoiGianGhi?.ToString("MM/yyyy")</strong>
-                        </div>
-
-                        @if (Model.SoDien.HasValue)
-                        {
-                            <div class="invoice-detail">
-                                <span><i class="bi bi-lightning-fill text-warning"></i> Điện (@Model.SoDien kWh × @(Model.GiaDien?.ToString("N0") ?? "0")₫)</span>
-                                <div>
-                                    <small class="text-muted">Phòng: @Model.TongTienDienPhong.ToString("N0")₫</small>
-                                    <br />
-                                    <strong class="text-primary">Bạn: @Model.TienDien.ToString("N0")₫</strong>
-                                </div>
-                            </div>
-                        }
-
-                        @if (Model.SoNuoc.HasValue)
-                        {
-                            <div class="invoice-detail">
-                                <span><i class="bi bi-droplet-fill text-info"></i> Nước (@Model.SoNuoc m³ × @(Model.GiaNuoc?.ToString("N0") ?? "0")₫)</span>
-                                <div>
-                                    <small class="text-muted">Phòng: @Model.TongTienNuocPhong.ToString("N0")₫</small>
-                                    <br />
-                                    <strong class="text-primary">Bạn: @Model.TienNuoc.ToString("N0")₫</strong>
-                                </div>
-                            </div>
-                        }
-
-                        <div class="invoice-detail">
-                            <span>Hạn thanh toán</span>
-                            <strong class="text-danger">@Model.NgayKetThuc.ToString("dd/MM/yyyy")</strong>
-                        </div>
-
-                        <div class="invoice-detail border-top pt-2 mt-2" style="background-color: #fff3cd; margin: -10px; padding: 15px !important;">
-                            <span><strong><i class="bi bi-cash-coin"></i> BẠN PHẢI TRẢ (Điện + Nước)</strong></span>
-                            <strong class="text-danger fs-5">@((Model.TongTienDienNuocPhong / Model.SoNguoiTrongPhong).ToString("N0"))₫</strong>
-                        </div>
-
-                        @if (!Model.DaThanhToan)
-                        {
-                            <div class="mt-3 d-flex gap-2 justify-content-end align-items-center">
-                                <select id="bankSelect_utility_@Model.MaHD" class="form-select form-select-sm custom-select" style="width: 120px; font-size: 0.8rem;">
-                                    @foreach (var bank in Model.DanhSachNganHang ?? new List<KTX.ViewModels.BankInfoViewModel>())
-                                    {
-                                        <option value="@bank.MaNganHang">@bank.MaNganHang</option>
-                                    }
-                                </select>
-                                <button class="btn btn-sm btn-qr enhanced-btn" onclick="showQRCode('utility', @Model.MaHD, @(Model.TienDien + Model.TienNuoc))">
-                                    <i class="bi bi-qr-code me-1"></i>QR
-                                </button>
-                                <button class="btn btn-sm btn-pay enhanced-btn" onclick="processPayment('utility', @Model.MaHD)">
-                                    <i class="bi bi-check-circle me-1"></i>Thanh toán
-                                </button>
-                            </div>
-                        }
                     </div>
-                </div>
-            }
-                     
-
-            @if (Model.DaThanhToan)
-            {
-                <div class="col-12">
-                    <div class="text-center py-5">
-                        <i class="bi bi-check-circle text-success" style="font-size: 4rem;"></i>
-                        <h4 class="mt-3 text-success">Hóa đơn đã được thanh toán</h4>
-                        <p class="text-muted">Ngày thanh toán: @Model.NgayThanhToan?.ToString("dd/MM/yyyy")</p>
+                }
+                else
+                {
+                    <div class="alert alert-warning mb-0">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-exclamation-triangle-fill fs-3 me-3"></i>
+                            <div>
+                                <h5 class="mb-1">Cần thanh toán</h5>
+                                <p class="mb-0">
+                                    Bạn còn <strong>
+                                        @if (ViewBag.TienPhongDaThu != true && ViewBag.DienNuocDaThu != true)
+                                        {
+                                            <text>cả tiền phòng và điện nước</text>
+                                        }
+                                        else if (ViewBag.TienPhongDaThu != true)
+                                        {
+                                            <text>tiền phòng</text>
+                                        }
+                                        else
+                                        {
+                                            <text>tiền điện nước</text>
+                                        }
+                                    </strong> chưa thanh toán.
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
     </div>
+
+    <style>
+        .card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+            }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+            .btn-primary:hover {
+                background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            }
+
+        .section-title {
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .border-bottom {
+            border-color: #e2e8f0 !important;
+        }
+
+        /* QR Modal Styles */
+        .qr-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .qr-modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: slideDown 0.3s ease;
+        }
+
+        
+
+        }
+
+        .qr-close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+            .qr-close:hover,
+            .qr-close:focus {
+                color: #000;
+            }
+
+        .qr-image {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .qr-image img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+            }
+
+        .qr-info {
+            margin-top: 20px;
+        }
+
+        .qr-info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+            .qr-info-item:last-child {
+                border-bottom: none;
+            }
+    </style>
 
     <!-- Lịch sử thanh toán -->
     <div class="mb-4">
@@ -384,7 +590,6 @@
 
         function fetchPaymentHistory() {
             const container = document.getElementById('paymentHistoryContainer');
-            // ✅ Không cần truyền maSV nữa, controller tự lấy từ Claims
             fetch('@Url.Action("LichSu", "ThanhToan")')
                 .then(response => response.text())
                 .then(html => {
@@ -396,15 +601,26 @@
                 });
         }
 
-        // Hiển thị mã QR
+        // ✅ Hàm hiển thị mã QR - ĐÃ SỬA
         function showQRCode(type, invoiceId, amount) {
+            console.log('showQRCode called:', type, invoiceId, amount);
+
+            const bankSelectId = type === 'room' ? 'bankSelect_' + invoiceId : 'bankSelect_utility_' + invoiceId;
+            const bankSelect = document.getElementById(bankSelectId);
+
+            // Kiểm tra đã chọn ngân hàng chưa
+            if (!bankSelect || !bankSelect.value) {
+                alert('⚠️ Vui lòng chọn ngân hàng trước khi thanh toán!');
+                if (bankSelect) bankSelect.focus();
+                return;
+            }
+
             const modal = document.getElementById('qrModal');
             const qrImageContainer = document.getElementById('qrImageContainer');
             const paymentTypeEl = document.getElementById('qrPaymentType');
             const invoiceNumberEl = document.getElementById('qrInvoiceNumber');
             const amountEl = document.getElementById('qrAmount');
             const bankEl = document.getElementById('qrBank');
-            const bankSelect = document.getElementById(type === 'room' ? 'bankSelect_' + invoiceId : 'bankSelect_utility_' + invoiceId);
             const maNganHang = bankSelect.value;
 
             // Hiển thị modal
@@ -415,6 +631,9 @@
             invoiceNumberEl.textContent = `HD-${invoiceId}`;
             amountEl.textContent = amount.toLocaleString('vi-VN') + '₫';
             bankEl.textContent = bankSelect.options[bankSelect.selectedIndex].text;
+
+            // Hiển thị spinner
+            qrImageContainer.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Đang tải...</span></div>';
 
             // Gọi API tạo mã QR
             fetch('@Url.Action("TaoQRCode", "ThanhToan")', {
@@ -434,15 +653,15 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    qrImageContainer.innerHTML = `<img src="${data.qrCodeUrl}" alt="Mã QR" style="max-width: 300px;">`;
+                    qrImageContainer.innerHTML = `<img src="${data.qrCodeUrl}" alt="Mã QR" style="max-width: 300px; border-radius: 8px;">`;
                     bankEl.textContent = `${data.nganHang.tenNganHang} - ${data.nganHang.tenTaiKhoan}`;
                 } else {
-                    qrImageContainer.innerHTML = '<p class="text-danger">Không thể tạo mã QR: ' + data.message + '</p>';
+                    qrImageContainer.innerHTML = '<p class="text-danger"><i class="bi bi-exclamation-circle me-2"></i>Không thể tạo mã QR: ' + data.message + '</p>';
                 }
             })
             .catch(error => {
                 console.error('Lỗi:', error);
-                qrImageContainer.innerHTML = '<p class="text-danger">Có lỗi xảy ra khi tạo mã QR</p>';
+                qrImageContainer.innerHTML = '<p class="text-danger"><i class="bi bi-exclamation-circle me-2"></i>Có lỗi xảy ra khi tạo mã QR</p>';
             });
         }
 

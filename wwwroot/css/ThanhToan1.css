@@ -30,6 +30,28 @@
     display: inline-block;
     margin-right: 1rem;
 }
+
+.payment-section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.total-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+    .total-section h3 {
+        color: #fff !important;
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
 /* Style cho phần thông tin chia tiền */
 .invoice-detail {
     display: flex;
@@ -406,6 +428,7 @@ td {
         opacity: 1;
     }
 }
+
 
 .qr-close {
     color: #aaa;

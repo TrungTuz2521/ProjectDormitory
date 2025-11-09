@@ -1,0 +1,136 @@
+﻿@model KTX.Entities.ChiTietThanhToanDienNuoc
+@{
+    ViewData["Title"] = "Thanh Toán Điện Nước";
+    Layout = "~/Views/Shared/Layoutadmin.cshtml";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-money-bill-wave me-2"></i>Thanh Toán Điện Nước
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <!-- Thông tin sinh viên -->
+                    <div class="alert alert-info">
+                        <h5 class="mb-3">
+                            <i class="fas fa-user me-2"></i>Thông tin sinh viên
+                        </h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="mb-2">
+                                    <strong>Mã SV:</strong> @Model.Msv
+                                </p>
+                                <p class="mb-2">
+                                    <strong>Họ tên:</strong> @Model.MsvNavigation.HoTen
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="mb-2">
+                                    <strong>Phòng:</strong> @Model.MaHddnNavigation.MaP
+                                </p>
+                                <p class="mb-2">
+                                    <strong>Tháng:</strong> @Model.MaHddnNavigation.DotTtdn
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Thông tin hóa đơn phòng -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h6 class="mb-0">
+                                <i class="fas fa-file-invoice me-2"></i>Thông tin hóa đơn phòng
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="mb-2">
+                                        <strong>Số điện:</strong> @Model.MaHddnNavigation.SoDien kWh
+                                    </p>
+                                    <p class="mb-2">
+                                        <strong>Giá điện:</strong> @Model.MaHddnNavigation.GiaDien?.ToString("N0") VNĐ/kWh
+                                    </p>
+                                    <p class="mb-2">
+                                        <strong>Tiền điện:</strong>
+                                        <span class="text-danger fw-bold">
+                                            @Model.MaHddnNavigation.TienDien?.ToString("N0") VNĐ
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="mb-2">
+                                        <strong>Số nước:</strong> @Model.MaHddnNavigation.SoNuoc m³
+                                    </p>
+                                    <p class="mb-2">
+                                        <strong>Giá nước:</strong> @Model.MaHddnNavigation.GiaNuoc?.ToString("N0") VNĐ/m³
+                                    </p>
+                                    <p class="mb-2">
+                                        <strong>Tiền nước:</strong>
+                                        <span class="text-danger fw-bold">
+                                            @Model.MaHddnNavigation.TienNuoc?.ToString("N0") VNĐ
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <strong class="text-dark">Tổng tiền phòng:</strong>
+                                <h5 class="mb-0 text-danger">
+                                    @Model.MaHddnNavigation.TongTienDn?.ToString("N0") VNĐ
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Số tiền sinh viên này phải trả -->
+                    <div class="alert alert-warning">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-1">
+                                    <i class="fas fa-calculator me-2"></i>Số tiền bạn phải trả
+                                </h5>
+                                <small class="text-muted">
+                                    (Đã chia cho sinh viên trong phòng)
+                                </small>
+                            </div>
+                            <h3 class="mb-0 text-danger fw-bold">
+                                @Model.SoTienPhai.ToString("N0") VNĐ
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- Form thanh toán -->
+                    <form asp-action="ThanhToanDienNuocCaNhanAsync" method="post">
+                        <input type="hidden" name="maCtttdn" value="@Model.MaCtttdn" />
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Xác nhận thanh toán</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="xacNhan" required>
+                                <label class="form-check-label" for="xacNhan">
+                                    Tôi xác nhận đã thanh toán số tiền <strong>@Model.SoTienPhai.ToString("N0") VNĐ</strong>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-success flex-fill">
+                                <i class="fas fa-check me-2"></i>Xác Nhận Thanh Toán
+                            </button>
+                            <a asp-action="Index" asp-route-loai="diennuoc"
+                               asp-route-dotTtdn="@Model.MaHddnNavigation.DotTtdn"
+                               class="btn btn-secondary">
+                                <i class="fas fa-times me-2"></i>Hủy
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

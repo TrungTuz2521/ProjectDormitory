@@ -4,24 +4,26 @@ using System.ComponentModel.DataAnnotations;
 
 namespace KTX.ViewModels
 {
-    // ViewModel cho chi tiết thanh toán
+    /// <summary>
+    /// ViewModel cho chi tiết thanh toán
+    /// </summary>
     public class ThanhToanDetailViewModel
     {
         // Thông tin hợp đồng
         public int MaHD { get; set; }
         public DateTime NgayBatDau { get; set; }
         public DateTime NgayKetThuc { get; set; }
-        public string TrangThaiHopDong { get; set; }
+        public string TrangThaiHopDong { get; set; } = string.Empty;
 
         // Thông tin sinh viên
-        public string MaSV { get; set; }
-        public string HoTen { get; set; }
-        public string SoDienThoai { get; set; }
-        public string Email { get; set; }
+        public string MaSV { get; set; } = string.Empty;
+        public string HoTen { get; set; } = string.Empty;
+        public string SoDienThoai { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
 
         // Thông tin phòng
-        public string MaPhong { get; set; }
-        public string TenPhong { get; set; }
+        public string MaPhong { get; set; } = string.Empty;
+        public string TenPhong { get; set; } = string.Empty;
         public decimal GiaPhong { get; set; }
 
         // ✅ Thông tin điện nước - CHI TIẾT
@@ -46,7 +48,7 @@ namespace KTX.ViewModels
         public decimal TongTienDienNuocPhong { get; set; }
 
         // Chi tiết dịch vụ
-        public List<DichVuThanhToanViewModel> DanhSachDichVu { get; set; }
+        public List<DichVuThanhToanViewModel> DanhSachDichVu { get; set; } = new();
 
         // ✅ Tổng tiền các loại
         public decimal TienPhong { get; set; }  // Tiền phòng (KHÔNG chia)
@@ -63,14 +65,14 @@ namespace KTX.ViewModels
         // Thông tin thanh toán
         public bool DaThanhToan { get; set; }
         public DateTime? NgayThanhToan { get; set; }
-        public string TrangThaiThanhToan { get; set; }
+        public string TrangThaiThanhToan { get; set; } = string.Empty;
 
         // Thông tin QR Payment
-        public string QRCodeUrl { get; set; }
-        public BankInfoViewModel ThongTinNganHang { get; set; }
-        public List<BankInfoViewModel> DanhSachNganHang { get; set; }
+        public string QRCodeUrl { get; set; } = string.Empty;
+        public BankInfoViewModel ThongTinNganHang { get; set; } = new();
+        public List<BankInfoViewModel> DanhSachNganHang { get; set; } = new();
 
-        // ✅ THÊM: Các thuộc tính helper để hiển thị rõ ràng hơn
+        // ✅ Các thuộc tính helper để hiển thị rõ ràng hơn
 
         /// <summary>
         /// Tổng tiền điện + nước của 1 người (đã chia)
@@ -93,89 +95,102 @@ namespace KTX.ViewModels
         public bool DaQuaHan => SoNgayConLai < 0 && !DaThanhToan;
     }
 
-    // ViewModel cho dịch vụ trong thanh toán
-    public class DichVuThanhToanViewModel
-    {
-        public string TenDichVu { get; set; }
-        public int SoLuong { get; set; }
-        public decimal DonGia { get; set; }
-        public decimal ThanhTien { get; set; }
-    }
-
-    // ViewModel cho lịch sử thanh toán
+    /// <summary>
+    /// ViewModel cho lịch sử thanh toán
+    /// </summary>
     public class LichSuThanhToanViewModel
     {
         public int MaHD { get; set; }
-        public string MaPhong { get; set; }
-        public string TenPhong { get; set; }
+        public string MaPhong { get; set; } = string.Empty;
+        public string TenPhong { get; set; } = string.Empty;
         public DateTime NgayBatDau { get; set; }
         public DateTime NgayKetThuc { get; set; }
+
+        // Phân loại thanh toán
+        public string LoaiThanhToan { get; set; } = string.Empty; // "Tiền phòng" hoặc "Tiền điện nước"
+        public string MaHoaDon { get; set; } = string.Empty;
+        public string KyThanhToan { get; set; } = string.Empty;
+        public string GhiChu { get; set; } = string.Empty;
+
+        // Thông tin thanh toán
         public decimal TongTien { get; set; }
         public bool DaThanhToan { get; set; }
         public DateTime? NgayThanhToan { get; set; }
-        public string TrangThaiThanhToan { get; set; }
+        public string TrangThaiThanhToan { get; set; } = string.Empty;
     }
 
-    // ViewModel cho danh sách lịch sử thanh toán
+    /// <summary>
+    /// ViewModel cho danh sách lịch sử thanh toán
+    /// </summary>
     public class DanhSachLichSuViewModel
     {
-        public string MaSV { get; set; }
-        public string HoTen { get; set; }
-        public List<LichSuThanhToanViewModel> DanhSachThanhToan { get; set; }
+        public string MaSV { get; set; } = string.Empty;
+        public string HoTen { get; set; } = string.Empty;
+        public List<LichSuThanhToanViewModel> DanhSachThanhToan { get; set; } = new();
         public decimal TongDaThanhToan { get; set; }
         public decimal TongChuaThanhToan { get; set; }
         public int SoLanDaThanhToan { get; set; }
         public int SoLanChuaThanhToan { get; set; }
     }
 
-    // ViewModel cho thanh toán QR Code
+    /// <summary>
+    /// ViewModel cho dịch vụ thanh toán
+    /// </summary>
+    public class DichVuThanhToanViewModel
+    {
+        public int MaDichVu { get; set; }
+        public string TenDichVu { get; set; } = string.Empty;
+        public decimal DonGia { get; set; }
+        public int SoLuong { get; set; }
+        public decimal ThanhTien { get; set; }
+    }
+
+    /// <summary>
+    /// ViewModel cho thanh toán QR
+    /// </summary>
     public class ThanhToanQRViewModel
     {
-        [Required]
         public int MaHD { get; set; }
-
-        [Required(ErrorMessage = "Vui lòng chọn ngân hàng")]
-        public string MaNganHang { get; set; }
-
         public decimal SoTien { get; set; }
-        public string NoiDung { get; set; }
-
-        // Thông tin hiển thị
-        public string TenKhachHang { get; set; }
-        public string MaPhong { get; set; }
-        public List<BankInfoViewModel> DanhSachNganHang { get; set; }
-
-        // QR Code
-        public string QRCodeUrl { get; set; }
-        public BankInfoViewModel NganHangDuocChon { get; set; }
+        public string NoiDung { get; set; } = string.Empty;
+        public string TenKhachHang { get; set; } = string.Empty;
+        public string MaPhong { get; set; } = string.Empty;
+        public string MaNganHang { get; set; } = string.Empty;
+        public List<BankInfoViewModel> DanhSachNganHang { get; set; } = new();
+        public string QRCodeUrl { get; set; } = string.Empty;
+        public BankInfoViewModel? NganHangDuocChon { get; set; }
     }
 
-    // ViewModel cho thông tin ngân hàng
+    /// <summary>
+    /// ViewModel cho thông tin ngân hàng
+    /// </summary>
     public class BankInfoViewModel
     {
-        public string MaNganHang { get; set; }
-        public string TenNganHang { get; set; }
-        public string TenVietTat { get; set; }
-        public string Logo { get; set; }
-        public string SoTaiKhoan { get; set; }
-        public string TenTaiKhoan { get; set; }
-        public string ChiNhanh { get; set; }
+        public string MaNganHang { get; set; } = string.Empty;
+        public string TenNganHang { get; set; } = string.Empty;
+        public string TenVietTat { get; set; } = string.Empty;
+        public string Logo { get; set; } = string.Empty;
+        public string SoTaiKhoan { get; set; } = string.Empty;
+        public string TenTaiKhoan { get; set; } = string.Empty;
+        public string ChiNhanh { get; set; } = string.Empty;
     }
 
-    // ViewModel cho xác nhận thanh toán
+    /// <summary>
+    /// ViewModel cho xác nhận thanh toán
+    /// </summary>
     public class XacNhanThanhToanViewModel
     {
         [Required]
         public int MaHD { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập mã giao dịch")]
-        public string MaGiaoDich { get; set; }
+        public string MaGiaoDich { get; set; } = string.Empty;
 
         public decimal SoTien { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập ngày thanh toán")]
         public DateTime NgayThanhToan { get; set; }
 
-        public string GhiChu { get; set; }
+        public string GhiChu { get; set; } = string.Empty;
     }
 }

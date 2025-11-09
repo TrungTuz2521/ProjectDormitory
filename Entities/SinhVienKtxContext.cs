@@ -32,6 +32,8 @@ public partial class SinhVienKtxContext : DbContext
     public virtual DbSet<ThongBao> ThongBaos { get; set; }
 
     public virtual DbSet<TienDienNuoc> TienDienNuocs { get; set; }
+    public virtual DbSet<ChiTietThanhToanDienNuoc> ChiTietThanhToanDienNuocs { get; set; }
+
 
     public virtual DbSet<TienPhong> TienPhongs { get; set; }
 
@@ -169,8 +171,10 @@ public partial class SinhVienKtxContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("TenDN");
+            entity.HasMany(e => e.ChiTietThanhToanDienNuocs)
+                     .WithOne(e => e.MsvNavigation)
+                     .HasForeignKey(e => e.Msv);
         });
-
         modelBuilder.Entity<ThanNhan>(entity =>
         {
             entity.HasKey(e => e.MaPh);
@@ -215,6 +219,7 @@ public partial class SinhVienKtxContext : DbContext
 
         modelBuilder.Entity<TienDienNuoc>(entity =>
         {
+
             entity.HasKey(e => e.MaHddn);
 
             entity.ToTable("TienDienNuoc");
@@ -237,7 +242,12 @@ public partial class SinhVienKtxContext : DbContext
             entity.HasOne(d => d.MaPNavigation).WithMany(p => p.TienDienNuocs)
                 .HasForeignKey(d => d.MaP)
                 .HasConstraintName("FK_TienDienNuoc_Phong");
+            // Thêm navigation collection
+            entity.HasMany(e => e.ChiTietThanhToanDienNuocs)
+                .WithOne(e => e.MaHddnNavigation)
+                .HasForeignKey(e => e.MaHddn);
         });
+
 
         modelBuilder.Entity<TienPhong>(entity =>
         {
@@ -259,6 +269,23 @@ public partial class SinhVienKtxContext : DbContext
             entity.HasOne(d => d.MaHdNavigation).WithMany(p => p.TienPhongs)
                 .HasForeignKey(d => d.MaHd)
                 .HasConstraintName("FK_TienPhong_HopDongPhong");
+        });
+        modelBuilder.Entity<ChiTietThanhToanDienNuoc>(entity =>
+        {
+            entity.HasKey(e => e.MaCtttdn);
+
+            entity.HasOne(d => d.MaHddnNavigation)
+                .WithMany(p => p.ChiTietThanhToanDienNuocs)
+                .HasForeignKey(d => d.MaHddn)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(d => d.MsvNavigation)
+                .WithMany(p => p.ChiTietThanhToanDienNuocs)
+                .HasForeignKey(d => d.Msv)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            entity.Property(e => e.TrangThai)
+                .HasDefaultValue("Chưa thanh toán");
         });
 
         modelBuilder.Entity<TraLoi>(entity =>

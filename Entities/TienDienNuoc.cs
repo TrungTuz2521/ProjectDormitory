@@ -32,4 +32,11 @@ public partial class TienDienNuoc
     public DateOnly? NgayTtdn { get; set; }
 
     public virtual Phong MaPNavigation { get; set; } = null!;
+    // ✅ THÊM Navigation Property
+    public virtual ICollection<ChiTietThanhToanDienNuoc> ChiTietThanhToanDienNuocs { get; set; }
+
+    public TienDienNuoc()
+    {
+        ChiTietThanhToanDienNuocs = new HashSet<ChiTietThanhToanDienNuoc>();
+    }
 }

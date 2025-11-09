@@ -66,13 +66,53 @@ namespace KTX.Controllers
         }
 
         #endregion
+        #region Phương thức kiểm tra thanh toán chi tiết
 
-        #region Trang chính
+        /// <summary>
+        /// ✅ Kiểm tra RIÊNG tiền phòng đã thanh toán chưa
+        /// </summary>
+        private async Task<bool> KiemTraTienPhongDaThu(int maHD)
+        {
+            var tienPhong = await _context.TienPhongs
+                .FirstOrDefaultAsync(t => t.MaHd == maHD);
 
-        // GET: ThanhToan
+            return tienPhong?.TrangThaiTtp == "Đã thanh toán";
+        }
+
+        /// <summary>
+        /// ✅ Kiểm tra RIÊNG điện nước đã thanh toán chưa
+        /// </summary>
+        private async Task<bool> KiemTraDienNuocDaThu(int maHD, int msv)
+        {
+            var hopDong = await _context.HopDongPhongs
+                .FirstOrDefaultAsync(h => h.MaHd == maHD);
+
+            if (hopDong == null) return false;
+
+            var tienDienNuoc = await _context.TienDienNuocs
+                .Where(t => t.MaP == hopDong.MaP)
+                .OrderByDescending(t => t.DotTtdn)
+                .ThenByDescending(t => t.MaHddn)
+                .FirstOrDefaultAsync();
+
+            // Nếu chưa có hóa đơn điện nước → coi như chưa cần thanh toán
+            if (tienDienNuoc == null) return true;
+
+            var chiTiet = await _context.ChiTietThanhToanDienNuocs
+                .AsNoTracking()
+                .Where(ct => ct.MaHddn == tienDienNuoc.MaHddn && ct.Msv == msv)
+                .Select(ct => new { TrangThai = ct.TrangThai ?? "Chưa thanh toán" })
+                .FirstOrDefaultAsync();
+
+            return chiTiet?.TrangThai == "Đã thanh toán";
+        }
+
+        #endregion
+
+
+        // Nếu không có id, lấy hợp đồng mới nhất của sinh viên đang đăng nhập
         public async Task<IActionResult> Index(int? id)
         {
-            // Lấy Mã SV từ ClaimTypes.NameIdentifier
             var msvClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (string.IsNullOrEmpty(msvClaim) || !int.TryParse(msvClaim, out int msv))
@@ -80,14 +120,14 @@ namespace KTX.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            // Nếu không có id, lấy hợp đồng mới nhất của sinh viên đang đăng nhập
+            // Nếu không có id, lấy hợp đồng mới nhất
             if (!id.HasValue)
             {
                 var latestHopDong = await _context.HopDongPhongs
                     .Include(h => h.MsvNavigation)
                     .Include(h => h.MaPNavigation)
                     .Include(h => h.TienPhongs)
-                    .Where(h => h.Msv == msv) // Lọc theo sinh viên đang đăng nhập
+                    .Where(h => h.Msv == msv)
                     .OrderByDescending(h => h.NgayBatDau)
                     .FirstOrDefaultAsync();
 
@@ -113,41 +153,26 @@ namespace KTX.Controllers
 
             // Lấy ViewModel đầy đủ
             var viewModel = await GetChiTietViewModel(id.Value, msv);
+
             if (viewModel == null)
             {
-                TempData["ErrorMessage"] = "Không tìm thấy thông tin thanh toán.";
+                TempData["ErrorMessage"] = "Không tìm thấy chi tiết thanh toán.";
                 return RedirectToAction("Index", "Home");
             }
 
+            // ✅ THÊM: Truyền thông tin trạng thái từng loại vào ViewBag
+            ViewBag.TienPhongDaThu = await KiemTraTienPhongDaThu(id.Value);
+            ViewBag.DienNuocDaThu = await KiemTraDienNuocDaThu(id.Value, msv);
+
+            // ✅✅✅ THÊM DÒNG NÀY - Truyền danh sách ngân hàng vào ViewBag
+            ViewBag.DanhSachNganHang = GetDanhSachNganHang();
             return View(viewModel);
         }
 
-        #endregion
-
-        #region Chi tiết thanh toán
-
-        // GET: ThanhToan/ChiTiet/5
-        public async Task<IActionResult> ChiTiet(int id)
-        {
-            // Lấy MSV từ Claims
-            var msvClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (string.IsNullOrEmpty(msvClaim) || !int.TryParse(msvClaim, out int msv))
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
-            var viewModel = await GetChiTietViewModel(id, msv);
-            if (viewModel == null)
-            {
-                TempData["ErrorMessage"] = "Không tìm thấy hợp đồng hoặc bạn không có quyền xem.";
-                return RedirectToAction("Index");
-            }
-
-            return View(viewModel);
-        }
-
+        // Lấy ViewModel đầy đủ
         /// <summary>
-        /// ✅ Phương thức helper tạo ViewModel chi tiết thanh toán
+        /// ✅ SAFE VERSION: Phương thức helper tạo ViewModel chi tiết thanh toán
+        /// Xử lý an toàn các giá trị NULL từ database
         /// </summary>
         private async Task<ThanhToanDetailViewModel> GetChiTietViewModel(int maHD, int msv)
         {
@@ -162,39 +187,88 @@ namespace KTX.Controllers
                 return null;
             }
 
-            // Lấy thông tin tiền điện nước của phòng
+            // ✅ Lấy hóa đơn điện nước MỚI NHẤT của phòng
             var tienDienNuoc = await _context.TienDienNuocs
                 .Where(t => t.MaP == hopDong.MaP)
-                .OrderByDescending(t => t.MaHddn)
+                .OrderByDescending(t => t.DotTtdn)
+                .ThenByDescending(t => t.MaHddn)
                 .FirstOrDefaultAsync();
 
-            // ✅ BƯỚC 1: Lấy số người trong phòng
+            // ✅ Lấy chi tiết thanh toán - SAFE QUERY (không load navigation properties)
+            ChiTietThanhToanDienNuoc chiTietThanhToan = null;
+
+            if (tienDienNuoc != null)
+            {
+                // Query an toàn - chỉ lấy các field cần thiết
+                chiTietThanhToan = await _context.ChiTietThanhToanDienNuocs
+                    .AsNoTracking() // Không track để tránh lỗi navigation
+                    .Where(ct => ct.MaHddn == tienDienNuoc.MaHddn && ct.Msv == msv)
+                    .Select(ct => new ChiTietThanhToanDienNuoc
+                    {
+                        MaCtttdn = ct.MaCtttdn,
+                        MaHddn = ct.MaHddn,
+                        Msv = ct.Msv,
+                        SoTienPhai = ct.SoTienPhai,
+                        SoTienDaTra = ct.SoTienDaTra,
+                        TrangThai = ct.TrangThai ?? "Chưa thanh toán", // ✅ Handle NULL
+                        NgayThanhToan = ct.NgayThanhToan,
+                        GhiChu = ct.GhiChu ?? "" // ✅ Handle NULL
+                    })
+                    .FirstOrDefaultAsync();
+            }
+
+            // ✅ Số người trong phòng
             int soNguoiTrongPhong = await LaySoNguoiTrongPhong(hopDong.MaP);
 
-            // ✅ BƯỚC 2: Lấy tổng tiền điện nước CỦA PHÒNG (chưa chia)
+            // ✅ Tổng tiền điện nước của PHÒNG (chưa chia)
             decimal tongTienDienPhong = tienDienNuoc?.TienDien ?? 0;
             decimal tongTienNuocPhong = tienDienNuoc?.TienNuoc ?? 0;
             decimal tongTienDienNuocPhong = tongTienDienPhong + tongTienNuocPhong;
 
-            // ✅ BƯỚC 3: Tính tiền điện nước MỖI NGƯỜI (đã chia)
-            decimal tienDienMotNguoi = soNguoiTrongPhong > 1
-                ? Math.Round(tongTienDienPhong / soNguoiTrongPhong, 0, MidpointRounding.AwayFromZero)
-                : tongTienDienPhong;
+            // ✅ Tiền điện nước của SINH VIÊN NÀY (đã chia)
+            decimal tienDienMotNguoi = 0;
+            decimal tienNuocMotNguoi = 0;
 
-            decimal tienNuocMotNguoi = soNguoiTrongPhong > 1
-                ? Math.Round(tongTienNuocPhong / soNguoiTrongPhong, 0, MidpointRounding.AwayFromZero)
-                : tongTienNuocPhong;
+            if (chiTietThanhToan != null)
+            {
+                // Lấy từ bảng chi tiết (chính xác nhất)
+                decimal soTienDienNuoc = chiTietThanhToan.SoTienPhai;
 
-            // ✅ BƯỚC 4: Tính tiền phòng (KHÔNG chia)
+                // Tính tỷ lệ để hiển thị riêng điện và nước
+                if (tongTienDienNuocPhong > 0)
+                {
+                    decimal tyLeDien = tongTienDienPhong / tongTienDienNuocPhong;
+                    tienDienMotNguoi = Math.Round(soTienDienNuoc * tyLeDien, 0);
+                    tienNuocMotNguoi = soTienDienNuoc - tienDienMotNguoi;
+                }
+            }
+            else if (tienDienNuoc != null)
+            {
+                // Fallback: Tính chia đều nếu chưa có chi tiết
+                tienDienMotNguoi = soNguoiTrongPhong > 1
+                    ? Math.Round(tongTienDienPhong / soNguoiTrongPhong, 0)
+                    : tongTienDienPhong;
+
+                tienNuocMotNguoi = soNguoiTrongPhong > 1
+                    ? Math.Round(tongTienNuocPhong / soNguoiTrongPhong, 0)
+                    : tongTienNuocPhong;
+            }
+
+            // ✅ Tiền phòng (KHÔNG chia)
             decimal tienPhong = hopDong.TienP ?? 0;
 
-            // ✅ BƯỚC 5: Tính TỔNG CỘNG sinh viên này phải trả
+            // ✅ TỔNG CỘNG sinh viên này phải trả
             decimal tongCong = tienPhong + tienDienMotNguoi + tienNuocMotNguoi;
 
-            // Lấy thông tin thanh toán
+            // Lấy thông tin thanh toán tiền phòng
             var tienPhongRecord = hopDong.TienPhongs.FirstOrDefault();
 
-            // ✅ Tạo ViewModel đầy đủ
+            // ✅ Trạng thái thanh toán điện nước của sinh viên
+            bool diennuocDaThu = chiTietThanhToan?.TrangThai == "Đã thanh toán";
+            bool phongDaThu = tienPhongRecord?.TrangThaiTtp == "Đá thanh toán";
+            bool tatCaDaThu = diennuocDaThu && phongDaThu;
+
+            // ✅ Tạo ViewModel đầy đủ - SAFE với null coalescing
             var viewModel = new ThanhToanDetailViewModel
             {
                 // Thông tin hợp đồng
@@ -205,27 +279,25 @@ namespace KTX.Controllers
 
                 // Thông tin sinh viên
                 MaSV = hopDong.Msv.ToString(),
-                HoTen = hopDong.MsvNavigation.HoTen,
-                SoDienThoai = hopDong.MsvNavigation.Sdt,
-                Email = hopDong.MsvNavigation.Email ?? "",
+                HoTen = hopDong.MsvNavigation?.HoTen ?? "N/A",
+                SoDienThoai = hopDong.MsvNavigation?.Sdt ?? "",
+                Email = hopDong.MsvNavigation?.Email ?? "",
 
                 // Thông tin phòng
                 MaPhong = hopDong.MaP.ToString(),
                 TenPhong = $"Phòng {hopDong.MaP}",
                 GiaPhong = hopDong.TienP ?? 0,
 
-                // ✅ Thông tin điện - CHI TIẾT
+                // ✅ Thông tin điện nước - CHI TIẾT
                 SoDien = tienDienNuoc?.SoDien,
                 GiaDien = tienDienNuoc?.GiaDien,
                 TongTienDienPhong = tongTienDienPhong,
 
-                // ✅ Thông tin nước - CHI TIẾT
                 SoNuoc = tienDienNuoc?.SoNuoc,
                 GiaNuoc = tienDienNuoc?.GiaNuoc,
-
                 TongTienNuocPhong = tongTienNuocPhong,
 
-                // ✅ Tổng hợp điện nước
+                // ✅ Tổng hợp
                 ThoiGianGhi = tienDienNuoc?.Httdn?.ToDateTime(TimeOnly.MinValue),
                 SoNguoiTrongPhong = soNguoiTrongPhong,
                 TongTienDienNuocPhong = tongTienDienNuocPhong,
@@ -234,16 +306,17 @@ namespace KTX.Controllers
                 DanhSachDichVu = new List<DichVuThanhToanViewModel>(),
                 TongTienDichVu = 0,
 
-                // ✅ Tổng tiền (Đã chia theo số người)
-                TienPhong = tienPhong,              // KHÔNG chia
-                TienDien = tienDienMotNguoi,        // ĐÃ chia
-                TienNuoc = tienNuocMotNguoi,        // ĐÃ chia
-                TongCong = tongCong,                // Tổng sinh viên này phải trả
+                // ✅ Tổng tiền (của sinh viên này)
+                TienPhong = tienPhong,
+                TienDien = tienDienMotNguoi,
+                TienNuoc = tienNuocMotNguoi,
+                TongCong = tongCong,
 
-                // Trạng thái thanh toán
-                DaThanhToan = tienPhongRecord?.TrangThaiTtp == "Đã thanh toán",
-                NgayThanhToan = tienPhongRecord?.NgayTtp?.ToDateTime(TimeOnly.MinValue),
-                TrangThaiThanhToan = tienPhongRecord?.TrangThaiTtp ?? "Chưa thanh toán",
+                // ✅ Trạng thái thanh toán
+                DaThanhToan = tatCaDaThu,
+                NgayThanhToan = chiTietThanhToan?.NgayThanhToan?.ToDateTime(TimeOnly.MinValue)
+                             ?? tienPhongRecord?.NgayTtp?.ToDateTime(TimeOnly.MinValue),
+                TrangThaiThanhToan = tatCaDaThu ? "Đã thanh toán" : "Chưa thanh toán",
 
                 // Thông tin ngân hàng
                 ThongTinNganHang = GetDefaultBankInfo(),
@@ -253,14 +326,16 @@ namespace KTX.Controllers
             return viewModel;
         }
 
-        #endregion
 
+
+        #region Lịch sử thanh toán
+
+        // GET: ThanhToan/LichSu
         #region Lịch sử thanh toán
 
         // GET: ThanhToan/LichSu
         public async Task<IActionResult> LichSu()
         {
-            // Lấy MSV từ Claims
             var msvClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (string.IsNullOrEmpty(msvClaim) || !int.TryParse(msvClaim, out int msv))
             {
@@ -282,38 +357,101 @@ namespace KTX.Controllers
                 .OrderByDescending(h => h.NgayBatDau)
                 .ToListAsync();
 
+            // ✅ Khởi tạo List đúng kiểu
             var lichSuThanhToan = new List<LichSuThanhToanViewModel>();
 
-            foreach (var h in danhSachHopDong)
+            foreach (var hopDong in danhSachHopDong)
             {
-                var tienDienNuoc = await _context.TienDienNuocs
-                    .Where(t => t.MaP == h.MaP)
-                    .OrderByDescending(t => t.MaHddn)
-                    .FirstOrDefaultAsync();
-
-                var tienPhongRecord = h.TienPhongs.FirstOrDefault();
-
-                // ✅ Tính tổng tiền đã chia theo số người
-                decimal tongTien = await TinhTongTienMotNguoi(h, tienDienNuoc);
+                // ✅ 1. TIỀN PHÒNG
+                var tienPhongRecord = hopDong.TienPhongs.FirstOrDefault();
 
                 lichSuThanhToan.Add(new LichSuThanhToanViewModel
                 {
-                    MaHD = h.MaHd,
-                    MaPhong = h.MaP.ToString(),
-                    TenPhong = $"Phòng {h.MaP}",
-                    NgayBatDau = h.NgayBatDau?.ToDateTime(TimeOnly.MinValue) ?? DateTime.MinValue,
-                    NgayKetThuc = h.NgayKetThuc?.ToDateTime(TimeOnly.MinValue) ?? DateTime.MinValue,
-                    TongTien = tongTien,
+                    MaHD = hopDong.MaHd,
+                    MaPhong = hopDong.MaP.ToString(),
+                    TenPhong = $"Phòng {hopDong.MaP}",
+                    NgayBatDau = hopDong.NgayBatDau?.ToDateTime(TimeOnly.MinValue) ?? DateTime.MinValue,
+                    NgayKetThuc = hopDong.NgayKetThuc?.ToDateTime(TimeOnly.MinValue) ?? DateTime.MinValue,
+
+                    LoaiThanhToan = "Tiền phòng",
+                    MaHoaDon = $"HD{hopDong.MaHd}",
+                    KyThanhToan = hopDong.NgayBatDau.HasValue
+                        ? $"Tháng {hopDong.NgayBatDau.Value.Month:00}/{hopDong.NgayBatDau.Value.Year}"
+                        : "N/A",
+                    GhiChu = "Tiền thuê phòng theo hợp đồng",
+
+                    TongTien = hopDong.TienP ?? 0,
                     DaThanhToan = tienPhongRecord?.TrangThaiTtp == "Đã thanh toán",
                     NgayThanhToan = tienPhongRecord?.NgayTtp?.ToDateTime(TimeOnly.MinValue),
-                    TrangThaiThanhToan = tienPhongRecord?.TrangThaiTtp ?? "Chưa thanh toán"
+                    TrangThaiThanhToan = tienPhongRecord?.TrangThaiTtp == "Đã thanh toán"
+                        ? "Đã thanh toán"
+                        : "Chưa thanh toán"
                 });
+
+                // ✅ 2. TIỀN ĐIỆN NƯỚC
+                var tienDienNuoc = await _context.TienDienNuocs
+                    .Where(t => t.MaP == hopDong.MaP)
+                    .OrderByDescending(t => t.DotTtdn)
+                    .ThenByDescending(t => t.MaHddn)
+                    .FirstOrDefaultAsync();
+
+                if (tienDienNuoc != null)
+                {
+                    var chiTietDienNuoc = await _context.ChiTietThanhToanDienNuocs
+                        .AsNoTracking()
+                        .Where(ct => ct.MaHddn == tienDienNuoc.MaHddn && ct.Msv == msv)
+                        .Select(ct => new
+                        {
+                            ct.SoTienPhai,
+                            ct.SoTienDaTra,
+                            TrangThai = ct.TrangThai ?? "Chưa thanh toán",
+                            ct.NgayThanhToan
+                        })
+                        .FirstOrDefaultAsync();
+
+                    decimal tienDienNuocMotNguoi = 0;
+                    if (chiTietDienNuoc != null)
+                    {
+                        tienDienNuocMotNguoi = chiTietDienNuoc.SoTienPhai;
+                    }
+                    else
+                    {
+                        int soNguoi = await LaySoNguoiTrongPhong(hopDong.MaP);
+                        decimal tongDienNuoc = (tienDienNuoc.TienDien ?? 0) + (tienDienNuoc.TienNuoc ?? 0);
+                        tienDienNuocMotNguoi = soNguoi > 1
+                            ? Math.Round(tongDienNuoc / soNguoi, 0)
+                            : tongDienNuoc;
+                    }
+
+                    lichSuThanhToan.Add(new LichSuThanhToanViewModel
+                    {
+                        MaHD = hopDong.MaHd,
+                        MaPhong = hopDong.MaP.ToString(),
+                        TenPhong = $"Phòng {hopDong.MaP}",
+                        NgayBatDau = hopDong.NgayBatDau?.ToDateTime(TimeOnly.MinValue) ?? DateTime.MinValue,
+                        NgayKetThuc = hopDong.NgayKetThuc?.ToDateTime(TimeOnly.MinValue) ?? DateTime.MinValue,
+
+                        LoaiThanhToan = "Tiền điện nước",
+                        MaHoaDon = $"HDDN{tienDienNuoc.MaHddn}",
+                        KyThanhToan = tienDienNuoc.Httdn.HasValue
+                            ? $"Tháng {tienDienNuoc.Httdn.Value.Month:00}/{tienDienNuoc.Httdn.Value.Year}"
+                            : "N/A",
+                        GhiChu = $"Điện: {tienDienNuoc.SoDien ?? 0} kWh, Nước: {tienDienNuoc.SoNuoc ?? 0} m³",
+
+                        TongTien = tienDienNuocMotNguoi,
+                        DaThanhToan = chiTietDienNuoc?.TrangThai == "Đã thanh toán",
+                        NgayThanhToan = chiTietDienNuoc?.NgayThanhToan?.ToDateTime(TimeOnly.MinValue),
+                        TrangThaiThanhToan = chiTietDienNuoc?.TrangThai == "Đã thanh toán"
+                            ? "Đã thanh toán"
+                            : "Chưa thanh toán"
+                    });
+                }
             }
 
             var viewModel = new DanhSachLichSuViewModel
             {
                 MaSV = msv.ToString(),
-                HoTen = sinhVien.HoTen,
+                HoTen = sinhVien.HoTen ?? "N/A",
                 DanhSachThanhToan = lichSuThanhToan,
                 TongDaThanhToan = lichSuThanhToan.Where(l => l.DaThanhToan).Sum(l => l.TongTien),
                 TongChuaThanhToan = lichSuThanhToan.Where(l => !l.DaThanhToan).Sum(l => l.TongTien),
@@ -326,12 +464,13 @@ namespace KTX.Controllers
 
         #endregion
 
+        #endregion
+
         #region Thanh toán QR
 
         // GET: ThanhToan/ThanhToanQR/5
         public async Task<IActionResult> ThanhToanQR(int id)
         {
-            // Lấy MSV từ Claims
             var msvClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (string.IsNullOrEmpty(msvClaim) || !int.TryParse(msvClaim, out int msv))
             {
@@ -349,22 +488,17 @@ namespace KTX.Controllers
                 return RedirectToAction("Index");
             }
 
-            var tienPhongRecord = hopDong.TienPhongs.FirstOrDefault();
-            bool daThanhToan = tienPhongRecord?.TrangThaiTtp == "Đã thanh toán";
+            // ✅ Kiểm tra đã thanh toán chưa
+            bool daThanhToan = await KiemTraDaThanhToan(hopDong, msv);
 
             if (daThanhToan)
             {
                 TempData["ErrorMessage"] = "Hợp đồng này đã được thanh toán";
-                return RedirectToAction(nameof(ChiTiet), new { id });
+                return RedirectToAction(nameof(Index), new { id });
             }
 
-            var tienDienNuoc = await _context.TienDienNuocs
-                .Where(t => t.MaP == hopDong.MaP)
-                .OrderByDescending(t => t.MaHddn)
-                .FirstOrDefaultAsync();
-
-            // ✅ Tính tổng tiền đã chia theo số người
-            decimal tongTien = await TinhTongTienMotNguoi(hopDong, tienDienNuoc);
+            // ✅ Tính tổng tiền theo chi tiết mới
+            decimal tongTien = await TinhTongTienMotNguoi(hopDong, msv);
             string noiDung = $"THANHTOAN HD{id} P{hopDong.MaP}";
 
             var viewModel = new ThanhToanQRViewModel
@@ -398,7 +532,6 @@ namespace KTX.Controllers
 
             try
             {
-                // Tạo QR Code URL theo chuẩn VietQR
                 string qrUrl = $"https://img.vietqr.io/image/{model.MaNganHang}-{nganHang.SoTaiKhoan}-compact2.jpg?" +
                               $"amount={model.SoTien}&addInfo={Uri.EscapeDataString(model.NoiDung)}&accountName={Uri.EscapeDataString(nganHang.TenTaiKhoan)}";
 
@@ -429,7 +562,6 @@ namespace KTX.Controllers
                 return Json(new { success = false, message = "Dữ liệu không hợp lệ" });
             }
 
-            // Lấy MSV từ Claims để kiểm tra quyền
             var msvClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (string.IsNullOrEmpty(msvClaim) || !int.TryParse(msvClaim, out int msv))
             {
@@ -445,16 +577,17 @@ namespace KTX.Controllers
                 return Json(new { success = false, message = "Không tìm thấy hợp đồng hoặc bạn không có quyền thao tác" });
             }
 
-            var tienPhongRecord = hopDong.TienPhongs.FirstOrDefault();
-
-            if (tienPhongRecord != null && tienPhongRecord.TrangThaiTtp == "Đã thanh toán")
+            // ✅ Kiểm tra đã thanh toán chưa
+            bool daThanhToan = await KiemTraDaThanhToan(hopDong, msv);
+            if (daThanhToan)
             {
                 return Json(new { success = false, message = "Hợp đồng đã được thanh toán" });
             }
 
             try
             {
-                // Cập nhật hoặc tạo mới record TienPhong
+                // ✅ 1. Cập nhật tiền phòng
+                var tienPhongRecord = hopDong.TienPhongs.FirstOrDefault();
                 if (tienPhongRecord != null)
                 {
                     tienPhongRecord.TrangThaiTtp = "Đã thanh toán";
@@ -463,12 +596,9 @@ namespace KTX.Controllers
                 }
                 else
                 {
-                    // Tạo MaHdp mới (tự động tăng)
-                    int maxMaHdp = await _context.TienPhongs
-                        .Where(t => t.MaHd == hopDong.MaHd)
-                        .Select(t => t.MaHdp)
-                        .DefaultIfEmpty(0)
-                        .MaxAsync();
+                    int maxMaHdp = await _context.TienPhongs.AnyAsync()
+                        ? await _context.TienPhongs.MaxAsync(t => t.MaHdp)
+                        : 0;
 
                     var newTienPhong = new TienPhong
                     {
@@ -482,7 +612,40 @@ namespace KTX.Controllers
                     _context.TienPhongs.Add(newTienPhong);
                 }
 
-                // Cập nhật trạng thái hợp đồng
+                // ✅ 2. Cập nhật chi tiết điện nước của sinh viên
+                var tienDienNuoc = await _context.TienDienNuocs
+                    .Where(t => t.MaP == hopDong.MaP)
+                    .OrderByDescending(t => t.DotTtdn)
+                    .ThenByDescending(t => t.MaHddn)
+                    .FirstOrDefaultAsync();
+
+                if (tienDienNuoc != null)
+                {
+                    var chiTietThanhToan = await _context.ChiTietThanhToanDienNuocs
+                        .FirstOrDefaultAsync(ct => ct.MaHddn == tienDienNuoc.MaHddn && ct.Msv == msv);
+
+                    if (chiTietThanhToan != null)
+                    {
+                        chiTietThanhToan.TrangThai = "Đã thanh toán";
+                        chiTietThanhToan.SoTienDaTra = chiTietThanhToan.SoTienPhai;
+                        chiTietThanhToan.NgayThanhToan = DateOnly.FromDateTime(model.NgayThanhToan);
+                        _context.ChiTietThanhToanDienNuocs.Update(chiTietThanhToan);
+
+                        // ✅ 3. Kiểm tra tất cả sinh viên trong phòng đã thanh toán chưa
+                        var tatCaDaThu = await _context.ChiTietThanhToanDienNuocs
+                            .Where(ct => ct.MaHddn == tienDienNuoc.MaHddn)
+                            .AllAsync(ct => ct.TrangThai == "Đã thanh toán");
+
+                        if (tatCaDaThu)
+                        {
+                            tienDienNuoc.TrangThaiTtdn = "Đã thanh toán";
+                            tienDienNuoc.NgayTtdn = DateOnly.FromDateTime(model.NgayThanhToan);
+                            _context.TienDienNuocs.Update(tienDienNuoc);
+                        }
+                    }
+                }
+
+                // ✅ 4. Cập nhật trạng thái hợp đồng
                 hopDong.TrangThaiHd = "Đã thanh toán";
                 _context.HopDongPhongs.Update(hopDong);
 
@@ -506,7 +669,7 @@ namespace KTX.Controllers
         #region Phương thức hỗ trợ
 
         /// <summary>
-        /// ✅ Lấy số người đang ở trong phòng từ trường HienO
+        /// Lấy số người đang ở trong phòng
         /// </summary>
         private async Task<int> LaySoNguoiTrongPhong(int maPhong)
         {
@@ -514,37 +677,107 @@ namespace KTX.Controllers
                 .FirstOrDefaultAsync(p => p.MaP == maPhong);
 
             int soNguoi = phong?.HienO ?? 0;
-
-            // ✅ Trả về ít nhất là 1 để tránh chia cho 0
             return soNguoi > 0 ? soNguoi : 1;
         }
 
         /// <summary>
-        /// ✅ Tính tổng tiền MỘT NGƯỜI phải trả (đã chia điện nước theo số người)
+        /// ✅ UPDATED: Tính tổng tiền MỘT SINH VIÊN phải trả
+        /// Sử dụng ChiTietThanhToanDienNuoc để lấy số tiền chính xác
         /// </summary>
-        private async Task<decimal> TinhTongTienMotNguoi(HopDongPhong hopDong, TienDienNuoc tienDienNuoc)
+        /// <summary>
+        /// ✅ FIXED: Tính tổng tiền MỘT SINH VIÊN phải trả
+        /// Xử lý an toàn các giá trị NULL từ database
+        /// </summary>
+        private async Task<decimal> TinhTongTienMotNguoi(HopDongPhong hopDong, int msv)
         {
-            // Tiền phòng (KHÔNG chia)
+            // 1. Tiền phòng (KHÔNG chia)
             decimal tienPhong = hopDong.TienP ?? 0;
 
-            // Lấy số người trong phòng
-            int soNguoiTrongPhong = await LaySoNguoiTrongPhong(hopDong.MaP);
+            // 2. Lấy hóa đơn điện nước mới nhất
+            var tienDienNuoc = await _context.TienDienNuocs
+                .Where(t => t.MaP == hopDong.MaP)
+                .OrderByDescending(t => t.DotTtdn)
+                .ThenByDescending(t => t.MaHddn)
+                .FirstOrDefaultAsync();
 
-            // Tính tiền điện nước đã chia
-            decimal tongTienDien = tienDienNuoc?.TienDien ?? 0;
-            decimal tongTienNuoc = tienDienNuoc?.TienNuoc ?? 0;
+            decimal tienDienNuocMotNguoi = 0;
 
-            decimal tienDienMotNguoi = soNguoiTrongPhong > 1
-                ? Math.Round(tongTienDien / soNguoiTrongPhong, 0, MidpointRounding.AwayFromZero)
-                : tongTienDien;
+            if (tienDienNuoc != null)
+            {
+                // 3. ✅ Query an toàn - chỉ lấy các field cần thiết, không load navigation properties
+                var chiTiet = await _context.ChiTietThanhToanDienNuocs
+                    .AsNoTracking() // Không track để tránh lỗi
+                    .Where(ct => ct.MaHddn == tienDienNuoc.MaHddn && ct.Msv == msv)
+                    .Select(ct => new
+                    {
+                        ct.SoTienPhai,
+                        ct.SoTienDaTra,
+                        TrangThai = ct.TrangThai ?? "Chưa thanh toán" // ✅ Handle NULL
+                    })
+                    .FirstOrDefaultAsync();
 
-            decimal tienNuocMotNguoi = soNguoiTrongPhong > 1
-                ? Math.Round(tongTienNuoc / soNguoiTrongPhong, 0, MidpointRounding.AwayFromZero)
-                : tongTienNuoc;
+                if (chiTiet != null)
+                {
+                    // ✅ Lấy từ bảng chi tiết (chính xác nhất)
+                    tienDienNuocMotNguoi = chiTiet.SoTienPhai;
+                }
+                else
+                {
+                    // ✅ Fallback: Tính chia đều nếu chưa có chi tiết
+                    int soNguoi = await LaySoNguoiTrongPhong(hopDong.MaP);
+                    decimal tongDienNuoc = (tienDienNuoc.TienDien ?? 0) + (tienDienNuoc.TienNuoc ?? 0);
 
-            return tienPhong + tienDienMotNguoi + tienNuocMotNguoi;
+                    tienDienNuocMotNguoi = soNguoi > 1
+                        ? Math.Round(tongDienNuoc / soNguoi, 0, MidpointRounding.AwayFromZero)
+                        : tongDienNuoc;
+                }
+            }
+
+            return tienPhong + tienDienNuocMotNguoi;
         }
+        /// <summary>
+        /// ✅ NEW: Kiểm tra sinh viên đã thanh toán đủ cả tiền phòng và điện nước chưa
+        /// </summary>
+        /// <summary>
+        /// ✅ FIXED: Kiểm tra sinh viên đã thanh toán đủ cả tiền phòng và điện nước chưa
+        /// </summary>
+        /// <summary>
+        /// ✅ FIXED: Kiểm tra trạng thái thanh toán chính xác
+        /// </summary>
+        private async Task<bool> KiemTraDaThanhToan(HopDongPhong hopDong, int msv)
+        {
+            // 1. Kiểm tra tiền phòng (BẮT BUỘC)
+            var tienPhongRecord = hopDong.TienPhongs?.FirstOrDefault();
+            bool phongDaThu = tienPhongRecord?.TrangThaiTtp == "Đã thanh toán";
 
+            // 2. Kiểm tra xem có hóa đơn điện nước không
+            var tienDienNuoc = await _context.TienDienNuocs
+                .Where(t => t.MaP == hopDong.MaP)
+                .OrderByDescending(t => t.DotTtdn)
+                .ThenByDescending(t => t.MaHddn)
+                .FirstOrDefaultAsync();
+
+            // ✅ Nếu CHƯA CÓ hóa đơn điện nước → chỉ cần kiểm tra tiền phòng
+            if (tienDienNuoc == null)
+            {
+                return phongDaThu;
+            }
+
+            // ✅ Nếu CÓ hóa đơn điện nước → kiểm tra cả điện nước
+            var chiTiet = await _context.ChiTietThanhToanDienNuocs
+                .AsNoTracking()
+                .Where(ct => ct.MaHddn == tienDienNuoc.MaHddn && ct.Msv == msv)
+                .Select(ct => new
+                {
+                    TrangThai = ct.TrangThai ?? "Chưa thanh toán"
+                })
+                .FirstOrDefaultAsync();
+
+            bool dienNuocDaThu = chiTiet?.TrangThai == "Đã thanh toán";
+
+            // Phải thanh toán ĐỦ cả tiền phòng VÀ điện nước
+            return phongDaThu && dienNuocDaThu;
+        }
         #endregion
     }
 }
