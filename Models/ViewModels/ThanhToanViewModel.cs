@@ -38,6 +38,12 @@ namespace KTX.ViewModels
         public int? SoDienMoi { get; set; }
         public int? SoNuocCu { get; set; }
         public int? SoNuocMoi { get; set; }
+        /// <summary>
+        /// ✅ Kiểm tra xem phòng có hóa đơn điện nước chưa
+        /// </summary>
+        public bool CoDienNuoc { get; set; }
+
+
 
         // ✅ Thông tin phòng
         public int SoNguoiTrongPhong { get; set; } // Từ HienO của Phong

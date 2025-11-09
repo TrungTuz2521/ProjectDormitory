@@ -82,6 +82,9 @@ namespace KTX.Controllers
         /// <summary>
         /// ✅ Kiểm tra RIÊNG điện nước đã thanh toán chưa
         /// </summary>
+        /// <summary>
+        /// ✅ Kiểm tra RIÊNG điện nước đã thanh toán chưa
+        /// </summary>
         private async Task<bool> KiemTraDienNuocDaThu(int maHD, int msv)
         {
             var hopDong = await _context.HopDongPhongs
@@ -95,8 +98,11 @@ namespace KTX.Controllers
                 .ThenByDescending(t => t.MaHddn)
                 .FirstOrDefaultAsync();
 
-            // Nếu chưa có hóa đơn điện nước → coi như chưa cần thanh toán
-            if (tienDienNuoc == null) return true;
+            // ✅ Nếu chưa có hóa đơn điện nước → coi như "chưa áp dụng" (không cần thanh toán)
+            if (tienDienNuoc == null)
+            {
+                return true; // Trả về true để không chặn thanh toán, nhưng ViewBag sẽ xử lý hiển thị
+            }
 
             var chiTiet = await _context.ChiTietThanhToanDienNuocs
                 .AsNoTracking()
@@ -104,7 +110,7 @@ namespace KTX.Controllers
                 .Select(ct => new { TrangThai = ct.TrangThai ?? "Chưa thanh toán" })
                 .FirstOrDefaultAsync();
 
-            return chiTiet?.TrangThai == "Đã thanh toán";
+            return chiTiet?.TrangThai == "Đá thanh toán";
         }
 
         #endregion
@@ -264,9 +270,21 @@ namespace KTX.Controllers
             var tienPhongRecord = hopDong.TienPhongs.FirstOrDefault();
 
             // ✅ Trạng thái thanh toán điện nước của sinh viên
-            bool diennuocDaThu = chiTietThanhToan?.TrangThai == "Đã thanh toán";
-            bool phongDaThu = tienPhongRecord?.TrangThaiTtp == "Đá thanh toán";
-            bool tatCaDaThu = diennuocDaThu && phongDaThu;
+            
+            bool dienNuocDaThu;
+            if (tienDienNuoc == null)
+            {
+                // ✅ Chưa có hóa đơn → không áp dụng (không cần thanh toán)
+                dienNuocDaThu = true; // Không chặn, nhưng hiển thị "Chưa áp dụng"
+            }
+            else
+            {
+                dienNuocDaThu = chiTietThanhToan?.TrangThai == "Đã thanh toán";
+            }
+
+            bool phongDaThu = tienPhongRecord?.TrangThaiTtp == "Đã thanh toán";
+            bool tatCaDaThu = phongDaThu && dienNuocDaThu;
+
 
             // ✅ Tạo ViewModel đầy đủ - SAFE với null coalescing
             var viewModel = new ThanhToanDetailViewModel
@@ -313,9 +331,11 @@ namespace KTX.Controllers
                 TongCong = tongCong,
 
                 // ✅ Trạng thái thanh toán
+                CoDienNuoc = tienDienNuoc != null,
+
                 DaThanhToan = tatCaDaThu,
                 NgayThanhToan = chiTietThanhToan?.NgayThanhToan?.ToDateTime(TimeOnly.MinValue)
-                             ?? tienPhongRecord?.NgayTtp?.ToDateTime(TimeOnly.MinValue),
+                 ?? tienPhongRecord?.NgayTtp?.ToDateTime(TimeOnly.MinValue),
                 TrangThaiThanhToan = tatCaDaThu ? "Đã thanh toán" : "Chưa thanh toán",
 
                 // Thông tin ngân hàng
@@ -744,6 +764,11 @@ namespace KTX.Controllers
         /// <summary>
         /// ✅ FIXED: Kiểm tra trạng thái thanh toán chính xác
         /// </summary>
+        /// <summary>
+        /// ✅ FIXED: Kiểm tra trạng thái thanh toán theo nghiệp vụ
+        /// - Nếu CHƯA CÓ hóa đơn điện nước: chỉ cần thanh toán tiền phòng
+        /// - Nếu ĐÃ CÓ hóa đơn điện nước: phải thanh toán CẢ tiền phòng VÀ điện nước
+        /// </summary>
         private async Task<bool> KiemTraDaThanhToan(HopDongPhong hopDong, int msv)
         {
             // 1. Kiểm tra tiền phòng (BẮT BUỘC)
@@ -757,13 +782,13 @@ namespace KTX.Controllers
                 .ThenByDescending(t => t.MaHddn)
                 .FirstOrDefaultAsync();
 
-            // ✅ Nếu CHƯA CÓ hóa đơn điện nước → chỉ cần kiểm tra tiền phòng
+            // ✅ Nếu CHƯA CÓ hóa đơn điện nước → chỉ cần thanh toán tiền phòng
             if (tienDienNuoc == null)
             {
-                return phongDaThu;
+                return phongDaThu; // Chỉ cần tiền phòng đã thanh toán
             }
 
-            // ✅ Nếu CÓ hóa đơn điện nước → kiểm tra cả điện nước
+            // ✅ Nếu CÓ hóa đơn điện nước → phải thanh toán CẢ tiền phòng VÀ điện nước
             var chiTiet = await _context.ChiTietThanhToanDienNuocs
                 .AsNoTracking()
                 .Where(ct => ct.MaHddn == tienDienNuoc.MaHddn && ct.Msv == msv)
