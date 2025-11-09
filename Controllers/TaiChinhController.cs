@@ -140,6 +140,7 @@ namespace KTX.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+    
         public async Task<IActionResult> NhapDienNuocAsync(NhapDienNuocViewModel model)
         {
             if (!ModelState.IsValid)
@@ -191,18 +192,16 @@ namespace KTX.Controllers
                 // Chia đều tiền cho mỗi sinh viên
                 decimal tienMoiNguoi = Math.Round(tongTien / soNguoi, 0);
 
-                // Lấy mã chi tiết lớn nhất
-                int maxMaCtttdn = await _context.ChiTietThanhToanDienNuocs.AnyAsync()
-                    ? await _context.ChiTietThanhToanDienNuocs.MaxAsync(ct => ct.MaCtttdn)
-                    : 0;
+                
 
                 foreach (var hd in sinhViensInRoom)
                 {
-                    maxMaCtttdn++;
+                   
 
                     var chiTiet = new ChiTietThanhToanDienNuoc
                     {
-                        MaCtttdn = maxMaCtttdn,
+                        
+
                         MaHddn = dienNuoc.MaHddn,
                         Msv = hd.Msv,
                         SoTienPhai = tienMoiNguoi,

@@ -1,6 +1,19 @@
 ﻿@model KTX.ViewModels.ThanhToanDetailViewModel
 @{
     ViewData["Title"] = "Thanh Toán & Dịch Vụ";
+    
+    // ✅ Logic kiểm tra trạng thái - ĐÃ SỬA
+    bool tienPhongDaThu = ViewBag.TienPhongDaThu == true;
+    bool coDienNuoc = Model.CoDienNuoc == true; // Kiểm tra có hóa đơn điện nước không
+    bool dienNuocDaThu = ViewBag.DienNuocDaThu == true;
+    
+    // Tính trạng thái tổng hợp
+    bool tatCaDaThu = coDienNuoc 
+        ? (tienPhongDaThu && dienNuocDaThu)  // Có điện nước: phải thanh toán cả 2
+        : tienPhongDaThu;                     // Chưa có điện nước: chỉ cần tiền phòng
+    
+    int tongKhoan = coDienNuoc ? 2 : 1;
+    int soLuongDaThu = (tienPhongDaThu ? 1 : 0) + (coDienNuoc && dienNuocDaThu ? 1 : 0);
 }
 
 @section Styles {
@@ -35,7 +48,7 @@
                     <i class="bi bi-lightning-charge"></i>
                 </div>
                 <h6 class="text-muted mb-2">Điện + Nước</h6>
-                @if (Model.TienDien > 0 || Model.TienNuoc > 0)
+                @if (coDienNuoc && (Model.TienDien > 0 || Model.TienNuoc > 0))
                 {
                     <h3 class="mb-0">@((Model.TienDien + Model.TienNuoc).ToString("N0"))₫</h3>
                     @if (Model.SoNguoiTrongPhong > 0)
@@ -44,18 +57,12 @@
                             <i class="bi bi-people"></i> Phòng gồm @Model.SoNguoiTrongPhong người
                         </small>
                     }
-                    else
-                    {
-                        <small class="text-warning">
-                            <i class="bi bi-exclamation-triangle"></i> Chưa cập nhật số người
-                        </small>
-                    }
                 }
                 else
                 {
                     <h3 class="mb-0 text-muted">Chưa có</h3>
                     <small class="text-muted">
-                        <i class="bi bi-info-circle"></i> Chưa cập nhật tiền điện nước
+                        <i class="bi bi-info-circle"></i> Chưa có hóa đơn
                     </small>
                 }
             </div>
@@ -68,19 +75,11 @@
                 </div>
                 <h6 class="text-muted mb-2">Tổng Phải Trả</h6>
                 <h3 class="mb-0 text-danger">@Model.TongCong.ToString("N0")₫</h3>
-             
             </div>
         </div>
 
         <div class="col-md-3 mb-3">
             <div class="stat-card">
-                @{
-                    bool tienPhongDaThu = ViewBag.TienPhongDaThu == true;
-                    bool dienNuocDaThu = ViewBag.DienNuocDaThu == true;
-                    bool tatCaDaThu = tienPhongDaThu && dienNuocDaThu;
-                    int soLuongDaThu = (tienPhongDaThu ? 1 : 0) + (dienNuocDaThu ? 1 : 0);
-                }
-
                 <div class="stat-icon @(tatCaDaThu ? "icon-green" : "icon-orange")">
                     <i class="bi @(tatCaDaThu ? "bi-check-circle-fill" : "bi-clock-history")"></i>
                 </div>
@@ -91,14 +90,14 @@
                 {
                     <h3 class="mb-0 text-success">Đã thanh toán</h3>
                     <small class="text-success">
-                        <i class="bi bi-check-circle"></i> Hoàn tất 2/2 khoản
+                        <i class="bi bi-check-circle"></i> Hoàn tất @soLuongDaThu/@tongKhoan khoản
                     </small>
                 }
                 else
                 {
                     <h3 class="mb-0 text-warning">Chưa đủ</h3>
                     <small class="text-warning">
-                        <i class="bi bi-info-circle"></i> Đã thanh toán @soLuongDaThu/2 khoản
+                        <i class="bi bi-info-circle"></i> Đã thanh toán @soLuongDaThu/@tongKhoan khoản
                     </small>
                 }
 
@@ -106,9 +105,18 @@
                     <small class="d-block @(tienPhongDaThu ? "text-success" : "text-muted")">
                         @(tienPhongDaThu ? "✓" : "○") Tiền phòng
                     </small>
-                    <small class="d-block @(dienNuocDaThu ? "text-success" : "text-muted")">
-                        @(dienNuocDaThu ? "✓" : "○") Điện nước
-                    </small>
+                    @if (coDienNuoc)
+                    {
+                        <small class="d-block @(dienNuocDaThu ? "text-success" : "text-muted")">
+                            @(dienNuocDaThu ? "✓" : "○") Điện nước
+                        </small>
+                    }
+                    else
+                    {
+                        <small class="d-block text-muted fst-italic">
+                            ℹ Chưa có điện nước
+                        </small>
+                    }
                 </div>
             </div>
         </div>
@@ -129,7 +137,7 @@
                         <h5 class="mb-0">
                             <i class="bi bi-house-door-fill me-2"></i>Tiền Phòng
                         </h5>
-                        @if (ViewBag.TienPhongDaThu == true)
+                        @if (tienPhongDaThu)
                         {
                             <span class="badge bg-success">
                                 <i class="bi bi-check-circle-fill me-1"></i>Đã thanh toán
@@ -166,7 +174,7 @@
                             </div>
                         </div>
 
-                        @if (ViewBag.TienPhongDaThu != true)
+                        @if (!tienPhongDaThu)
                         {
                             <div class="mb-3">
                                 <label class="form-label small text-muted">
@@ -207,21 +215,30 @@
                         <h5 class="mb-0">
                             <i class="bi bi-lightning-charge-fill me-2"></i>Điện Nước
                         </h5>
-                        @if (ViewBag.DienNuocDaThu == true)
+                        @if (coDienNuoc)
                         {
-                            <span class="badge bg-success">
-                                <i class="bi bi-check-circle-fill me-1"></i>Đã thanh toán
-                            </span>
+                            @if (dienNuocDaThu)
+                            {
+                                <span class="badge bg-success">
+                                    <i class="bi bi-check-circle-fill me-1"></i>Đã thanh toán
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark">
+                                    <i class="bi bi-clock-fill me-1"></i>Chưa thanh toán
+                                </span>
+                            }
                         }
                         else
                         {
-                            <span class="badge bg-warning text-dark">
-                                <i class="bi bi-clock-fill me-1"></i>Chưa thanh toán
+                            <span class="badge bg-secondary">
+                                <i class="bi bi-info-circle-fill me-1"></i>Chưa có hóa đơn
                             </span>
                         }
                     </div>
                     <div class="card-body">
-                        @if (Model.SoDien.HasValue || Model.SoNuoc.HasValue)
+                        @if (coDienNuoc && (Model.SoDien.HasValue || Model.SoNuoc.HasValue))
                         {
                             <div class="alert alert-info mb-3">
                                 <i class="bi bi-people-fill me-2"></i>
@@ -270,7 +287,7 @@
                                 </div>
                             </div>
 
-                            @if (ViewBag.DienNuocDaThu != true)
+                            @if (!dienNuocDaThu)
                             {
                                 <div class="mb-3">
                                     <label class="form-label small text-muted">
@@ -302,8 +319,18 @@
                         }
                         else
                         {
+                            <!-- ✅ Trường hợp CHƯA CÓ hóa đơn điện nước -->
                             <div class="alert alert-secondary mb-0">
-                                <i class="bi bi-info-circle-fill me-2"></i>Chưa có hóa đơn điện nước cho kỳ này
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-info-circle-fill fs-3 me-3 text-info"></i>
+                                    <div>
+                                        <h6 class="mb-1">Chưa có hóa đơn điện nước</h6>
+                                        <p class="mb-0 small">
+                                            Ban quản lý chưa cập nhật hóa đơn điện nước cho kỳ này. 
+                                            Bạn chỉ cần thanh toán tiền phòng trước.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         }
                     </div>
@@ -327,7 +354,7 @@
 
                 <hr class="my-3">
 
-                @if (ViewBag.TienPhongDaThu == true && ViewBag.DienNuocDaThu == true)
+                @if (tatCaDaThu)
                 {
                     <div class="alert alert-success mb-0">
                         <div class="d-flex align-items-center">
@@ -347,20 +374,34 @@
                             <div>
                                 <h5 class="mb-1">Cần thanh toán</h5>
                                 <p class="mb-0">
-                                    Bạn còn <strong>
-                                        @if (ViewBag.TienPhongDaThu != true && ViewBag.DienNuocDaThu != true)
+                                    @if (!coDienNuoc)
+                                    {
+                                        <!-- Chưa có điện nước -->
+                                        if (!tienPhongDaThu)
                                         {
-                                            <text>cả tiền phòng và điện nước</text>
+                                            <text>Bạn cần thanh toán <strong>tiền phòng</strong>. Hóa đơn điện nước sẽ được cập nhật sau.</text>
                                         }
-                                        else if (ViewBag.TienPhongDaThu != true)
-                                        {
-                                            <text>tiền phòng</text>
-                                        }
-                                        else
-                                        {
-                                            <text>tiền điện nước</text>
-                                        }
-                                    </strong> chưa thanh toán.
+                                    }
+                                    else
+                                    {
+                                        <!-- Có điện nước -->
+                                        <text>
+                                            Bạn còn <strong>
+                                                @if (!tienPhongDaThu && !dienNuocDaThu)
+                                                {
+                                                    <text>cả tiền phòng và điện nước</text>
+                                                }
+                                                else if (!tienPhongDaThu)
+                                                {
+                                                    <text>tiền phòng</text>
+                                                }
+                                                else
+                                                {
+                                                    <text>tiền điện nước</text>
+                                                }
+                                            </strong> chưa thanh toán.
+                                        </text>
+                                    }
                                 </p>
                             </div>
                         </div>
@@ -375,10 +416,10 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-            .card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
-            }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+        }
 
         .btn-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -386,11 +427,11 @@
             transition: all 0.3s ease;
         }
 
-            .btn-primary:hover {
-                background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-                transform: translateY(-2px);
-                box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-            }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
 
         .section-title {
             font-weight: 700;
@@ -401,7 +442,6 @@
             border-color: #e2e8f0 !important;
         }
 
-        /* QR Modal Styles */
         .qr-modal {
             display: none;
             position: fixed;
@@ -425,10 +465,6 @@
             animation: slideDown 0.3s ease;
         }
 
-        
-
-        }
-
         .qr-close {
             color: #aaa;
             float: right;
@@ -438,10 +474,10 @@
             transition: color 0.3s;
         }
 
-            .qr-close:hover,
-            .qr-close:focus {
-                color: #000;
-            }
+        .qr-close:hover,
+        .qr-close:focus {
+            color: #000;
+        }
 
         .qr-image {
             text-align: center;
@@ -454,11 +490,11 @@
             justify-content: center;
         }
 
-            .qr-image img {
-                max-width: 100%;
-                height: auto;
-                border-radius: 8px;
-            }
+        .qr-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
 
         .qr-info {
             margin-top: 20px;
@@ -471,9 +507,9 @@
             border-bottom: 1px solid #e9ecef;
         }
 
-            .qr-info-item:last-child {
-                border-bottom: none;
-            }
+        .qr-info-item:last-child {
+            border-bottom: none;
+        }
     </style>
 
     <!-- Lịch sử thanh toán -->
@@ -579,6 +615,7 @@
         </div>
     </div>
 </div>
+
 
 @section Scripts {
 

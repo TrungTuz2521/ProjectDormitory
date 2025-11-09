@@ -42,6 +42,15 @@ namespace KTX.ViewModels
         /// ✅ Kiểm tra xem phòng có hóa đơn điện nước chưa
         /// </summary>
         public bool CoDienNuoc { get; set; }
+        /// <summary>
+        /// Trạng thái thanh toán tiền phòng
+        /// </summary>
+        public bool TienPhongDaThanhToan { get; set; }
+
+        /// <summary>
+        /// Trạng thái thanh toán điện nước
+        /// </summary>
+        public bool DienNuocDaThanhToan { get; set; }
 
 
 

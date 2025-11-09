@@ -79,11 +79,12 @@ namespace KTX.Controllers
             return tienPhong?.TrangThaiTtp == "Đã thanh toán";
         }
 
+       
         /// <summary>
-        /// ✅ Kiểm tra RIÊNG điện nước đã thanh toán chưa
-        /// </summary>
-        /// <summary>
-        /// ✅ Kiểm tra RIÊNG điện nước đã thanh toán chưa
+        /// ✅ FIXED: Kiểm tra RIÊNG điện nước đã thanh toán chưa
+        /// Xử lý đúng logic: 
+        /// - Chưa có hóa đơn = không cần thanh toán = trả về true (không chặn)
+        /// - Có hóa đơn = kiểm tra trạng thái thanh toán
         /// </summary>
         private async Task<bool> KiemTraDienNuocDaThu(int maHD, int msv)
         {
@@ -98,19 +99,23 @@ namespace KTX.Controllers
                 .ThenByDescending(t => t.MaHddn)
                 .FirstOrDefaultAsync();
 
-            // ✅ Nếu chưa có hóa đơn điện nước → coi như "chưa áp dụng" (không cần thanh toán)
+            // ✅ QUAN TRỌNG: Nếu chưa có hóa đơn điện nước
+            // → Nghĩa là chưa đến kỳ thanh toán điện nước
+            // → Trả về TRUE để KHÔNG CHẶN thanh toán tiền phòng
             if (tienDienNuoc == null)
             {
-                return true; // Trả về true để không chặn thanh toán, nhưng ViewBag sẽ xử lý hiển thị
+                return true;
             }
 
+            // ✅ Có hóa đơn → kiểm tra chi tiết thanh toán của sinh viên
             var chiTiet = await _context.ChiTietThanhToanDienNuocs
                 .AsNoTracking()
                 .Where(ct => ct.MaHddn == tienDienNuoc.MaHddn && ct.Msv == msv)
                 .Select(ct => new { TrangThai = ct.TrangThai ?? "Chưa thanh toán" })
                 .FirstOrDefaultAsync();
 
-            return chiTiet?.TrangThai == "Đá thanh toán";
+ 
+            return chiTiet?.TrangThai == "Đã thanh toán";
         }
 
         #endregion
@@ -270,19 +275,27 @@ namespace KTX.Controllers
             var tienPhongRecord = hopDong.TienPhongs.FirstOrDefault();
 
             // ✅ Trạng thái thanh toán điện nước của sinh viên
-            
+
+            // ✅ Trạng thái thanh toán - PHÂN BIỆT rõ ràng
+            bool phongDaThu = tienPhongRecord?.TrangThaiTtp?.ToLower() == "đã thanh toán";
+
             bool dienNuocDaThu;
-            if (tienDienNuoc == null)
+            bool coDienNuoc = tienDienNuoc != null;
+
+            if (!coDienNuoc)
             {
-                // ✅ Chưa có hóa đơn → không áp dụng (không cần thanh toán)
-                dienNuocDaThu = true; // Không chặn, nhưng hiển thị "Chưa áp dụng"
+                // Chưa có hóa đơn → không cần thanh toán điện nước
+                dienNuocDaThu = true; // Không chặn thanh toán
             }
             else
             {
-                dienNuocDaThu = chiTietThanhToan?.TrangThai == "Đã thanh toán";
+                // Có hóa đơn → kiểm tra trạng thái
+                dienNuocDaThu = chiTietThanhToan?.TrangThai?.ToLower() == "đã thanh toán";
             }
 
-            bool phongDaThu = tienPhongRecord?.TrangThaiTtp == "Đã thanh toán";
+            // ✅ Chỉ coi là "đã thanh toán đủ" khi:
+            // - Tiền phòng đã thanh toán
+            // - VÀ (chưa có điện nước HOẶC điện nước đã thanh toán)
             bool tatCaDaThu = phongDaThu && dienNuocDaThu;
 
 
@@ -325,19 +338,27 @@ namespace KTX.Controllers
                 TongTienDichVu = 0,
 
                 // ✅ Tổng tiền (của sinh viên này)
+                // ✅ Tổng tiền (của sinh viên này)
                 TienPhong = tienPhong,
                 TienDien = tienDienMotNguoi,
                 TienNuoc = tienNuocMotNguoi,
                 TongCong = tongCong,
 
-                // ✅ Trạng thái thanh toán
-                CoDienNuoc = tienDienNuoc != null,
+                // ✅ QUAN TRỌNG: Các property về trạng thái
+                CoDienNuoc = coDienNuoc, // Flag để biết có hóa đơn điện nước không
 
-                DaThanhToan = tatCaDaThu,
+                // ✅ THÊM: Trạng thái riêng từng loại
+                TienPhongDaThanhToan = phongDaThu,
+                DienNuocDaThanhToan = dienNuocDaThu,
+
+                DaThanhToan = tatCaDaThu, // Tổng hợp
                 NgayThanhToan = chiTietThanhToan?.NgayThanhToan?.ToDateTime(TimeOnly.MinValue)
                  ?? tienPhongRecord?.NgayTtp?.ToDateTime(TimeOnly.MinValue),
-                TrangThaiThanhToan = tatCaDaThu ? "Đã thanh toán" : "Chưa thanh toán",
 
+                // ✅ Trạng thái hiển thị chi tiết hơn
+                TrangThaiThanhToan = !coDienNuoc
+        ? (phongDaThu ? "Đã thanh toán tiền phòng" : "Chưa thanh toán tiền phòng")
+        : (tatCaDaThu ? "Đã thanh toán đầy đủ" : "Chưa thanh toán đủ"),
                 // Thông tin ngân hàng
                 ThongTinNganHang = GetDefaultBankInfo(),
                 DanhSachNganHang = GetDanhSachNganHang()
@@ -804,5 +825,7 @@ namespace KTX.Controllers
             return phongDaThu && dienNuocDaThu;
         }
         #endregion
+
     }
+
 }
